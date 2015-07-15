@@ -1,0 +1,33 @@
+{
+  "name": "roomease",
+  "version": "0.0.1",
+  "description": "An app designed to make cohabitation fair and easy.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roomeasy/roomease.git"
+  },
+  "keywords": [
+    "room",
+    "roommate",
+    "chores",
+    "chore",
+    "tasks"
+  ],
+  "author": "RoomEasy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roomeasy/roomease/issues"
+  },
+  "homepage": "https://github.com/roomeasy/roomease",
+  "dependencies": {
+    "express": "^4.13.1",
+    "nodemon": "^1.3.7",
+    "pg": "^4.4.0",
+    "underscore": "^1.8.3"
+  }
+}

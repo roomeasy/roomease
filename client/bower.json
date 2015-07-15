@@ -1,0 +1,24 @@
+{
+  "name": "RoomEase",
+  "version": "0.0.1",
+  "homepage": "https://github.com/roomeasy/roomease",
+  "authors": [
+    "RoomEasy"
+  ],
+  "description": "An app to make cohab with roommates more fun and easy.",
+  "main": "index.html",
+  "keywords": [
+    "rooom",
+    "roommates",
+    "task",
+    "chores",
+    "chore",
+    "cohab"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.3",
+    "underscore": "~1.8.3"
+  }
+}
