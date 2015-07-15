@@ -4,6 +4,10 @@ var pg = require('pg');
 
 var app = express();
 
+//dbConnection
+var dbConnection = new pg.Client();
+dbConnection.connect();
+
 app.use(express.static(__dirname + '/../client'));
 
 var server = app.listen(3000, function () {
