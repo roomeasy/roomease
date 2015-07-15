@@ -13,4 +13,4 @@
 DROP TABLE IF EXISTS users;
 
 --Serial is used to auto-increment (75% sure on this...)
-CREATE TABLE users id SERIAL PRIMARY KEY, name VARCHAR, age INTEGER DEFAULT null);
+CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR, age INTEGER DEFAULT null);
