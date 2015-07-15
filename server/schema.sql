@@ -2,9 +2,10 @@
 -- Not actual data model
 
 -- Make sure Postgres.app is running
--- Type psql to get into command line shell
--- tinker with db
--- Only run schema when you want to start over
+-- 'psql 'will enter the shell
+
+-- If you run 'psql < schema.sql' it will run the schema file and drop/create tables.
+-- Only do this if you want to start fresh with the below schema.
 
 -- \c <database-name> connects to database
 -- \d <table-name> describes a certain table
