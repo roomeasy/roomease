@@ -39,10 +39,20 @@ module.exports = {
 
   dwellings: {
     add: function(req, res){
+      var session = req.session;
+      console.log(session)
+      if(!session.count) session.count = 1;
+      else{
+        session.count++;
+      }
       // 1. make the house
       console.log('inside dwelling add request handler');
       dwellingModel.createDwelling(req.body, function(err, dwellingId){
-        if(err) console.log(err)
+        if(err){
+          console.log(err)
+          res.send('failure');
+          res.end();
+        }
         else {
           // update the currently logged in user's homeId
             // call some user model function that does this and pass the dwellingId

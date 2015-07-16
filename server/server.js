@@ -1,6 +1,7 @@
 // NPM Module Imports
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 // Our App Imports
 var requestHandlers = require('./routes.js')
@@ -11,6 +12,12 @@ var app = express();
 // Express Middleware Setup
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
+app.use(session({
+  secret: 'keyboard cat',
+  cookie : {},
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Basic Routing
 // app.get('/users/"', requestHandlers.users.find);

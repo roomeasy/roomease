@@ -17,7 +17,7 @@ exports.createDwelling = function(dwellingObj, cb){
                      + "RETURNING id;";
   db.query(queryString, function(err, results){
     console.log('createDwelling:', results)
-    err ? console.log(err) : cb(null, results.rows);
+    err ? cb(err, null) : cb(null, results.rows);
   })
 }
 
