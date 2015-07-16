@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 // Basic Routing
 // app.get('/users/"', requestHandlers.users.find);
 app.post('/users/create', requestHandlers.users.add);
-
-
+app.post('/dwellings/create', requestHandlers.dwellings.add);
 
 // Initiate the server
 var server = app.listen(3000, function () {

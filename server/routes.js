@@ -1,14 +1,15 @@
 var userModel = require('./user/userModel.js');
-var livingSpaceModel = require('./livingSpace/livingSpaceModel.js');
+var dwellingModel = require('./dwelling/dwellingModel.js');
+var taskModel = require('./task/taskModel.js');
 
 module.exports = {
   users: {
     add : function(req, res){
         console.log('POST FUNCTION');
-        userModel.addUser(req, function(err, cb){
+        userModel.addUser(req, function(err, row){
           if(err) console.log(err)
           else{
-            res.send('Successful added user : ', req.body.username);
+            res.send(row.id); // returns the unique ID of the created User
             res.end();
           }
         });
@@ -26,21 +27,35 @@ module.exports = {
   // },
 
   tasks: {
-    get: function(req, res){
-
+    add: function(req, res){
+      console.log('ADD TASK REQ.HANDLER');
+      taskModel.addTask(req.body, houseId)
     },
 
-    post: function(req, res){
+    remove: function(req, res){
 
     }
   },
 
-  living_spaces: {
-    get: function(req, res){
-      // req should have the houseId
+  dwellings: {
+    add: function(req, res){
+      // 1. make the house
+      console.log('inside dwelling add request handler');
+      dwellingModel.createDwelling(req.body, function(err, dwellingId){
+        if(err) console.log(err)
+        else {
+          // update the currently logged in user's homeId
+            // call some user model function that does this and pass the dwellingId
+            // passed dwellingId.
+
+
+          res.send(dwellingId)
+          res.end();
+        }
+      });
     },
 
-    post: function(req, res){
+    gett: function(req, res){
 
     }
   }

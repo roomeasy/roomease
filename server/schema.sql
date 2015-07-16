@@ -12,14 +12,14 @@
 -- \q to quit the shell
 
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS living_spaces CASCADE;
+DROP TABLE IF EXISTS dwellings CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
 
 --Serial is used to auto-increment (75% sure on this...)
-CREATE TABLE living_spaces (
+CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
-  name VARCHAR UNIQUE
+  name VARCHAR
 );
 
 CREATE TABLE users (
@@ -28,20 +28,19 @@ CREATE TABLE users (
   password VARCHAR,
   age INTEGER DEFAULT null,
   email VARCHAR DEFAULT null,
-  living_space_id INTEGER references living_spaces(id) -- foreign key
+  dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
 -- each task has 1 user
 -- a user can have multiple tasks.
--- a living_space has multiple tasks and multiple users
+-- a dwelling has multiple tasks and multiple users
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
   frequency INTEGER,
   created_at TIMESTAMP,
   description VARCHAR DEFAULT NULL,
-  assigned_user_id INTEGER references users(id), -- foreign key
-  assigned_living_space_id INTEGER references living_spaces(id) -- foreign key
+  user_id INTEGER DEFAULT NULL references users(id), -- foreign key
+  dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
--- UPDATE TABLE users(living_space_id);
