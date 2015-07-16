@@ -1,6 +1,5 @@
 var db = require('../db.js').db;
 
-
 // getUsers : fetch all the user rows
 exports.getUsers = function(cb){
   var queryString = "SELECT * FROM users;";

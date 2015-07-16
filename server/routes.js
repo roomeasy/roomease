@@ -16,16 +16,6 @@ module.exports = {
       }
     },
 
-    // find: function(req, res){
-    //   console.log('GET SUCCESS')
-    //   userModel.findUser(function(err, results){
-    //     console.log('RESULTS OF GET REQUEST: ', results)
-    //     res.send(results.rows);
-    //     res.end();
-    //   });
-    // }
-  // },
-
   tasks: {
     add: function(req, res){
       console.log('ADD TASK REQ.HANDLER');
@@ -39,12 +29,6 @@ module.exports = {
 
   dwellings: {
     add: function(req, res){
-      var session = req.session;
-      console.log(session)
-      if(!session.count) session.count = 1;
-      else{
-        session.count++;
-      }
       // 1. make the house
       console.log('inside dwelling add request handler');
       dwellingModel.createDwelling(req.body, function(err, dwellingId){
@@ -58,14 +42,13 @@ module.exports = {
             // call some user model function that does this and pass the dwellingId
             // passed dwellingId.
 
-
           res.send(dwellingId)
           res.end();
         }
       });
     },
 
-    gett: function(req, res){
+    get: function(req, res){
 
     }
   }
