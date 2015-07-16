@@ -1,1 +1,18 @@
 <h2>howdy</h2>
+
+<form>
+  <div ng-repeat="task in tasks">
+  <label for="">Task Name:</label> <br />
+  <input ng-model="task.name" type="text" /> <br />
+  <label for="">Task Description:</label> <br />
+  <input ng-model="task.description" type="text" > <br />
+  <select ng-model="task.frequency" name="Frequency">
+    <option value="Daily">Daily</option>
+    <option value="Weekly">Weekly</option>
+    <option value="Monthly">Monthly</option>
+  </select>
+  <p>{{task}}</p>
+</div>
+</form>
+  <button ng-click="">Add More Tasks</button>
+  <button ng-click="">Submit</button>

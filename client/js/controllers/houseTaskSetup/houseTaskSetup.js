@@ -1,6 +1,10 @@
 angular.module('roomEase')
 
 .controller('houseTaskSetup', function($scope){
-  $scope.greeting = "Hello";
+  $scope.tasks = [{
+    name: "",
+    description: "",
+    frequency: "Daily"
+  }];
 
 })
