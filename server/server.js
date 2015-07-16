@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 
 // Basic Routing
 app.get('/users', requestHandlers.users.get);
-app.post('/users', requestHandlers.users.post);
+app.post('/users/add', requestHandlers.users.post);
+
 
 
 // Initiate the server

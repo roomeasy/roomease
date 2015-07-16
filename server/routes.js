@@ -20,8 +20,9 @@ module.exports = {
           res.end();
         }
       });
+    },
 
-    }
+
   },
 
   tasks: {

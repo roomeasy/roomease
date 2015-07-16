@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS tasks CASCADE;
 CREATE TABLE living_spaces (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
-  name VARCHAR
+  name VARCHAR UNIQUE
 );
 
 CREATE TABLE users (
