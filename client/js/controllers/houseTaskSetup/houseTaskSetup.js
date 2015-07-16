@@ -7,4 +7,12 @@ angular.module('roomEase')
     frequency: "Daily"
   }];
 
+  $scope.newTask = function () {
+    $scope.tasks.push({
+      name: "",
+      description: "",
+      frequency: "Daily"
+    })
+  }
+
 })
