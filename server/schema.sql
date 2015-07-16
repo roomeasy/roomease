@@ -12,6 +12,34 @@
 -- \q to quit the shell
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS living_spaces;
+DROP TABLE IF EXISTS tasks;
 
 --Serial is used to auto-increment (75% sure on this...)
-CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR, age INTEGER DEFAULT null);
+CREATE TABLE living_spaces (
+  id SERIAL PRIMARY KEY,
+  address VARCHAR DEFAULT null,
+  name VARCHAR
+);
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR,
+  password VARCHAR,
+  age INTEGER DEFAULT null,
+  email VARCHAR DEFAULT null,
+  living_space_id INTEGER references living_spaces(id) -- foreign key
+);
+
+-- each task has 1 user
+-- a user can have multiple tasks.
+-- a living_space has multiple tasks and multiple users
+CREATE TABLE tasks (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR,
+  description VARCHAR DEFAULT NULL,
+  assigned_user_id INTEGER references users(id), -- foreign key
+  assigned_house_id INTEGER references living_spaces(id) -- foreign key
+);
+
+-- UPDATE TABLE users(living_space_id);
