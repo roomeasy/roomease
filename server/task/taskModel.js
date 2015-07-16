@@ -15,6 +15,6 @@ exports.addTask = function(taskObj, houseId, cb){
   console.log('queryString in addTask(): ', queryString);
   db.query(queryString, function(err, results){
     console.log("Inside the addTask Query callback");
-    err ? console.log(err) : cb(null, results.rows);
+    err ? cb(err, null) : cb(null, results.rows);
   })
 }
