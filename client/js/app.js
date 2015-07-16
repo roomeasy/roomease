@@ -9,5 +9,13 @@ angular.module('roomEase', [
     controller: 'houseTaskSetup'
     // controllerAs: 'taskSetup'
   })
+  .when('/createDomicile', {
+    templateUrl: '/js/controllers/livingSpaceSetup/livingSpaceSetup.html',
+    controller: 'livingSpaceSetup'
+  })
+  .when('/signin', {
+    templateUrl: '/js/controllers/signin/signin.html',
+    controller: 'signinCtrl'
+  })
   .otherwise({redirectTo: '/'})
 })
