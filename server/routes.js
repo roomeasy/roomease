@@ -13,8 +13,14 @@ module.exports = {
 
     post: function(req, res){
       console.log('POST FUNCTION');
+      userModel.addUser(req, function(err, cb){
+        if(err) console.log(err)
+        else{
+          res.send('Successful added user : ', req.body.username);
+          res.end();
+        }
+      });
 
-      res.end();
     }
   },
 
