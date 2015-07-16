@@ -1,15 +1,27 @@
-<form>
-  <div ng-repeat="task in tasks">
-    <label for="">Task Name:</label> <br />
-    <input ng-model="task.name" type="text" /> <br />
-    <label for="">Task Description:</label> <br />
-    <input ng-model="task.description" type="text" > <br />
-    <select ng-model="task.frequency" name="Frequency">
-      <option value="Daily">Daily</option>
-      <option value="Weekly">Weekly</option>
-      <option value="Monthly">Monthly</option>
-    </select>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div>
+          <label for="">Task Name:</label> <br />
+          <input ng-model="task.name" type="text" /> <br />
+          <label for="">Task Description:</label> <br />
+          <input ng-model="task.description" type="text" > <br />
+          <select ng-model="task.frequency" name="Frequency">
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+          </select>
+        </div>
+      </form>
+        <button ng-click="addTask()">Add Your Task</button>
+        <button ng-click="">Submit</button>
+      </div>
+      <div ng-repeat="task in tasks" class="col-md-6">
+        <ul>
+          <li>{{task.name}} <span>{{task.frequency}}</span></li>
+          <li>{{task.description}}</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</form>
-  <button ng-click="newTask()">Add More Tasks</button>
-  <button ng-click="">Submit</button>
