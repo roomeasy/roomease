@@ -17,5 +17,9 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/signin/signin.html',
     controller: 'signinCtrl'
   })
+  .when('/signup', {
+    templateUrl: '/js/controllers/signup/signup.html',
+    controller: 'signupCtrl'
+  })
   .otherwise({redirectTo: '/'})
 })
