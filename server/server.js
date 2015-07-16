@@ -13,8 +13,8 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
 
 // Basic Routing
-app.get('/users', requestHandlers.users.get);
-app.post('/users/add', requestHandlers.users.post);
+// app.get('/users/"', requestHandlers.users.find);
+app.post('/users/create', requestHandlers.users.add);
 
 
 

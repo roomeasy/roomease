@@ -6,7 +6,7 @@ exports.getUsers = function(cb){
   var queryString = "SELECT * FROM users;";
   db.query(queryString, function(err, results){
     console.log('Inside the GET Query callback');
-    err ? console.log(err) : cb(null, results)
+    err ? console.log(err) : cb(null, results.rows)
   });
 }
 
@@ -22,7 +22,7 @@ exports.addUser = function(req, cb){
   console.log('queryString: ', queryString)
   db.query(queryString, function(err, results){
     console.log("Inside the POST Query callback");
-    err ? console.log(err) : cb(null, results);
+    err ? console.log(err) : cb(null, results.rows);
   })
 }
 
@@ -30,11 +30,7 @@ exports.addUser = function(req, cb){
 exports.findUser = function(username, cb){
   var queryString = "SELECT * FROM users WHERE username = " + "'" + username + "';";
   db.query(queryString, function(err, results){
-    err ? console.log(err) : cb(null,results);
+    console.log('findUser: ', results)
+    err ? console.log(err) : cb(null, results.rows);
   });
-}
-
-// findRoomates :
-exports.findRoommates = function(houseId, cb){
-  // var queryString = "SELECT * FROM living"
 }

@@ -41,7 +41,7 @@ CREATE TABLE tasks (
   created_at TIMESTAMP,
   description VARCHAR DEFAULT NULL,
   assigned_user_id INTEGER references users(id), -- foreign key
-  assigned_house_id INTEGER references living_spaces(id) -- foreign key
+  assigned_living_space_id INTEGER references living_spaces(id) -- foreign key
 );
 
 -- UPDATE TABLE users(living_space_id);
