@@ -11,9 +11,9 @@
 -- \d <table-name> describes a certain table
 -- \q to quit the shell
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS living_spaces;
-DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS living_spaces CASCADE;
+DROP TABLE IF EXISTS tasks CASCADE;
 
 --Serial is used to auto-increment (75% sure on this...)
 CREATE TABLE living_spaces (
@@ -37,6 +37,8 @@ CREATE TABLE users (
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
+  frequency INTEGER,
+  created_at TIMESTAMP,
   description VARCHAR DEFAULT NULL,
   assigned_user_id INTEGER references users(id), -- foreign key
   assigned_house_id INTEGER references living_spaces(id) -- foreign key
