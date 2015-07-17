@@ -19,12 +19,12 @@ DROP TABLE IF EXISTS tasks CASCADE;
 CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
-  name VARCHAR
+  name VARCHAR unique
 );
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  username VARCHAR,
+  username VARCHAR UNIQUE,
   password VARCHAR,
   age INTEGER DEFAULT null,
   email VARCHAR DEFAULT null,

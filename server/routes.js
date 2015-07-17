@@ -5,51 +5,96 @@ var taskModel = require('./task/taskModel.js');
 module.exports = {
   users: {
     add : function(req, res){
-        console.log('POST FUNCTION');
-        userModel.addUser(req, function(err, row){
-          if(err) console.log(err)
-          else{
-            res.send(row.id); // returns the unique ID of the created User
-            res.end();
-          }
-        });
-      }
+      console.log('Add User Request Handler...');
+      var user = {  // Data Packaging
+        username: req.body.username,
+        password: req.body.password,
+        age     : req.body.age,
+        email   : req.body.email,
+      };
+      userModel.add(user, function(err, insertedUserId){
+        responseHandler(err, insertedUserId, res);
+      });
     },
+    getAll : function(req, res){
+      userModel.getAll(function(err, results){
+        responseHandler(err, results, res);
+      });
+    },
+    find : function(req, res){
+      console.log('inside the user find request handler');
+      var username = req.params.username;
+      console.log(username)
+      userModel.findUser(username, function(err, results){
+        console.log('inside response handler: ', results);
+        responseHandler(err, results, res);
+      });
+    }
+  },
 
   tasks: {
     add: function(req, res){
-      console.log('ADD TASK REQ.HANDLER');
-      taskModel.addTask(req.body, houseId)
+      console.log('inside add task request handler');
+      var task = { // Data Packaging
+        name        : req.body.name,
+        frequency   : req.body.frequency,
+        description : req.body.description,
+      };
+      taskModel.add(task, req.body.houseId, function(err, results){  // is this correct?
+        responseHandler(err, results, res);
+      });
     },
-
-    remove: function(req, res){
-
+    getAll : function(req, res){
+      taskModel.getAll(function(err, results){
+        responseHandler(err, results, res);
+      });
+    },
+    find : function(req, res){
+      console.log('inside the dwelling find request handler');
+      var taskname = req.params.taskname;
+      console.log(taskname);
+      taskModel.findTask(taskname, function(err, results){
+        console.log('inside response handler: ', results);
+        responseHandler(err, results, res);
+      });
     }
   },
 
   dwellings: {
     add: function(req, res){
-      // 1. make the house
       console.log('inside dwelling add request handler');
-      dwellingModel.createDwelling(req.body, function(err, dwellingId){
-        if(err){
-          console.log(err)
-          res.send('failure');
-          res.end();
-        }
-        else {
-          // update the currently logged in user's homeId
-            // call some user model function that does this and pass the dwellingId
-            // passed dwellingId.
-
-          res.send(dwellingId)
-          res.end();
-        }
+      var dwelling = { // data packaging
+        name    : req.body.name,
+        address : req.body.address,
+      }
+      console.log(req.body);
+      dwellingModel.add(dwelling, function(err, results){
+        responseHandler(err, results, res);
       });
     },
-
-    get: function(req, res){
-
+    getAll: function(req, res){
+      dwellingModel.getAll(function(err, results){
+        responseHandler(err, results, res);
+      })
+    },
+    find : function(req, res){
+      console.log('inside the dwelling find request handler');
+      var dwellingName = req.params.dwellingname;
+      console.log(dwellingName);
+      dwellingModel.findDwelling(dwellingName, function(err, results){
+        console.log('inside response handler: ', results);
+        responseHandler(err, results, res);
+      });
     }
+  }
+}
+
+
+// Utility function for user response handling
+function responseHandler(err, resultsData, res){
+  if(err) res.end(JSON.stringify(err));
+  else{
+    res.send(resultsData);
+    res.end();
   }
 }
