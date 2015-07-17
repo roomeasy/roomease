@@ -9,3 +9,9 @@ angular.module('roomEase')
     }
   ]
 })
+.controller('yourTasksCtrl', function($scope) {
+
+})
+.controller('tasksHistoryCtrl', function($scope) {
+
+})

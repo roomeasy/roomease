@@ -4,10 +4,14 @@
     <div class="col-md-6">
       <div ng-controller="dashboardCtrl">
         <tabset justified="true">
-          <tab heading="Your Tasks">
-            <div ui-view="yourtasks"></div>
+          <tab ui-sref=".yourTasks" heading="Your Tasks">
+            <!-- <div ui-view=""></div> -->
+            <!-- <div ng-include="'js/controllers/dashboard/yourTasks.html'"></div> -->
           </tab>
-          <tab heading="History">Short Labeled Justified content</tab>
+          <tab ui-sref=".taskHistory" heading="History">
+            <!-- <div ng-include="'js/controllers/dashboard/taskHistory.html'"></div> -->
+          </tab>
+            <div ui-view=""> </div>
         </tabset>
       </div>
     </div>

@@ -38,4 +38,23 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
   })
+  .state('dashboard.yourTasks', {
+    // url: '/yourTasks',
+    templateUrl: '/js/controllers/dashboard/yourTasks.html',
+    controller: 'yourTasksCtrl'
+  })
+  .state('dashboard.taskHistory', {
+    // url: '/taskHistory',
+    templateUrl: '/js/controllers/dashboard/taskHistory.html',
+    controller: 'tasksHistoryCtrl'
+  })
 })
+
+
+// .state('home.list', {
+//         url: '/list',
+//         templateUrl: 'partial-home-list.html',
+//         controller: function($scope) {
+//             $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+//         }
+//     })
