@@ -27,7 +27,7 @@ exports.add = function(user, cb){
 }
 
 // findUser : queries the database w/ the provided username and returns the result
-exports.find = function(username, cb){
+exports.findUser = function(username, cb){
   console.log('Inside the users find query');
   var queryString = "SELECT * FROM users WHERE username = " + "'" + username + "';";
   db.query(queryString, function(err, results){

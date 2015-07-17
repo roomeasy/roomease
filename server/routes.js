@@ -24,7 +24,13 @@ module.exports = {
     },
 
     find : function(req, res){
-
+      console.log('inside the user find request handler');
+      var username = req.params.username;
+      console.log(username)
+      userModel.findUser(username, function(err, results){
+        console.log('inside response handler: ', results);
+        userResponseHandler(err, results, res);
+      });
     }
   },
 
