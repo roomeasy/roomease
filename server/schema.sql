@@ -24,7 +24,7 @@ CREATE TABLE dwellings (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  username VARCHAR,
+  username VARCHAR UNIQUE,
   password VARCHAR,
   age INTEGER DEFAULT null,
   email VARCHAR DEFAULT null,

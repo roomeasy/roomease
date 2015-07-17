@@ -10,19 +10,20 @@ exports.getUsers = function(cb){
 }
 
 // addUser : insert a new user row
-exports.addUser = function(req, cb){
-  console.log('req.body: ', req.body);
+exports.add = function(user, cb){
+  // console.log('req.body: ', req.body);
   var queryString = "INSERT INTO users (username, password, age, email) VALUES ("
-                     + "'" + req.body.username + "', "
-                     + "'" + req.body.password + "', "
-                     + "" + req.body.age + ", "
-                     + "'" + req.body.email + "');";
+                     + "'" + user.username + "', "
+                     + "'" + user.password + "', "
+                     + "" + user.age + ", "
+                     + "'" + user.email + "') RETURNING id;";
 
   console.log('queryString: ', queryString)
   db.query(queryString, function(err, results){
+    // console.log(results);
     console.log("Inside the POST Query callback");
-    err ? cb(err, null) : cb(null, results.rows);
-  })
+    err ? cb(err, null) : cb(null, results.rows[0]);
+  });
 }
 
 // findUser : queries the database w/ the provided username and returns the result

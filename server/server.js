@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 // var session = require('express-session');
 
 // Our App Imports
-var requestHandlers = require('./routes.js')
+var requestHandlers = require('./routes.js');
 
 // Initialize the instance of express
 var app = express();
@@ -21,8 +21,11 @@ app.use(bodyParser.json());
 
 // Basic Routing
 // app.get('/users/"', requestHandlers.users.find);
-app.post('/users/create', requestHandlers.users.add);
+app.post('/users', requestHandlers.users.add);
 app.post('/dwellings/create', requestHandlers.dwellings.add);
+
+// GET REQUESTS
+app.get('/tasks', requestHandlers.tasks.getAll);
 
 // Initiate the server
 var server = app.listen(3000, function () {

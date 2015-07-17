@@ -5,25 +5,43 @@ var taskModel = require('./task/taskModel.js');
 module.exports = {
   users: {
     add : function(req, res){
-        console.log('POST FUNCTION');
-        userModel.addUser(req, function(err, row){
-          if(err) console.log(err)
-          else{
-            res.send(row.id); // returns the unique ID of the created User
-            res.end();
-          }
-        });
-      }
-    },
+      console.log('Add User Request Handler...');
+      var user = {  // Data Packaging
+        username: req.body.username,
+        password: req.body.password,
+        age     : req.body.age,
+        email   : req.body.email,
+      };
+      userModel.add(user, function(err, insertedUserId){
+        if(err) res.end(JSON.stringify(err));
+        else{
+          console.log('Back in User Req. Handler...SUCCESS');
+          res.send(insertedUserId); // returns the unique ID of the created User
+          res.end();
+        }
+      });
+    }
+  },
 
   tasks: {
     add: function(req, res){
       console.log('ADD TASK REQ.HANDLER');
-      taskModel.addTask(req.body, houseId)
+      taskModel.add(req.body, houseId)
     },
 
     remove: function(req, res){
 
+    },
+
+    getAll : function(req, res){
+      // need to pull current user from the req.user
+      taskModel.getAll(function(err, results){
+        if(err) console.log(err)
+        else{
+          res.send(results);
+          res.end();
+        }
+      });
     }
   },
 
