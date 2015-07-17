@@ -1,12 +1,15 @@
 angular.module('roomEase')
 
-.controller('signupCtrl', function ($scope) {
+.controller('signupCtrl', function ($scope, Users) {
   $scope.user = {
     username: "",
     email: "",
     password: "",
-    name: ""
+    age: ""
   }
 
-  $scope.submitSignupInfo = function () {}
+  $scope.submitSignupInfo = function () {
+    Users.addUser($scope.user)
+  }
+
 })
