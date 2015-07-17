@@ -29,3 +29,13 @@
 .signin-form {
   margin-top: 300px;
 }
+
+.looking-user-box {
+  float:left;
+}
+
+.search-user-image {
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
