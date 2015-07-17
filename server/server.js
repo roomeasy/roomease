@@ -26,7 +26,7 @@ app.post('/dwellings/create', requestHandlers.dwellings.add);
 
 // GET REQUESTS
 app.get('/tasks', requestHandlers.tasks.getAll);
-
+app.get('/users/all', requestHandlers.users.getAll);
 // Initiate the server
 var server = app.listen(3000, function () {
   var host = server.address().address;

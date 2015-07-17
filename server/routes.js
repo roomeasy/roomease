@@ -13,13 +13,18 @@ module.exports = {
         email   : req.body.email,
       };
       userModel.add(user, function(err, insertedUserId){
-        if(err) res.end(JSON.stringify(err));
-        else{
-          console.log('Back in User Req. Handler...SUCCESS');
-          res.send(insertedUserId); // returns the unique ID of the created User
-          res.end();
-        }
+        userResponseHandler(err, insertedUserId, res);
       });
+    },
+
+    getAll : function(req, res){
+      userModel.getAll(function(err, results){
+        userResponseHandler(err, results, res);
+      });
+    },
+
+    find : function(req, res){
+
     }
   },
 
@@ -69,5 +74,15 @@ module.exports = {
     get: function(req, res){
 
     }
+  }
+}
+
+
+// Utility function for user response handling
+function userResponseHandler(err, resultsData, res){
+  if(err) res.end(JSON.stringify(err));
+  else{
+    res.send(resultsData);
+    res.end();
   }
 }
