@@ -1,16 +1,13 @@
 var db = require('../db.js').db;
 
 exports.add = function(task, houseId, cb){
-  // INPUT: assumes that we are passing in the req.body object which is known as "taskaddTask()
-
-  // convert the frequency to an integer before continuing to the queryString
-
-  var queryString = "INSERT INTO tasks (name, frequency, description, dwelling_id) \
+  var queryString = "INSERT INTO tasks (created_at, name, frequency, description) \
                      VALUES ("
+                     + "NOW(), "
                      + "'" + task.name + "', "
                      + "'" + task.frequency + "', "
-                     + "'" + task.description + "', "
-                     + "" + houseId + "'); RETURNING id";
+                     + "'" + task.description + "') RETURNING id;";
+                     // + "" + houseId + "'); RETURNING id";
 
   console.log('queryString in addTask(): ', queryString);
   db.query(queryString, function(err, results){

@@ -23,11 +23,13 @@ app.use(bodyParser.json());
 // app.get('/users/"', requestHandlers.users.find);
 app.post('/users', requestHandlers.users.add);
 app.post('/dwellings', requestHandlers.dwellings.add);
+app.post('/tasks', requestHandlers.tasks.add);
 
 // GET REQUESTS
 app.get('/tasks/all', requestHandlers.tasks.getAll);
 app.get('/users/all', requestHandlers.users.getAll);
 app.get('/dwellings/all', requestHandlers.dwellings.getAll)
+
 app.get('/users/:username', requestHandlers.users.find);
 
 // Initiate the server

@@ -38,7 +38,7 @@ module.exports = {
       var task = { // Data Packaging
         name        : req.body.name,
         frequency   : req.body.frequency,
-        description : req.body.dsecription
+        description : req.body.description,
       };
       taskModel.add(task, req.body.houseId, function(err, results){  // is this correct?
         responseHandler(err, results, res);
