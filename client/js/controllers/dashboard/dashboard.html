@@ -2,10 +2,17 @@
   <div class="row">
     <h2>dashboard</h2>
     <div class="col-md-6">
-
-      </div>
-      <div class="col-md-6">
-
+      <div ng-controller="dashboardCtrl">
+        <tabset justified="true">
+          <tab heading="Your Tasks">
+            <div ui-view="yourtasks"></div>
+          </tab>
+          <tab heading="History">Short Labeled Justified content</tab>
+        </tabset>
       </div>
     </div>
+    <div class="col-md-6">
+
+    </div>
   </div>
+</div>

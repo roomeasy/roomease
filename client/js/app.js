@@ -1,6 +1,7 @@
 // Angular initialization
 angular.module('roomEase', [
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -9,6 +10,7 @@ angular.module('roomEase', [
   //    url: "/state1",
   //    templateUrl: "partials/state1.html"
   //  })
+  $urlRouterProvider.otherwise('/signin')
 
   $stateProvider.state('taskSetup', {
     url: '/tasksetup',
@@ -36,5 +38,4 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
   })
-  $urlRouterProvider.otherwise('/')
 })
