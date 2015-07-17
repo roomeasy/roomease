@@ -26,13 +26,13 @@ app.post('/dwellings', requestHandlers.dwellings.add);
 app.post('/tasks', requestHandlers.tasks.add);
 
 // GET REQUESTS
-app.get('/tasks/all', requestHandlers.tasks.getAll);
-app.get('/users/all', requestHandlers.users.getAll);
-app.get('/dwellings/all', requestHandlers.dwellings.getAll)
+app.get('/tasks', requestHandlers.tasks.getAll);
+app.get('/users', requestHandlers.users.getAll);
+app.get('/dwellings', requestHandlers.dwellings.getAll)
 
 app.get('/users/:username', requestHandlers.users.find);
 app.get('/dwellings/:dwellingname', requestHandlers.dwellings.find);
-app.get('/users/:username', requestHandlers.users.find);
+app.get('/tasks/:taskname', requestHandlers.tasks.find);
 // do dwelling finding
 // do task finding
 

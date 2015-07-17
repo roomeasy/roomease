@@ -23,3 +23,11 @@ exports.getAll = function(cb){
     err ? cb(err, null) : cb(null, results.rows);
   })
 }
+
+exports.findTask = function(taskName, cb){
+  console.log('Inside the dwelling find query');
+  var queryString = "SELECT * FROM tasks WHERE name = " + "'" + taskName + "';";
+  db.query(queryString, function(err, results){
+    err ? cb(err, null) : cb(null, results.rows[0]);
+  });
+}
