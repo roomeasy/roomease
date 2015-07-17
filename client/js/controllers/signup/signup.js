@@ -11,7 +11,7 @@ angular.module('roomEase')
   $scope.submitSignupInfo = function () {
     Users.addUser($scope.user)
     .then(function() {
-      $location.path('/dashboard');
+      $location.path('/createLivingSpace');
     })
   }
 
