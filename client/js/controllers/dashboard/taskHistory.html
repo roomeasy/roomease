@@ -1,2 +1,7 @@
-<h3>Task History</h3>
-<p>{{tasks}}</p>
+<div class="single-task" ng-repeat="task in tasks">
+  <ul>
+    <li>{{task.name}} <span>{{task.frequency}}</span></li>
+    <li>{{task.description}} {{task.user}}</li>
+  </ul>
+</div>
+
