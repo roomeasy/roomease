@@ -31,6 +31,10 @@ app.get('/users/all', requestHandlers.users.getAll);
 app.get('/dwellings/all', requestHandlers.dwellings.getAll)
 
 app.get('/users/:username', requestHandlers.users.find);
+app.get('/dwellings/:dwellingname', requestHandlers.dwellings.find);
+app.get('/users/:username', requestHandlers.users.find);
+// do dwelling finding
+// do task finding
 
 // Initiate the server
 var server = app.listen(3000, function () {

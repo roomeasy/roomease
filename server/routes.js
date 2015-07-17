@@ -68,6 +68,15 @@ module.exports = {
         responseHandler(err, results, res);
       })
     },
+    find : function(req, res){
+      console.log('inside the dwelling find request handler');
+      var dwellingName = req.params.dwellingname;
+      console.log(dwellingName);
+      dwellingModel.findDwelling(dwellingName, function(err, results){
+        console.log('inside response handler: ', results);
+        responseHandler(err, results, res);
+      });
+    }
   }
 }
 

@@ -32,3 +32,11 @@ exports.getAll = function(cb){
     err ? cb(err, null) : cb(null, results.rows)
   });
 }
+
+exports.findDwelling = function(dwellingName, cb){
+  console.log('Inside the dwelling find query');
+  var queryString = "SELECT * FROM dwellings WHERE name = " + "'" + dwellingName + "';";
+  db.query(queryString, function(err, results){
+    err ? cb(err, null) : cb(null, results.rows[0]);
+  });
+}

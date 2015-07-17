@@ -32,6 +32,6 @@ exports.findUser = function(username, cb){
   var queryString = "SELECT * FROM users WHERE username = " + "'" + username + "';";
   db.query(queryString, function(err, results){
     // console.log('findUser: ', results)
-    err ? cb(err, null) : cb(null, results.rows);
+    err ? cb(err, null) : cb(null, results.rows[0]);
   });
 }
