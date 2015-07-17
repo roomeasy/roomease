@@ -9,15 +9,14 @@ exports.findRoommates = function(houseId, cb){
   });
 }
 
-exports.createDwelling = function(dwellingObj, cb){
+exports.add = function(dwelling, cb){
   var queryString = "INSERT INTO dwellings (address, name) \
                      VALUES ("
-                     + "'" + dwellingObj.address + "', "
-                     + "'" + dwellingObj.name + "') "
+                     + "'" + dwelling.address + "', "
+                     + "'" + dwelling.name + "') "
                      + "RETURNING id;";
   db.query(queryString, function(err, results){
-    console.log('createDwelling:', results)
-    err ? cb(err, null) : cb(null, results.rows);
+    err ? cb(err, null) : cb(null, results.rows[0]);
   })
 }
 

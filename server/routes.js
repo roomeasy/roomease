@@ -13,70 +13,56 @@ module.exports = {
         email   : req.body.email,
       };
       userModel.add(user, function(err, insertedUserId){
-        userResponseHandler(err, insertedUserId, res);
+        responseHandler(err, insertedUserId, res);
       });
     },
-
     getAll : function(req, res){
       userModel.getAll(function(err, results){
-        userResponseHandler(err, results, res);
+        responseHandler(err, results, res);
       });
     },
-
     find : function(req, res){
       console.log('inside the user find request handler');
       var username = req.params.username;
       console.log(username)
       userModel.findUser(username, function(err, results){
         console.log('inside response handler: ', results);
-        userResponseHandler(err, results, res);
+        responseHandler(err, results, res);
       });
     }
   },
 
   tasks: {
     add: function(req, res){
-      console.log('ADD TASK REQ.HANDLER');
-      taskModel.add(req.body, houseId)
+      console.log('inside add task request handler');
+      var task = { // Data Packaging
+        name        : req.body.name,
+        frequency   : req.body.frequency,
+        description : req.body.dsecription
+      };
+      taskModel.add(task, req.body.houseId, function(err, results){  // is this correct?
+        responseHandler(err, results, res);
+      });
     },
-
-    remove: function(req, res){
-
-    },
-
     getAll : function(req, res){
-      // need to pull current user from the req.user
       taskModel.getAll(function(err, results){
-        if(err) console.log(err)
-        else{
-          res.send(results);
-          res.end();
-        }
+        responseHandler(err, results, res);
       });
     }
   },
 
   dwellings: {
     add: function(req, res){
-      // 1. make the house
       console.log('inside dwelling add request handler');
-      dwellingModel.createDwelling(req.body, function(err, dwellingId){
-        if(err){
-          console.log(err)
-          res.send('failure');
-          res.end();
-        }
-        else {
-          // update the currently logged in user's homeId
-            // call some user model function that does this and pass the dwellingId
-            // passed dwellingId.
-
-          res.send(dwellingId)
-          res.end();
-        }
+      var dwelling = { // data packaging
+        name    : req.body.name,
+        address : req.body.address,
+      }
+      console.log(req.body);
+      dwellingModel.add(dwelling, function(err, results){
+        responseHandler(err, results, res);
       });
     },
-
     get: function(req, res){
 
     }
@@ -85,7 +71,7 @@ module.exports = {
 
 
 // Utility function for user response handling
-function userResponseHandler(err, resultsData, res){
+function responseHandler(err, resultsData, res){
   if(err) res.end(JSON.stringify(err));
   else{
     res.send(resultsData);
