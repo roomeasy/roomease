@@ -24,6 +24,8 @@ CREATE TABLE dwellings (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
+  facebook_id BIGINT,
+  facebook_token VARCHAR,
   username VARCHAR UNIQUE,
   password VARCHAR,
   age INTEGER DEFAULT null,

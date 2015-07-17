@@ -45,6 +45,7 @@ module.exports = {
       });
     },
     getAll : function(req, res){
+      console.log('inside the get all task request handler');
       taskModel.getAll(function(err, results){
         responseHandler(err, results, res);
       });
