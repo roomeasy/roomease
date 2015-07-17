@@ -23,3 +23,12 @@ exports.add = function(dwelling, cb){
 exports.dwellingId = function(){
 
 }
+
+
+exports.getAll = function(cb){
+  var queryString = "SELECT * FROM dwellings;";
+  db.query(queryString, function(err, results){
+    console.log('Inside the users getAll Query');
+    err ? cb(err, null) : cb(null, results.rows)
+  });
+}

@@ -63,9 +63,11 @@ module.exports = {
         responseHandler(err, results, res);
       });
     },
-    get: function(req, res){
-
-    }
+    getAll: function(req, res){
+      dwellingModel.getAll(function(err, results){
+        responseHandler(err, results, res);
+      })
+    },
   }
 }
 
