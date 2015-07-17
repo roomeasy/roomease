@@ -2,6 +2,7 @@
 
 .user-image {
   border-radius: 50%;
+<<<<<<< HEAD
   height: 120px;
   width: 120px;
 }
@@ -38,4 +39,8 @@
   height: 250px;
   width: 250px;
   object-fit: cover;
+=======
+  height: 150px;
+  width: 150px;
+>>>>>>> b3b86fed660c25f0268160e9d728fc8a8bcce92d
 }

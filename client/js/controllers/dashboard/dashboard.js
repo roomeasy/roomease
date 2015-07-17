@@ -34,10 +34,13 @@ angular.module('roomEase')
       image: "http://i.imgur.com/uYMnx1zb.jpg"
     }
   ]
+<<<<<<< HEAD
 
   $scope.userTasks = $scope.tasks.filter(function(task) {
     return task.user === $scope.user;
   })
+=======
+>>>>>>> b3b86fed660c25f0268160e9d728fc8a8bcce92d
 })
 .controller('yourTasksCtrl', function($scope) {
 
