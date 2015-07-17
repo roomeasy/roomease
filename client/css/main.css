@@ -2,6 +2,30 @@
 
 .user-image {
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
+}
+
+.user-box {
+  margin: 12px;
+}
+
+.single-task-group {
+  margin: 20px auto;
+  list-style: none;
+  border: 1px solid black;
+  padding: 10px 5px 10px 5px;
+
+}
+
+.task-name {
+
+}
+
+.task-description {
+
+}
+
+.signin-form {
+  margin-top: 300px;
 }
