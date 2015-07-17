@@ -21,7 +21,8 @@
     "angular": "~1.4.3",
     "underscore": "~1.8.3",
     "angular-route": "~1.4.3",
-    "bootstrap": "~3.3.5",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.13.0",
+    "bootstrap": "~3.3.5"
   }
 }

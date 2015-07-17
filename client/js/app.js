@@ -1,6 +1,7 @@
 // Angular initialization
 angular.module('roomEase', [
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -9,6 +10,7 @@ angular.module('roomEase', [
   //    url: "/state1",
   //    templateUrl: "partials/state1.html"
   //  })
+  $urlRouterProvider.otherwise('/signin')
 
   $stateProvider.state('taskSetup', {
     url: '/tasksetup',
@@ -36,5 +38,23 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
   })
-  $urlRouterProvider.otherwise('/')
+  .state('dashboard.yourTasks', {
+    // url: '/yourTasks',
+    templateUrl: '/js/controllers/dashboard/yourTasks.html',
+    controller: 'yourTasksCtrl'
+  })
+  .state('dashboard.taskHistory', {
+    // url: '/taskHistory',
+    templateUrl: '/js/controllers/dashboard/taskHistory.html',
+    controller: 'tasksHistoryCtrl'
+  })
 })
+
+
+// .state('home.list', {
+//         url: '/list',
+//         templateUrl: 'partial-home-list.html',
+//         controller: function($scope) {
+//             $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+//         }
+//     })
