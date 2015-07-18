@@ -35,12 +35,13 @@ angular.module('roomEase', [
   })
   .state('dashboard', {
     url: '/dashboard',
+    abstract: true,
     templateUrl: '/js/controllers/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
   })
   .state('dashboard.yourTasks', {
-    // url: '/yourTasks',
-    templateUrl: '/js/controllers/dashboard/yourTasks.html',
+    url: '',
+    templateUrl: '/js/controllers/dashboard/yourTasks.html', 
     controller: 'yourTasksCtrl'
   })
   .state('dashboard.taskHistory', {
