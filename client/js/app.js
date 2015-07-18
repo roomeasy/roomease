@@ -48,6 +48,11 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/dashboard/taskHistory.html',
     controller: 'tasksHistoryCtrl'
   })
+  .state('roomieSearch', {
+    url: '/roomiesearch',
+    templateUrl: '/js/controllers/roomieSearch/roomieSearch.html',
+    controller: 'roomieSearch'
+  })
 })
 
 

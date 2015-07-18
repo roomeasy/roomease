@@ -1,22 +1,28 @@
-<div class="container">
+<div class="container" ng-controller="dashboardCtrl">
   <div class="row">
     <h2>dashboard</h2>
-    <div class="col-md-6">
-      <div ng-controller="dashboardCtrl">
-        <tabset justified="true">
-          <tab ui-sref=".yourTasks" heading="Your Tasks">
-            <!-- <div ui-view=""></div> -->
-            <!-- <div ng-include="'js/controllers/dashboard/yourTasks.html'"></div> -->
-          </tab>
-          <tab ui-sref=".taskHistory" heading="History">
-            <!-- <div ng-include="'js/controllers/dashboard/taskHistory.html'"></div> -->
-          </tab>
-            <div ui-view=""> </div>
-        </tabset>
-      </div>
+    <div class="col-sm-6">
+      <tabset justified="true">
+        <tab ui-sref=".yourTasks" heading="Your Tasks">
+          <!-- <div ui-view=""></div> -->
+          <!-- <div ng-include="'js/controllers/dashboard/yourTasks.html'"></div> -->
+        </tab>
+        <tab ui-sref=".taskHistory" heading="History">
+          <!-- <div ng-include="'js/controllers/dashboard/taskHistory.html'"></div> -->
+        </tab>
+          <div ui-view=""> </div>
+      </tabset>
     </div>
-    <div class="col-md-6">
-
+    <div class="col-sm-6">
+      <div class="row user-box" ng-repeat="user in users">
+        <div class="col-sm-offset-1 col-sm-4">
+          <p>{{user.name}}</p>
+          <p>Points : 0</p>
+        </div>
+        <div class="col-sm-7">
+          <img class="user-image" src="{{user.image}}">
+        </div>
+      </div>
     </div>
   </div>
 </div>

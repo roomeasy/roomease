@@ -1,1 +1,41 @@
 /*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
+
+.user-image {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.user-box {
+  margin: 12px;
+}
+
+.single-task-group {
+  margin: 20px auto;
+  list-style: none;
+  border: 1px solid black;
+  padding: 10px 5px 10px 5px;
+
+}
+
+.task-name {
+
+}
+
+.task-description {
+
+}
+
+.signin-form {
+  margin-top: 300px;
+}
+
+.looking-user-box {
+  float:left;
+}
+
+.search-user-image {
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
