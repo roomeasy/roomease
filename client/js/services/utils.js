@@ -36,11 +36,23 @@ angular.module('roomEase')
               url: '/dwellings',
               data: data
         }).then(function(response){
-          console.log('response inside factory call : ', response);
+          console.log('inside dwelling create factory call : ', response);
           return response.data;
         })
       }
-    } 
+    },
+    task : {
+      create : function(data){
+        return $http({
+              method: 'POST',
+              url: '/tasks',
+              data: data
+        }).then(function(response){
+          console.log('inside task create factory call : ', response);
+          return response.data;
+        })
+      }
+    }
   }
 
   return returnObj;

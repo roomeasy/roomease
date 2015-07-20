@@ -9,7 +9,9 @@ angular.module('roomEase')
     frequency: "Daily"
   }
 
-  $scope.addTask = function () {
+  $scope.addTask = function (sendData) {
+    console.log(sendData);
+    debugger;
     $scope.tasks.push($scope.task)
 
     $scope.task = {
