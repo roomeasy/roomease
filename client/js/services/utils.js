@@ -52,8 +52,17 @@ angular.module('roomEase')
           return response.data;
         })
       }
+    },
+
+    freqToInt : { // ugly styling but sticing this here for now
+      Daily : 1, 
+      Weekly : 2,
+      Monthly : 3
     }
   }
 
   return returnObj;
 })
+
+.factory('TaskSetup', function(){
+});
