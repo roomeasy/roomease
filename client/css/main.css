@@ -23,6 +23,7 @@ body {
   font-weight: 400;
   color: #ffffff;
 }
+input {color: #333;}
 /*.taskHistory:hover {
   background: #11A8AB;
 }*/
@@ -35,15 +36,30 @@ body {
 .rounded {border-radius: 5px;}
 .light-border {border: 2px solid #50597b}
 
-/*------ USER PROFILE CARD ------*/
+/*------ ROOMIE SEARCH PAGE ------*/
+.roomie-search {
+  text-align: center;
+  margin-top: 20px;
+}
+.roomie-search input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+.roomie-search-title {
+  font-size: 1.85em;
+  color: #9099b7;
+  /*text-transform: uppercase;*/
+}
 .user-card {
-	max-width: 300px;
-	width: 35%;
+	width: 300px;
+	/*width: 35%;*/
 	border-radius: 5px;
 	text-align: center;
-	height: 353px;
+	height: 370px;
 	margin-top: 30px;
 	margin-left: 30px;
+  display: inline-block;
 }
 .user-looking {
 	border-radius: 50%;
@@ -68,7 +84,7 @@ body {
 .looking-icons li {
 	color: #9099b7;
 	font-size: 1.75em;
-	width: 80px;
+	width: 100px;
 	line-height: 50px;
 	padding: 0px 0;
 	float: left;
