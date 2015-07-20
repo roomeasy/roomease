@@ -150,7 +150,10 @@ input {color: #333;}
 
 
 
-/* ------ ORIGINAL STYLE -----*/
+/* ------ DASHBOARD STYLE -----*/
+.dashboard-wrapper {
+  padding-top: 50px;
+}
 .user-image {
   border-radius: 50%;
   height: 130px;
