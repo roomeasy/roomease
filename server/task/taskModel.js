@@ -16,8 +16,8 @@ exports.add = function(task, dwellingId, cb){
   })
 }
 
-exports.getAll = function(cb){
-  var queryString = "SELECT * FROM tasks;";
+exports.getAll = function(dwellingId, cb){
+  var queryString = "SELECT * FROM tasks WHERE dwelling_id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
     console.log("Inside the getAllTAsks query");
     err ? cb(err, null) : cb(null, results.rows);

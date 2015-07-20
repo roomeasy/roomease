@@ -53,12 +53,17 @@ module.exports = {
         responseHandler(err, results, res);
       });
     },
+
     getAll : function(req, res){
+      //gets all tasks based of current users dwelling_id
+      var dwelling_id = req.user.dwelling_id;
+
       console.log('inside the get all task request handler');
-      taskModel.getAll(function(err, results){
+      taskModel.getAll(dwelling_id, function(err, results){
         responseHandler(err, results, res);
       });
     },
+
     find : function(req, res){
       console.log('inside the dwelling find request handler');
       var taskname = req.params.taskname;
@@ -82,11 +87,13 @@ module.exports = {
         responseHandler(err, results, res);
       });
     },
+
     getAll: function(req, res){
       dwellingModel.getAll(function(err, results){
         responseHandler(err, results, res);
       })
     },
+
     find : function(req, res){
       console.log('inside the dwelling find request handler');
       var dwellingName = req.params.dwellingname;
