@@ -1,4 +1,6 @@
-<input ng-model="location">
+<div class="roomie-search">
+  <input ng-model="location">
+</div>
 <div ng-repeat="user in lookingUsers | filter:location" class="looking-user-box">
   <img class="search-user-image" src="{{user.image}}">
   <p>{{user.name}}</p>

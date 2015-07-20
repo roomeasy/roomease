@@ -23,6 +23,9 @@ body {
   font-weight: 400;
   color: #ffffff;
 }
+/*.taskHistory:hover {
+  background: #11A8AB;
+}*/
 .signin-bg {
   background: url('../img/roomease-bg.jpg') no-repeat center center;
   height: 100vh;
@@ -49,6 +52,7 @@ body {
 }
 .user-name {
 	font-size: 1.3em;
+  margin-top: 20px;
 	margin-bottom: 5px;
 }
 .user-info {
@@ -104,8 +108,9 @@ body {
   margin: 12px;
   background-color: #394264;
   border: 2px solid #9099b7;
+  border-radius: 5px;
 }
-
+.active {background-color: teal;}
 .single-task-group {
   /*margin: 20px auto;*/
   list-style: none;
@@ -133,6 +138,9 @@ body {
   /*font-size: .85em;*/
   float: right;
   margin-right: 20px;
+  background: #50597b;
+  padding: 8px 15px;
+  border-radius: 8px;
 }
 .signin-form {
   margin-top: 300px;
