@@ -14,6 +14,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS dwellings CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS task_instances CASCADE;
 
 --Serial is used to auto-increment (75% sure on this...)
 CREATE TABLE dwellings (
@@ -47,3 +48,8 @@ CREATE TABLE tasks (
   dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
+CREATE TABLE task_instances (
+  id SERIAL PRIMARY KEY,
+  due_date DATE,
+  task_id INTEGER references tasks(id)
+)
