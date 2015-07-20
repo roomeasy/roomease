@@ -1,31 +1,139 @@
 /*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
 
+/*------ COLORS ------*/
+.bg-dark-purple {background: #1f253d;}
+.bg-main-purple {background: #394264;}
+.bg-purple-hover {background: #50597b;}
+.bg-teal {background: #11A8AB;}
+
+.white {color: #ffffff;}
+.dark-purple {color: #1f253d;}
+.main-purple {color: #394264;}
+.purple-hover {color: #50597b;}
+.purple-border {color: #50597b;}
+.light-purple {color: #9099b7;}
+.teal {background: #11A8AB;}
+
+.border-teal {border-top-color: #11A8AB;}
+
+/*------ OVERALL STYLING ------*/
+body {
+	background: #1f253d;
+	font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+}
+.signin-bg {
+  background: url('../img/roomease-bg.jpg') no-repeat center center;
+  height: 100vh;
+  background-size: cover;
+}
+.clear {clear: both;}
+.rounded {border-radius: 5px;}
+.light-border {border: 2px solid #50597b}
+
+/*------ USER PROFILE CARD ------*/
+.user-card {
+	max-width: 300px;
+	width: 35%;
+	border-radius: 5px;
+	text-align: center;
+	height: 353px;
+	margin-top: 30px;
+	margin-left: 30px;
+}
+.user-looking {
+	border-radius: 50%;
+	border: 5px solid #50597b;
+	margin-top: 30px;
+}
+.user-name {
+	font-size: 1.3em;
+	margin-bottom: 5px;
+}
+.user-info {
+	margin-top: 15px;
+	margin-bottom: 25px;
+}
+.looking-icons {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+
+}
+.looking-icons li {
+	color: #9099b7;
+	font-size: 1.75em;
+	width: 80px;
+	line-height: 50px;
+	padding: 0px 0;
+	float: left;
+	border-right: 2px solid #50597b;
+}
+.looking-icons li:last-child {
+	border-right: 0px;
+	padding-right: 3px;
+}
+.looking-icons span {
+	font-size: .5em;
+	margin-left: .75em;
+	color: white;
+}
+
+.star {	border-top: 4px solid #11A8AB;}
+.location {	border-top: 4px solid #fcb150;}
+.fb {	border-top: 4px solid #e64c65;}
+
+
+
+
+
+
+
+
+/* ------ ORIGINAL STYLE -----*/
 .user-image {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
+  height: 130px;
+  width: 130px;
+  border: 5px solid #50597b;
+
 }
 
 .user-box {
   margin: 12px;
+  background-color: #394264;
+  border: 2px solid #9099b7;
 }
 
 .single-task-group {
-  margin: 20px auto;
+  /*margin: 20px auto;*/
   list-style: none;
-  border: 1px solid black;
-  padding: 10px 5px 10px 5px;
-
+  border: 2px solid #50597b;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /*border-radius: 5px;*/
+  /*padding: 10px 5px 10px 5px;*/
 }
-
+.single-task-group li:nth-child(odd) {
+  background: #9099b7;
+}
 .task-name {
+  font-size: 1.5em;
+  float: left;
+  display: inline;
+  margin: 0;
 
 }
 
 .task-description {
-
+  font-weight: 300;
 }
-
+.task-frequency {
+  /*font-size: .85em;*/
+  float: right;
+  margin-right: 20px;
+}
 .signin-form {
   margin-top: 300px;
 }
