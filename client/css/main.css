@@ -36,13 +36,52 @@ input {color: #333;}
 .rounded {border-radius: 5px;}
 .light-border {border: 2px solid #50597b}
 
+
+
+/*------ SIDE NAVBAR ------*/
+
+.sidebar-container {
+  position: fixed;
+  /*margin-top: -18px;*/
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  background: #394264;
+  text-align: center;
+  height: 100vh;
+}
+.sidebar-nav {
+  padding-left: 0px;
+  list-style-type: none;
+}
+.sidebar-nav li {
+  margin: 80px 10px;
+}
+.sidebar-nav i {
+  font-size: 2.75em;
+  color: #9099b7;
+  /*color: #50597b;*/
+}
+.sidebar-nav i:hover {
+  color: ghostwhite;
+}
+
 /*------ ROOMIE SEARCH PAGE ------*/
+.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.page-wrapper {
+  padding: 0 100px;
+}
 .roomie-search {
   text-align: center;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 .roomie-search input {
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   width: 300px;
 }
@@ -52,7 +91,7 @@ input {color: #333;}
   /*text-transform: uppercase;*/
 }
 .user-card {
-	width: 300px;
+	min-width: 300px;
 	/*width: 35%;*/
 	border-radius: 5px;
 	text-align: center;
