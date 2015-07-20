@@ -51,6 +51,27 @@ angular.module('roomEase')
           console.log('inside task create factory call : ', response);
           return response.data;
         })
+      },
+
+      fetch : function(){
+        return $http({
+              method: 'get',
+              url: '/tasks',
+        }).then(function(response){
+          console.log('inside task fetch factory call : ', response);
+          return response.data;
+        })
+      }
+    },
+    user: {
+      fetch : function(){
+        return $http({
+          method: 'GET',
+          url: '/users'
+        })
+        .then(function(resp) {
+          return resp.data;
+        })
       }
     },
 
