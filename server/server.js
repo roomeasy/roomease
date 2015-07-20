@@ -26,10 +26,10 @@ app.use(bodyParser.json());
 // BASIC ROUTING
 
 //Facebook Auth
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup'}));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook'),
+  passport.authenticate('facebook', { failureRedirect: '/#/signin' }),
   function (req, res) {
     //redirects new users to the proper place
     if (req.user.dwelling_id === null){
@@ -37,7 +37,6 @@ app.get('/auth/facebook/callback',
     } else {
       res.redirect('/#/dashboard');
     }
-    console.log("req.user within our route callback func is : ", req.user);
   })
 
 // app.get('/users/"', requestHandlers.users.find);
