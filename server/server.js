@@ -29,11 +29,22 @@ app.use(bodyParser.json());
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 // handle the callback after facebook has authenticated the user
+// app.get('/auth/facebook/callback',
+//   passport.authenticate('facebook', {
+//     successRedirect : '/#/dashboard',
+//     failureRedirect : '/#/signin'
+// }));
+
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect : '/#/dashboard',
-    failureRedirect : '/#/signin'
-}));
+  passport.authenticate('facebook'),
+  function (req, res) {
+    if (req.user.dwelling_id === null){
+      res.redirect('/#/createLivingSpace');
+    } else {
+      res.redirect('/#/dashboard');
+    }
+    console.log("req.user within our route callback func is : ", req.user);
+  })
 
 // app.get('/users/"', requestHandlers.users.find);
 app.post('/users', requestHandlers.users.add);
