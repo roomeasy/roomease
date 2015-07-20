@@ -26,3 +26,22 @@ angular.module('roomEase')
   }
 
 })
+
+.factory('Request', function($http){
+  var returnObj = {
+    dwelling : {
+      create : function(data){
+        return $http({
+              method: 'POST',
+              url: '/dwellings',
+              data: data
+        }).then(function(response){
+          console.log('response inside factory call : ', response);
+          return response.data;
+        })
+      }
+    } 
+  }
+
+  return returnObj;
+})
