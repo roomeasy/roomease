@@ -11,6 +11,26 @@ angular.module('roomEase')
       name: "Abhi",
       image: "http://i.imgur.com/uYMnx1zb.jpg",
       location: "Mexico"
+    },
+    {
+      name: "Allen",
+      image: "http://i.imgur.com/uYMnx1zb.jpg",
+      location: "Nebraska"
+    },
+    {
+      name: "Colin",
+      image: "http://i.imgur.com/uYMnx1zb.jpg",
+      location: "California"
+    },
+    {
+      name: "Gilbert",
+      image: "http://i.imgur.com/uYMnx1zb.jpg",
+      location: "New York"
+    },
+    {
+      name: "Johnny",
+      image: "http://i.imgur.com/uYMnx1zb.jpg",
+      location: "Utah"
     }
   ]
 

@@ -26,3 +26,43 @@ angular.module('roomEase')
   }
 
 })
+
+.factory('Request', function($http){
+  var returnObj = {
+    dwelling : {
+      create : function(data){
+        return $http({
+              method: 'POST',
+              url: '/dwellings',
+              data: data
+        }).then(function(response){
+          console.log('inside dwelling create factory call : ', response);
+          return response.data;
+        })
+      }
+    },
+    task : {
+      create : function(data){
+        return $http({
+              method: 'POST',
+              url: '/tasks',
+              data: data
+        }).then(function(response){
+          console.log('inside task create factory call : ', response);
+          return response.data;
+        })
+      }
+    },
+
+    freqToInt : { // ugly styling but sticing this here for now
+      Daily : 1, 
+      Weekly : 2,
+      Monthly : 3
+    }
+  }
+
+  return returnObj;
+})
+
+.factory('TaskSetup', function(){
+});

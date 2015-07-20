@@ -1,9 +1,35 @@
 angular.module('roomEase')
 
-.controller('livingSpaceSetup', function($scope){
-  $scope.livingSpace = {name:"", address:""};
+.controller('livingSpaceSetup', function ($scope, Request, $location){
+  $scope.livingSpace = { name: "", address: "" };
+  $scope.nameWarning = false;
+  $scope.addressWarning = false;
 
-  $scope.createLivingSpace = function() {
-    console.log($scope.livingSpace);
+  $scope.createLivingSpace = function(sendData) {
+    if($scope.livingSpace.name.trim() === "" || $scope.livingSpace.address.trim() === ""){
+      console.log("Please address the warnings");
+      return;
+    }
+    Request.dwelling.create(sendData).then(function(data){
+      console.log('data inside create dwelling cb : ', data);
+      $location.path('/tasksetup'); 
+    });
+  }
+
+  $scope.nameValidate = function(){
+    if($scope.livingSpace.name.trim() === ""){
+      $scope.nameWarning = true;
+    }else{
+      $scope.nameWarning = false;
+    }
+  }
+
+  $scope.addressValidate = function(){
+    if($scope.livingSpace.address.trim() === ""){
+      $scope.addressWarning = true;
+    }else{
+      $scope.addressWarning = false;
+    }
+
   }
 })
