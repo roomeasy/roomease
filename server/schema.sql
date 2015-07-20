@@ -30,6 +30,7 @@ CREATE TABLE users (
   password VARCHAR,
   age INTEGER DEFAULT null,
   email VARCHAR DEFAULT null,
+  looking BOOLEAN DEFAULT FALSE,
   dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
