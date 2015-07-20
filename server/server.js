@@ -23,21 +23,15 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
 
 
-// Basic Routing
+// BASIC ROUTING
 
 //Facebook Auth
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-// handle the callback after facebook has authenticated the user
-// app.get('/auth/facebook/callback',
-//   passport.authenticate('facebook', {
-//     successRedirect : '/#/dashboard',
-//     failureRedirect : '/#/signin'
-// }));
-
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook'),
   function (req, res) {
+    //redirects new users to the proper place
     if (req.user.dwelling_id === null){
       res.redirect('/#/createLivingSpace');
     } else {
