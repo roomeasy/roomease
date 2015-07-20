@@ -5,7 +5,7 @@ var session = require('express-session');
 var passport = require('passport');
 
 // Our App Imports
-var requestHandlers = require('./routes.js');
+var requestHandlers = require('./requestHandler.js');
 var passportConfig = require('./config/passport.js')(passport);
 
 // Initialize the instance of express

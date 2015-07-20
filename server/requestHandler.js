@@ -34,13 +34,22 @@ module.exports = {
 
   tasks: {
     add: function(req, res){
+      //see if user is in a house
+      if (req.user.dwelling_id === null) {
+        res.send(400);
+      }
+      else {
+        var dwelling_id = req.user.dwelling_id
+      }
+
       console.log('inside add task request handler');
       var task = { // Data Packaging
         name        : req.body.name,
         frequency   : req.body.frequency,
         description : req.body.description,
       };
-      taskModel.add(task, req.body.houseId, function(err, results){  // is this correct?
+
+      taskModel.add(task, dwelling_id, function(err, results){  // is this correct?
         responseHandler(err, results, res);
       });
     },

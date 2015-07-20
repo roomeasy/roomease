@@ -9,15 +9,15 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-      console.log("User within serialize :", user);
+      // console.log("User within serialize :", user);
       done(null, user.facebook_id);
     });
 
     // used to deserialize the user
     passport.deserializeUser(function(facebook_id, done) {
-      console.log("id being checked in deserialize : ", facebook_id);
+      // console.log("id being checked in deserialize : ", facebook_id);
       User.findUserByFacebookId(facebook_id, function(err, user) {
-        console.log(user);
+        // console.log(user);
         //if found
         if (user) {
           //give back full user info
