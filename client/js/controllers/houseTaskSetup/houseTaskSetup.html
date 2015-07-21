@@ -1,31 +1,41 @@
 <div ng-include="'includes/navbar.html'"></div>
-<div class="container">
+<div class="container top-padding">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 text-center">
       <form>
-        <div>
-          <label for="">Task Name:</label> <br />
+        <div class="task-input-card">
+          <div class="card-topper bg-teal">
+            <p class="card-topper-headline">Create All House Tasks</p>
+          </div>
+          <label for="">Task Name</label> <br />
           <input ng-model="task.name" type="text" /> <br />
-          <label for="">Task Description:</label> <br />
+          <label for="">Task Description</label> <br />
           <input ng-model="task.description" type="text" > <br />
-          <select ng-model="task.frequency" name="Frequency">
+          <!-- <select class="center-block" ng-model="task.frequency" name="Frequency">
             <option value="Daily">Daily</option>
             <option value="Weekly">Weekly</option>
             <option value="Monthly">Monthly</option>
-          </select>
+          </select> -->
+          <!-- <label>Frequency Of Task</label> <br> -->
+          <input id="1" type="radio" name="frequency" value="daily"><label class="freq" for="1">Daily</label>
+          <input id="2" type="radio" name="frequency" value="weekly"><label for="2" class="freq">Weekly</label>
+          <input id="3" type="radio" name="frequency" value="monthly"><label for="3" class="freq">Monthly</label><br>
+        <p ng-show="warning">Please add a task first</p>
+        <a href="" ng-click="addTask(task)" class="button bg-teal margin-right">Add A Task</a>
+        <a href="" ng-click="submit(tasks)" class="button bg-red">Submit All</a>
         </div>
       </form>
-        <p ng-show="warning">Please add a task first</p>
-        <button ng-click="addTask(task)">Add Your Task</button>
-        <button ng-click="submit(tasks)">Submit</button>
       </div>
       <div ng-repeat="task in tasks" class="col-md-6">
-        <ul>
+        <ul class="single-task-group">
           <a ng-click="deleteTask(tasks, $index)">Delete</a>
-          <li>{{task.name}} <span>{{task.frequency}}</span></li>
-          <li>{{task.description}}</li>
+          <li>
+            <p class="task-name">{{task.name}}</p>
+            <p class="task-frequency">{{task.frequency}}</p>
+            <p class="task-description clear">{{task.description}}</p>
+          </li>
         </ul>
       </div>
+    <!-- <a ui-sref="dashboard.yourTasks" class="btn btn-primary">Your Dashboard</a> -->
     </div>
-    <a ui-sref="dashboard.yourTasks" class="btn btn-primary">Your Dashboard</a>
   </div>

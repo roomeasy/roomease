@@ -5,12 +5,14 @@
 .bg-main-purple {background: #394264;}
 .bg-purple-hover {background: #50597b;}
 .bg-teal {background: #11A8AB;}
+.bg-red {background: #e64c65;}
 
 .white {color: #ffffff;}
 .dark-purple {color: #1f253d;}
 .main-purple {color: #394264;}
 .purple-hover {color: #50597b;}
 .purple-border {color: #50597b;}
+/*.red-hover {color: #cc324b;}*/
 .light-purple {color: #9099b7;}
 .teal {background: #11A8AB;}
 
@@ -27,10 +29,94 @@ input {color: #333;}
 /*.taskHistory:hover {
   background: #11A8AB;
 }*/
+input[type=text] {
+  width: 260px;
+  height: 50px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-left: 45px;
+  background: #50597b;
+  color: #fff;
+  border: solid 1px #1f253d;
+  border-radius: 5px;
+}
+input[type=text]:focus {
+ 		outline: none; /* removes the default orange border when focus */
+ 		border: 2px solid #11a8ab;
+ 	}
+label {font-weight: normal;}
+.freq {
+  /*color: red;*/
+  /*font-size: 20px;*/
+  padding-left: 5px;
+  padding-right: 15px;
+  margin: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.input-icon {
+	font-size: 22px;
+	position: absolute;
+	left: 31px;
+	top: 10px;
+}
+.input-icon.password-icon {
+	left: 35px;
+}
+
+.button {
+  display: inline-block;
+  width: 175px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: white;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+}
+.margin-right {margin-right: 10px;}
+.button:hover {
+  text-decoration: none;
+  color: white;
+}
+.bg-teal.button:hover {
+  background: #0F9295;
+}
+.bg-red.button:hover {
+  background: #cc324b;
+}
+.card-topper {
+  padding: 10px 0;
+  margin: 0px 0 40px 0;
+  border-radius: 5px 5px 0 0;
+}
+.card-topper-headline {
+  padding-top: 20px;
+  font-size: 1.75em;
+  text-transform: uppercase;
+
+}
 .signin-bg {
   background: url('../img/roomease-bg.jpg') no-repeat center center;
   height: 100vh;
   background-size: cover;
+}
+.task-input-card {
+  border-radius: 5px;
+	text-align: center;
+  background: #394264;
+  padding-bottom: 40px;
+  width: 85%;
+}
+.task-input-card label {
+  /*font-weight: normal;*/
+  font-size: 1.35em;
+  text-align: left;
 }
 .clear {clear: both;}
 .rounded {border-radius: 5px;}
@@ -90,6 +176,7 @@ input {color: #333;}
   color: #9099b7;
   /*text-transform: uppercase;*/
 }
+
 .user-card {
 	min-width: 300px;
 	/*width: 35%;*/
@@ -151,7 +238,7 @@ input {color: #333;}
 
 
 /* ------ DASHBOARD STYLE -----*/
-.dashboard-wrapper {
+.top-padding {
   padding-top: 50px;
 }
 .user-image {
@@ -178,9 +265,9 @@ input {color: #333;}
   /*border-radius: 5px;*/
   /*padding: 10px 5px 10px 5px;*/
 }
-.single-task-group li:nth-child(odd) {
+/*.single-task-group li:nth-child(odd) {
   background: #9099b7;
-}
+}*/
 .task-name {
   font-size: 1.5em;
   float: left;
@@ -199,6 +286,8 @@ input {color: #333;}
   background: #50597b;
   padding: 8px 15px;
   border-radius: 8px;
+  position: relative;
+  top: 15px;
 }
 .signin-form {
   margin-top: 300px;

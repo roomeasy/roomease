@@ -1,7 +1,7 @@
 <div ng-include="'includes/navbar.html'"></div>
 <div class="roomie-search">
   <p class="roomie-search-title">Find Your New Roomie</p>
-  <input ng-model="location">
+  <input type="text" ng-model="location">
 </div>
 <div class="flex-center page-wrapper">
 <div ng-repeat="user in lookingUsers | filter:location" class="user-card bg-main-purple">
