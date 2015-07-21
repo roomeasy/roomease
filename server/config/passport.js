@@ -41,7 +41,8 @@ module.exports = function(passport) {
         // pull in our app id and secret from our auth.js file
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL
+        callbackURL     : configAuth.facebookAuth.callbackURL,
+        profileFields   : ['id', 'name', 'gender', 'profileUrl', 'photos', 'emails', 'friends']
 
     },
 
@@ -51,7 +52,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-
+            console.log(profile);
             var facebook_id = profile.id;
             // find the user in the database based on their facebook id
             User.findUserByFacebookId(facebook_id, function(err, user) {
