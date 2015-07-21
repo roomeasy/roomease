@@ -29,15 +29,17 @@
         </div>
       </form>
     </div>
-    <div class="col-sm-5 col-md-5 top-padding" ng-repeat="task in tasks">
-      <ul class="single-task-group">
-        <a ng-click="deleteTask(tasks, $index)">Delete</a>
-        <li>
-          <p class="task-name">{{task.name}}</p>
-          <p class="task-frequency">{{task.frequency}}</p>
-          <p class="task-description clear">{{task.description}}</p>
-        </li>
-      </ul>
+    <div class="col-sm-5 col-md-5 top-padding">
+      <div ng-repeat="task in tasks">
+        <ul class="single-task-group">
+          <a ng-click="deleteTask(tasks, $index)">Delete</a>
+          <li>
+            <p class="task-name">{{task.name}}</p>
+            <p class="task-frequency">{{task.frequency}}</p>
+            <p class="task-description clear">{{task.description}}</p>
+          </li>
+        </ul>
+      </div>
     </div>
     </div>
     </div>
