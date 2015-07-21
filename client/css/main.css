@@ -66,7 +66,8 @@ label {font-weight: normal;}
 
 .button {
   display: inline-block;
-  width: 175px;
+  /*width: 175px;*/
+	padding: 0 20px;
   line-height: 50px;
   font-size: 16px;
   font-weight: 700;
