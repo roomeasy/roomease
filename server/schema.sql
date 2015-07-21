@@ -14,6 +14,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS dwellings CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS task_instances CASCADE;
 
 --Serial is used to auto-increment (75% sure on this...)
 CREATE TABLE dwellings (
@@ -26,10 +27,10 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   facebook_id BIGINT,
   facebook_token VARCHAR,
-  username VARCHAR UNIQUE,
-  password VARCHAR,
+  username VARCHAR,
   age INTEGER DEFAULT null,
   email VARCHAR DEFAULT null,
+  looking BOOLEAN DEFAULT FALSE,
   dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
@@ -40,9 +41,15 @@ CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
   frequency INTEGER,
-  created_at TIMESTAMP,
+  start_date DATE,
   description VARCHAR DEFAULT NULL,
   user_id INTEGER DEFAULT NULL references users(id), -- foreign key
   dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
+CREATE TABLE task_instances (
+  id SERIAL PRIMARY KEY,
+  due_date DATE,
+  completed BOOLEAN DEFAULT FALSE,
+  task_id INTEGER references tasks(id)
+);

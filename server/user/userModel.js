@@ -40,6 +40,14 @@ exports.addFacebookUser = function(user, cb){
   });
 }
 
+exports.updateDwellingId = function(userId, dwellingId, cb) {
+  var queryString = "UPDATE users SET dwelling_id = " + dwellingId +
+                    " WHERE id = " + userId + ";";
+  db.query(queryString, function(err, results) {
+    err ? cb(err, null) : cb(null, results);
+  })
+}
+
 // findUser : queries the database w/ the provided username and returns the result
 exports.findUserById = function(id, cb){
   console.log('Inside the users find query');

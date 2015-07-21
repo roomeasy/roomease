@@ -1,9 +1,8 @@
 var db = require('../db.js').db;
 
 exports.add = function(task, dwellingId, cb){
-  var queryString = "INSERT INTO tasks (created_at, name, dwelling_id, frequency, description) \
+  var queryString = "INSERT INTO tasks (name, dwelling_id, frequency, description) \
                      VALUES ("
-                     + "NOW(), "
                      + "'" + task.name + "', "
                      +       dwellingId + ", "
                      +       task.frequency + ", "

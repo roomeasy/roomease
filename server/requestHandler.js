@@ -84,7 +84,9 @@ module.exports = {
       }
       console.log(req.body);
       dwellingModel.add(dwelling, function(err, results){
-        responseHandler(err, results, res);
+        userModel.updateDwellingId(req.user.id, results.id, function(err, results) {
+          responseHandler(err, results, res);
+        });
       });
     },
 
