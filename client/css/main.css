@@ -45,6 +45,17 @@ input[type=text]:focus {
  		border: 2px solid #11a8ab;
  	}
 label {font-weight: normal;}
+
+/*------ HOMEPAGE STYLING ------*/
+.home-title {
+	font-family: 'Pacifico', cursive;
+	color: #394264;
+	font-size: 6em;
+}
+.home-intro {
+	font-size: 2em;
+}
+
 .freq {
   /*color: red;*/
   /*font-size: 20px;*/
