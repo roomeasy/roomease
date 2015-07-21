@@ -43,7 +43,6 @@ module.exports = function(passport) {
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
         profileFields   : ['id', 'displayName', 'gender', 'profileUrl', 'picture.type(large)', 'friends']
-
     },
 
     // facebook will send back the token and profile
@@ -52,7 +51,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-
+            console.log(profile);
             var facebook_id = profile.id;
             // find the user in the database based on their facebook id
             User.findUserByFacebookId(facebook_id, function(err, user) {
