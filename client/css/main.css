@@ -1,31 +1,294 @@
 /*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
 
+/*------ COLORS ------*/
+.bg-dark-purple {background: #1f253d;}
+.bg-main-purple {background: #394264;}
+.bg-purple-hover {background: #50597b;}
+.bg-teal {background: #11A8AB;}
+.bg-red {background: #e64c65;}
+
+.white {color: #ffffff;}
+.dark-purple {color: #1f253d;}
+.main-purple {color: #394264;}
+.purple-hover {color: #50597b;}
+.purple-border {color: #50597b;}
+/*.red-hover {color: #cc324b;}*/
+.light-purple {color: #9099b7;}
+.teal {background: #11A8AB;}
+
+.border-teal {border-top-color: #11A8AB;}
+
+/*------ OVERALL STYLING ------*/
+body {
+	background: #1f253d;
+	font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+}
+input {color: #333;}
+/*.taskHistory:hover {
+  background: #11A8AB;
+}*/
+input[type=text] {
+  width: 260px;
+  height: 50px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-left: 45px;
+  background: #50597b;
+  color: #fff;
+  border: solid 1px #1f253d;
+  border-radius: 5px;
+}
+input[type=text]:focus {
+ 		outline: none; /* removes the default orange border when focus */
+ 		border: 2px solid #11a8ab;
+ 	}
+label {font-weight: normal;}
+.freq {
+  /*color: red;*/
+  /*font-size: 20px;*/
+  padding-left: 5px;
+  padding-right: 15px;
+  margin: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.input-icon {
+	font-size: 22px;
+	position: absolute;
+	left: 31px;
+	top: 10px;
+}
+.input-icon.password-icon {
+	left: 35px;
+}
+
+.button {
+  display: inline-block;
+  width: 175px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: white;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+}
+.margin-right {margin-right: 10px;}
+.button:hover {
+  text-decoration: none;
+  color: white;
+}
+.bg-teal.button:hover {
+  background: #0F9295;
+}
+.bg-red.button:hover {
+  background: #cc324b;
+}
+.card-topper {
+  padding: 10px 0;
+  margin: 0px 0 40px 0;
+  border-radius: 5px 5px 0 0;
+}
+.card-topper-headline {
+  padding-top: 20px;
+  font-size: 1.75em;
+  text-transform: uppercase;
+
+}
+.signin-bg {
+  background: url('../img/roomease-bg.jpg') no-repeat center center;
+  height: 100vh;
+  background-size: cover;
+}
+.task-input-card {
+  border-radius: 5px;
+	text-align: center;
+  background: #394264;
+  padding-bottom: 40px;
+  width: 85%;
+}
+.task-input-card label {
+  /*font-weight: normal;*/
+  font-size: 1.35em;
+  text-align: left;
+}
+.clear {clear: both;}
+.rounded {border-radius: 5px;}
+.light-border {border: 2px solid #50597b}
+
+
+
+/*------ SIDE NAVBAR ------*/
+
+.sidebar-container {
+  position: fixed;
+  /*margin-top: -18px;*/
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  background: #394264;
+  text-align: center;
+  height: 100vh;
+}
+.sidebar-nav {
+  padding-left: 0px;
+  list-style-type: none;
+}
+.sidebar-nav li {
+  margin: 80px 10px;
+}
+.sidebar-nav i {
+  font-size: 2.75em;
+  color: #9099b7;
+  /*color: #50597b;*/
+}
+.sidebar-nav i:hover {
+  color: ghostwhite;
+}
+
+/*------ ROOMIE SEARCH PAGE ------*/
+.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.page-wrapper {
+  padding: 0 100px;
+}
+.roomie-search {
+  text-align: center;
+  padding-top: 20px;
+}
+.roomie-search input {
+  padding: 5px;
+  border-radius: 5px;
+  width: 300px;
+}
+.roomie-search-title {
+  font-size: 1.85em;
+  color: #9099b7;
+  /*text-transform: uppercase;*/
+}
+
+.user-card {
+	min-width: 300px;
+	/*width: 35%;*/
+	border-radius: 5px;
+	text-align: center;
+	height: 370px;
+	margin-top: 30px;
+	margin-left: 30px;
+  display: inline-block;
+}
+.user-looking {
+	border-radius: 50%;
+	border: 5px solid #50597b;
+	margin-top: 30px;
+}
+.user-name {
+	font-size: 1.3em;
+  margin-top: 20px;
+	margin-bottom: 5px;
+}
+.user-info {
+	margin-top: 15px;
+	margin-bottom: 25px;
+}
+.looking-icons {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+
+}
+.looking-icons li {
+	color: #9099b7;
+	font-size: 1.75em;
+	width: 100px;
+	line-height: 50px;
+	padding: 0px 0;
+	float: left;
+	border-right: 2px solid #50597b;
+}
+.looking-icons li:last-child {
+	border-right: 0px;
+	padding-right: 3px;
+}
+.looking-icons span {
+	font-size: .5em;
+	margin-left: .75em;
+	color: white;
+}
+
+.star {	border-top: 4px solid #11A8AB;}
+.location {	border-top: 4px solid #fcb150;}
+.fb {	border-top: 4px solid #e64c65;}
+
+
+
+
+
+
+
+
+/* ------ DASHBOARD STYLE -----*/
+.top-padding {
+  padding-top: 50px;
+}
 .user-image {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
+  height: 130px;
+  width: 130px;
+  border: 5px solid #50597b;
+
 }
 
 .user-box {
   margin: 12px;
+  background-color: #394264;
+  border: 2px solid #9099b7;
+  border-radius: 5px;
 }
-
+.active {background-color: teal;}
 .single-task-group {
-  margin: 20px auto;
+  /*margin: 20px auto;*/
   list-style: none;
-  border: 1px solid black;
-  padding: 10px 5px 10px 5px;
-
+  border: 2px solid #50597b;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /*border-radius: 5px;*/
+  /*padding: 10px 5px 10px 5px;*/
 }
-
+/*.single-task-group li:nth-child(odd) {
+  background: #9099b7;
+}*/
 .task-name {
+  font-size: 1.5em;
+  float: left;
+  display: inline;
+  margin: 0;
 
 }
 
 .task-description {
-
+  font-weight: 300;
 }
-
+.task-frequency {
+  /*font-size: .85em;*/
+  float: right;
+  margin-right: 20px;
+  background: #50597b;
+  padding: 8px 15px;
+  border-radius: 8px;
+  position: relative;
+  top: 15px;
+}
 .signin-form {
   margin-top: 300px;
 }

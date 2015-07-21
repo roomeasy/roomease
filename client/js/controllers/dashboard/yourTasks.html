@@ -1,6 +1,9 @@
 <div ng-repeat="task in userTasks" >
   <ul class="single-task-group">
-    <li class="task-name">{{task.name}} <span>{{task.frequency}}</span></li>
-    <li class="task-description">{{task.description}}</li>
+    <li>
+      <p class="task-name">{{task.name}}</p>
+      <p class="task-frequency">{{task.frequency}}</p>
+      <p class="task-description clear">{{task.description}}</p>
+    </li>
   </ul>
 </div>

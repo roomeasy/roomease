@@ -1,7 +1,26 @@
-<input ng-model="location">
-<div ng-repeat="user in lookingUsers | filter:location" class="looking-user-box">
-  <img class="search-user-image" src="{{user.image}}">
-  <p>{{user.name}}</p>
-  <p>{{user.location}}</p>
-  <p>Points: 0</p>
+<div ng-include="'includes/navbar.html'"></div>
+<div class="roomie-search">
+  <p class="roomie-search-title">Find Your New Roomie</p>
+  <input type="text" ng-model="location">
+</div>
+<div class="flex-center page-wrapper">
+<div ng-repeat="user in lookingUsers | filter:location" class="user-card bg-main-purple">
+  <img class="user-looking" src="{{user.image}}" height="170px" width="170px">
+  <p class="user-name">{{user.name}}</p>
+  <p class="user-info">Moving To Austin, TX First Week Of Sept. </p>
+  <ul class="looking-icons">
+    <li class="star">
+      <i class="fa fa-star"></i>
+      <span>24</span>
+    </li>
+    <li class="location">
+      <i class="fa fa-map-marker"></i>
+      <span>{{user.location}}</span>
+    </li>
+    <li class="fb">
+      <i class="fa fa-facebook-official"></i>
+      <span>Msg</span>
+    </li>
+  </ul>
+</div>
 </div>

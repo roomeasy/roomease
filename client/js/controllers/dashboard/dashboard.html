@@ -1,8 +1,8 @@
-<div class="container" ng-controller="dashboardCtrl">
+<div ng-include="'includes/navbar.html'"></div>
+<div class="container top-padding" ng-controller="dashboardCtrl">
   <div class="row">
-    <h2>dashboard</h2>
     <div class="col-sm-6">
-      <tabset justified="true">
+      <tabset class="bg-main-purple rounded light-border" justified="true">
         <tab ui-sref=".yourTasks" heading="Your Tasks">
         </tab>
         <tab ui-sref=".taskHistory" heading="History">
@@ -10,11 +10,11 @@
           <div ui-view=""> </div>
       </tabset>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4 col-sm-offset-1">
       <div class="row user-box" ng-repeat="user in users">
         <div class="col-sm-offset-1 col-sm-4">
-          <p>{{user.username}}</p>
-          <p>Points : 0</p>
+          <p class="user-name">{{user.name}}</p>
+          <p class="user-points">Points : 0</p>
         </div>
         <div class="col-sm-7">
           <img class="user-image" src="{{user.image}}">

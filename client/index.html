@@ -2,7 +2,10 @@
 <html>
 <head>
   <title>RoomEase</title>
+  <link rel="stylesheet" href="./bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="./css/main.css">
 
   <script src="bower_components/angular/angular.min.js"></script>
@@ -20,8 +23,8 @@
   <script src="js/controllers/roomieSearch/roomieSearch.js"></script>
 </head>
 
-<body ng-app="roomEase">
-  <div ui-view></div>
+<body ng-app="roomEase" >
+  <div ui-view ng-class="(url === 'http://localhost:3000/#/signin') ? 'signin-bg' : ''"></div>
 </body>
 
 
