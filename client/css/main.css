@@ -113,7 +113,7 @@ label {font-weight: normal;}
 	text-align: center;
   background: #394264;
   padding-bottom: 40px;
-  width: 85%;
+  /*width: 85%;*/
 }
 .task-input-card label {
   /*font-weight: normal;*/
@@ -127,13 +127,12 @@ label {font-weight: normal;}
 
 
 /*------ SIDE NAVBAR ------*/
-
+.container-fluid {padding: 0;}
 .sidebar-container {
   position: fixed;
-  /*margin-top: -18px;*/
-  display: flex;
-  flex-direction: column;
-  width: 80px;
+  /*display: flex;
+  flex-direction: column;*/
+  /*width: 80px;*/
   background: #394264;
   text-align: center;
   height: 100vh;
@@ -284,7 +283,7 @@ label {font-weight: normal;}
 .task-frequency {
   /*font-size: .85em;*/
   float: right;
-  margin-right: 20px;
+  margin: 0 20px 0 0;
   background: #50597b;
   padding: 8px 15px;
   border-radius: 8px;

@@ -1,7 +1,10 @@
-<div ng-include="'includes/navbar.html'"></div>
-<div class="container top-padding">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 text-center">
+    <div class="col-sm-1" ng-include="'includes/navbar.html'"></div>
+    <div class="container">
+      <div class="row">
+
+    <div class="col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 top-padding text-center">
       <form>
         <div class="task-input-card">
           <div class="card-topper bg-teal">
@@ -25,17 +28,19 @@
         <a href="" ng-click="submit(tasks)" class="button bg-red">Submit All</a>
         </div>
       </form>
-      </div>
-      <div ng-repeat="task in tasks" class="col-md-6">
-        <ul class="single-task-group">
-          <a ng-click="deleteTask(tasks, $index)">Delete</a>
-          <li>
-            <p class="task-name">{{task.name}}</p>
-            <p class="task-frequency">{{task.frequency}}</p>
-            <p class="task-description clear">{{task.description}}</p>
-          </li>
-        </ul>
-      </div>
-    <!-- <a ui-sref="dashboard.yourTasks" class="btn btn-primary">Your Dashboard</a> -->
     </div>
+    <div class="col-sm-5 col-md-5 top-padding" ng-repeat="task in tasks">
+      <ul class="single-task-group">
+        <a ng-click="deleteTask(tasks, $index)">Delete</a>
+        <li>
+          <p class="task-name">{{task.name}}</p>
+          <p class="task-frequency">{{task.frequency}}</p>
+          <p class="task-description clear">{{task.description}}</p>
+        </li>
+      </ul>
+    </div>
+    </div>
+    </div>
+  <!-- <a ui-sref="dashboard.yourTasks" class="btn btn-primary">Your Dashboard</a> -->
   </div>
+</div>

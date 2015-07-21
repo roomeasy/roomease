@@ -1,7 +1,7 @@
-<div ng-include="'includes/navbar.html'"></div>
-<div class="container top-padding" ng-controller="dashboardCtrl">
+<div class="container-fluid" ng-controller="dashboardCtrl">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-2" ng-include="'includes/navbar.html'"></div>
+    <div class="col-sm-4 top-padding">
       <tabset class="bg-main-purple rounded light-border" justified="true">
         <tab ui-sref=".yourTasks" heading="Your Tasks">
         </tab>
@@ -10,7 +10,7 @@
           <div ui-view=""> </div>
       </tabset>
     </div>
-    <div class="col-sm-4 col-sm-offset-1">
+    <div class="col-sm-4 col-sm-offset-1 top-padding">
       <div class="row user-box" ng-repeat="user in users">
         <div class="col-sm-offset-1 col-sm-4">
           <p class="user-name">{{user.username}}</p>
