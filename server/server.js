@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 // BASIC ROUTING
 
 //Facebook Auth
-app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup'}));
+app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup' }));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/#/signin' }),

@@ -4,7 +4,7 @@
 -- Make sure Postgres.app is running
 -- 'psql 'will enter the shell
 
--- If you run 'psql < schema.sql' it will run the schema file and drop/create tables.
+-- If you run 'psql <database-name> < schema.sql' it will run the schema file and drop/create tables.
 -- Only do this if you want to start fresh with the below schema.
 
 -- \c <database-name> connects to database
