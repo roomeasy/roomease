@@ -37,6 +37,7 @@ module.exports = {
       //see if user is in a house
       if (req.user.dwelling_id === null) {
         res.send(400);
+        return;
       }
       else {
         var dwelling_id = req.user.dwelling_id
