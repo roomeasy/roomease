@@ -4,7 +4,7 @@
 -- Make sure Postgres.app is running
 -- 'psql 'will enter the shell
 
--- If you run 'psql < schema.sql' it will run the schema file and drop/create tables.
+-- If you run 'psql <database-name> < schema.sql' it will run the schema file and drop/create tables.
 -- Only do this if you want to start fresh with the below schema.
 
 -- \c <database-name> connects to database
@@ -25,13 +25,13 @@ CREATE TABLE dwellings (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  facebook_id BIGINT,
-  facebook_token VARCHAR,
   username VARCHAR,
-  age INTEGER DEFAULT null,
-  email VARCHAR DEFAULT null,
+  picture VARCHAR DEFAULT null,
+  gender VARCHAR DEFAULT null,
+  facebook_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
-  dwelling_id INTEGER references dwellings(id) -- foreign key
+  dwelling_id INTEGER references dwellings(id), -- foreign key
+  facebook_token VARCHAR
 );
 
 -- each task has 1 user
