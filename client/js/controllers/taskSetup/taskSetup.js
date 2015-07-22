@@ -28,7 +28,6 @@ angular.module('roomEase')
   } 
 
   $scope.submit = function(tasks){
-    debugger;
     if(tasks.length === 0){
       $scope.warning = true; // trigger the warning
       console.log("Please add a task first");
