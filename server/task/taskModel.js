@@ -40,9 +40,9 @@ exports.getAllInstances = function(dwellingId, cb){
 exports.addInstance = function(task_instance, taskId, cb) {
   var queryString = "INSERT INTO task_instances (due_date, completed, task_id) \
                      VALUES ("
-                     + "'" + task_instance.due_date + "', "
-                     +       "FALSE" + ", "
-                     +       task_id + ");";
+                     +  task_instance.due_date + ", " // this field needs to be properly formatted by the caller
+                     +  "FALSE" + ", "
+                     +  taskId + ");";
 
   db.query(queryString, function(err, results){
     console.log("Inside the addInstance query");
