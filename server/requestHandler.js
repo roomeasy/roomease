@@ -127,7 +127,7 @@ module.exports = {
       });
     },
 
-    addRoomie : function(req, res){
+    inviteRoomie : function(req, res){
 
       //gets dwellingId from logged in user.
       var dwelling_id = req.user.dwelling_id;

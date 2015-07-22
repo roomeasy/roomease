@@ -32,7 +32,7 @@ angular.module('roomEase')
   //used this to test text message functionality before implementationon client-side
   // $http({
   //   method: 'POST',
-  //   url: '/addRoomie',
+  //   url: '/inviteRoomie',
   //   data : {name: "Colin Harman", phoneNumber :5125773775}
   // });
 

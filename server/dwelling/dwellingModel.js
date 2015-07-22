@@ -33,7 +33,6 @@ exports.add = function(dwelling, cb){
 exports.getPinByDwellingId = function(dwellingId, cb){
   var queryString = "SELECT pin FROM dwellings WHERE id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
-    // console.log("results of getPinByDwellingId are : ", results.rows[0]);
     err ? cb(err, null) : cb(null, results.rows[0].pin)
   })
 }

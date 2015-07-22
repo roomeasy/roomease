@@ -39,10 +39,10 @@ app.get('/auth/facebook/callback',
     }
   })
 
-// app.get('/users/"', requestHandlers.users.find);
+//POST Requests
 app.post('/users', requestHandlers.users.add);
 app.post('/dwellings', requestHandlers.dwellings.add);
-app.post('/addRoomie', requestHandlers.dwellings.addRoomie);
+app.post('/inviteRoomie', requestHandlers.dwellings.inviteRoomie);
 app.post('/tasks', requestHandlers.tasks.add);
 
 // GET REQUESTS
