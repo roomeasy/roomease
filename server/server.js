@@ -48,6 +48,7 @@ app.post('/tasks', requestHandlers.tasks.add);
 
 // GET REQUESTS
 app.get('/tasks', requestHandlers.tasks.getAll);
+app.get('/taskInstances', requestHandlers.tasks.getAllInstances);
 app.get('/users', requestHandlers.users.getAll);
 app.get('/dwellings', requestHandlers.dwellings.getAll)
 
