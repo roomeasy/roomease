@@ -20,7 +20,8 @@ DROP TABLE IF EXISTS task_instances CASCADE;
 CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
-  name VARCHAR unique
+  name VARCHAR unique,
+  pin INTEGER
 );
 
 CREATE TABLE users (
