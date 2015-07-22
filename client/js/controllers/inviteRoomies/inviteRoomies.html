@@ -1,0 +1,42 @@
+<div class="container-fluid mobile-padding" ng-controller="dashboardCtrl">
+  <div class="row">
+    <div class="col-sm-1" ng-include="'includes/navbar.html'"></div>
+    <div class="container">
+      <div class="row">
+        <h1 class="home-title text-center">RoomEase</h1>
+        <p class="home-intro text-center">Invite Your Roomies With A Text</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 top-padding text-center">
+          <form class="join-living-space">
+            <div class="task-input-card bg-main-purple">
+              <div class="card-topper bg-purple-hover">
+                <p class="card-topper-headline">Add Your Roomies</p>
+              </div>
+              <label>Roomies Name</label> <br />
+              <!-- <p class="form-warning-text" ng-show="nameWarning">Incorrect Living Space</p> -->
+              <input ng-model="roomie.name" id="invite-roomie" type="text" /> <br />
+              <label>Roomies Phone Number</label> <br />
+              <!-- <p class="form-warning-text" ng-show="addressWarning">Incorrect PIN</p> -->
+              <input ng-model="roomie.number" id="invite-roomie" type="text" > <br />
+              <a class="button bg-dark-purple ls-button" href="" ng-click="addRoomie(roomie)">Add Roomie</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-sm-5 col-md-5 top-padding">
+          <div ng-repeat="roomie in roomies">
+            <a ng-click="deleteRoomie(roomies, $index)" class="fa fa-times close"></a>
+            <ul class="single-task-group">
+              <li>
+                <p class="task-name">{{roomie.name}}</p>
+                <p class="task-description clear">{{roomie.number}}</p>
+              </li>
+            </ul>
+          </div>
+          <a class="button bg-teal ls-button" href="" ng-show="roomies.length" ng-click="submit(roomies)">Invite Roomies</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

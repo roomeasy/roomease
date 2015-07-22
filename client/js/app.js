@@ -35,7 +35,7 @@ angular.module('roomEase', [
   })
   .state('dashboard.yourTasks', {
     url: '',
-    templateUrl: '/js/controllers/dashboard/yourTasks.html', 
+    templateUrl: '/js/controllers/dashboard/yourTasks.html',
     controller: 'yourTasksCtrl'
   })
   .state('dashboard.taskHistory', {
@@ -48,6 +48,9 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/roomieSearch/roomieSearch.html',
     controller: 'roomieSearch'
   })
+  .state('inviteRoomies', {
+    url: '/inviteroomies',
+    templateUrl: '/js/controllers/inviteRoomies/inviteRoomies.html',
+    controller: 'inviteRoomiesCtrl'
+  })
 })
-
-
