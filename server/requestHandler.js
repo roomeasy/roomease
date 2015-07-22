@@ -48,10 +48,19 @@ module.exports = {
 
     joinDwelling : function(req, res){
 
+      var submittedDwellingId = req.body.dwellingId;
+      var submittedPin = req.body.pin;
+
       //authenticate dwelling with PIN number
-
-        //updateDwellingId of current user
-
+      dwellingModel.getPinByDwellingId(submittedDwellingId, function (err, pin){
+        if (pin === submittedPin) {
+          userModel.updateDwellingId(req.user.id, submittedDwellingId, function(){})
+          console.log("Congrats! you've joined a dwelling!");
+        } else {
+          res.send("Invalid PIN");
+          return;
+        }
+      })
     },
   },
 
