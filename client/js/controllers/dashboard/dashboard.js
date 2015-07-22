@@ -16,6 +16,9 @@ angular.module('roomEase')
     Request.task.fetch().then(function(results){
       console.log('task fetch results:', results);
       $scope.userTasks = results;
+      // $scope.userTasks = results.filter(function(item) {
+      //   return item.username === "Hadley"
+      // });
     })
   }
   $scope.fetchYourTasks();
@@ -29,8 +32,14 @@ angular.module('roomEase')
     })
   })
 })
-.controller('tasksHistoryCtrl', function($scope) {
-
+.controller('tasksHistoryCtrl', function($scope, Request) {
+  $scope.allTasks = [];
+  $scope.fetchAllTasks = function () {
+    Request.task.fetch().then(function(results) {
+      $scope.allTasks = results;
+    })
+  }
+  $scope.fetchAllTasks();
 })
 .controller('usersDisplayCtrl', function($scope) {
 
