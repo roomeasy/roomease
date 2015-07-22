@@ -2,6 +2,20 @@ var userModel = require('./user/userModel.js');
 var dwellingModel = require('./dwelling/dwellingModel.js');
 var taskModel = require('./task/taskModel.js');
 
+// freqToInt : {
+        //   Daily : 1,
+        //   Weekly : 2,
+        //   Monthly : 3
+        // }
+
+// helper for converting frequency integer to number of days
+// between instances of the task
+var intToInterval = {
+  1 : "'1 day'",
+  2 : "'7 days'",
+  3 : "'1 month'"
+}
+
 module.exports = {
   users: {
     add : function(req, res){
@@ -52,6 +66,15 @@ module.exports = {
 
       taskModel.add(task, dwelling_id, function(err, results){  // is this correct?
         responseHandler(err, results, res);
+        var taskId = results.id;
+        var start_date = task.start_date || "'07-20-15'"; 
+        for(var i = 0; i < 1; i++) {
+          var task_instance = {
+            due_date : "date " + start_date + " + " + i + " * interval " + intToInterval[task.frequency]
+          }
+          taskModel.addInstance(task_instance, taskId, function() {});
+          // should the callback be doing anything?
+        }
       });
     },
 
@@ -61,6 +84,16 @@ module.exports = {
 
       console.log('inside the get all task request handler');
       taskModel.getAll(dwelling_id, function(err, results){
+        responseHandler(err, results, res);
+      });
+    },
+
+    getAllInstances : function(req, res){
+      //gets all task_instances based of current users dwelling_id
+      var dwelling_id = req.user.dwelling_id;
+
+      console.log('inside the get all task_instance request handler');
+      taskModel.getAllInstances(dwelling_id, function(err, results){
         responseHandler(err, results, res);
       });
     },
