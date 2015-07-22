@@ -1,12 +1,12 @@
 angular.module('roomEase')
 
-.controller('houseTaskSetup', function($scope, $location, Request){
+.controller('taskSetup', function($scope, $location, Request){
   $scope.tasks = [];
 
   $scope.task = {
     name: "",
     description: "",
-    frequency: "Daily"
+    frequency: "daily"
   }
 
   $scope.warning = false;
@@ -18,7 +18,7 @@ angular.module('roomEase')
     $scope.task = {
       name: "",
       description: "",
-      frequency: "Daily"
+      frequency: "daily"
     }
     $scope.warning = false; // reset the warning
   }

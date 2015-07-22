@@ -1,11 +1,11 @@
 angular.module('roomEase')
 
-.controller('livingSpaceSetup', function ($scope, Request, $location){
+.controller('createDwelling', function ($scope, Request, $location){
   $scope.livingSpace = { name: "", address: "" };
   $scope.nameWarning = false;
   $scope.addressWarning = false;
 
-  $scope.createLivingSpace = function(sendData) {
+  $scope.createDwelling = function(sendData) {
     if($scope.livingSpace.name.trim() === "" || $scope.livingSpace.address.trim() === ""){
       console.log("Please address the warnings");
       return;

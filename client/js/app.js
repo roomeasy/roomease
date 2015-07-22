@@ -5,23 +5,17 @@ angular.module('roomEase', [
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
-  // $stateProvider
-  //  .state('state1', {
-  //    url: "/state1",
-  //    templateUrl: "partials/state1.html"
-  //  })
   $urlRouterProvider.otherwise('/signin')
 
   $stateProvider.state('taskSetup', {
     url: '/tasksetup',
-    templateUrl: '/js/controllers/houseTaskSetup/houseTaskSetup.html',
-    controller: 'houseTaskSetup'
-    // controllerAs: 'taskSetup'
+    templateUrl: '/js/controllers/taskSetup/taskSetup.html',
+    controller: 'taskSetup'
   })
-  .state('createLivingSpace', {
-    url: '/createLivingSpace',
-    templateUrl: '/js/controllers/livingSpaceSetup/livingSpaceSetup.html',
-    controller: 'livingSpaceSetup'
+  .state('createDwelling', {
+    url: '/createdwelling',
+    templateUrl: '/js/controllers/createDwelling/createDwelling.html',
+    controller: 'createDwelling'
   })
   .state('signin', {
     url: '/signin',
@@ -57,10 +51,3 @@ angular.module('roomEase', [
 })
 
 
-// .state('home.list', {
-//         url: '/list',
-//         templateUrl: 'partial-home-list.html',
-//         controller: function($scope) {
-//             $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
-//         }
-//     })

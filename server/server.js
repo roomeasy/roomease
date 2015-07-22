@@ -32,8 +32,8 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/#/signin' }),
   function (req, res) {
     //redirects new users to the proper place
-    if (req.user.dwelling_id === null){
-      res.redirect('/#/createLivingSpace');
+    if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
+      res.redirect('/#/createdwelling');
     } else {
       res.redirect('/#/dashboard');
     }
