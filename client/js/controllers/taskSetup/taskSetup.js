@@ -6,7 +6,7 @@ angular.module('roomEase')
   $scope.task = {
     name: "",
     description: "",
-    frequency: "Daily"
+    frequency: "daily"
   }
 
   $scope.warning = false;
@@ -18,7 +18,7 @@ angular.module('roomEase')
     $scope.task = {
       name: "",
       description: "",
-      frequency: "Daily"
+      frequency: "daily"
     }
     $scope.warning = false; // reset the warning
   }
