@@ -33,7 +33,7 @@ app.get('/auth/facebook/callback',
   function (req, res) {
     //redirects new users to the proper place
     if (req.user.dwelling_id === null){
-      res.redirect('/#/createLivingSpace');
+      res.redirect('/#/createdwelling');
     } else {
       res.redirect('/#/dashboard');
     }
