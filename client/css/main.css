@@ -58,7 +58,12 @@ label {font-weight: normal;}
 	text-decoration: none;
 	color: white;
 }
-
+.form-warning-text {
+	font-size: 1.35em;
+	font-weight: normal;
+	padding: 5px 0;
+	color: #e64c65;
+}
 /*------ HOMEPAGE STYLING ------*/
 .home-title {
 	font-family: 'Pacifico', cursive;
@@ -134,11 +139,17 @@ label {font-weight: normal;}
   background: #394264;
   padding-bottom: 40px;
 }
-.task-input-card label {
+.task-input-card,.living-space label {
   /*font-weight: normal;*/
   font-size: 1.35em;
-  text-align: left;
+  /*text-align: left;*/
 }
+.living-space-header {
+	margin-bottom: 30px;
+	color: #50597b;
+	font-size: 3.5em;
+}
+.ls-button {margin: 10px 0 0 10px;}
 .clear {clear: both;}
 .rounded {border-radius: 5px;}
 .light-border {border: 2px solid #50597b}
@@ -255,6 +266,7 @@ label {font-weight: normal;}
 .top-padding {
   padding-top: 50px;
 }
+.ls-padding {padding-top: 150px;}
 .user-image {
   border-radius: 50%;
   height: 130px;
