@@ -121,7 +121,6 @@ label {font-weight: normal;}
   padding-top: 20px;
   font-size: 1.75em;
   text-transform: uppercase;
-
 }
 .signin-bg {
   background: url('../img/roomease-bg.jpg') no-repeat center center;
@@ -150,12 +149,10 @@ label {font-weight: normal;}
 .container-fluid {padding: 0;}
 .sidebar-container {
   position: fixed;
-  /*display: flex;
-  flex-direction: column;*/
-  /*width: 80px;*/
   background: #394264;
   text-align: center;
   height: 100vh;
+	border-right: 3px solid #50597b;
 }
 .sidebar-nav {
   padding-left: 0px;
@@ -200,7 +197,6 @@ label {font-weight: normal;}
 
 .user-card {
 	min-width: 300px;
-	/*width: 35%;*/
 	border-radius: 5px;
 	text-align: center;
 	height: 370px;
@@ -255,6 +251,7 @@ label {font-weight: normal;}
 /* ------ DASHBOARD STYLE -----*/
 .nav-tabs a:visited {color: white;}
 .nav-tabs a:link {color: white;}
+.nav-tabs > li > a:hover {background-color: #50597b;}
 
 .top-padding {
   padding-top: 50px;
