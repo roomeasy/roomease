@@ -5,7 +5,7 @@ angular.module('roomEase')
 
   $scope.roomie = {
     name: "",
-    number: ""
+    phoneNumber: ""
   }
 
   $scope.addRoomie = function (newRoomie) {
@@ -14,7 +14,7 @@ angular.module('roomEase')
     // reset the view
     $scope.roomie = {
       name: "",
-      number: ""
+      phoneNumber: ""
     }
   }
 
@@ -25,10 +25,10 @@ angular.module('roomEase')
     var sendData = roomies.slice();
     sendData = sendData.forEach(function(roomie) {
 
-    Request.roomie.invite(roomie).then(function(results){
-      console.log('results: ', results);
+      Request.roomie.invite(roomie).then(function(results){
+        console.log('results: ', results);
+      });
     });
     $scope.roomies = [];
-  });
   }
 })
