@@ -42,7 +42,7 @@ app.get('/auth/facebook/callback',
 // app.get('/users/"', requestHandlers.users.find);
 app.post('/users', requestHandlers.users.add);
 app.post('/dwellings', requestHandlers.dwellings.add);
-app.post('/addRoomies', requestHandlers.dwellings.addRoomies);
+app.post('/addRoomie', requestHandlers.dwellings.addRoomie);
 app.post('/tasks', requestHandlers.tasks.add);
 
 // GET REQUESTS

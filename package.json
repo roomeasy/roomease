@@ -33,6 +33,7 @@
     "passport-facebook": "^2.0.0",
     "passport-local": "^1.0.0",
     "pg": "^4.4.0",
+    "request": "^2.60.0",
     "underscore": "^1.8.3"
   }
 }

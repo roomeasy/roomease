@@ -1,6 +1,7 @@
 var userModel = require('./user/userModel.js');
 var dwellingModel = require('./dwelling/dwellingModel.js');
 var taskModel = require('./task/taskModel.js');
+var request = require('request');
 
 // freqToInt : {
         //   Daily : 1,
@@ -124,10 +125,42 @@ module.exports = {
       });
     },
 
-    addRoomies : function(req, res){
+    addRoomie : function(req, res){
       var dwelling_id = req.user.dwelling_id;
 
+      //roomies should come through as an array of objects (like tasks)
+      // Data Packaging
+      var roomie = {
+        name        : req.body.name,
+        phoneNumber   : req.body.phoneNumber,
+      };
+
+
       //query dwelling database for unique PIN
+      dwellingModel.getPinByDwellingId(dwelling_id, function(err, pin){
+        var message = "Hello, " + roomie.name + "! \n \n"
+                      + "Your friend " + req.user.username + " has invited you to join RoomEase! "
+                      + "Go to localhost:3000 to get started. \n \n"
+                      + "Your Dwelling Id is : " + dwelling_id + "\n"
+                      + "and your Unique PIN is : " + pin + "\n \n"
+                      + "See you soon!";
+
+        //data packaging
+        var data = {
+          number  : roomie.phoneNumber,
+          message : message,
+        }
+
+        request.post({
+          url: 'http://textbelt.com/text',
+          formData : data,
+        }, function(err, httpResponse, body){
+          if (err) { return console.log('failed: ', err); }
+
+          console.log("Upload successful!", body);
+        });
+      });
+
     },
 
     getAll: function(req, res){
