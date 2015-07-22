@@ -44,7 +44,15 @@ module.exports = {
         console.log('inside response handler: ', results);
         responseHandler(err, results, res);
       });
-    }
+    },
+
+    joinDwelling : function(req, res){
+
+      //authenticate dwelling with PIN number
+
+        //updateDwellingId of current user
+
+    },
   },
 
   tasks: {
@@ -147,7 +155,7 @@ module.exports = {
                       + "Your friend " + req.user.username + " has invited you to join RoomEase! "
                       + "Go to localhost:3000 to get started. \n \n"
                       + "Your Dwelling Id is : " + dwelling_id + "\n"
-                      + "and your Unique PIN is : " + pin + "\n \n"
+                      + "Your Unique PIN is  : " + pin + "\n \n"
                       + "See you soon!";
 
         //data packaging

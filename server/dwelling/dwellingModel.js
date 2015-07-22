@@ -37,6 +37,13 @@ exports.getPinByDwellingId = function(dwellingId, cb){
   })
 }
 
+exports.authenticateDwelling = function(dwellingId, pin, cb){
+  var queryString = "SELECT pin FROM dwellings WHERE dwelling_id = " + dwellingId + ";";
+  db.query(queryString, function (err, results){
+    console.log()
+  })
+}
+
 exports.getAll = function(cb){
   var queryString = "SELECT * FROM dwellings;";
   db.query(queryString, function(err, results){

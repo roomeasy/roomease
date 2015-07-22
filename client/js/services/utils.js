@@ -29,13 +29,6 @@ angular.module('roomEase')
 
 .factory('Request', function($http){
 
-  //used this to test text message functionality before implementationon client-side
-  // $http({
-  //   method: 'POST',
-  //   url: '/inviteRoomie',
-  //   data : {name: "Colin Harman", phoneNumber :5125773775}
-  // });
-
   var returnObj = {
     dwelling : {
       create : function(data){
