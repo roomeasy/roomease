@@ -103,7 +103,7 @@ module.exports = {
       console.log('inside the dwelling find request handler');
       var taskname = req.params.taskname;
       console.log(taskname);
-      taskModel.findTask(taskname, function(err, results){
+      taskModel.findTask(taskname, function (err, results){
         console.log('inside response handler: ', results);
         responseHandler(err, results, res);
       });
@@ -113,31 +113,36 @@ module.exports = {
   dwellings: {
     add: function(req, res){
       console.log('inside dwelling add request handler');
-      var dwelling = { // data packaging
+
+      //data packaging
+      var dwelling = {
         name    : req.body.name,
         address : req.body.address,
       }
-      console.log(req.body);
-      dwellingModel.add(dwelling, function(err, results){
-        userModel.updateDwellingId(req.user.id, results.id, function(err, results) {
+
+      dwellingModel.add(dwelling, function (err, results){
+        userModel.updateDwellingId(req.user.id, results.id, function (err, results) {
           responseHandler(err, results, res);
         });
       });
     },
 
     addRoomie : function(req, res){
+
+      //gets dwellingId from logged in user.
       var dwelling_id = req.user.dwelling_id;
 
-      //roomies should come through as an array of objects (like tasks)
+      //roomies should come through as one obj on the req.body
       // Data Packaging
       var roomie = {
         name        : req.body.name,
         phoneNumber   : req.body.phoneNumber,
       };
 
-
       //query dwelling database for unique PIN
-      dwellingModel.getPinByDwellingId(dwelling_id, function(err, pin){
+      dwellingModel.getPinByDwellingId(dwelling_id, function (err, pin){
+
+        //composes the actual text message string
         var message = "Hello, " + roomie.name + "! \n \n"
                       + "Your friend " + req.user.username + " has invited you to join RoomEase! "
                       + "Go to localhost:3000 to get started. \n \n"
@@ -151,20 +156,20 @@ module.exports = {
           message : message,
         }
 
+        //send post request using request node module to textBelt,
+        //our free janky texting service.
         request.post({
           url: 'http://textbelt.com/text',
           formData : data,
-        }, function(err, httpResponse, body){
-          if (err) { return console.log('failed: ', err); }
+        }, function (err, httpResponse, body){
 
-          console.log("Upload successful!", body);
+          if (err) { console.log('failed: ', err); }
         });
       });
-
     },
 
     getAll: function(req, res){
-      dwellingModel.getAll(function(err, results){
+      dwellingModel.getAll(function (err, results){
         responseHandler(err, results, res);
       })
     },
@@ -173,7 +178,7 @@ module.exports = {
       console.log('inside the dwelling find request handler');
       var dwellingName = req.params.dwellingname;
       console.log(dwellingName);
-      dwellingModel.findDwelling(dwellingName, function(err, results){
+      dwellingModel.findDwelling(dwellingName, function (err, results){
         console.log('inside response handler: ', results);
         responseHandler(err, results, res);
       });
