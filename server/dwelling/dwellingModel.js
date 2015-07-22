@@ -10,9 +10,19 @@ exports.findRoommates = function(houseId, cb){
 }
 
 exports.add = function(dwelling, cb){
-  var queryString = "INSERT INTO dwellings (address, name) \
+
+  function generatePIN(){
+    var num = 0;
+    for (var i = 0; i < 6; i++){
+      num = 10 * num + (1 + Math.floor(9 * Math.random()));
+    }
+    return num;
+  }
+
+  var queryString = "INSERT INTO dwellings (address, pin, name) \
                      VALUES ("
                      + "'" + dwelling.address + "', "
+                     +       generatePIN() + ", "
                      + "'" + dwelling.name + "') "
                      + "RETURNING id;";
   db.query(queryString, function(err, results){
