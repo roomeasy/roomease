@@ -45,16 +45,43 @@ input[type=text]:focus {
  		border: 2px solid #11a8ab;
  	}
 label {font-weight: normal;}
+
+/*------ HELPERS ------*/
+.close {
+	position: relative;
+	float: right;
+	font-size: 2em;
+	top: 3px;
+	right: 10px;
+}
+.close:hover {
+	text-decoration: none;
+	color: white;
+}
+.form-warning-text {
+	font-size: 1.35em;
+	font-weight: normal;
+	padding: 5px 0;
+	color: #e64c65;
+}
+/*------ HOMEPAGE STYLING ------*/
+.home-title {
+	font-family: 'Pacifico', cursive;
+	color: #394264;
+	font-size: 6em;
+}
+.home-intro {
+	font-size: 2em;
+}
+
 .freq {
-  /*color: red;*/
-  /*font-size: 20px;*/
   padding-left: 5px;
   padding-right: 15px;
   margin: 5px 0 0 5px;
   cursor: pointer;
   font-size: 16px;
 }
-.input-icon {
+/*.input-icon {
 	font-size: 22px;
 	position: absolute;
 	left: 31px;
@@ -62,11 +89,11 @@ label {font-weight: normal;}
 }
 .input-icon.password-icon {
 	left: 35px;
-}
+}*/
 
 .button {
   display: inline-block;
-  width: 175px;
+	padding: 0 20px;
   line-height: 50px;
   font-size: 16px;
   font-weight: 700;
@@ -99,11 +126,11 @@ label {font-weight: normal;}
   padding-top: 20px;
   font-size: 1.75em;
   text-transform: uppercase;
-
 }
 .signin-bg {
   background: url('../img/roomease-bg.jpg') no-repeat center center;
   height: 100vh;
+	width: 100%;
   background-size: cover;
 }
 .task-input-card {
@@ -111,13 +138,18 @@ label {font-weight: normal;}
 	text-align: center;
   background: #394264;
   padding-bottom: 40px;
-  width: 85%;
 }
-.task-input-card label {
+.task-input-card,.living-space label {
   /*font-weight: normal;*/
   font-size: 1.35em;
-  text-align: left;
+  /*text-align: left;*/
 }
+.living-space-header {
+	margin-bottom: 30px;
+	color: #50597b;
+	font-size: 3.5em;
+}
+.ls-button {margin: 10px 0 0 10px;}
 .clear {clear: both;}
 .rounded {border-radius: 5px;}
 .light-border {border: 2px solid #50597b}
@@ -125,16 +157,12 @@ label {font-weight: normal;}
 
 
 /*------ SIDE NAVBAR ------*/
-
 .sidebar-container {
   position: fixed;
-  /*margin-top: -18px;*/
-  display: flex;
-  flex-direction: column;
-  width: 80px;
   background: #394264;
   text-align: center;
   height: 100vh;
+	border-right: 3px solid #50597b;
 }
 .sidebar-nav {
   padding-left: 0px;
@@ -179,7 +207,6 @@ label {font-weight: normal;}
 
 .user-card {
 	min-width: 300px;
-	/*width: 35%;*/
 	border-radius: 5px;
 	text-align: center;
 	height: 370px;
@@ -231,22 +258,20 @@ label {font-weight: normal;}
 .fb {	border-top: 4px solid #e64c65;}
 
 
-
-
-
-
-
-
 /* ------ DASHBOARD STYLE -----*/
+.nav-tabs a:visited {color: white;}
+.nav-tabs a:link {color: white;}
+.nav-tabs > li > a:hover {background-color: #50597b;}
+
 .top-padding {
   padding-top: 50px;
 }
+.ls-padding {padding-top: 150px;}
 .user-image {
   border-radius: 50%;
   height: 130px;
   width: 130px;
   border: 5px solid #50597b;
-
 }
 
 .user-box {
@@ -257,13 +282,10 @@ label {font-weight: normal;}
 }
 .active {background-color: teal;}
 .single-task-group {
-  /*margin: 20px auto;*/
   list-style: none;
   border: 2px solid #50597b;
   padding-top: 10px;
   padding-bottom: 10px;
-  /*border-radius: 5px;*/
-  /*padding: 10px 5px 10px 5px;*/
 }
 /*.single-task-group li:nth-child(odd) {
   background: #9099b7;
@@ -280,9 +302,8 @@ label {font-weight: normal;}
   font-weight: 300;
 }
 .task-frequency {
-  /*font-size: .85em;*/
   float: right;
-  margin-right: 20px;
+  margin: 0 20px 0 0;
   background: #50597b;
   padding: 8px 15px;
   border-radius: 8px;
@@ -301,4 +322,9 @@ label {font-weight: normal;}
   height: 250px;
   width: 250px;
   object-fit: cover;
+}
+.container-fluid {padding: 0;}
+
+@media screen and (max-width: 760px) {
+	.mobile-padding {padding: 0 30px;}
 }
