@@ -114,6 +114,9 @@ label {font-weight: normal;}
 .bg-teal.button:hover {
   background: #0F9295;
 }
+.bg-dark-purple:hover {
+	background: #50597b;
+}
 .bg-red.button:hover {
   background: #cc324b;
 }
@@ -136,12 +139,12 @@ label {font-weight: normal;}
 .task-input-card {
   border-radius: 5px;
 	text-align: center;
-  background: #394264;
+  /*background: #394264;*/
   padding-bottom: 40px;
 }
-.task-input-card,.living-space label {
+.task-input-card,.living-space,.join-living-space label {
   /*font-weight: normal;*/
-  font-size: 1.35em;
+  font-size: 18px;
   /*text-align: left;*/
 }
 .living-space-header {
