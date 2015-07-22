@@ -20,9 +20,9 @@
             <option value="Monthly">Monthly</option>
           </select> -->
           <!-- <label>Frequency Of Task</label> <br> -->
-          <input id="1" type="radio" name="frequency" value="daily"><label class="freq" for="1">Daily</label>
-          <input id="2" type="radio" name="frequency" value="weekly"><label for="2" class="freq">Weekly</label>
-          <input id="3" type="radio" name="frequency" value="monthly"><label for="3" class="freq">Monthly</label><br>
+          <input ng-model="task.frequency" id="1" type="radio" name="frequency" value="daily"><label class="freq" for="1">Daily</label>
+          <input ng-model="task.frequency" id="2" type="radio" name="frequency" value="weekly"><label for="2" class="freq">Weekly</label>
+          <input ng-model="task.frequency" id="3" type="radio" name="frequency" value="monthly"><label for="3" class="freq">Monthly</label><br>
         <p ng-show="warning">Please add a task first</p>
         <a href="" ng-click="addTask(task)" class="button bg-teal margin-right">Add A Task</a>
         <a href="" ng-click="submit(tasks)" class="button bg-red">Submit All</a>
@@ -31,8 +31,8 @@
     </div>
     <div class="col-sm-5 col-md-5 top-padding">
       <div ng-repeat="task in tasks">
+        <a ng-click="deleteTask(tasks, $index)" class="fa fa-times close"></a>
         <ul class="single-task-group">
-          <a ng-click="deleteTask(tasks, $index)">Delete</a>
           <li>
             <p class="task-name">{{task.name}}</p>
             <p class="task-frequency">{{task.frequency}}</p>
