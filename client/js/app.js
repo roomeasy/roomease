@@ -12,7 +12,7 @@ angular.module('roomEase', [
     templateUrl: '/js/controllers/taskSetup/taskSetup.html',
     controller: 'taskSetup'
   })
-  .state('crateDwelling', {
+  .state('createDwelling', {
     url: '/createdwelling',
     templateUrl: '/js/controllers/createDwelling/createDwelling.html',
     controller: 'createDwelling'
