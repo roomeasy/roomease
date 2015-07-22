@@ -28,7 +28,6 @@ angular.module('roomEase')
 })
 
 .factory('Request', function($http){
-
   var returnObj = {
     dwelling : {
       create : function(data){
