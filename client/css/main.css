@@ -146,7 +146,6 @@ label {font-weight: normal;}
 
 
 /*------ SIDE NAVBAR ------*/
-.container-fluid {padding: 0;}
 .sidebar-container {
   position: fixed;
   background: #394264;
@@ -311,4 +310,9 @@ label {font-weight: normal;}
   height: 250px;
   width: 250px;
   object-fit: cover;
+}
+.container-fluid {padding: 0;}
+
+@media screen and (max-width: 760px) {
+	.mobile-padding {padding: 0 30px;}
 }
