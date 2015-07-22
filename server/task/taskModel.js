@@ -37,6 +37,23 @@ exports.getAllInstances = function(dwellingId, cb){
   })
 }
 
+exports.addInstance = function(task_instance, taskId, cb) {
+  var queryString = "INSERT INTO task_instances (due_date, completed, task_id) \
+                     VALUES ("
+                     + "'" + task_instance.due_date + "', "
+                     +       "FALSE" + ", "
+                     +       task_id + ");";
+
+  db.query(queryString, function(err, results){
+    console.log("Inside the addInstance query");
+    if(err) {
+      cb(err, null);
+    } else {
+      cb(null, results);
+    }
+  })
+}
+
 exports.findTask = function(taskName, cb){
   console.log('Inside the dwelling find query');
   var queryString = "SELECT * FROM tasks WHERE name = " + "'" + taskName + "';";
