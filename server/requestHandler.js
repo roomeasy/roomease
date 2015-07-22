@@ -68,7 +68,7 @@ module.exports = {
         responseHandler(err, results, res);
         var taskId = results.id;
         var start_date = task.start_date || "'07-20-15'"; 
-        for(var i = 0; i < 1; i++) {
+        for(var i = 0; i < 4; i++) {
           var task_instance = {
             due_date : "date " + start_date + " + " + i + " * interval " + intToInterval[task.frequency]
           }
