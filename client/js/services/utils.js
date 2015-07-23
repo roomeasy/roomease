@@ -74,6 +74,15 @@ angular.module('roomEase')
         .then(function(resp) {
           return resp.data;
         })
+      },
+      update: function(data) {
+        return $http({
+          method: 'POST',
+          url: '/taskInstances',
+          data: data,
+        }).then(function(resp) {
+          return resp.data;
+        })
       }
     },
 
@@ -99,14 +108,6 @@ angular.module('roomEase')
         })
       },
 
-      // fetch: function () {
-      //   return $http({
-      //     method: 'GET',
-      //     url: '/inviteRoomie',
-      //   }).then(function(resp) {
-      //     return resp.data;
-      //   })
-      // }
     },
 
     freqToInt : { // ugly styling but sticing this here for now

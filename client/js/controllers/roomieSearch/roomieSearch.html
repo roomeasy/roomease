@@ -7,15 +7,15 @@
 <div ng-repeat="user in lookingUsers | filter:location" class="user-card bg-main-purple">
   <img class="user-looking" src="{{user.image}}" height="170px" width="170px">
   <p class="user-name">{{user.name}}</p>
-  <p class="user-info">Moving To Austin, TX First Week Of Sept. </p>
+  <p class="user-info">{{user.location}}</p>
   <ul class="looking-icons">
     <li class="star">
       <i class="fa fa-star"></i>
       <span>24</span>
     </li>
     <li class="location">
-      <i class="fa fa-map-marker"></i>
-      <span>{{user.location}}</span>
+      <i class="fa fa-birthday-cake"></i>
+      <span>{{user.age}}</span>
     </li>
     <li class="fb">
       <i class="fa fa-facebook-official"></i>
