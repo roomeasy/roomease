@@ -24,7 +24,7 @@ exports.getAll = function(dwellingId, cb){
 }
 
 exports.getAllInstances = function(dwellingId, cb){
-  var queryString = "SELECT tasks.name, tasks.description, due_date \
+  var queryString = "SELECT tasks.name, tasks.description, due_date, completed \
      FROM tasks, task_instances \
      WHERE task_instances.task_id = tasks.id \
      AND tasks.dwelling_id = " + dwellingId + ";";

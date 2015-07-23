@@ -76,7 +76,7 @@ module.exports = {
       taskModel.add(task, dwelling_id, function(err, results){  // is this correct?
         responseHandler(err, results, res);
         var taskId = results.id;
-        var start_date = task.start_date || "'07-20-15'";
+        var start_date = task.start_date || "'07-27-15'";
         for(var i = 0; i < 4; i++) {
           var task_instance = {
             due_date : "date " + start_date + " + " + i + " * interval " + intToInterval[task.frequency]
