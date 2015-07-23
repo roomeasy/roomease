@@ -14,6 +14,10 @@
           <input ng-model="task.name" type="text" /> <br />
           <label for="">Task Description</label> <br />
           <input ng-model="task.description" type="text" > <br />
+
+          <label for="">Start Date</label>
+          <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+
           <input ng-model="task.frequency" id="1" type="radio" name="frequency" value="daily"><label class="freq" for="1">Daily</label>
           <input ng-model="task.frequency" id="2" type="radio" name="frequency" value="weekly"><label for="2" class="freq">Weekly</label>
           <input ng-model="task.frequency" id="3" type="radio" name="frequency" value="monthly"><label for="3" class="freq">Monthly</label><br>
@@ -31,6 +35,7 @@
             <p class="task-name">{{task.name}}</p>
             <p class="task-frequency">{{task.frequency}}</p>
             <p class="task-description clear">{{task.description}}</p>
+            <p class="task-description clear">Starting {{task.start_date}}</p>
           </li>
         </ul>
       </div>

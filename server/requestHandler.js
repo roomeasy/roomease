@@ -82,17 +82,27 @@ module.exports = {
         name        : req.body.name,
         frequency   : req.body.frequency,
         description : req.body.description,
+        start_date : req.body.start_date
       };
 
+      console.log(task);
       taskModel.add(task, dwelling_id, function(err, results){  // is this correct?
         responseHandler(err, results, res);
         var taskId = results.id;
-        var start_date = task.start_date || "'07-27-15'";
+        if(!task.start_date){
+          var start_date = "'07-27-15'";
+        }else{
+          start_date = "'" + task.start_date + "'";
+        }
+
+        console.log(start_date);
         for(var i = 0; i < 4; i++) {
           var task_instance = {
             due_date : "date " + start_date + " + " + i + " * interval " + intToInterval[task.frequency]
           }
-          taskModel.addInstance(task_instance, taskId, function() {});
+          taskModel.addInstance(task_instance, taskId, function(err) {
+            console.log(err);
+          });
           // should the callback be doing anything?
         }
       });
