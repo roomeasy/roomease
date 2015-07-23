@@ -120,7 +120,9 @@ module.exports = {
 
     updateInstance : function(req, res) {
       console.log('inside the update instance request handler');
-      taskModel.updateInstance(req.body);
+      taskModel.updateInstance(req.body, function(err, results){
+        responseHandler(err, results, res);
+      });
     },
 
     getAllInstances : function(req, res){
