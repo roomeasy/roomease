@@ -343,3 +343,11 @@ label {font-weight: 300;}
 @media screen and (max-width: 760px) {
 	.mobile-padding {padding: 0 30px;}
 }
+
+em.ng-binding {
+  color: black;
+}
+
+small.ng-binding{
+  color: black;
+}

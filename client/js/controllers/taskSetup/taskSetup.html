@@ -5,31 +5,6 @@
       <div class="row">
 
     <div class="col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 top-padding text-center">
-      <!-- calendar stuff -->
-      <style>
-        .full button span {
-          background-color: limegreen;
-          border-radius: 32px;
-          color: black;
-        }
-        .partially button span {
-          background-color: orange;
-          border-radius: 32px;
-          color: black;
-        }
-        .ng-binding {
-          color: black;
-        }
-      </style>
-
-      <div>
-          <!-- <pre>Selected start date is: <em>{{dt | date:'fullDate'}}</em></pre> -->
-          <h4 style="color:white;">Start date : {{dt | date : 'fullDate'}}</h4>
-          <div style="display:inline-block; min-height:290px;">
-            <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
-          </div>
-      </div>
-      <!-- calendar stuff -->
       <form>
         <div class="task-input-card bg-main-purple">
           <div class="card-topper bg-teal">
@@ -39,6 +14,10 @@
           <input ng-model="task.name" type="text" /> <br />
           <label for="">Task Description</label> <br />
           <input ng-model="task.description" type="text" > <br />
+
+          <label for="">Start Date</label>
+          <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+
           <input ng-model="task.frequency" id="1" type="radio" name="frequency" value="daily"><label class="freq" for="1">Daily</label>
           <input ng-model="task.frequency" id="2" type="radio" name="frequency" value="weekly"><label for="2" class="freq">Weekly</label>
           <input ng-model="task.frequency" id="3" type="radio" name="frequency" value="monthly"><label for="3" class="freq">Monthly</label><br>
@@ -49,8 +28,6 @@
       </form>
     </div>
     <div class="col-sm-5 col-md-5 top-padding">
-
-
       <div ng-repeat="task in tasks">
         <a ng-click="deleteTask(tasks, $index)" class="fa fa-times close"></a>
         <ul class="single-task-group">
