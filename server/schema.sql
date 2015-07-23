@@ -44,7 +44,6 @@ CREATE TABLE tasks (
   frequency INTEGER,
   start_date DATE,
   description VARCHAR DEFAULT NULL,
-  user_id INTEGER DEFAULT NULL references users(id), -- foreign key
   dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
@@ -52,5 +51,6 @@ CREATE TABLE task_instances (
   id SERIAL PRIMARY KEY,
   due_date DATE,
   completed BOOLEAN DEFAULT FALSE,
+  user_id INTEGER DEFAULT NULL references users(id), -- foreign key
   task_id INTEGER references tasks(id)
 );
