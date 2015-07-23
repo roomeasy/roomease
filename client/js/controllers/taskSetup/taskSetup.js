@@ -6,20 +6,25 @@ angular.module('roomEase')
   $scope.task = {
     name: "",
     description: "",
-    frequency: "daily"
+    frequency: "daily",
+    start_date : null,
   }
 
   $scope.warning = false;
 
   $scope.addTask = function (newTask) {
+    newTask['start_date'] = moment($scope.dt).format('MM-DD-YYYY');
     $scope.tasks.push(newTask);
 
     // reset the view
     $scope.task = {
       name: "",
       description: "",
-      frequency: "daily"
+      frequency: "daily",
+      start_date : null,
     }
+    $scope.today();
+
     $scope.warning = false; // reset the warning
   }
 
@@ -35,6 +40,7 @@ angular.module('roomEase')
     }
     // data packaging for sending
     var sendData = tasks.slice(); // will be an array of tasks
+
     sendData = sendData.forEach(function(task){
       var taskStr = task['frequency'];  // Data packaging (converting the freq str to an int)
       task["frequency"] = Request.freqToInt[taskStr]; 
@@ -48,9 +54,14 @@ angular.module('roomEase')
 
     $location.path('/dashboard'); // not sure how this will work with async requests
   }
-})
-// controoller for calendar
-.controller('DatepickerDemoCtrl', function ($scope) {
+
+
+
+
+
+  
+  // calendar stuff-----------------------
+
   $scope.today = function() {
     $scope.dt = new Date();
   };
@@ -61,6 +72,10 @@ angular.module('roomEase')
   };
 
   // Disable weekend selection
+  $scope.logger = function(){
+    console.log($scope.dt);
+  }
+
   $scope.disabled = function(date, mode) {
     return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
   };
@@ -91,14 +106,10 @@ angular.module('roomEase')
   afterTomorrow.setDate(tomorrow.getDate() + 2);
   $scope.events =
     [
-      {
-        date: tomorrow,
-        status: 'full'
-      },
-      {
-        date: afterTomorrow,
-        status: 'partially'
-      }
+      // {
+      //   date: afterTomorrow,
+      //   status: 'partially'
+      // }
     ];
 
   $scope.getDayClass = function(date, mode) {
@@ -116,4 +127,4 @@ angular.module('roomEase')
 
     return '';
   };
-});
+})
