@@ -56,9 +56,17 @@ exports.addInstance = function(task_instance, taskId, cb) {
   })
 }
 
-exports.updateInstance = function(task_instance) {
-  // needs to be implemented!
-  console.log(task_instance);
+// right now this function only marks a task_instance as completed
+exports.updateInstance = function(task_instance, cb) {
+  var queryString = "UPDATE task_instances \
+                     SET completed = 'true' \
+                     WHERE id = " + task_instance.id + ";";
+
+
+  db.query(queryString, function(err, results){
+    if(err) console.log(err);
+    err ? cb(err, null) : cb(null, results);
+  });
 }
 
 exports.findTask = function(taskName, cb){
