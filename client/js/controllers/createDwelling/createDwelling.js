@@ -38,6 +38,9 @@ angular.module('roomEase')
 
   // User submit handler
   $scope.joinDwelling = function(){
+    //don't submit form if either field is invalid
+    if(!$scope.isNumber($scope.pin) || !$scope.isNumber($scope.dwellingId)) return;
+
     var sendData = {
       dwellingId : $scope.dwellingId,
       pin : $scope.pin
@@ -57,13 +60,13 @@ angular.module('roomEase')
 
   $scope.isNumber = function(number){
     if(number === undefined || number === ""){
-      return false;// dont run the test
+      return true;// dont run the test
     }else{
       if(isNaN(parseInt(number))){
-        return true;
+        return false;
       }else{
         // case where the number starts with a number but has some characters afterward
-        return (''+parseInt(number)).length === number.length ? false : true;
+        return (''+parseInt(number)).length === number.length ? true : false;
       }
     }
   }
