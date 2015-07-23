@@ -12,6 +12,19 @@ angular.module('roomEase')
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];
+  $scope.removeDups = function (taskInstances) {
+    var dupFree = [];
+    var seenSoFar = {};
+
+    for (var i = 0; i < taskInstances.length; i++) {
+      if (!seenSoFar[taskInstances[i].name]) {
+        dupFree.push(taskInstances[i])
+        seenSoFar[taskInstances[i].name] = true;
+      }
+    }
+    return dupFree;
+  }
+
   $scope.fetchYourTasks = function(){
     Request.task.fetch().then(function(results){
       console.log('task fetch results:', results);
@@ -25,7 +38,7 @@ angular.module('roomEase')
 
   Request.task_instances.fetch().then(function(results){
     console.log('task_instance fetch results:', results);
-    $scope.userTaskInstances = results;
+    $scope.userTaskInstances = $scope.removeDups(results);
     $scope.userTaskInstances.forEach(function(taskInstance) {
       var displayDate = moment(taskInstance.due_date).fromNow();
       taskInstance.displayDate = displayDate;
