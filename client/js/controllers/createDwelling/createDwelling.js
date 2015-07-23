@@ -6,8 +6,6 @@ angular.module('roomEase')
   $scope.addressWarning = false;
 
   // Join Dwelling Variables
-  $scope.dwellingId = "";
-  $scope.pin = "";
 
   $scope.createDwelling = function(sendData) {
     if($scope.livingSpace.name.trim() === "" || $scope.livingSpace.address.trim() === ""){
@@ -39,6 +37,11 @@ angular.module('roomEase')
 
   // User submit handler
   $scope.joinDwelling = function(){
-    console.log("")
+    console.log($scope.dwellingId);
+    console.log($scope.pin);
+  }
+
+  $scope.isNumber = function(number){
+    return parseInt(number) typeof number ;
   }
 })
