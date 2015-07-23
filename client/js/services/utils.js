@@ -39,6 +39,17 @@ angular.module('roomEase')
           console.log('inside dwelling create factory call : ', response);
           return response.data;
         })
+      },
+
+      join : function(data){
+        return $http({
+              method: 'POST',
+              url: '/joinDwelling',
+              data: data
+        }).then(function(response){
+          console.log('inside join dwelling create factory call : ', response);
+          return response.data;
+        })
       }
     },
 
