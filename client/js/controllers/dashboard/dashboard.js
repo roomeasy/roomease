@@ -19,6 +19,11 @@ angular.module('roomEase')
     })
   }
   $scope.fetchYourTasks();
+
+  Request.task_instances.fetch().then(function(results){
+    console.log('task_instance fetch results:', results);
+    $scope.userTaskInstances = results;
+  })
 })
 .controller('tasksHistoryCtrl', function($scope) {
 

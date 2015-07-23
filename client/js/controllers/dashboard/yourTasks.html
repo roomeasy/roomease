@@ -1,8 +1,8 @@
-<div ng-repeat="task in userTasks" >
+<div ng-repeat="task in userTaskInstances" >
   <ul class="single-task-group">
     <li>
       <p class="task-name">{{task.name}}</p>
-      <p class="task-frequency">{{task.frequency}}</p>
+      <p class="task-frequency">{{task.displayDate}}</p>
       <p class="task-description clear">{{task.description}}</p>
     </li>
   </ul>
