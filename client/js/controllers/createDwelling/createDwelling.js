@@ -42,8 +42,15 @@ angular.module('roomEase')
       pin : $scope.pin
     }
 
-    Request.dwelling.join(sendData).then(function(){});
-    $location.path('/dashboard');
+    Request.dwelling.join(sendData).then(function(data){
+      console.log(data);
+      if(data.joined) {
+        $location.path('/dashboard');
+      } else {
+        console.log(data.reason);
+      }
+    });
+    
   }
 
   $scope.isNumber = function(number){
