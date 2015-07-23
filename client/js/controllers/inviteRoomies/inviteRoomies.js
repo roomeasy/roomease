@@ -31,4 +31,12 @@ angular.module('roomEase')
     });
     $scope.roomies = [];
   }
+
+  $scope.validatePhone = function () {
+    if ( /\d{10}/.test($scope.roomie.phoneNumber) && $scope.roomie.phoneNumber.length === 10) {
+      $scope.phoneWarning = false;
+    }
+    // console.log("worked")
+  else {$scope.phoneWarning = true;}
+}
 })

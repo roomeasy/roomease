@@ -44,7 +44,7 @@ input[type=text]:focus {
  		outline: none; /* removes the default orange border when focus */
  		border: 2px solid #11a8ab;
  	}
-label {font-weight: normal;}
+label {font-weight: 300;}
 
 /*------ HELPERS ------*/
 .close {
@@ -53,6 +53,7 @@ label {font-weight: normal;}
 	font-size: 2em;
 	top: 3px;
 	right: 10px;
+	color: white;
 }
 .close:hover {
 	text-decoration: none;
@@ -63,6 +64,11 @@ label {font-weight: normal;}
 	font-weight: normal;
 	padding: 5px 0;
 	color: #e64c65;
+}
+.form-directions {
+	font-size: 14px;
+	font-weight: 300;
+	color: #9099b7;
 }
 /*------ HOMEPAGE STYLING ------*/
 .home-title {
