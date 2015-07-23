@@ -56,7 +56,7 @@ module.exports = {
         if (pin === submittedPin) {
           userModel.updateDwellingId(req.user.id, submittedDwellingId, function(){
             if (err) {console.log(err)}
-            console.log("Congrats! you've joined a dwelling!");
+            res.send("Congrats! you've joined a dwelling!");
           })
         } else {
           res.send("Invalid PIN");
