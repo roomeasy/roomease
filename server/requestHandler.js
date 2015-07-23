@@ -55,12 +55,13 @@ module.exports = {
         if (!pin) {
           res.send({joined : false, reason : "Invalid dwelling id"});
           return;
-        } else if (pin === submittedPin) {
+        } else if (pin === +submittedPin) {
           userModel.updateDwellingId(req.user.id, submittedDwellingId, function(){
             if (err) {res.send(err)}
             res.send({joined : true});
           })
         } else {
+          console.log("pin mismatch", pin, +submittedPin);
           res.send({joined : false, reason : "Invalid PIN"});
           return;
         }
