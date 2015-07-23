@@ -54,8 +54,10 @@ module.exports = {
       //authenticate dwelling with PIN number
       dwellingModel.getPinByDwellingId(submittedDwellingId, function (err, pin){
         if (pin === submittedPin) {
-          userModel.updateDwellingId(req.user.id, submittedDwellingId, function(){})
-          console.log("Congrats! you've joined a dwelling!");
+          userModel.updateDwellingId(req.user.id, submittedDwellingId, function(){
+            if (err) {console.log(err)}
+            console.log("Congrats! you've joined a dwelling!");
+          })
         } else {
           res.send("Invalid PIN");
           return;
