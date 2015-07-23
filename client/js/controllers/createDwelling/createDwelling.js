@@ -46,14 +46,13 @@ angular.module('roomEase')
     $location.path('/dashboard');
   }
 
-  $scope.isNotNumber = function(number){
+  $scope.isNumber = function(number){
     if(number === undefined || number === ""){
       return false;// dont run the test
     }else{
       if(isNaN(parseInt(number))){
         return true;
       }else{
-        if(number === '123abc') debugger;
         // case where the number starts with a number but has some characters afterward
         return (''+parseInt(number)).length === number.length ? false : true;
       }
