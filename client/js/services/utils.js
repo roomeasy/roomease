@@ -40,7 +40,6 @@ angular.module('roomEase')
           return response.data;
         })
       },
-
       join : function(data){
         return $http({
               method: 'POST',
@@ -48,6 +47,14 @@ angular.module('roomEase')
               data: data
         }).then(function(response){
           console.log('inside join dwelling create factory call : ', response);
+          return response.data;
+        }
+      },
+      fetch : function () {
+        return $http({
+          method: 'GET',
+          url: '/dwellings',
+        }).then(function(response) {
           return response.data;
         })
       }

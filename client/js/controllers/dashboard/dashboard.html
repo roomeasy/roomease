@@ -3,7 +3,8 @@
     <div class="col-sm-2" ng-include="'includes/navbar.html'"></div>
     <div class="container">
       <div class="row">
-        <h1 class="home-title text-center">RoomEase</h1>
+        <!-- server code will eventually give back only one item for dwelling -->
+        <h1 class="home-title text-center">{{dwellings[0].name}}</h1>
         <p class="home-intro text-center">Don't Forget Ahbi Is Out Of Town Next Week</p>
       </div>
       <div class="row">

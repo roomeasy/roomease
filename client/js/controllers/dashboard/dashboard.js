@@ -2,6 +2,8 @@ angular.module('roomEase')
 
 .controller('dashboardCtrl', function($scope, Request){
   $scope.users = [];
+  $scope.dwellings = [];
+
   $scope.fetchUsers = function(){
     Request.user.fetch().then(function(results){
       console.log('user fetch results:', results);
@@ -9,6 +11,15 @@ angular.module('roomEase')
     })
   }
   $scope.fetchUsers();
+
+  $scope.fetchDwellings = function () {
+    Request.dwelling.fetch().then(function(results) {
+      console.log("dwelling fetch results ", results)
+      $scope.dwellings = results;
+      // console.log("dwellings ", $scope.dwellings)
+    })
+  }
+  $scope.fetchDwellings();
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];
