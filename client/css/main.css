@@ -344,6 +344,12 @@ label {font-weight: 300;}
 	.mobile-padding {padding: 0 30px;}
 }
 
+.form-control {
+  width: auto;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
 em.ng-binding {
   color: black;
 }
