@@ -24,9 +24,9 @@ exports.getAll = function(dwellingId, cb){
 }
 
 exports.getAllInstances = function(dwellingId, cb){
-  var queryString = "SELECT tasks.name, tasks.description, due_date, completed \
-     FROM tasks, task_instances \
-     WHERE task_instances.task_id = tasks.id \
+  var queryString = "SELECT tasks.name, tasks.description, ti.due_date, ti.completed, ti.id \
+     FROM tasks, task_instances ti \
+     WHERE ti.task_id = tasks.id \
      AND tasks.dwelling_id = " + dwellingId + ";";
      
   db.query(queryString, function(err, results){
@@ -52,6 +52,11 @@ exports.addInstance = function(task_instance, taskId, cb) {
       cb(null, results);
     }
   })
+}
+
+exports.updateInstance = function(task_instance) {
+  // needs to be implemented!
+  console.log(task_instance);
 }
 
 exports.findTask = function(taskName, cb){
