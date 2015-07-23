@@ -25,6 +25,10 @@ angular.module('roomEase')
     return dupFree;
   }
 
+  $scope.completeTasks = function (task) {
+    task.complete = true;
+    Request.task_instances.update(task)
+  }
   $scope.fetchYourTasks = function(){
     Request.task.fetch().then(function(results){
       console.log('task fetch results:', results);
