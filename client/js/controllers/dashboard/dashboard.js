@@ -15,9 +15,8 @@ angular.module('roomEase')
   $scope.removeDups = function (taskInstances) {
     var dupFree = [];
     var seenSoFar = {};
-
     for (var i = 0; i < taskInstances.length; i++) {
-      if (!seenSoFar[taskInstances[i].name]) {
+      if (!seenSoFar[taskInstances[i].name] && taskInstances[i].completed !== true) {
         dupFree.push(taskInstances[i])
         seenSoFar[taskInstances[i].name] = true;
       }
