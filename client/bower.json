@@ -24,6 +24,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-bootstrap": "~0.13.0",
     "bootstrap": "~3.3.5",
-    "normalize.css": "~3.0.3"
+    "normalize.css": "~3.0.3",
+    "moment": "~2.10.3"
   }
 }

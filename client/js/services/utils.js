@@ -41,6 +41,7 @@ angular.module('roomEase')
         })
       }
     },
+
     task : {
       create : function(data){
         return $http({
@@ -63,6 +64,19 @@ angular.module('roomEase')
         })
       }
     },
+
+    task_instances : {
+      fetch : function(){
+        return $http({
+          method: 'GET',
+          url: '/taskInstances'
+        })
+        .then(function(resp) {
+          return resp.data;
+        })
+      }
+    },
+
     user: {
       fetch : function(){
         return $http({
