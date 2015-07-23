@@ -5,6 +5,10 @@ angular.module('roomEase')
   $scope.nameWarning = false;
   $scope.addressWarning = false;
 
+  // Join Dwelling Variables
+  $scope.dwellingId = "";
+  $scope.pin = "";
+
   $scope.createDwelling = function(sendData) {
     if($scope.livingSpace.name.trim() === "" || $scope.livingSpace.address.trim() === ""){
       console.log("Please address the warnings");
@@ -31,5 +35,10 @@ angular.module('roomEase')
       $scope.addressWarning = false;
     }
 
+  }
+
+  // User submit handler
+  $scope.joinDwelling = function(){
+    console.log("")
   }
 })

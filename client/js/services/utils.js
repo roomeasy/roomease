@@ -39,6 +39,10 @@ angular.module('roomEase')
           console.log('inside dwelling create factory call : ', response);
           return response.data;
         })
+      },
+
+      join : function(pin){
+        
       }
     },
 
