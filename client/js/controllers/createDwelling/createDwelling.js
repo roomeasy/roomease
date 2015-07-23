@@ -37,11 +37,26 @@ angular.module('roomEase')
 
   // User submit handler
   $scope.joinDwelling = function(){
-    console.log($scope.dwellingId);
-    console.log($scope.pin);
+    var sendData = {
+      dwellingId : $scope.dwellingId,
+      pin : $scope.pin
+    }
+
+    Request.dwelling.join(sendData).then(function(){});
+    $location.path('/dashboard');
   }
 
-  $scope.isNumber = function(number){
-    return parseInt(number) typeof number ;
+  $scope.isNotNumber = function(number){
+    if(number === undefined || number === ""){
+      return false;// dont run the test
+    }else{
+      if(isNaN(parseInt(number))){
+        return true;
+      }else{
+        if(number === '123abc') debugger;
+        // case where the number starts with a number but has some characters afterward
+        return (''+parseInt(number)).length === number.length ? false : true;
+      }
+    }
   }
 })

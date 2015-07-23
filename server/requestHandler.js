@@ -50,7 +50,6 @@ module.exports = {
 
       var submittedDwellingId = req.body.dwellingId;
       var submittedPin = req.body.pin;
-
       //authenticate dwelling with PIN number
       dwellingModel.getPinByDwellingId(submittedDwellingId, function (err, pin){
         if (pin === submittedPin) {
