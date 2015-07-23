@@ -4,6 +4,7 @@ angular.module('roomEase')
   $scope.livingSpace = { name: "", address: "" };
   $scope.nameWarning = false;
   $scope.addressWarning = false;
+  $scope.failReason;
 
   // Join Dwelling Variables
 
@@ -47,6 +48,7 @@ angular.module('roomEase')
       if(data.joined) {
         $location.path('/dashboard');
       } else {
+        $scope.failReason = data.reason;
         console.log(data.reason);
       }
     });
@@ -64,5 +66,9 @@ angular.module('roomEase')
         return (''+parseInt(number)).length === number.length ? false : true;
       }
     }
+  }
+
+  $scope.hasFailed = function() {
+    return !!$scope.failReason;
   }
 })

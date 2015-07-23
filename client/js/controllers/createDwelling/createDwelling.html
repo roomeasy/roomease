@@ -33,6 +33,7 @@
           <input id="join-living-space" type="text" ng-model="pin"> <br />
           <p ng-if="isNumber(pin)">Please enter a 6-digit number</p>
           <a class="button bg-dark-purple ls-button" href="" ng-click="joinDwelling()">Join</a>
+          <p ng-if="hasFailed()">Unable to join dwelling because: {{failReason}}</p>
         </div>
       </form>
     </div>
