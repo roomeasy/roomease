@@ -1,4 +1,4 @@
-<div ng-repeat="task in userTaskInstances" >
+<div ng-hide="task.completed" ng-repeat="task in userTaskInstances" >
   <a ng-click="completeTasks(task)" class="fa fa-check close task-check"></a>
   <ul class="single-task-group">
     <li>

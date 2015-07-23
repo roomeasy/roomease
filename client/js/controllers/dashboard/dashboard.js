@@ -26,7 +26,7 @@ angular.module('roomEase')
   }
 
   $scope.completeTasks = function (task) {
-    task.complete = true;
+    task.completed = true;
     Request.task_instances.update(task)
   }
   $scope.fetchYourTasks = function(){
