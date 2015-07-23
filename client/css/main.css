@@ -59,6 +59,11 @@ label {font-weight: 300;}
 	text-decoration: none;
 	color: white;
 }
+.task-check {
+	float: left;
+	top: 20px;
+	left: 10px;
+}
 .form-warning-text {
 	font-size: 1.35em;
 	font-weight: normal;
@@ -294,6 +299,7 @@ label {font-weight: 300;}
   list-style: none;
   border: 2px solid #50597b;
   padding-top: 10px;
+	padding-left: 50px;
   padding-bottom: 10px;
 }
 /*.single-task-group li:nth-child(odd) {
