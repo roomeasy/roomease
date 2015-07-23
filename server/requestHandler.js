@@ -97,6 +97,11 @@ module.exports = {
       });
     },
 
+    updateInstance : function(req, res) {
+      console.log('inside the update instance request handler');
+      taskModel.updateInstance(req.body);
+    },
+
     getAllInstances : function(req, res){
       //gets all task_instances based of current users dwelling_id
       var dwelling_id = req.user.dwelling_id;
