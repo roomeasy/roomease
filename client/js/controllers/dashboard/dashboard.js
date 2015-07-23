@@ -12,25 +12,47 @@ angular.module('roomEase')
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];
+  $scope.removeDups = function (taskInstances) {
+    var dupFree = [];
+    var seenSoFar = {};
+
+    for (var i = 0; i < taskInstances.length; i++) {
+      if (!seenSoFar[taskInstances[i].name]) {
+        dupFree.push(taskInstances[i])
+        seenSoFar[taskInstances[i].name] = true;
+      }
+    }
+    return dupFree;
+  }
+
   $scope.fetchYourTasks = function(){
     Request.task.fetch().then(function(results){
       console.log('task fetch results:', results);
       $scope.userTasks = results;
+      // $scope.userTasks = results.filter(function(item) {
+      //   return item.username === "Hadley"
+      // });
     })
   }
   $scope.fetchYourTasks();
 
   Request.task_instances.fetch().then(function(results){
     console.log('task_instance fetch results:', results);
-    $scope.userTaskInstances = results;
+    $scope.userTaskInstances = $scope.removeDups(results);
     $scope.userTaskInstances.forEach(function(taskInstance) {
       var displayDate = moment(taskInstance.due_date).fromNow();
       taskInstance.displayDate = displayDate;
     })
   })
 })
-.controller('tasksHistoryCtrl', function($scope) {
-
+.controller('tasksHistoryCtrl', function($scope, Request) {
+  $scope.allTasks = [];
+  $scope.fetchAllTasks = function () {
+    Request.task.fetch().then(function(results) {
+      $scope.allTasks = results;
+    })
+  }
+  $scope.fetchAllTasks();
 })
 .controller('usersDisplayCtrl', function($scope) {
 

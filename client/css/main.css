@@ -44,7 +44,7 @@ input[type=text]:focus {
  		outline: none; /* removes the default orange border when focus */
  		border: 2px solid #11a8ab;
  	}
-label {font-weight: normal;}
+label {font-weight: 300;}
 
 /*------ HELPERS ------*/
 .close {
@@ -53,16 +53,27 @@ label {font-weight: normal;}
 	font-size: 2em;
 	top: 3px;
 	right: 10px;
+	color: white;
 }
 .close:hover {
 	text-decoration: none;
 	color: white;
+}
+.task-check {
+	float: left;
+	top: 20px;
+	left: 10px;
 }
 .form-warning-text {
 	font-size: 1.35em;
 	font-weight: normal;
 	padding: 5px 0;
 	color: #e64c65;
+}
+.form-directions {
+	font-size: 14px;
+	font-weight: 300;
+	color: #9099b7;
 }
 /*------ HOMEPAGE STYLING ------*/
 .home-title {
@@ -114,6 +125,9 @@ label {font-weight: normal;}
 .bg-teal.button:hover {
   background: #0F9295;
 }
+.bg-dark-purple:hover {
+	background: #50597b;
+}
 .bg-red.button:hover {
   background: #cc324b;
 }
@@ -136,12 +150,12 @@ label {font-weight: normal;}
 .task-input-card {
   border-radius: 5px;
 	text-align: center;
-  background: #394264;
+  /*background: #394264;*/
   padding-bottom: 40px;
 }
-.task-input-card,.living-space label {
+.task-input-card,.living-space,.join-living-space label {
   /*font-weight: normal;*/
-  font-size: 1.35em;
+  font-size: 18px;
   /*text-align: left;*/
 }
 .living-space-header {
@@ -285,6 +299,7 @@ label {font-weight: normal;}
   list-style: none;
   border: 2px solid #50597b;
   padding-top: 10px;
+	padding-left: 50px;
   padding-bottom: 10px;
 }
 /*.single-task-group li:nth-child(odd) {

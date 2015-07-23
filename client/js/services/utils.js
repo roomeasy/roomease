@@ -88,6 +88,26 @@ angular.module('roomEase')
         })
       }
     },
+    roomie: {
+      invite: function (data) {
+        return $http({
+          method: 'POST',
+          url: '/inviteRoomie',
+          data: data
+        }).then(function (resp) {
+          return resp.data;
+        })
+      },
+
+      // fetch: function () {
+      //   return $http({
+      //     method: 'GET',
+      //     url: '/inviteRoomie',
+      //   }).then(function(resp) {
+      //     return resp.data;
+      //   })
+      // }
+    },
 
     freqToInt : { // ugly styling but sticing this here for now
       daily : 1,
