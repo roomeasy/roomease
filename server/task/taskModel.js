@@ -27,15 +27,13 @@ exports.getAll = function(dwellingId, cb){
 }
 
 exports.getAllInstances = function(dwellingId, cb){
-  var queryString = "SELECT tasks.name, tasks.description, ti.due_date, ti.completed, ti.id \
+  var queryString = "SELECT tasks.name, ti.user_id, tasks.description, ti.due_date, ti.completed, ti.id \
      FROM tasks, task_instances ti \
      WHERE ti.task_id = tasks.id \
      AND tasks.dwelling_id = " + dwellingId + ";";
 
   db.query(queryString, function(err, results){
     console.log("Inside the getAllTaskInstances query");
-    console.log("err = ", err);
-    console.log("results = ", results);
     err ? cb(err, null) : cb(null, results.rows);
   })
 }
@@ -83,7 +81,11 @@ var assignInstance = exports.assignInstance =  function(task_instance, user, cb)
 }
 
 exports.delegateInstances = function(users, taskInstances, cb){
-  var taskInstances = _.shuffle(taskInstances);
+  var users = _.shuffle(users);
+  var taskInstances = _.shuffle(taskInstances.filter(function(instance){
+    return instance.user_id === null;
+  }));
+
   for (var i = 0; i < taskInstances.length; i++) {
     var userIndex = i % users.length;
     assignInstance(taskInstances[i], users[userIndex], function(err, results){
