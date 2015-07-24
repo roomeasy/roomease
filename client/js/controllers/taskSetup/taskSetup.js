@@ -30,7 +30,7 @@ angular.module('roomEase')
 
   $scope.deleteTask = function(tasks, index){
     tasks.splice(index, 1);
-  } 
+  }
 
   $scope.submit = function(tasks){
     if(tasks.length === 0){
@@ -43,27 +43,27 @@ angular.module('roomEase')
 
     sendData = sendData.forEach(function(task, i, array){
       var taskStr = task['frequency'];  // Data packaging (converting the freq str to an int)
-      task["frequency"] = Request.freqToInt[taskStr]; 
+      task["frequency"] = Request.freqToInt[taskStr];
 
-      // submit it 
+      // submit it
       Request.task.create(task).then(function(results){
         console.log('results inside the response thing :', results);
         // Call the delegate function at the last index
         if(i === array.length-1){
           Request.task.delegate();
+          $location.path('/dashboard'); // not sure how this will work with async requests
         }
       });
       $scope.tasks = [];
     });
 
-    $location.path('/dashboard'); // not sure how this will work with async requests
   }
 
 
 
 
 
-  
+
   // calendar stuff-----------------------
 
   $scope.today = function() {
