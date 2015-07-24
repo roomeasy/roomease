@@ -34,10 +34,14 @@ exports.getPinByDwellingId = function(dwellingId, cb){
   var queryString = "SELECT pin FROM dwellings WHERE id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
     // console.log(results.rows);
-    if(!results.rows[0]) {
-      cb("Invalid dwelling ID", null);
-    }else{
-      err ? cb(err, null) : cb(null, results.rows[0].pin)
+    if(err) {
+      console.log(err);
+    } else {
+      if(!results.rows[0]) {
+        cb("Invalid dwelling ID", null);
+      }else{
+        err ? cb(err, null) : cb(null, results.rows[0].pin)
+      }
     }
   })
 }

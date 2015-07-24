@@ -4,6 +4,7 @@ angular.module('roomEase')
   $scope.livingSpace = { name: "", address: "" };
   $scope.nameWarning = false;
   $scope.addressWarning = false;
+  $scope.failReason;
 
   // Join Dwelling Variables
 
@@ -37,25 +38,40 @@ angular.module('roomEase')
 
   // User submit handler
   $scope.joinDwelling = function(){
+    //don't submit form if either field is invalid
+    if(!$scope.isNumber($scope.pin) || !$scope.isNumber($scope.dwellingId)) return;
+
     var sendData = {
       dwellingId : $scope.dwellingId,
       pin : $scope.pin
     }
 
-    Request.dwelling.join(sendData).then(function(){});
-    $location.path('/dashboard');
+    Request.dwelling.join(sendData).then(function(data){
+      console.log(data);
+      if(data.joined) {
+        $location.path('/dashboard');
+      } else {
+        $scope.failReason = data.reason;
+        console.log(data.reason);
+      }
+    });
+    
   }
 
   $scope.isNumber = function(number){
     if(number === undefined || number === ""){
-      return false;// dont run the test
+      return true;// dont run the test
     }else{
       if(isNaN(parseInt(number))){
-        return true;
+        return false;
       }else{
         // case where the number starts with a number but has some characters afterward
-        return (''+parseInt(number)).length === number.length ? false : true;
+        return (''+parseInt(number)).length === number.length ? true : false;
       }
     }
+  }
+
+  $scope.hasFailed = function() {
+    return !!$scope.failReason;
   }
 })
