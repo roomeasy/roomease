@@ -41,13 +41,17 @@ angular.module('roomEase')
     // data packaging for sending
     var sendData = tasks.slice(); // will be an array of tasks
 
-    sendData = sendData.forEach(function(task){
+    sendData = sendData.forEach(function(task, i, array){
       var taskStr = task['frequency'];  // Data packaging (converting the freq str to an int)
       task["frequency"] = Request.freqToInt[taskStr]; 
 
       // submit it 
       Request.task.create(task).then(function(results){
         console.log('results inside the response thing :', results);
+        // Call the delegate function at the last index
+        if(i === array.length-1){
+          Request.task.delegate();
+        }
       });
       $scope.tasks = [];
     });
