@@ -2,12 +2,16 @@ angular.module('roomEase')
 
 .controller('dashboardCtrl', function($scope, Request){
   $scope.users = [];
+  $scope.usersObj = {};
   $scope.dwellings = [];
 
   $scope.fetchUsers = function(){
     Request.user.fetch().then(function(results){
       console.log('user fetch results:', results);
       $scope.users = results;
+      $scope.users.forEach(function (user) {
+        $scope.usersObj[user.id] = user;
+      })
     })
   }
   $scope.fetchUsers();
@@ -19,7 +23,7 @@ angular.module('roomEase')
     })
   }
   $scope.fetchDwelling();
-    
+
   $scope.runDelegator = function(){
     Request.task.delegate().then(function(results){
       console.log(results);
@@ -67,8 +71,18 @@ angular.module('roomEase')
 .controller('tasksHistoryCtrl', function($scope, Request) {
   $scope.allTasks = [];
   $scope.fetchAllTasks = function () {
-    Request.task.fetch().then(function(results) {
+    Request.task_instances.fetch().then(function(results) {
       $scope.allTasks = results;
+
+      $scope.allTasks.forEach(function(taskInstance) {
+        var displayDate = moment(taskInstance.due_date).fromNow();
+        taskInstance.displayDate = displayDate;
+        taskInstance.username = $scope.usersObj[taskInstance.user_id].username;
+      })
+      // sort the tasks by due date
+      $scope.allTasks.sort(function (a,b) {
+        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf()
+      })
     })
   }
   $scope.fetchAllTasks();

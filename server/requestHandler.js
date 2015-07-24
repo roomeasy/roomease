@@ -188,6 +188,7 @@ module.exports = {
       }
 
       dwellingModel.add(dwelling, function (err, results){
+        console.log(req.user);
         userModel.updateDwellingId(req.user.id, results.id, function (err, results) {
           responseHandler(err, results, res);
         });
@@ -263,7 +264,10 @@ module.exports = {
 
 // Utility function for user response handling
 function responseHandler(err, resultsData, res){
-  if(err) res.end(JSON.stringify(err));
+  if(err){
+    console.log(err)
+    res.end(JSON.stringify(err));
+  }
   else{
     res.send(resultsData);
     res.end();

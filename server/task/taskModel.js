@@ -39,7 +39,10 @@ exports.getAllInstances = function(dwellingId, cb){
 }
 
 exports.getInstancesByUserId = function(userId, cb){
-  var queryString = "SELECT * FROM task_instances WHERE user_id = " + userId + ";"
+  var queryString = "SELECT tasks.name, ti.user_id, tasks.description, ti.due_date, ti.completed, ti.id \
+     FROM tasks, task_instances ti \
+     WHERE ti.task_id = tasks.id \
+     AND ti.user_id = " + userId + ";";
   db.query(queryString, function (err, results){
     err ? cb(err, null) : cb(null, results.rows);
   });
