@@ -20,6 +20,12 @@ angular.module('roomEase')
     })
   }
   $scope.fetchDwelling();
+    
+  $scope.runDelegator = function(){
+    Request.task.delegate().then(function(results){
+      console.log(results);
+    });
+  }
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];

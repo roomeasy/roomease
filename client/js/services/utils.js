@@ -80,6 +80,16 @@ angular.module('roomEase')
           console.log('inside task fetch factory call : ', response);
           return response.data;
         })
+      },
+
+      delegate : function(){
+        return $http({
+                  method: 'POST',
+                  url: '/delegateTasks',
+            }).then(function(response){
+              console.log('inside delegateTasks fetch factory call : ', response);
+              return response.data;
+            });
       }
     },
 
