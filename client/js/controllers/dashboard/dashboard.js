@@ -2,6 +2,8 @@ angular.module('roomEase')
 
 .controller('dashboardCtrl', function($scope, Request){
   $scope.users = [];
+  $scope.dwellings = [];
+
   $scope.fetchUsers = function(){
     Request.user.fetch().then(function(results){
       console.log('user fetch results:', results);
@@ -9,15 +11,23 @@ angular.module('roomEase')
     })
   }
   $scope.fetchUsers();
+
+  $scope.fetchDwelling = function () {
+    Request.dwelling.fetch().then(function(results) {
+      console.log("dwelling fetch results ", results)
+      $scope.dwelling = results;
+      // console.log("dwellings ", $scope.dwellings)
+    })
+  }
+  $scope.fetchDwelling();
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];
   $scope.removeDups = function (taskInstances) {
     var dupFree = [];
     var seenSoFar = {};
-
     for (var i = 0; i < taskInstances.length; i++) {
-      if (!seenSoFar[taskInstances[i].name]) {
+      if (!seenSoFar[taskInstances[i].name] && taskInstances[i].completed !== true) {
         dupFree.push(taskInstances[i])
         seenSoFar[taskInstances[i].name] = true;
       }
