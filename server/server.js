@@ -49,7 +49,7 @@ app.post('/taskInstances', requestHandlers.tasks.updateInstance);
 // GET REQUESTS
 app.get('/tasks', requestHandlers.tasks.getAll);
 app.get('/taskInstances', requestHandlers.tasks.getAllInstances);
-app.get('/users', requestHandlers.users.getAll);
+app.get('/users', requestHandlers.users.getRoomies);
 app.get('/dwellings', requestHandlers.dwellings.getAll)
 
 app.get('/users/:username', requestHandlers.users.find);
