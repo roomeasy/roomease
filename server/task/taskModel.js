@@ -1,4 +1,5 @@
 var db = require('../db.js').db;
+var _ = require('underscore');
 
 exports.add = function(task, dwellingId, cb){
   var queryString = "INSERT INTO tasks (name, dwelling_id, frequency, description, start_date) \
@@ -26,17 +27,22 @@ exports.getAll = function(dwellingId, cb){
 }
 
 exports.getAllInstances = function(dwellingId, cb){
-  var queryString = "SELECT tasks.name, tasks.description, ti.due_date, ti.completed, ti.id \
+  var queryString = "SELECT tasks.name, ti.user_id, tasks.description, ti.due_date, ti.completed, ti.id \
      FROM tasks, task_instances ti \
      WHERE ti.task_id = tasks.id \
      AND tasks.dwelling_id = " + dwellingId + ";";
-     
+
   db.query(queryString, function(err, results){
     console.log("Inside the getAllTaskInstances query");
-    console.log("err = ", err);
-    console.log("results = ", results);
     err ? cb(err, null) : cb(null, results.rows);
   })
+}
+
+exports.getInstancesByUserId = function(userId, cb){
+  var queryString = "SELECT * FROM task_instances WHERE user_id = " + userId + ";"
+  db.query(queryString, function (err, results){
+    err ? cb(err, null) : cb(null, results.rows);
+  });
 }
 
 exports.addInstance = function(task_instance, taskId, cb) {
@@ -67,6 +73,34 @@ exports.updateInstance = function(task_instance, cb) {
     if(err) console.log(err);
     err ? cb(err, null) : cb(null, results);
   });
+}
+
+var assignInstance = exports.assignInstance =  function(task_instance, user, cb) {
+  var queryString = "UPDATE task_instances \
+                     SET user_id = " + user.id +
+                     "WHERE id = " + task_instance.id + ";";
+
+
+  db.query(queryString, function(err, results){
+    if(err) console.log(err);
+    err ? cb(err, null) : cb(null, results);
+  });
+}
+
+exports.delegateInstances = function(users, taskInstances, cb){
+  var users = _.shuffle(users);
+  var taskInstances = _.shuffle(taskInstances.filter(function(instance){
+    return instance.user_id === null;
+  }));
+
+  for (var i = 0; i < taskInstances.length; i++) {
+    var userIndex = i % users.length;
+    assignInstance(taskInstances[i], users[userIndex], function(err, results){
+      if (err) {console.log("error : ", err)}
+
+      console.log("results : ", results);
+    });
+  }
 }
 
 exports.findTask = function(taskName, cb){

@@ -357,3 +357,11 @@ em.ng-binding {
 small.ng-binding{
   color: black;
 }
+
+#delegator{
+  text-align: center;
+  margin: 0 auto;
+}
+.delegate-group{
+  text-align: center;
+}
