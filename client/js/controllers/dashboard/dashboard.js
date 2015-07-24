@@ -2,12 +2,16 @@ angular.module('roomEase')
 
 .controller('dashboardCtrl', function($scope, Request){
   $scope.users = [];
+  $scope.usersObj = {};
   $scope.dwellings = [];
 
   $scope.fetchUsers = function(){
     Request.user.fetch().then(function(results){
       console.log('user fetch results:', results);
       $scope.users = results;
+      $scope.users.forEach(function (user) {
+        $scope.usersObj[user.id] = user;
+      })
     })
   }
   $scope.fetchUsers();
@@ -16,11 +20,10 @@ angular.module('roomEase')
     Request.dwelling.fetch().then(function(results) {
       console.log("dwelling fetch results ", results)
       $scope.dwelling = results;
-      // console.log("dwellings ", $scope.dwellings)
     })
   }
   $scope.fetchDwelling();
-    
+
   $scope.runDelegator = function(){
     Request.task.delegate().then(function(results){
       console.log(results);
@@ -45,20 +48,20 @@ angular.module('roomEase')
     task.completed = true;
     Request.task_instances.update(task)
   }
-  $scope.fetchYourTasks = function(){
-    Request.task.fetch().then(function(results){
-      console.log('task fetch results:', results);
-      $scope.userTasks = results;
-      // $scope.userTasks = results.filter(function(item) {
-      //   return item.username === "Hadley"
-      // });
-    })
-  }
-  $scope.fetchYourTasks();
+  // $scope.fetchYourTasks = function(){
+  //   Request.task.fetch().then(function(results){
+  //     console.log('task fetch results:', results);
+  //     $scope.userTasks = results;
+  //   })
+  // }
+  // $scope.fetchYourTasks();
 
-  Request.task_instances.fetch().then(function(results){
+  Request.task_instances.fetchMy().then(function(results){
+    // know this users id
+    // remove duplicates and filter for only the users tasks
     console.log('task_instance fetch results:', results);
     $scope.userTaskInstances = $scope.removeDups(results);
+
     $scope.userTaskInstances.forEach(function(taskInstance) {
       var displayDate = moment(taskInstance.due_date).fromNow();
       taskInstance.displayDate = displayDate;
@@ -68,8 +71,18 @@ angular.module('roomEase')
 .controller('tasksHistoryCtrl', function($scope, Request) {
   $scope.allTasks = [];
   $scope.fetchAllTasks = function () {
-    Request.task.fetch().then(function(results) {
+    Request.task_instances.fetch().then(function(results) {
       $scope.allTasks = results;
+
+      $scope.allTasks.forEach(function(taskInstance) {
+        var displayDate = moment(taskInstance.due_date).fromNow();
+        taskInstance.displayDate = displayDate;
+        taskInstance.username = $scope.usersObj[taskInstance.user_id].username;
+      })
+      // sort the tasks by due date
+      $scope.allTasks.sort(function (a,b) {
+        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf()
+      })
     })
   }
   $scope.fetchAllTasks();

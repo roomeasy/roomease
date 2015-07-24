@@ -1,4 +1,3 @@
-/*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }*/
 
 /*------ COLORS ------*/
 .bg-dark-purple {background: #1f253d;}
@@ -41,7 +40,7 @@ input[type=text] {
   border-radius: 5px;
 }
 input[type=text]:focus {
- 		outline: none; /* removes the default orange border when focus */
+ 		outline: none;
  		border: 2px solid #11a8ab;
  	}
 label {font-weight: 300;}
@@ -92,15 +91,6 @@ label {font-weight: 300;}
   cursor: pointer;
   font-size: 16px;
 }
-/*.input-icon {
-	font-size: 22px;
-	position: absolute;
-	left: 31px;
-	top: 10px;
-}
-.input-icon.password-icon {
-	left: 35px;
-}*/
 
 .button {
   display: inline-block;
@@ -154,9 +144,7 @@ label {font-weight: 300;}
   padding-bottom: 40px;
 }
 .task-input-card,.living-space,.join-living-space label {
-  /*font-weight: normal;*/
   font-size: 18px;
-  /*text-align: left;*/
 }
 .living-space-header {
 	margin-bottom: 30px;
@@ -276,6 +264,8 @@ label {font-weight: 300;}
 .nav-tabs a:visited {color: white;}
 .nav-tabs a:link {color: white;}
 .nav-tabs > li > a:hover {background-color: #50597b;}
+.nav-tabs > li > a {border: 3px solid #50597b;}
+.nav-tabs.nav-justified > li > a {border: none;}
 
 .top-padding {
   padding-top: 50px;
@@ -289,9 +279,10 @@ label {font-weight: 300;}
 }
 
 .user-box {
-  margin: 12px;
+  margin-bottom: 12px;
+	padding: 10px 5px;
   background-color: #394264;
-  border: 2px solid #9099b7;
+  border: 3px solid #50597b;
   border-radius: 5px;
 }
 .active {background-color: teal;}
@@ -344,24 +335,22 @@ label {font-weight: 300;}
 	.mobile-padding {padding: 0 30px;}
 }
 
+/* Transitions */
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+/* Allen's Calendar Plugin Styling */
 .form-control {
   width: auto;
   margin: 0 auto;
   margin-bottom: 10px;
 }
 
-em.ng-binding {
-  color: black;
-}
-
-small.ng-binding{
-  color: black;
-}
+em.ng-binding {color: black;}
+small.ng-binding {color: black;}
 
 #delegator{
   text-align: center;
   margin: 0 auto;
 }
-.delegate-group{
-  text-align: center;
-}
+.delegate-group {text-align: center;}
