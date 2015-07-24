@@ -11,6 +11,14 @@ exports.getAll = function(cb){
   });
 }
 
+exports.getByDwellingId = function(dwellingId, cb){
+  var queryString = "SELECT * FROM users WHERE dwelling_id = " + dwellingId + ";";
+  db.query(queryString, function(err, results){
+    console.log('Inside the users getByDwellingId Query');
+    err ? cb(err, null) : cb(null, results.rows)
+  });
+}
+
 // addUser : insert a new user row
 exports.add = function(user, cb){
   var queryString = "INSERT INTO users (username, password, age, email) VALUES ("

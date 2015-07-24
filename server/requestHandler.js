@@ -36,6 +36,12 @@ module.exports = {
         responseHandler(err, results, res);
       });
     },
+    getRoomies : function(req, res){
+      var dwellingId = req.user.dwelling_id;
+      userModel.getByDwellingId(dwellingId, function(err, results){
+        responseHandler(err, results, res);
+      });
+    },
     find : function(req, res){
       console.log('inside the user find request handler');
       var username = req.params.username;
