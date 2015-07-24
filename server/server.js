@@ -50,7 +50,7 @@ app.post('/taskInstances', requestHandlers.tasks.updateInstance);
 app.get('/tasks', requestHandlers.tasks.getAll);
 app.get('/taskInstances', requestHandlers.tasks.getAllInstances);
 app.get('/users', requestHandlers.users.getRoomies);
-app.get('/dwellings', requestHandlers.dwellings.getAll)
+app.get('/dwellings', requestHandlers.dwellings.getUsersDwelling)
 
 app.get('/users/:username', requestHandlers.users.find);
 app.get('/dwellings/:dwellingname', requestHandlers.dwellings.find);

@@ -219,6 +219,13 @@ module.exports = {
       })
     },
 
+    getUsersDwelling : function(req, res){
+      var dwellingId = req.user.dwelling_id;
+      dwellingModel.getById(dwellingId, function(err, results){
+        responseHandler(err, results, res);
+      });
+    },
+
     find : function(req, res){
       console.log('inside the dwelling find request handler');
       var dwellingName = req.params.dwellingname;
