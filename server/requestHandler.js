@@ -158,6 +158,14 @@ module.exports = {
       });
     },
 
+    getUserInstances : function(req, res){
+      var userId = req.user.id;
+
+      taskModel.getInstancesByUserId(userId, function(err, results){
+        responseHandler(err, results, res);
+      });
+    },
+
     find : function(req, res){
       console.log('inside the dwelling find request handler');
       var taskname = req.params.taskname;

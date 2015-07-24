@@ -38,6 +38,13 @@ exports.getAllInstances = function(dwellingId, cb){
   })
 }
 
+exports.getInstancesByUserId = function(userId, cb){
+  var queryString = "SELECT * FROM task_instances WHERE user_id = " + userId + ";"
+  db.query(queryString, function (err, results){
+    err ? cb(err, null) : cb(null, results.rows);
+  });
+}
+
 exports.addInstance = function(task_instance, taskId, cb) {
   var queryString = "INSERT INTO task_instances (due_date, completed, task_id) \
                      VALUES ("

@@ -50,6 +50,7 @@ app.post('/delegateTasks', requestHandlers.tasks.delegateTasks)
 // GET REQUESTS
 app.get('/tasks', requestHandlers.tasks.getAll);
 app.get('/taskInstances', requestHandlers.tasks.getAllInstances);
+app.get('/myInstances', requestHandlers.tasks.getUserInstances);
 app.get('/users', requestHandlers.users.getRoomies);
 app.get('/dwellings', requestHandlers.dwellings.getUsersDwelling)
 
