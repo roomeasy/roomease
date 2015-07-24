@@ -103,6 +103,14 @@ angular.module('roomEase')
           return resp.data;
         })
       },
+      fetchMy: function(){
+        return $http({
+          method: 'GET',
+          url: '/myInstances'
+        }).then(function(resp) {
+          return resp.data;
+        })
+      },
       update: function(data) {
         return $http({
           method: 'POST',

@@ -289,7 +289,8 @@ label {font-weight: 300;}
 }
 
 .user-box {
-  margin: 12px;
+  /*margin: 12px;*/
+	padding: 10px 5px;
   background-color: #394264;
   border: 2px solid #9099b7;
   border-radius: 5px;

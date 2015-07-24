@@ -16,7 +16,6 @@ angular.module('roomEase')
     Request.dwelling.fetch().then(function(results) {
       console.log("dwelling fetch results ", results)
       $scope.dwelling = results;
-      // console.log("dwellings ", $scope.dwellings)
     })
   }
   $scope.fetchDwelling();
@@ -45,20 +44,20 @@ angular.module('roomEase')
     task.completed = true;
     Request.task_instances.update(task)
   }
-  $scope.fetchYourTasks = function(){
-    Request.task.fetch().then(function(results){
-      console.log('task fetch results:', results);
-      $scope.userTasks = results;
-      // $scope.userTasks = results.filter(function(item) {
-      //   return item.username === "Hadley"
-      // });
-    })
-  }
-  $scope.fetchYourTasks();
+  // $scope.fetchYourTasks = function(){
+  //   Request.task.fetch().then(function(results){
+  //     console.log('task fetch results:', results);
+  //     $scope.userTasks = results;
+  //   })
+  // }
+  // $scope.fetchYourTasks();
 
-  Request.task_instances.fetch().then(function(results){
+  Request.task_instances.fetchMy().then(function(results){
+    // know this users id
+    // remove duplicates and filter for only the users tasks
     console.log('task_instance fetch results:', results);
     $scope.userTaskInstances = $scope.removeDups(results);
+
     $scope.userTaskInstances.forEach(function(taskInstance) {
       var displayDate = moment(taskInstance.due_date).fromNow();
       taskInstance.displayDate = displayDate;
