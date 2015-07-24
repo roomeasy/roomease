@@ -46,6 +46,7 @@ app.post('/inviteRoomie', requestHandlers.dwellings.inviteRoomie);
 app.post('/joinDwelling', requestHandlers.users.joinDwelling);
 app.post('/tasks', requestHandlers.tasks.add);
 app.post('/taskInstances', requestHandlers.tasks.updateInstance);
+app.post('/delegateTasks', requestHandlers.tasks.delegateTasks)
 // GET REQUESTS
 app.get('/tasks', requestHandlers.tasks.getAll);
 app.get('/taskInstances', requestHandlers.tasks.getAllInstances);

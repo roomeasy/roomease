@@ -105,7 +105,7 @@ module.exports = {
         }
 
         console.log(start_date);
-        for(var i = 1; i < 4; i++) {
+        for(var i = 1; i < 3; i++) {
           var task_instance = {
             due_date : "date " + start_date + " + " + i + " * interval " + intToInterval[task.frequency]
           }
@@ -115,6 +115,20 @@ module.exports = {
           // should the callback be doing anything?
         }
       });
+    },
+
+    delegateTasks : function(req, res){
+      var dwellingId = req.user.dwelling_id;
+
+      //getAll Instances
+      taskModel.getAllInstances(dwellingId, function (err, taskInstances){
+        userModel.getByDwellingId(dwellingId, function (err, users){
+          taskModel.delegateInstances(users, taskInstances, function (err, results){
+
+          })
+        })
+      })
+
     },
 
     getAll : function(req, res){
