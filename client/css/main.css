@@ -213,11 +213,21 @@ label {font-weight: 300;}
 	margin-top: 30px;
 	margin-left: 30px;
   display: inline-block;
+	transition: all 1.5s ease;
+	border: 5px solid transparent;
+}
+/*.user-card:hover .user-looking{
+	border: 5px solid #9099b7;
+}*/
+.user-card:hover {
+	border: 3px solid #9099b7;
 }
 .user-looking {
 	border-radius: 50%;
 	border: 5px solid #50597b;
 	margin-top: 30px;
+	transition: all .5s ease;
+
 }
 .user-name {
 	font-size: 1.3em;
