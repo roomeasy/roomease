@@ -42,6 +42,7 @@ input[type=text]:focus {
  		border: 2px solid #11a8ab;
  	}
 label {font-weight: 300;}
+a:visited {color: white;}
 
 /*------ HELPERS ------*/
 .close {
