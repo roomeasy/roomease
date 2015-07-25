@@ -1,7 +1,8 @@
 // Angular initialization
 angular.module('roomEase', [
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngAnimate',
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
