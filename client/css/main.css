@@ -25,9 +25,7 @@ body {
   color: #ffffff;
 }
 input {color: #333;}
-/*.taskHistory:hover {
-  background: #11A8AB;
-}*/
+
 input[type=text] {
   width: 260px;
   height: 50px;
@@ -44,6 +42,7 @@ input[type=text]:focus {
  		border: 2px solid #11a8ab;
  	}
 label {font-weight: 300;}
+a:visited {color: white;}
 
 /*------ HELPERS ------*/
 .close {
@@ -132,7 +131,7 @@ label {font-weight: 300;}
   text-transform: uppercase;
 }
 .signin-bg {
-  background: url('../img/roomease-bg.jpg') no-repeat center center;
+  background: url('../img/roomease-purple-bg.jpg') no-repeat center center;
   height: 100vh;
 	width: 100%;
   background-size: cover;
@@ -215,11 +214,21 @@ label {font-weight: 300;}
 	margin-top: 30px;
 	margin-left: 30px;
   display: inline-block;
+	transition: all 1.5s ease;
+	border: 5px solid transparent;
+}
+/*.user-card:hover .user-looking{
+	border: 5px solid #9099b7;
+}*/
+.user-card:hover {
+	border: 3px solid #9099b7;
 }
 .user-looking {
 	border-radius: 50%;
 	border: 5px solid #50597b;
 	margin-top: 30px;
+	transition: all .5s ease;
+
 }
 .user-name {
 	font-size: 1.3em;
@@ -254,7 +263,7 @@ label {font-weight: 300;}
 	margin-left: .75em;
 	color: white;
 }
-
+/* ----- Font Awesome Icons ----- */
 .star {	border-top: 4px solid #11A8AB;}
 .location {	border-top: 4px solid #fcb150;}
 .fb {	border-top: 4px solid #e64c65;}
@@ -267,9 +276,7 @@ label {font-weight: 300;}
 .nav-tabs > li > a {border: 3px solid #50597b;}
 .nav-tabs.nav-justified > li > a {border: none;}
 
-.top-padding {
-  padding-top: 50px;
-}
+.top-padding {padding-top: 50px;}
 .ls-padding {padding-top: 150px;}
 .user-image {
   border-radius: 50%;
@@ -293,20 +300,16 @@ label {font-weight: 300;}
 	padding-left: 50px;
   padding-bottom: 10px;
 }
-/*.single-task-group li:nth-child(odd) {
-  background: #9099b7;
-}*/
+
 .task-name {
   font-size: 1.5em;
   float: left;
   display: inline;
   margin: 0;
-
 }
 
-.task-description {
-  font-weight: 300;
-}
+.task-description {font-weight: 300;}
+
 .task-frequency {
   float: right;
   margin: 0 20px 0 0;
@@ -316,13 +319,9 @@ label {font-weight: 300;}
   position: relative;
   top: 15px;
 }
-.signin-form {
-  margin-top: 200px;
-}
+.signin-form {margin-top: 200px;}
 
-.looking-user-box {
-  float:left;
-}
+.looking-user-box {float:left;}
 
 .search-user-image {
   height: 250px;
@@ -338,6 +337,9 @@ label {font-weight: 300;}
 /* Transitions */
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { transform: scale(1.1); }
+
+.fade-in.ng-enter {animation: fadeIn 1s;}
+.fade-in.ng-leave {animation: fadeOut 1s;}
 
 /* Allen's Calendar Plugin Styling */
 .form-control {
