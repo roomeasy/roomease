@@ -40,6 +40,7 @@ angular.module('roomEase')
     }
     // data packaging for sending
     var sendData = tasks.slice(); // will be an array of tasks
+    var completed = {count:0};
 
     sendData = sendData.forEach(function(task, i, array){
       var taskStr = task['frequency'];  // Data packaging (converting the freq str to an int)
@@ -49,7 +50,8 @@ angular.module('roomEase')
       Request.task.create(task).then(function(results){
         console.log('results inside the response thing :', results);
         // Call the delegate function at the last index
-        if(i === array.length-1){
+        completed.count++;
+        if(completed.count === array.length){
           Request.task.delegate();
           $location.path('/dashboard'); // not sure how this will work with async requests
         }
