@@ -6,7 +6,8 @@
     "RoomEasy"
   ],
   "description": "An app to make cohab with roommates more fun and easy.",
-  "main": "index.html",
+  "directory": "./client/bower_components",
+  "main": "./client/index.html",
   "keywords": [
     "rooom",
     "roommates",
