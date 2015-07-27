@@ -2,6 +2,8 @@ var db = require('../db/db.js').db;
 
 
 exports.findRoommates = function(houseId, cb){
+
+  // Finds all roommates from a provided houseId
   var queryString = "SELECT * FROM users WHERE dwelling_id = " + houseId;
   db.query(queryString, function(err, results){
     console.log('findRoomates: ', results)
@@ -10,6 +12,9 @@ exports.findRoommates = function(houseId, cb){
 }
 
 exports.add = function(dwelling, cb){
+
+  // Adds a dwelling to the database
+  // Generates a unique pin for the database
   function generatePIN(){
     var num = 0;
     for (var i = 0; i < 6; i++){
@@ -30,6 +35,8 @@ exports.add = function(dwelling, cb){
 }
 
 exports.getPinByDwellingId = function(dwellingId, cb){
+
+  // Selects the pin for the input dwellingId
   var queryString = "SELECT pin FROM dwellings WHERE id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
     // console.log(results.rows);
@@ -46,6 +53,8 @@ exports.getPinByDwellingId = function(dwellingId, cb){
 }
 
 exports.getById = function(dwellingId, cb){
+
+  // Gets the dwelling row information from the provided dwellingId
   var queryString = "SELECT * FROM dwellings WHERE id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
     console.log('Inside the dwellings getById Query');
