@@ -9,6 +9,9 @@ angular.module('roomEase')
   }
 
   $scope.addRoomie = function (newRoomie) {
+    //don't add the roomie if the phone number is invalid
+    if($scope.phoneWarning) return;
+
     $scope.roomies.push(newRoomie);
 
     // reset the view
@@ -21,7 +24,7 @@ angular.module('roomEase')
   $scope.deleteRoomie = function (roomies, index) {
     roomies.splice(index, 1);
   }
-  $scope.submit = function (roomies) {
+  $scope.submit = function (roomies) {    
     var sendData = roomies.slice();
     sendData = sendData.forEach(function(roomie) {
 
@@ -35,8 +38,8 @@ angular.module('roomEase')
   $scope.validatePhone = function () {
     if ( /\d{10}/.test($scope.roomie.phoneNumber) && $scope.roomie.phoneNumber.length === 10) {
       $scope.phoneWarning = false;
+    } else {
+      $scope.phoneWarning = true;
     }
-    // console.log("worked")
-  else {$scope.phoneWarning = true;}
-}
+  }
 })
