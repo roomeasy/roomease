@@ -29,7 +29,7 @@
     </div>
     <div class="col-sm-5 col-md-5 top-padding">
       <div ng-repeat="task in tasks" class="fade-in">
-        <a ng-click="deleteTask(tasks, $index)" class="fa fa-times close"></a>
+        <a ng-click="deleteTask(tasks, $index)" class="fa fa-times closed"></a>
         <ul class="single-task-group">
           <li>
             <p class="task-name">{{task.name}}</p>

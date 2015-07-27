@@ -1,21 +1,26 @@
-
 /*------ COLORS ------*/
+
+	/* Background Colors */
 .bg-dark-purple {background: #1f253d;}
 .bg-main-purple {background: #394264;}
 .bg-purple-hover {background: #50597b;}
 .bg-teal {background: #11A8AB;}
 .bg-red {background: #e64c65;}
 
+	/* Text Colors */
 .white {color: #ffffff;}
 .dark-purple {color: #1f253d;}
 .main-purple {color: #394264;}
 .purple-hover {color: #50597b;}
 .purple-border {color: #50597b;}
-/*.red-hover {color: #cc324b;}*/
+.red-hover {color: #cc324b;}
 .light-purple {color: #9099b7;}
 .teal {background: #11A8AB;}
 
 .border-teal {border-top-color: #11A8AB;}
+.bg-teal.button:hover {background: #0F9295;}
+.bg-dark-purple:hover {background: #50597b;}
+.bg-red.button:hover {background: #cc324b;}
 
 /*------ OVERALL STYLING ------*/
 body {
@@ -45,55 +50,11 @@ label {font-weight: 300;}
 a:visited {color: white;}
 
 /*------ HELPERS ------*/
-.close {
-	position: relative;
-	float: right;
-	font-size: 2em;
-	top: 3px;
-	right: 10px;
-	color: white;
-}
-.close:hover {
-	text-decoration: none;
-	color: white;
-}
-.task-check {
-	float: left;
-	top: 20px;
-	left: 10px;
-}
-.completed {
-	background: #11A8AB;
-}
-.form-warning-text {
-	font-size: 1.35em;
-	font-weight: normal;
-	padding: 5px 0;
-	color: #e64c65;
-}
-.form-directions {
-	font-size: 14px;
-	font-weight: 300;
-	color: #9099b7;
-}
-/*------ HOMEPAGE STYLING ------*/
-.home-title {
-	font-family: 'Pacifico', cursive;
-	color: #394264;
-	font-size: 6em;
-}
-.home-intro {
-	font-size: 2em;
-}
 
-.freq {
-  padding-left: 5px;
-  padding-right: 15px;
-  margin: 5px 0 0 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
+.margin-right {margin-right: 10px;}
+.clear {clear: both;}
+.rounded {border-radius: 5px;}
+.light-border {border: 2px solid #50597b}
 .button {
   display: inline-block;
 	padding: 0 20px;
@@ -109,19 +70,22 @@ a:visited {color: white;}
   -webkit-transition: background .3s;
   transition: background .3s;
 }
-.margin-right {margin-right: 10px;}
 .button:hover {
   text-decoration: none;
   color: white;
 }
-.bg-teal.button:hover {
-  background: #0F9295;
+
+/*------ Form Helpers ------*/
+.form-warning-text {
+	font-size: 1.35em;
+	font-weight: normal;
+	padding: 5px 0;
+	color: #e64c65;
 }
-.bg-dark-purple:hover {
-	background: #50597b;
-}
-.bg-red.button:hover {
-  background: #cc324b;
+.form-directions {
+	font-size: 14px;
+	font-weight: 300;
+	color: #9099b7;
 }
 .card-topper {
   padding: 10px 0;
@@ -133,16 +97,9 @@ a:visited {color: white;}
   font-size: 1.75em;
   text-transform: uppercase;
 }
-.signin-bg {
-  background: url('../img/roomease-purple-bg.jpg') no-repeat center center;
-  height: 100vh;
-	width: 100%;
-  background-size: cover;
-}
 .task-input-card {
   border-radius: 5px;
 	text-align: center;
-  /*background: #394264;*/
   padding-bottom: 40px;
 }
 .task-input-card,.living-space,.join-living-space label {
@@ -154,11 +111,76 @@ a:visited {color: white;}
 	font-size: 3.5em;
 }
 .ls-button {margin: 10px 0 0 10px;}
-.clear {clear: both;}
-.rounded {border-radius: 5px;}
-.light-border {border: 2px solid #50597b}
 
+/*------ Task Helpers ------*/
+/* This positions the X icon to be clicked to delete tasks */
+.closed {
+	position: relative;
+	float: right;
+	font-size: 2em;
+	top: 3px;
+	right: 10px;
+	color: #50597b;
+}
+.closed:hover {
+	text-decoration: none;
+	color: #eee;
+	cursor: pointer;
+}
+/* This is positions the clickable check to mark a task complete */
+.task-check {
+	position: relative;
+	font-size: 2em;
+	float: left;
+	top: 20px;
+	left: 10px;
+	color: #50597b;
+}
+.completed {background: #11A8AB;}
+.freq {
+  padding-left: 5px;
+  padding-right: 15px;
+  margin: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.single-task-group {
+  list-style: none;
+  border: 2px solid #50597b;
+  padding-top: 10px;
+	padding-left: 50px;
+  padding-bottom: 10px;
+}
+.task-name {
+  font-size: 1.5em;
+  float: left;
+  display: inline;
+  margin: 0;
+}
+.task-description {font-weight: 300;}
+.task-frequency {
+  float: right;
+  margin: 0 20px 0 0;
+  background: #50597b;
+  padding: 8px 15px;
+  border-radius: 8px;
+  position: relative;
+  top: 15px;
+}
+/*------ HOMEPAGE STYLING ------*/
+.home-title {
+	font-family: 'Pacifico', cursive;
+	color: #394264;
+	font-size: 6em;
+}
+.home-intro {font-size: 2em;}
 
+.signin-bg {
+  background: url('../img/roomease-purple-bg.jpg') no-repeat center center;
+  height: 100vh;
+	width: 100%;
+  background-size: cover;
+}
 
 /*------ SIDE NAVBAR ------*/
 .sidebar-container {
@@ -172,28 +194,21 @@ a:visited {color: white;}
   padding-left: 0px;
   list-style-type: none;
 }
-.sidebar-nav li {
-  margin: 80px 10px;
-}
+.sidebar-nav li {margin: 80px 10px;}
 .sidebar-nav i {
   font-size: 2.75em;
   color: #9099b7;
   /*color: #50597b;*/
 }
-.sidebar-nav i:hover {
-  color: ghostwhite;
-}
+.sidebar-nav i:hover {color: ghostwhite;}
 
 /*------ ROOMIE SEARCH PAGE ------*/
 .flex-center {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
-.page-wrapper {
-  padding: 0 100px;
-}
+.page-wrapper {padding: 0 100px;}
 .roomie-search {
   text-align: center;
   padding-top: 20px;
@@ -206,9 +221,7 @@ a:visited {color: white;}
 .roomie-search-title {
   font-size: 1.85em;
   color: #9099b7;
-  /*text-transform: uppercase;*/
 }
-
 .user-card {
 	min-width: 300px;
 	border-radius: 5px;
@@ -220,18 +233,13 @@ a:visited {color: white;}
 	transition: all 1.5s ease;
 	border: 5px solid transparent;
 }
-/*.user-card:hover .user-looking{
-	border: 5px solid #9099b7;
-}*/
-.user-card:hover {
-	border: 3px solid #9099b7;
-}
+
+.user-card:hover {border: 3px solid #9099b7;}
 .user-looking {
 	border-radius: 50%;
 	border: 5px solid #50597b;
 	margin-top: 30px;
 	transition: all .5s ease;
-
 }
 .user-name {
 	font-size: 1.3em;
@@ -246,7 +254,6 @@ a:visited {color: white;}
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
-
 }
 .looking-icons li {
 	color: #9099b7;
@@ -266,13 +273,13 @@ a:visited {color: white;}
 	margin-left: .75em;
 	color: white;
 }
+
 /* ----- Font Awesome Icons ----- */
 .star {	border-top: 4px solid #11A8AB;}
 .location {	border-top: 4px solid #fcb150;}
 .fb {	border-top: 4px solid #e64c65;}
 
-
-/* ------ DASHBOARD STYLE -----*/
+/* ------ DASHBOARD ANGULAR BOOTSTRAP TAB STYLE -----*/
 .nav-tabs a:visited {color: white;}
 .nav-tabs a:link {color: white;}
 .nav-tabs > li > a:hover {background-color: #50597b;}
@@ -287,7 +294,6 @@ a:visited {color: white;}
   width: 130px;
   border: 5px solid #50597b;
 }
-
 .user-box {
   margin-bottom: 12px;
 	padding: 10px 5px;
@@ -295,37 +301,10 @@ a:visited {color: white;}
   border: 3px solid #50597b;
   border-radius: 5px;
 }
-.active {background-color: teal;}
-.single-task-group {
-  list-style: none;
-  border: 2px solid #50597b;
-  padding-top: 10px;
-	padding-left: 50px;
-  padding-bottom: 10px;
-}
+/*.active {background-color: teal;}*/
 
-.task-name {
-  font-size: 1.5em;
-  float: left;
-  display: inline;
-  margin: 0;
-}
-
-.task-description {font-weight: 300;}
-
-.task-frequency {
-  float: right;
-  margin: 0 20px 0 0;
-  background: #50597b;
-  padding: 8px 15px;
-  border-radius: 8px;
-  position: relative;
-  top: 15px;
-}
 .signin-form {margin-top: 200px;}
-
 .looking-user-box {float:left;}
-
 .search-user-image {
   height: 250px;
   width: 250px;
@@ -338,8 +317,8 @@ a:visited {color: white;}
 }
 
 /* Transitions */
-.grow { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.1); }
+.grow {transition: all .2s ease-in-out;}
+.grow:hover {transform: scale(1.1);}
 
 .fade-in.ng-enter {animation: fadeIn 1s;}
 .fade-in.ng-leave {animation: fadeOut 1s;}
