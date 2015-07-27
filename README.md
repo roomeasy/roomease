@@ -17,7 +17,7 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
   Our app runs uses postgres so make sure to run ```brew install postgres``` if you don't have it installed globally.
   Then download postgres.app for easy starting and destroying of local postgres servers. This is far easier than running the commands from the terminal. If you get an EEARDDINUSE error, make sure postgres is running! If one is, try restarting the postgres.app
 
-  While the app is running you can type ```psql`` to enter the command shell for postgres. running psql < server/schema.sql will clear the current database so you can start fresh. This is very useful for testing. (This is also commented out in the schema.sql file.) If you want to interact with your production database (the one living on heroku), type ```psql <DATABASE_URL>```. run ```psql <DATABASE_URL> < server/schema.sql``` to reset the schema on heroku.
+  While the app is running you can type ```psql``` to enter the command shell for postgres. running psql < server/schema.sql will clear the current database so you can start fresh. This is very useful for testing. (This is also commented out in the schema.sql file.) If you want to interact with your production database (the one living on heroku), type ```psql <DATABASE_URL>```. run ```psql <DATABASE_URL> < server/schema.sql``` to reset the schema on heroku.
 
   Run both bower install and npm install for the correct dependencies.
 
