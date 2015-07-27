@@ -36,11 +36,11 @@ exports.add = function(user, cb){
 
 // addUser : insert a new user row
 exports.addFacebookUser = function(user, cb){
-  var queryString = "INSERT INTO users (facebook_id, picture, gender, facebook_token, username) VALUES ("
+  var queryString = "INSERT INTO users (facebook_id, picture, gender, username) VALUES ("
                      + "'" + user.facebook_id + "', "
                      + "'" + user.picture + "', "
                      + "'" + user.gender + "', "
-                     + "'" + user.facebook_token + "', "
+                     // + "'" + user.facebook_token + "', "
                      + "'" + user.username + "') RETURNING id;";
 
   console.log('queryString: ', queryString)
