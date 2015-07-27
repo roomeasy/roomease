@@ -23,23 +23,25 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
 
   The server will likely fail because there is some authorization config to be done. navigate to the /server/config directory and create a file called auth.js. ```touch auth.js``` open this file and copy this code into it
 
-  ```module.exports = {
-      facebookAuth : {
-        'clientID'      : "", //your app ID
-        'clientSecret'  : "", // your app Secret
-        'callbackURL'   : 'http://localhost:3000/auth/facebook/callback'
-      },
+  ```
+  module.exports = {
+    facebookAuth : {
+      'clientID'      : "", //your app ID
+      'clientSecret'  : "", //your app Secret
+      'callbackURL'   : 'http://localhost:3000/auth/facebook/callback'
+    },
 
-      //environment variables for heroku deployments when ready
-      pgData : {
-        host: '',
-        database: '',
-        user : '',
-        port : ,
-        password : '',
-        ssl: true
-      }
-    }```
+    //environment variables for heroku deployments when ready
+    pgData : {
+      host: '',
+      database: '',
+      user : '',
+      port : ,
+      password : '',
+      ssl: true
+    }
+  }
+  ```
 
   You'll notice the values of these keys are empty, that is because this information needs to be specific for your instance of RoomEase. Go to developer.facebook.com and register a new application on the website. They will consequently provide you with a clientID and a clientSecret. These go into the facebookAuth object next to their respective keys.
 
