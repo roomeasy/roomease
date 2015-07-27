@@ -21,7 +21,7 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
 
   Run both bower install and npm install for the correct dependencies.
 
-  The server will likely fail because there is some authorization config to be done. navigate to the /server/config directory and create a file called auth.js. ```touch auth.js``` open this file and copy this code into it -
+  The server will likely fail because there is some authorization config to be done. navigate to the /server/config directory and create a file called auth.js. ```touch auth.js``` open this file and copy this code into it
 
   ```module.exports = {
       facebookAuth : {
