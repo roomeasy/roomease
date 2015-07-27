@@ -1,17 +1,4 @@
-## RoomEase ##
-  RoomEase provides roommates with a fair and equitable method to divide chores.
-
-## Summary ##
-    RoomEase makes it easy to organize and delegate chores amongst your roomies. It helps to remove some of the awkwardness of assigning tasks to your roommates by randomly assigning tasks when they need to be assigned.
-
-## Problem ##
-  House management can be difficult because it is awkward to assign chores to your roommates, hard to remember who was responsible for which tasks, and ultimately unfair if one person takes on more responsibilities than others.
-
-## Solution ##
-RoomEase organizes and fairly assigns house chores to your roommates automatically.
-
 ## How to Get Started ##
-
   Start up a nodemon server by running ```nodemon server/server.js```
 
   Our app runs uses postgres so make sure to run ```brew install postgres``` if you don't have it installed globally.
@@ -49,9 +36,39 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
 
   NOTE: depending what environment you want to work with, you will have to go back to the developer section of facebook and change the url on the app's settings to either a localhost address or a <app-name>.herokuapp.com so that redirects will work properly.
 
+## Client Side Notes
+### Naming Conventions for States, URLS, and Controllers
+For any top level state/view
+- Name state in camel case
+- Name url in lowercase
+- Append controller with Ctrl
 
-## Customer Quote ##
-  "Before, it was difficult to remember who had what chores, and sometimes chores didn't get done. Now we can easily keep track of which chores are done and who is responsible for upcoming tasks."
+SEE EXAMPLE BELOW:
+```javascript
+  .state('inviteRoomies', {
+    url: '/inviteroomies',
+    templateUrl: '/js/controllers/inviteRoomies/inviteRoomies.html',
+    controller: 'inviteRoomiesCtrl'
+  })
+```
+### Adding New States
+In app.js add your new state name to the appViews array. If you need to create a nested view follow the way that dashboard state is handled in the app.js file.
 
-## Try RoomEase Today ##
-  Visit our site and organize your house chores to avoid any hassle or awkwardness that comes with telling your roommates their chores!
+### All HTTP Requests
+Come From services/utils.js in the Request factory
+
+### CSS Styling
+- Bootstrap CSS was only used for the grid
+- All custom styling is in main.css
+
+### Font Awesome
+Font Awesome was imported via cdn and linked in the index.html file. Icons are created with fa fa-classnames like fa fa-check throughout the code. Please reference [FontAwesome](www.fontawesome.io) for new fonts and class names to use.
+
+### Animations
+We used ng-animate along with animate.css to add transitions throughout the site. The grow animation that you see on the sidebar and roomie search pages is custom css in the main.css file class.
+- .grow used on sidebar and roomie search (main.css, .grow .grow:hover)
+- fade in used when tasks are added or removed (ng-animate, animate.css)
+
+### New Features
+- Client Side Authentication
+- Implement Roomie Rating System
