@@ -11,22 +11,17 @@ angular.module('roomEase', [
   $stateProvider.state('taskSetup', {
     url: '/tasksetup',
     templateUrl: '/js/controllers/taskSetup/taskSetup.html',
-    controller: 'taskSetup'
+    controller: 'taskSetupCtrl'
   })
   .state('createDwelling', {
     url: '/createdwelling',
     templateUrl: '/js/controllers/createDwelling/createDwelling.html',
-    controller: 'createDwelling'
+    controller: 'createDwellingCtrl'
   })
   .state('signin', {
     url: '/signin',
     templateUrl: '/js/controllers/signin/signin.html',
     controller: 'signinCtrl'
-  })
-  .state('signup', {
-    url: '/signup',
-    templateUrl: '/js/controllers/signup/signup.html',
-    controller: 'signupCtrl'
   })
   .state('dashboard', {
     url: '/dashboard',
@@ -47,7 +42,7 @@ angular.module('roomEase', [
   .state('roomieSearch', {
     url: '/roomiesearch',
     templateUrl: '/js/controllers/roomieSearch/roomieSearch.html',
-    controller: 'roomieSearch'
+    controller: 'roomieSearchCtrl'
   })
   .state('inviteRoomies', {
     url: '/inviteroomies',

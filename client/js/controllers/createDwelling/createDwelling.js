@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('createDwelling', function ($scope, Request, $location){
+.controller('createDwellingCtrl', function ($scope, Request, $location){
   $scope.livingSpace = { name: "", address: "" };
   $scope.nameWarning = false;
   $scope.addressWarning = false;
