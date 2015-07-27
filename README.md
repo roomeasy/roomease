@@ -36,8 +36,8 @@
 
   NOTE: depending what environment you want to work with, you will have to go back to the developer section of facebook and change the url on the app's settings to either a localhost address or a <app-name>.herokuapp.com so that redirects will work properly.
 
-# Client Side Notes
-## Naming Conventions for States, URLS, and Controllers
+## Client Side Notes
+### Naming Conventions for States, URLS, and Controllers
 For any top level state/view
 - Name state in camel case
 - Name url in lowercase
@@ -51,24 +51,24 @@ SEE EXAMPLE BELOW:
     controller: 'inviteRoomiesCtrl'
   })
 ```
-## Adding New States
+### Adding New States
 In app.js add your new state name to the appViews array. If you need to create a nested view follow the way that dashboard state is handled in the app.js file.
 
-## All HTTP Requests
+### All HTTP Requests
 Come From services/utils.js in the Request factory
 
-## CSS Styling
+### CSS Styling
 - Bootstrap CSS was only used for the grid
 - All custom styling is in main.css
 
-## Font Awesome
+### Font Awesome
 Font Awesome was imported via cdn and linked in the index.html file. Icons are created with fa fa-classnames like fa fa-check throughout the code. Please reference [FontAwesome](www.fontawesome.io) for new fonts and class names to use.
 
-## Animations
+### Animations
 We used ng-animate along with animate.css to add transitions throughout the site. The grow animation that you see on the sidebar and roomie search pages is custom css in the main.css file class.
 - .grow used on sidebar and roomie search (main.css, .grow .grow:hover)
 - fade in used when tasks are added or removed (ng-animate, animate.css)
 
-# New Features
+### New Features
 - Client Side Authentication
 - Implement Roomie Rating System
