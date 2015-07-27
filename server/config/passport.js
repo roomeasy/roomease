@@ -5,7 +5,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../user/userModel.js');
 var configAuth = process.env.DATABASE_URL ? null : require('./auth.js');
 
-var callbackURL = process.env.DATABASE_URL ? "http://roomeasy-staging.herokuapp.com/auth/github/callback" : "http://localhost:3000/auth/facebook/callback"
+var callbackURL = process.env.DATABASE_URL ? "http://roomeasy-staging.herokuapp.com/auth/facebook/callback" : "http://localhost:3000/auth/facebook/callback"
 
 
 module.exports = function(passport) {
