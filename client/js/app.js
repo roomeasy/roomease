@@ -8,21 +8,18 @@ angular.module('roomEase', [
 .config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/signin')
 
-  $stateProvider.state('taskSetup', {
-    url: '/tasksetup',
-    templateUrl: '/js/controllers/taskSetup/taskSetup.html',
-    controller: 'taskSetupCtrl'
-  })
-  .state('createDwelling', {
-    url: '/createdwelling',
-    templateUrl: '/js/controllers/createDwelling/createDwelling.html',
-    controller: 'createDwellingCtrl'
-  })
-  .state('signin', {
-    url: '/signin',
-    templateUrl: '/js/controllers/signin/signin.html',
-    controller: 'signinCtrl'
-  })
+  // create states for each of our views
+  var appViews = ['taskSetup', 'createDwelling', 'signin', 'roomieSearch', 'inviteRoomies'];
+  appViews.forEach(function(stateName) {
+    $stateProvider.state(stateName, {
+      url: '/' + stateName.toLowerCase(),
+      templateUrl: '/js/controllers/' + stateName + '/' + stateName + '.html',
+      controller: stateName + 'Ctrl'
+    });
+  });
+  
+  // handle dashboard separately since it has nested views
+  $stateProvider
   .state('dashboard', {
     url: '/dashboard',
     abstract: true,
@@ -30,23 +27,13 @@ angular.module('roomEase', [
     controller: 'dashboardCtrl'
   })
   .state('dashboard.yourTasks', {
-    url: '',
+    url: '', // this is empty so that this state loads by default in the dashboard state
     templateUrl: '/js/controllers/dashboard/yourTasks.html',
     controller: 'yourTasksCtrl'
   })
   .state('dashboard.taskHistory', {
-    // url: '/taskHistory',
+    // url: none, because this is a child/nested state
     templateUrl: '/js/controllers/dashboard/taskHistory.html',
     controller: 'tasksHistoryCtrl'
-  })
-  .state('roomieSearch', {
-    url: '/roomiesearch',
-    templateUrl: '/js/controllers/roomieSearch/roomieSearch.html',
-    controller: 'roomieSearchCtrl'
-  })
-  .state('inviteRoomies', {
-    url: '/inviteroomies',
-    templateUrl: '/js/controllers/inviteRoomies/inviteRoomies.html',
-    controller: 'inviteRoomiesCtrl'
   })
 })
