@@ -1,6 +1,4 @@
-# RoomEase #
-
-## Sub-Heading ##
+## RoomEase ##
   RoomEase provides roommates with a fair and equitable method to divide chores.
 
 ## Summary ##
@@ -18,5 +16,5 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
 ## Customer Quote ##
   "Before, it was difficult to remember who had what chores, and sometimes chores didn't get done. Now we can easily keep track of which chores are done and who is responsible for upcoming tasks."
 
-## Closing and Call to Action ##
+## Try RoomEase Today ##
   Visit our site and organize your house chores to avoid any hassle or awkwardness that comes with telling your roommates their chores!
