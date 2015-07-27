@@ -1,6 +1,6 @@
 // Setting up passport.
 var FacebookStrategy = require('passport-facebook').Strategy;
-var User = require('../user/userModel.js');
+var User = require('../model/userModel.js');
 
 //if in heroku environment, user their variables, if not, use our own from auth.js file.
 var auth = process.env.DATABASE_URL ? null : require('./auth.js');

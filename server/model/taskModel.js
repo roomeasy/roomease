@@ -1,4 +1,4 @@
-var db = require('../db.js').db;
+var db = require('../db/db.js').db;
 var _ = require('underscore');
 
 exports.add = function(task, dwellingId, cb){
@@ -104,12 +104,4 @@ exports.delegateInstances = function(users, taskInstances, cb){
       console.log("results : ", results);
     });
   }
-}
-
-exports.findTask = function(taskName, cb){
-  console.log('Inside the dwelling find query');
-  var queryString = "SELECT * FROM tasks WHERE name = " + "'" + taskName + "';";
-  db.query(queryString, function(err, results){
-    err ? cb(err, null) : cb(null, results.rows[0]);
-  });
 }
