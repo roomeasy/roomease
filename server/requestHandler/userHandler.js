@@ -2,8 +2,13 @@ var userModel = require('../model/userModel.js');
 var dwellingModel = require('../model/dwellingModel.js');
 var responseHandler = require('./responseHandler.js');
 
+// This file is responsible for managing all user-related endpoints
+
 module.exports = {
   add : function(req, res){
+    // Called by the POST '/users' endpoint.
+    // This function add a user to the "users" table. 
+    // It is probably deprecated in favor of FB OAuth user creation
     console.log('Add User Request Handler...');
     var user = {  // Data Packaging
       username: req.body.username,
@@ -11,32 +16,29 @@ module.exports = {
       age     : req.body.age,
       email   : req.body.email,
     };
+
+    // The convention is to call corresponding model function,
+    // and then to handle the response with the responseHandler function
+    // which is defined in responseHandler.js 
     userModel.add(user, function(err, insertedUserId){
       responseHandler(err, insertedUserId, res);
     });
   },
-  getAll : function(req, res){
-    userModel.getAll(function(err, results){
-      responseHandler(err, results, res);
-    });
-  },
+
   getRoomies : function(req, res){
+    // Called by the GET '/users' endpoint.
+    // Retrieves all the roommates from a common dwelling ID.
+    // The req.user object is populated through Facebook OAuth
     var dwellingId = req.user.dwelling_id;
     userModel.getByDwellingId(dwellingId, function(err, results){
       responseHandler(err, results, res);
     });
   },
-  find : function(req, res){
-    console.log('inside the user find request handler');
-    var username = req.params.username;
-    console.log(username)
-    userModel.findUser(username, function(err, results){
-      console.log('inside response handler: ', results);
-      responseHandler(err, results, res);
-    });
-  },
 
   joinDwelling : function(req, res){
+    // Called by the POST 'joinDwelling' endpoint.
+    // Makes a user join a dwelling
+
     var submittedDwellingId = req.body.dwellingId;
     var submittedPin = req.body.pin;
     //authenticate dwelling with PIN number

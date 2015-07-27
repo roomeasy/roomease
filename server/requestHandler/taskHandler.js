@@ -101,14 +101,4 @@ module.exports = {
       responseHandler(err, results, res);
     });
   },
-
-  find : function(req, res){
-    console.log('inside the dwelling find request handler');
-    var taskname = req.params.taskname;
-    console.log(taskname);
-    taskModel.findTask(taskname, function (err, results){
-      console.log('inside response handler: ', results);
-      responseHandler(err, results, res);
-    });
-  }
 }

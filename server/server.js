@@ -54,10 +54,6 @@ app.get('/myInstances', requestHandlers.tasks.getUserInstances);
 app.get('/users', requestHandlers.users.getRoomies);
 app.get('/dwellings', requestHandlers.dwellings.getUsersDwelling)
 
-app.get('/users/:username', requestHandlers.users.find);
-app.get('/dwellings/:dwellingname', requestHandlers.dwellings.find);
-app.get('/tasks/:taskname', requestHandlers.tasks.find);
-
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
