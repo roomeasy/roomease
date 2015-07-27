@@ -31,8 +31,7 @@ CREATE TABLE users (
   gender VARCHAR DEFAULT null,
   facebook_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
-  dwelling_id INTEGER references dwellings(id), -- foreign key
-  facebook_token VARCHAR
+  dwelling_id INTEGER references dwellings(id) -- foreign key
 );
 
 -- each task has 1 user

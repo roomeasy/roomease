@@ -3,7 +3,10 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 var User = require('../user/userModel.js');
-var configAuth = require('./auth.js');
+var configAuth = process.env.DATABASE_URL ? null : require('./auth.js');
+
+var callbackURL = process.env.DATABASE_URL ? "http://roomeasy-staging.herokuapp.com/auth/github/callback" : "http://localhost:3000/auth/facebook/callback"
+
 
 module.exports = function(passport) {
 
@@ -39,9 +42,9 @@ module.exports = function(passport) {
     passport.use(new FacebookStrategy({
 
         // pull in our app id and secret from our auth.js file
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
+        clientID        : process.env.FACEBOOK_CLIENT_ID || configAuth.facebookAuth.clientID,
+        clientSecret    : process.env.FACEBOOK_CLIENT_SECRET || configAuth.facebookAuth.clientSecret,
+        callbackURL     : callbackURL,
         profileFields   : ['id', 'displayName', 'gender', 'profileUrl', 'picture.type(large)', 'friends']
     },
 
@@ -71,7 +74,6 @@ module.exports = function(passport) {
                     newUser.gender = profile.gender;
                     newUser.facebook_id    = profile.id; // set the users facebook id
                     newUser.picture = profile.photos[0].value; //set their picture
-                    newUser.facebook_token = token; // we will save the token that facebook provides to the user
                     newUser.username  = profile.displayName; // look at the passport user profile to see how names are returned
                     // newUser.facebook_email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
