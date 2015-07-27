@@ -48,6 +48,8 @@ angular.module('roomEase')
     return dupFree;
   }
 
+  // used to mark a task as completed
+  // sends a POST req to the server to update the database
   $scope.completeTask = function (task) {
     task.completed = true;
     Request.task_instances.update(task)
@@ -56,6 +58,9 @@ angular.module('roomEase')
   Request.task_instances.fetchMy().then(function(results){
 
     console.log('task_instance fetch results:', results);
+    results.sort(function (a,b) {
+        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf()
+    })
     $scope.userTaskInstances = $scope.removeDups(results);
 
     $scope.userTaskInstances.forEach(function(taskInstance) {

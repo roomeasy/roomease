@@ -1,5 +1,5 @@
 <div ng-hide="task.completed" ng-repeat="task in userTaskInstances | orderBy:'due_date' " >
-  <a ng-click="completeTasks(task)" class="fa fa-check closed task-check"></a>
+  <a ng-click="completeTask(task)" class="fa fa-check close task-check"></a>
   <ul class="single-task-group">
     <li>
       <p class="task-name">{{task.name}}</p>
