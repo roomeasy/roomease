@@ -1,4 +1,4 @@
-var db = require('../db.js').db;
+var db = require('../db/db.js').db;
 
 
 exports.findRoommates = function(houseId, cb){

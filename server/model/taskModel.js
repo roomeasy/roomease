@@ -1,4 +1,4 @@
-var db = require('../db.js').db;
+var db = require('../db/db.js').db;
 var _ = require('underscore');
 
 exports.add = function(task, dwellingId, cb){

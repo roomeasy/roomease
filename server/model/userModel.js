@@ -1,4 +1,4 @@
-var db = require('../db.js').db;
+var db = require('../db/db.js').db;
 
 // USERMODEL FILE. Contains utility functions for all the db user get/requests
 
