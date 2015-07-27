@@ -20,7 +20,8 @@ Once the project moves into development, the press release can be used as a touc
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  <!-- > Describe who the market for the product is and what benefit they get. One sentence only underneath the title. -->
+  RoomEase is aimed at providing housemates a fair and equitable method to effectively divide chores between roommates.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
