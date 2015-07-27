@@ -62,6 +62,9 @@ a:visited {color: white;}
 	top: 20px;
 	left: 10px;
 }
+.completed {
+	background: #11A8AB;
+}
 .form-warning-text {
 	font-size: 1.35em;
 	font-weight: normal;

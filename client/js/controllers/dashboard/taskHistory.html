@@ -1,4 +1,4 @@
-<div ng-repeat="task in allTasks">
+<div ng-repeat="task in allTasks" ng-class="{'completed': task.completed}">
   <ul class="single-task-group">
     <li>
       <p class="task-name">{{task.name}}</p>
