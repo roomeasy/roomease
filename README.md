@@ -22,8 +22,8 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
   Run both bower install and npm install for the correct dependencies.
 
   The server will likely fail because there is some authorization config to be done. navigate to the /server/config directory and create a file called auth.js. ```touch auth.js``` open this file and copy this code into it -
-  ```module.exports = {
 
+  ```module.exports = {
       facebookAuth : {
         'clientID'      : "", //your app ID
         'clientSecret'  : "", // your app Secret
@@ -43,7 +43,7 @@ RoomEase organizes and fairly assigns house chores to your roommates automatical
 
   You'll notice the values of these keys are empty, that is because this information needs to be specific for your instance of RoomEase. Go to developer.facebook.com and register a new application on the website. They will consequently provide you with a clientID and a clientSecret. These go into the facebookAuth object next to their respective keys.
 
-  The pgData stands for postgres data. When you create a new app on heroku if you want to host it live, heroku will provide you with all of the necessary config variabes to put into this object. Leave ssl as true. If you follow this format, the process.env statements throughout the serverside code should automatically work. If they don't, i.e. you run into require errors, make sure all paths are pointing to the right places.**Also, don't forget to add the auth.js file to .gitignore!** You don't want people knowing your databaseURL/facebooksecret.
+  The pgData stands for postgres data. When you create a new app on heroku if you want to host it live, heroku will provide you with all of the necessary config variabes to put into this object. Leave ssl as true. If you follow this format, the process.env statements throughout the serverside code should automatically work. If they don't, i.e. you run into require errors, make sure all paths are pointing to the right places. **Also, don't forget to add the auth.js file to .gitignore!** You don't want people knowing your databaseURL/facebooksecret.
 
   NOTE: depending what environment you want to work with, you will have to go back to the developer section of facebook and change the url on the app's settings to either a localhost address or a <app-name>.herokuapp.com so that redirects will work properly.
 
