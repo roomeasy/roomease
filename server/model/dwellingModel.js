@@ -10,7 +10,6 @@ exports.findRoommates = function(houseId, cb){
 }
 
 exports.add = function(dwelling, cb){
-
   function generatePIN(){
     var num = 0;
     for (var i = 0; i < 6; i++){
@@ -46,26 +45,10 @@ exports.getPinByDwellingId = function(dwellingId, cb){
   })
 }
 
-exports.getAll = function(cb){
-  var queryString = "SELECT * FROM dwellings;";
-  db.query(queryString, function(err, results){
-    console.log('Inside the users getAll Query');
-    err ? cb(err, null) : cb(null, results.rows)
-  });
-}
-
 exports.getById = function(dwellingId, cb){
   var queryString = "SELECT * FROM dwellings WHERE id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
     console.log('Inside the dwellings getById Query');
-    err ? cb(err, null) : cb(null, results.rows[0]);
-  });
-}
-
-exports.findDwelling = function(dwellingName, cb){
-  console.log('Inside the dwelling find query');
-  var queryString = "SELECT * FROM dwellings WHERE name = " + "'" + dwellingName + "';";
-  db.query(queryString, function(err, results){
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
 }

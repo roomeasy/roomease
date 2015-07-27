@@ -5,6 +5,8 @@ var request = require('request');
 
 module.exports = {
   add: function(req, res){
+    // Called by the POST '/dwellings' endpoint
+    // Adds a dwelling using the provided name + address information
     console.log('inside dwelling add request handler');
 
     //data packaging
@@ -22,20 +24,19 @@ module.exports = {
   },
 
   inviteRoomie : function(req, res){
+    // Called by the '/inviteRoomie' endpoint
+    // Takes a input of name + phoneNumber and calls the textbelt api
+      // to fire the text
 
-    //gets dwellingId from logged in user.
     var dwelling_id = req.user.dwelling_id;
-
-    //roomies should come through as one obj on the req.body
     // Data Packaging
     var roomie = {
-      name        : req.body.name,
+      name          : req.body.name,
       phoneNumber   : req.body.phoneNumber,
     };
 
     //query dwelling database for unique PIN
     dwellingModel.getPinByDwellingId(dwelling_id, function (err, pin){
-
       //composes the actual text message string
       var message = "Hello, " + roomie.name + "! \n \n"
                     + "Your friend " + req.user.username + " has invited you to join RoomEase! "
@@ -56,19 +57,14 @@ module.exports = {
         url: 'http://textbelt.com/text',
         formData : data,
       }, function (err, httpResponse, body){
-
         if (err) { console.log('failed: ', err); }
       });
     });
   },
 
-  getAll: function(req, res){
-    dwellingModel.getAll(function (err, results){
-      responseHandler(err, results, res);
-    })
-  },
-
   getUsersDwelling : function(req, res){
+    // Called from GET '/dwellings'
+    // Retrieves the dwelling information from the currently logged-in user
     var dwellingId = req.user.dwelling_id;
     dwellingModel.getById(dwellingId, function(err, results){
       responseHandler(err, results, res);

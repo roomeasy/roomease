@@ -23,8 +23,6 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
 
 
-// BASIC ROUTING
-
 //Facebook Auth
 app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup' }));
 
@@ -37,10 +35,10 @@ app.get('/auth/facebook/callback',
     } else {
       res.redirect('/#/dashboard');
     }
-  })
+})
 
+// BASIC ROUTING
 //POST Requests
-app.post('/users', requestHandlers.users.add);
 app.post('/dwellings', requestHandlers.dwellings.add);
 app.post('/inviteRoomie', requestHandlers.dwellings.inviteRoomie);
 app.post('/joinDwelling', requestHandlers.users.joinDwelling);

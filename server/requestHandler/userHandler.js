@@ -5,31 +5,14 @@ var responseHandler = require('./responseHandler.js');
 // This file is responsible for managing all user-related endpoints
 
 module.exports = {
-  add : function(req, res){
-    // Called by the POST '/users' endpoint.
-    // This function add a user to the "users" table. 
-    // It is probably deprecated in favor of FB OAuth user creation
-    console.log('Add User Request Handler...');
-    var user = {  // Data Packaging
-      username: req.body.username,
-      password: req.body.password,
-      age     : req.body.age,
-      email   : req.body.email,
-    };
-
-    // The convention is to call corresponding model function,
-    // and then to handle the response with the responseHandler function
-    // which is defined in responseHandler.js 
-    userModel.add(user, function(err, insertedUserId){
-      responseHandler(err, insertedUserId, res);
-    });
-  },
-
   getRoomies : function(req, res){
     // Called by the GET '/users' endpoint.
     // Retrieves all the roommates from a common dwelling ID.
     // The req.user object is populated through Facebook OAuth
     var dwellingId = req.user.dwelling_id;
+    // The convention is to call corresponding model function,
+    // and then to handle the response with the responseHandler function
+    // which is defined in responseHandler.js 
     userModel.getByDwellingId(dwellingId, function(err, results){
       responseHandler(err, results, res);
     });
