@@ -32,6 +32,10 @@ angular.module('roomEase')
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];
+
+  // this function is used to to limit taskInstances that are displayed to the user
+  // in the 'Your Tasks' tab, we only want to show the user's soonest instance
+  // of each task
   $scope.removeDups = function (taskInstances) {
     var dupFree = [];
     var seenSoFar = {};
@@ -44,22 +48,19 @@ angular.module('roomEase')
     return dupFree;
   }
 
-  $scope.completeTasks = function (task) {
+  // used to mark a task as completed
+  // sends a POST req to the server to update the database
+  $scope.completeTask = function (task) {
     task.completed = true;
     Request.task_instances.update(task)
   }
-  // $scope.fetchYourTasks = function(){
-  //   Request.task.fetch().then(function(results){
-  //     console.log('task fetch results:', results);
-  //     $scope.userTasks = results;
-  //   })
-  // }
-  // $scope.fetchYourTasks();
 
   Request.task_instances.fetchMy().then(function(results){
-    // know this users id
-    // remove duplicates and filter for only the users tasks
+
     console.log('task_instance fetch results:', results);
+    results.sort(function (a,b) {
+        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf()
+    })
     $scope.userTaskInstances = $scope.removeDups(results);
 
     $scope.userTaskInstances.forEach(function(taskInstance) {

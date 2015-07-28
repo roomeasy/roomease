@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('createDwelling', function ($scope, Request, $location){
+.controller('createDwellingCtrl', function ($scope, Request, $location){
   $scope.livingSpace = { name: "", address: "" };
   $scope.nameWarning = false;
   $scope.addressWarning = false;
@@ -36,7 +36,7 @@ angular.module('roomEase')
 
   }
 
-  // User submit handler
+
   $scope.joinDwelling = function(){
     //don't submit form if either field is invalid
     if(!$scope.isNumber($scope.pin) || !$scope.isNumber($scope.dwellingId)) return;
@@ -58,15 +58,15 @@ angular.module('roomEase')
     
   }
 
-  $scope.isNumber = function(number){
-    if(number === undefined || number === ""){
-      return true;// dont run the test
+  $scope.isNumber = function(str){
+    if(str === undefined || str === ""){
+      return true;
     }else{
-      if(isNaN(parseInt(number))){
+      if(isNaN(parseInt(str))){
         return false;
       }else{
-        // case where the number starts with a number but has some characters afterward
-        return (''+parseInt(number)).length === number.length ? true : false;
+        // case where the input starts with a number but has some characters afterward
+        return (''+parseInt(str)).length === str.length ? true : false;
       }
     }
   }
