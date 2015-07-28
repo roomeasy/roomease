@@ -1,8 +1,8 @@
 angular.module('roomEase')
 
     .controller('calendarCtrl', function ($scope, Request, $location){
-         $scope.calendarView = 'month';
-         $scope.currentDay = new Date();
+        $scope.calendarView = 'month';
+        $scope.currentDay = new Date();
 
         $scope.events = [
             {
