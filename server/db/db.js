@@ -10,7 +10,7 @@ var auth = process.env.DATABASE_URL ? null : require('../config/auth.js')
 // var db = new pg.Client(process.env.DATABASE_URL || auth.pgData);
 
 //Local only version:
-var db = new pg.Client();
+var db = new pg.Client("postgres://davidunkefer@localhost/roomies");
 
 db.connect();
 
