@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS dwellings CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
 DROP TABLE IF EXISTS task_instances CASCADE;
 
---Serial is used to auto-increment (75% sure on this...)
 CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
