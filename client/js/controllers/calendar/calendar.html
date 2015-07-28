@@ -1,0 +1,21 @@
+<div ng-include="'includes/navbar.html'"></div>
+<div class="container text-center">
+  <div class="row">
+    <h1 class="top-padding home-title text-center">Welcome Roomie</h1>
+    <div class="col-sm-10 col-sm-offset-1 top-padding" style="background-color: grey">
+      <mwl-calendar
+        view="calendarView"
+        current-day= "currentDay"
+        events="events"
+        view-title="calendarTitle"
+        on-event-click="eventClicked(calendarEvent)"
+        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+        on-edit-event-click="eventEdited(calendarEvent)"
+        on-delete-event-click="eventDeleted(calendarEvent)"
+        auto-open="true">
+      </mwl-calendar>
+    </div>
+  </div>
+</div>
