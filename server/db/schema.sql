@@ -15,6 +15,8 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS dwellings CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
 DROP TABLE IF EXISTS task_instances CASCADE;
+DROP TABLE IF EXISTS documents CASCADE;
+
 
 CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
@@ -51,4 +53,17 @@ CREATE TABLE task_instances (
   completed BOOLEAN DEFAULT FALSE,
   user_id INTEGER DEFAULT NULL references users(id), -- foreign key
   task_id INTEGER references tasks(id)
+);
+
+-- document upload table
+
+CREATE TABLE documents (
+  dwelling_id INTEGER references dwellings on DELETE CASCADE, -- foreign key
+  user_id INTEGER references users on DELETE CASCADE, -- foreign key
+  file_name VARCHAR DEFAULT NULL,
+  filesize INT NOT NULL,
+  type VARCHAR DEFAULT 'Bill', 
+  data BYTEA NOT NULL,
+  paid BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (dwelling_id, user_id)
 );

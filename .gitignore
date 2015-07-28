@@ -2,6 +2,7 @@ client/bower_components/
 node_modules/
 server/config/auth.js
 .DS_Store
+server/db/db.js
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, WebStorm
