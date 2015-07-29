@@ -3,12 +3,13 @@ angular.module('roomEase')
     .factory('eventAPIRequests', function($http){
       var returnObj = {
           createEvent : function(data){
+            console.log('posting new event', data);
             return $http({
               method: 'POST',
               url: '/events',
               data: data
             }).then(function(response){
-              console.log('inside createEvent: ', response);
+              // console.log('inside createEvent: ', response);
               return response.data;
             })
           },
@@ -17,9 +18,12 @@ angular.module('roomEase')
               method: 'GET',
               url: '/events'
             }).then(function(response){
-              console.log('inside getEvents : ', response);
+              // console.log('inside getEvents : ', response);
               return response.data;
             })
           },
 
-    }
+      }
+
+      return returnObj;
+    })

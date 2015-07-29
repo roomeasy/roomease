@@ -1,38 +1,14 @@
-<div ng-include="'includes/navbar.html'"></div>
-<div class="container text-center">
-  <div class="row">
-    <h1 class="top-padding home-title text-center">Welcome Roomie</h1>
-    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
-      <mwl-calendar
-        view="calendarView"
-        current-day= "currentDay"
-        events="events"
-        view-title="calendarTitle"
-        on-event-click="eventClicked(calendarEvent)"
-        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-        on-edit-event-click="eventEdited(calendarEvent)"
-        on-delete-event-click="eventDeleted(calendarEvent)"
-        auto-open="true">
-      </mwl-calendar>
-    </div>
-    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
-    <h3>Add Event <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button></h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Type</th>
-          <th>Starts At</th>
-          <th>Ends At</th>
-          <th>Remove</th>
-        </tr>  
-      </thead>
-      <tbody>
-        <tr ng-repeat="event in events track by $index">
-          <td><input type="text" class="form-control input-sm" ng-model="event.title"></td>
-          <td>
+<div class="modal-header light-purple">
+  <h3 class="modal-title">Event Details</h3>
+</div>
+<div class="modal-body">
+  <!-- <p>Action: <pre>{{ vm.action }}</pre></p>
+  <p>Event: <pre>{{ vm.event | json }}</pre></p> -->
+  <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button>
+
+        <!-- <div ng-repeat="event in events track by $index"> -->
+        <label>Title</label>
+        <input type="text" class="form-control input-sm" ng-model="event.title"></td>
             <select ng-model="event.type" class="form-control input-sm">
             <option value="important">Important</option>
             <option value="warning">Warning</option>
@@ -41,9 +17,8 @@
             <option value="success">Success</option>
             <option value="special">Special</option>
             <!-- Add more options for importance of event here -->
-          </td>
-          <td>
             <p class="input-group" style:"max-width:250px">
+            <label>Starts At:</label>
             <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close"/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-sm" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -64,6 +39,8 @@
         <tr>
       </tbody>
     </table>
-    </div>
-  </div>
+    
+<!-- </div> -->
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="$close()">OK</button>
 </div>
