@@ -46,3 +46,4 @@ function isLoggedIn(req, res, next) {
     return next(req, res);
   res.redirect('/#/signin');
 }
+}
