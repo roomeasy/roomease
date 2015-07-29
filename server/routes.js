@@ -30,6 +30,7 @@ module.exports = function(app){
   app.post('/taskInstances', taskHandler.updateInstance);
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
+  app.post('/documents', documentHandler.add);
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
@@ -37,6 +38,7 @@ module.exports = function(app){
   app.get('/users', userHandler.getRoomies);
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
+  app.get('/documents', documentHandler.add);
   return app;
 }
 
