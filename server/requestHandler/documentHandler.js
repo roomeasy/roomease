@@ -22,5 +22,5 @@ module.exports = {
     };
     console.log(documents);
    } // end of add:
-   documentModel 
+   
 }//end of module.exports
