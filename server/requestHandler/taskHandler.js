@@ -124,7 +124,7 @@ module.exports = {
       id: req.body.id,
       title: req.body.title,
       type: req.body.eventType,
-      event: req.body.endAt
+      end_at: req.body.endAt
     };
 
     calendarModel.addEvent(event, userId, dwellingId, function(err, results){

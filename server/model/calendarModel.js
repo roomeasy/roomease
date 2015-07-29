@@ -9,7 +9,7 @@ exports.addEvent = function(event, userId, dwellingId, cb){
 
   var queryString = "INSERT INTO calendar_events (id, title, type, end_at, author_id, dwelling_id) \
                      VALUES ("
-      + "'" + event.id + "', "
+      + "'" + event.id + ", "
       + "'" + event.title + ", "
       + "'" + event.type + ", "
       + "'" + event.end_at + ", "
