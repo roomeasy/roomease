@@ -58,6 +58,22 @@ angular.module('roomEase')
     
   }
 
+  $scope.leaveDwelling = function(){
+    var sendData = {
+      dwellingId : null
+    }
+
+    Request.dwelling.leave(sendData).then(function(data){
+      console.log(data);
+      if(data.joined) {
+        $location.path('/dashboard');
+      } else {
+        $scope.failReason = data.reason;
+        console.log(data.reason);
+      }
+    })
+  }
+
   $scope.isNumber = function(str){
     if(str === undefined || str === ""){
       return true;
