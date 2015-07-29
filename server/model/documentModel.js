@@ -7,7 +7,7 @@ exports.add = function(documents, dwellingId, userId, cb){
                      +       dwellingId + ", "
                      +       userId + ", "
                      +       documents.filesize + ", "
-                     + "'"   documents.type + "', "
+                     + "'" + documents.type + "', "
                      + "'" + documents.description + "', "
                      +       documents.data + ","
                      +       documents.paid+"') RETURNING id;";
@@ -18,4 +18,13 @@ exports.add = function(documents, dwellingId, userId, cb){
     console.log("Inside the addDocument query");
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
+
+  exports.getDocs = function(dwellingId, cb){
+  var queryString = "SELECT * FROM documents WHERE dwelling_id = " + dwellingId + ";";
+  db.query(queryString, function(err, results){
+    console.log("Inside the getDocs query");
+    err ? cb(err, null) : cb(null, results.rows);
+  });
+}
+
 }

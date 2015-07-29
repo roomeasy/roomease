@@ -2,6 +2,7 @@ var passport = require('passport');
 var userHandler = require('./requestHandler/userHandler.js');
 var taskHandler = require('./requestHandler/taskHandler.js');
 var dwellingHandler = require('./requestHandler/dwellingHandler.js');
+var documentHandler = require('./requestHandler/documentHandler.js');
 
 module.exports = function(app){
 
