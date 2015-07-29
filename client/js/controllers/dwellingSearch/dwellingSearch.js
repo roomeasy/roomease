@@ -1,7 +1,6 @@
 angular.module('roomEase')
 
 .controller('dwellingSearchCtrl', function($scope){
-  // $scope.locations = 
   var mapOptions = {
         zoom: 4,
         center: new google.maps.LatLng(40.0000, -98.0000),
