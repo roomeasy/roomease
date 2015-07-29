@@ -32,9 +32,9 @@ module.exports = function(app){
   app.post('/joinDwelling', function(req,res)  {
     isLoggedIn(req,res, userHandler.joinDwelling) 
   });
-  // app.post('/leaveDwelling', function(req,res)  {
-  //   isLoggedIn(req,res, userHandler.leaveDwelling)
-  // });
+  app.post('/leaveDwelling', function(req,res)  {
+    isLoggedIn(req,res, userHandler.leaveDwelling)
+  });
   app.post('/tasks', function(req,res)  {
     isLoggedIn(req,res, taskHandler.add)
   });
