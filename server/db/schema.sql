@@ -33,6 +33,7 @@ CREATE TABLE users (
   gender VARCHAR DEFAULT null,
   facebook_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
+  points INTEGER,
   dwelling_id INTEGER -- foreign key
 );
 
