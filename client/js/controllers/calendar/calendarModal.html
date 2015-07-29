@@ -1,24 +1,10 @@
-<div ng-include="'includes/navbar.html'"></div>
-<div class="container text-center">
-  <div class="row">
-    <h1 class="top-padding home-title text-center">Welcome Roomie</h1>
-    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
-      <mwl-calendar
-        view="calendarView"
-        current-day= "currentDay"
-        events="events"
-        view-title="calendarTitle"
-        on-event-click="eventClicked(calendarEvent)"
-        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-        on-edit-event-click="eventEdited(calendarEvent)"
-        on-delete-event-click="eventDeleted(calendarEvent)"
-        auto-open="true">
-      </mwl-calendar>
-    </div>
-    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
-    <h3>Add Event <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button></h3>
+<div class="modal-header light-purple">
+  <h3 class="modal-title">Event action occurred!</h3>
+</div>
+<div class="modal-body">
+  <!-- <p>Action: <pre>{{ vm.action }}</pre></p>
+  <p>Event: <pre>{{ vm.event | json }}</pre></p> -->
+  <h3>Add Event <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button></h3>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -64,6 +50,8 @@
         <tr>
       </tbody>
     </table>
-    </div>
-  </div>
+    
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="$close()">OK</button>
 </div>
