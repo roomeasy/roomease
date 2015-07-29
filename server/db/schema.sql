@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS dwellings CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
 DROP TABLE IF EXISTS task_instances CASCADE;
 DROP TABLE IF EXISTS documents CASCADE;
-
+DROP TABLE IF EXISTS events CASCADE;
 
 CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
@@ -66,4 +66,13 @@ CREATE TABLE documents (
   data BYTEA NOT NULL,
   paid BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (dwelling_id, user_id)
+);
+
+CREATE TABLE calendar_events (
+  id TIMESTAMP PRIMARY KEY,
+  title VARCHAR,
+  type VARCHAR DEFAULT 'info',
+  end_at TIMESTAMP,
+  author_id INTEGER references users(id),
+  dwelling_id INTEGER references dwellings(id)
 );
