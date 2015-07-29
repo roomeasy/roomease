@@ -2,7 +2,7 @@
 <div class="container text-center">
   <div class="row">
     <h1 class="top-padding home-title text-center">Welcome Roomie</h1>
-    <div class="col-sm-10 col-sm-offset-1 top-padding" style="background-color: grey">
+    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
       <mwl-calendar
         view="calendarView"
         current-day= "currentDay"
@@ -16,6 +16,37 @@
         on-delete-event-click="eventDeleted(calendarEvent)"
         auto-open="true">
       </mwl-calendar>
+    </div>
+    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
+    <h3>Add Event</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Starts At</th>
+          <th>Ends At</th>
+          <th>Remove</th>
+        </tr>  
+      </thead>
+      <tbody>
+        <tr ng-repeat="event in events track by $index">
+          <td><input type="text" class="form-control" ng-model="event.title"></td>
+          <td>
+            <select ng-model="event.type" class="form control">
+            <option value="important">Important</option>
+            <option value="warning">Warning</option>
+            <!-- Add more options for importance of event here -->
+          </td>
+          <td>
+            <p class="input-group" style:"max-width:250px">
+            <input type="text" class="form-control" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close"/>
+            <input type="checkbox" class="checkbox" ng-model=""/>
+            </p>
+          </td>
+        <tr>
+      </tbody>
+    </table>
     </div>
   </div>
 </div>
