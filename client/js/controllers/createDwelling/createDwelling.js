@@ -58,6 +58,7 @@ angular.module('roomEase')
     
   }
 
+
   $scope.isNumber = function(str){
     if(str === undefined || str === ""){
       return true;
