@@ -28,12 +28,21 @@ angular.module('roomEase')
   }
 
   $scope.addressValidate = function(){
-    if($scope.livingSpace.address.trim() === ""){
-      $scope.addressWarning = true;
-    }else{
-      $scope.addressWarning = false;
-    }
-
+    // if($scope.livingSpace.address.trim() === ""){
+    //   $scope.addressWarning = true;
+    // }else{
+    //   $scope.addressWarning = false;
+    // }
+    var geoCoder = new google.maps.Geocoder();
+    geoCoder.geocode({
+      address : $scope.livingSpace.address
+    }, function(results, status) {
+      if(status === google.maps.GeocoderStatus.OK) {
+        $scope.addressWarning = false;
+      } else {
+        $scope.addressWarning = true;
+      }
+    })
   }
 
 
