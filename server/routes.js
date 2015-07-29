@@ -23,27 +23,48 @@ module.exports = function(app){
 
   // BASIC ROUTING ----------------------------------
   //POST Requests
-  app.post('/dwellings', dwellingHandler.add);
-  app.post('/inviteRoomie', dwellingHandler.inviteRoomie);
-  app.post('/joinDwelling', userHandler.joinDwelling);
-  app.post('/tasks', taskHandler.add);
-  app.post('/taskInstances', taskHandler.updateInstance);
-  app.post('/delegateTasks', taskHandler.delegateTasks)
+  app.post('/dwellings', function(req,res)  {
+    isLoggedin(req,res,dwellingHandler.add) 
+  });
+  app.post('/inviteRoomie', function(req,res)  {
+    isLoggedin(req,res,dwellingHandler.inviteRoomie) 
+  });
+  app.post('/joinDwelling', function(req,res)  {
+    isLoggedin(req,res, userHandler.joinDwelling) 
+  });
+  app.post('/tasks', function(req,res)  {
+    isLoggedin(req,res, taskHandler.add)
+  });
+  app.post('/taskInstances', function(req,res)  {
+    isLoggedin(req,res, taskHandler.updateInstance)
+  });
+  app.post('/delegateTasks', function(req,res)  {
+    isLoggedin(req,res, taskHandler.delegateTasks)
+  });
+  
   // GET REQUESTS
-  app.get('/tasks', taskHandler.getAll);
-  app.get('/taskInstances', taskHandler.getAllInstances);
-  app.get('/myInstances', taskHandler.getUserInstances);
-  app.get('/users', userHandler.getRoomies);
-  app.get('/dwellings', dwellingHandler.getUsersDwelling);
+  app.get('/tasks', function(req,res)  {
+    isLoggedin(req,res, taskHandler.getAll)
+  });
+  app.get('/taskInstances', function(req,res)  {
+    isLoggedin(req,res, taskHandler.getAllInstances)
+  });
+  app.get('/myInstances', function(req,res)  {
+    isLoggedin(req,res, taskHandler.getUserInstances);
+  });
+  app.get('/users', function(req,res)  {
+    isLoggedin(req,res, userHandler.getRoomies)
+  });
+  app.get('/dwellings', function(req,res)  {
+    isLoggedin(req,res, dwellingHandler.getUsersDwelling)
+  });
   return app;
 }
 
 
 // route middleware to make sure a user is logged in
-  // not currently being used
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
-
   res.redirect('/#/signin');
 }
