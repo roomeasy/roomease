@@ -17,7 +17,7 @@ module.exports = {
 
     dwellingModel.add(dwelling, function (err, results){
       console.log(req.user);
-      console.log(results);
+
       userModel.updateDwellingId(req.user.id, results.id, function (err, results) {
         responseHandler(err, results, res);
       });

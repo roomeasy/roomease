@@ -1,27 +1,29 @@
 <div ng-include="'includes/navbar.html'"></div>
+<div style="float: right;">
+  <a href="/#/dwellingsearch"><i class="grow fa fa-users"></i>Search for a place</a>
+</div>
 <div class="roomie-search">
   <h1 class="home-title text-center">Roomie Search</h1>
   <input type="text" ng-model="location">
 </div>
-<a href="/#/dwellingsearch"><i class="grow fa fa-users"></i></a>
 <div class="flex-center page-wrapper">
-<div ng-repeat="user in lookingUsers | filter:location" class="user-card grow bg-main-purple">
-  <img class="user-looking" src="{{user.image}}" height="170px" width="170px">
-  <p class="user-name">{{user.name}}</p>
-  <p class="user-info">{{user.location}}</p>
-  <ul class="looking-icons">
-    <li class="star">
-      <i class="fa fa-star"></i>
-      <span>24</span>
-    </li>
-    <li class="location">
-      <i class="fa fa-birthday-cake"></i>
-      <span>{{user.age}}</span>
-    </li>
-    <li class="fb">
-      <i class="fa fa-facebook-official"></i>
-      <span>Msg</span>
-    </li>
-  </ul>
-</div>
+  <div ng-repeat="user in lookingUsers | filter:location" class="user-card grow bg-main-purple">
+    <img class="user-looking" src="{{user.image}}" height="170px" width="170px">
+    <p class="user-name">{{user.name}}</p>
+    <p class="user-info">{{user.location}}</p>
+    <ul class="looking-icons">
+      <li class="star">
+        <i class="fa fa-star"></i>
+        <span>24</span>
+      </li>
+      <li class="location">
+        <i class="fa fa-birthday-cake"></i>
+        <span>{{user.age}}</span>
+      </li>
+      <li class="fb">
+        <i class="fa fa-facebook-official"></i>
+        <span>Msg</span>
+      </li>
+    </ul>
+  </div>
 </div>
