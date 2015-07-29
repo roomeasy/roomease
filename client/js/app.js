@@ -9,7 +9,7 @@ angular.module('roomEase', [
   $urlRouterProvider.otherwise('/signin')
 
   // create states for each of our views
-  var appViews = ['taskSetup', 'createDwelling', 'signin', 'roomieSearch', 'inviteRoomies'];
+  var appViews = ['taskSetup', 'createDwelling', 'signin', 'roomieSearch','dwellingSearch', 'inviteRoomies'];
   appViews.forEach(function(stateName) {
     $stateProvider.state(stateName, {
       url: '/' + stateName.toLowerCase(),
