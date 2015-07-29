@@ -9,7 +9,7 @@ module.exports = function(app){
   // with routes.
 
   // Facebook Auth Routes
-  app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup' }));
+  app.get('/auth/facebook', passport.authenticate('facebook', { display: 'page' }));
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/#/signin' }),
     function (req, res) {
@@ -19,7 +19,7 @@ module.exports = function(app){
       } else {
         res.redirect('/#/dashboard');
       }
-  })
+  });
 
   // BASIC ROUTING ----------------------------------
   //POST Requests
