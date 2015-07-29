@@ -30,7 +30,7 @@ exports.addFacebookUser = function(user, cb){
 }
 
 exports.updateDwellingId = function(userId, dwellingId, cb) {
-
+  console.log(dwellingId);
   // Sets the dwelling_id of a provided user (w/ a provided userId)
   var queryString = "UPDATE users SET dwelling_id = " + dwellingId +
                     " WHERE id = " + userId + ";";

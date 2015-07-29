@@ -6,10 +6,10 @@ exports.findRoommates = function(houseId, cb){
   // Finds all roommates from a provided houseId
   var queryString = "SELECT * FROM users WHERE dwelling_id = " + houseId;
   db.query(queryString, function(err, results){
-    console.log('findRoomates: ', results)
+    console.log('findRoomates: ', results);
     err ? cb(err, null) : cb(null, results.rows);
   });
-}
+};
 
 exports.add = function(dwelling, cb){
 
@@ -23,16 +23,17 @@ exports.add = function(dwelling, cb){
     return num;
   }
 
-  var queryString = "INSERT INTO dwellings (address, pin, name) \
-                     VALUES ("
-                     + "'" + dwelling.address + "', "
-                     +       generatePIN() + ", "
-                     + "'" + dwelling.name + "') "
-                     + "RETURNING id;";
-  db.query(queryString, function(err, results){
+  var queryString = "INSERT INTO dwellings (address, pin, name, lat, long) VALUES ($1, $2, $3, $4, $5) RETURNING id";
+  var queryValsArr = ["'" + dwelling.address + "'",
+                            generatePIN(),
+                      "'" + dwelling.name + "'",
+                            dwelling.latLong[0],
+                            dwelling.latLong[1]
+                     ];
+  db.query(queryString, queryValsArr, function(err, results){
     err ? cb(err, null) : cb(null, results.rows[0]);
-  })
-}
+  });
+};
 
 exports.getPinByDwellingId = function(dwellingId, cb){
 
@@ -49,8 +50,8 @@ exports.getPinByDwellingId = function(dwellingId, cb){
         err ? cb(err, null) : cb(null, results.rows[0].pin)
       }
     }
-  })
-}
+  });
+};
 
 exports.getById = function(dwellingId, cb){
 
@@ -60,4 +61,4 @@ exports.getById = function(dwellingId, cb){
     console.log('Inside the dwellings getById Query');
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
-}
+};

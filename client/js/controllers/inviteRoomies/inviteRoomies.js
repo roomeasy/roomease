@@ -36,7 +36,7 @@ angular.module('roomEase')
   }
 
   $scope.validatePhone = function () {
-    if ( /\d{10}/.test($scope.roomie.phoneNumber) && $scope.roomie.phoneNumber.length === 10) {
+    if ( /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test($scope.roomie.phoneNumber)) {
       $scope.phoneWarning = false;
     } else {
       $scope.phoneWarning = true;

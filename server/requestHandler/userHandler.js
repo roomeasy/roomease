@@ -41,4 +41,16 @@ module.exports = {
       }
     })
   },
+
+  // SERVER SIDE LEAVE DWELLING FUNCTION ADDED
+  leaveDwelling : function(req, res){
+    
+    // Grab new dwelling id with null value
+    var submittedDwellingId = req.body.dwellingId;
+
+    // Update the dwellingId for user field with null
+    userModel.updateDwellingId(req.user.id, submittedDwellingId, function() {
+        res.send({joined : false});
+    })
+  }
 }
