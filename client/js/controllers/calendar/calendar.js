@@ -1,24 +1,17 @@
 angular.module('roomEase')
 
-    .controller('calendarCtrl', function ($scope, Request, $location, $modal){
+    .controller('calendarCtrl', function ($scope, Request, $location, $modal, eventAPIRequests){
         $scope.calendarView = 'month';
         $scope.currentDay = new Date();
 
-        $scope.events = [
-            {
-                title: 'Clean the Apartment', // The title of the event
-                type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-                startsAt: new Date(2015,6,30,15), // A javascript date object for when the event starts
-                endsAt: new Date(2015,6,30,17), // Optional - a javascript date object for when the event ends
-                editable: true, // If edit-event-html is set and this field is explicitly set to false then dont make it editable.
-                deletable: true, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
-                draggable: false, //Allow an event to be dragged and dropped
-                resizable: false, //Allow an event to be resizable
-                incrementsBadgeTotal: false, //If set to false then will not count towards the badge total amount on the month and year view
-                cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
-            }
-        ];
-
+        $scope.getEvents = function() {
+                var eventData = eventAPIRequests.getEvents()['$$state'];
+                console.log("logging from inside createEvent: ", eventData);
+                // return eventData['$$state'];
+                return eventData;
+                // console.log(eventData.d.$$state.value.rows);
+        }
+        
         $scope.date = function () {
             var newDate = new Date();
             var year = newDate.getFullYear();
@@ -28,6 +21,19 @@ angular.module('roomEase')
             var setDate = new Date(year, month, day, hour + 1);
             return setDate;
         }
+
+        $scope.events = [{
+            title: 'Clean the place',
+                type: 'info',
+                startsAt: $scope.date(),
+                endsAt: $scope.date(),
+                editable: true,
+                deletable: true,
+                draggable: false,
+                resizable: false,
+                incrementsBadgeTotal: false,
+                cssClass: 'a-css-class-name'
+        }];
 
         $scope.createDefaultEvent = function () {
             var defaultEvent = {
@@ -42,6 +48,19 @@ angular.module('roomEase')
                 incrementsBadgeTotal: false, //If set to false then will not count towards the badge total amount on the month and year view
                 cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
             }
+
+            eventAPIRequests.createEvent({
+                title: defaultEvent.title,
+                eventType: defaultEvent.type,
+                startAt: defaultEvent.startsAt,
+                endAt: defaultEvent.endsAt
+
+            }).then($scope.getEvents(function(err, result) {
+                console.log(result);
+                })
+            );
+
+            console.log("logging after createEvent: ", Object.keys($scope.getEvents()));
 
             return defaultEvent;
         };
