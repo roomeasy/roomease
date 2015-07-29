@@ -41,4 +41,9 @@ module.exports = {
       }
     })
   },
+
+  // SERVER SIDE LEAVE DWELLING FUNCTION ADDED
+  leaveDwelling : function(req, res){
+    // add code here
+  }
 }

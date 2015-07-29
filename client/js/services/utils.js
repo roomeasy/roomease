@@ -23,6 +23,16 @@ angular.module('roomEase')
           return response.data;
         })
       },
+      leave : function(data){
+        return $http({
+          method: 'POST',
+          url: '/leaveDwelling',
+          data: data
+        }).then(function(response){
+          console.log('inside leave dwelling create factory call : ', response);
+          return response.data;
+        })
+      },
       fetch : function () {
         return $http({
           method: 'GET',
