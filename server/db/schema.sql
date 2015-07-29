@@ -21,7 +21,9 @@ CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
   name VARCHAR unique,
-  pin INTEGER
+  pin INTEGER,
+  lat DECIMAL,
+  long DECIMAL
 );
 
 CREATE TABLE users (
