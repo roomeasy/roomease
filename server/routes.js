@@ -38,12 +38,11 @@ module.exports = function(app){
   app.get('/users', isLoggedIn, userHandler.getRoomies)
   app.get('/dwellings', isLoggedIn, dwellingHandler.getUsersDwelling)
   return app;
-
+}
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next(req, res);
   res.redirect('/#/signin');
-}
 }
