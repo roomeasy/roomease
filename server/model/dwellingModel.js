@@ -23,10 +23,12 @@ exports.add = function(dwelling, cb){
     return num;
   }
 
-  var queryString = "INSERT INTO dwellings (address, pin, name) VALUES ($1, $2, $3) RETURNING id";
+  var queryString = "INSERT INTO dwellings (address, pin, name, lat, long) VALUES ($1, $2, $3, $4, $5) RETURNING id";
   var queryValsArr = ["'" + dwelling.address + "'",
                             generatePIN(),
-                      "'" + dwelling.name + "'"
+                      "'" + dwelling.name + "'",
+                            dwelling.latLong[0],
+                            dwelling.latLong[1]
                      ];
   db.query(queryString, queryValsArr, function(err, results){
     err ? cb(err, null) : cb(null, results.rows[0]);

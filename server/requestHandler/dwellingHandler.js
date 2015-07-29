@@ -13,6 +13,7 @@ module.exports = {
     var dwelling = {
       name    : req.body.name,
       address : req.body.address,
+      latLong : req.body.latLong
     }
 
     dwellingModel.add(dwelling, function (err, results){
