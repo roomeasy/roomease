@@ -9,14 +9,16 @@ module.exports = {
     }else {
       var dwelling_id = req.user.dwelling_id;
     }
-    console.log('documentHandler');
+    console.log('documentHandler', req.body);
     var documents = {
-     field : req.body
-     field : req.body
-     field : req.body
-     field : req.body
-     field : req.body
-     field : req.body
+     file_name : req.body.file_name,
+     dwelling_id : req.body.dwellingId,
+     user_id : req.body.userId,
+     filesize : req.body.filesize,
+     type : req.body.type,
+     description : req.body.description,
+     data : req.body.data,
+     paid : req.body.paid
     };
     console.log(documents);
    } // end of add:
