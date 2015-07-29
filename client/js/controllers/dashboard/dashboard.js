@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('dashboardCtrl', function($scope, Request){
+.controller('dashboardCtrl', function ($scope, Request, $location){
   $scope.users = [];
   $scope.usersObj = {};
   $scope.dwellings = [];
@@ -33,15 +33,10 @@ angular.module('roomEase')
 
     Request.dwelling.leave(sendData).then(function(data){
       console.log(sendData);
-      if(data.joined) {
-        $location.path('/createdwelling');
-      } else {
-        $scope.failReason = data.reason;
-        console.log(data.reason);
-      }
-    })
+      $location.path('/createdwelling');
+    });
   }
-  $scope.leaveDwelling();
+  // $scope.leaveDwelling();
 
   $scope.runDelegator = function(){
     Request.task.delegate().then(function(results){
