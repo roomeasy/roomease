@@ -19,10 +19,17 @@ exports.add = function(documents, dwellingId, userId, cb){
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
 
-  exports.getDocs = function(dwellingId, cb){
+  exports.getDocsDwelling = function(dwellingId, cb){
   var queryString = "SELECT * FROM documents WHERE dwelling_id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
-    console.log("Inside the getDocs query");
+    console.log("Inside the getDocs DWELLINGS query");
+    err ? cb(err, null) : cb(null, results.rows);
+  });
+},
+  exports.getDocsUsers = function(userId, cb){
+  var queryString = "SELECT * FROM documents WHERE user_id = " + userId + ";";
+  db.query(queryString, function(err, results){
+    console.log("Inside the getDocs USER query");
     err ? cb(err, null) : cb(null, results.rows);
   });
 }

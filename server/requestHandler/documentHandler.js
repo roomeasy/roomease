@@ -28,7 +28,7 @@ module.exports = {
     // Gets all tasks based of current users dwelling_id
     var dwelling_id = req.user.dwelling_id;
     console.log('inside the documents getALL DOCS handler');
-    documentsModel.getAll(dwelling_id, function(err, results){
+    documentsModel.getDocsDwelling(dwelling_id, function(err, results){
     responseHandler(err, results, res);
     });
   },
@@ -37,7 +37,7 @@ module.exports = {
     // Gets all tasks based of current users dwelling_id
     var user_id = req.user_id;
     console.log('inside the documents get USER DOCS handler');
-    documentsModel.getAll(user_id, function(err, results){
+    documentsModel.getDocsUsers(user_id, function(err, results){
     responseHandler(err, results, res);
     });
   }
