@@ -28,13 +28,15 @@ module.exports = function(app){
   app.post('/joinDwelling', userHandler.joinDwelling);
   app.post('/tasks', taskHandler.add);
   app.post('/taskInstances', taskHandler.updateInstance);
-  app.post('/delegateTasks', taskHandler.delegateTasks)
+  app.post('/delegateTasks', taskHandler.delegateTasks);
+  app.post('/events', taskHandler.addCalendarEvent);
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
   app.get('/myInstances', taskHandler.getUserInstances);
   app.get('/users', userHandler.getRoomies);
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
+  app.get('/events', taskHandler.getCalendarEventsByDwelling);
   return app;
 }
 
