@@ -2,3 +2,5 @@ client/bower_components/
 node_modules/
 server/config/auth.js
 .DS_Store
+
+npm-debug.log
