@@ -5,12 +5,9 @@ angular.module('roomEase')
         $scope.currentDay = new Date();
 
         $scope.getEvents = function() {
-                var eventData = eventAPIRequests.getEvents()['$$state'];
-                console.log("logging from inside createEvent: ", eventData);
-                // return eventData['$$state'];
-                return eventData;
-                // console.log(eventData.d.$$state.value.rows);
-        }
+            eventAPIRequests.getEvents().then(function(res){
+              console.log(res);
+          });
         
         $scope.date = function () {
             var newDate = new Date();
@@ -47,7 +44,7 @@ angular.module('roomEase')
                 resizable: false, //Allow an event to be resizable
                 incrementsBadgeTotal: false, //If set to false then will not count towards the badge total amount on the month and year view
                 cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
-            }
+            };
 
             eventAPIRequests.createEvent({
                 title: defaultEvent.title,
