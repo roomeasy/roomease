@@ -96,7 +96,7 @@ module.exports = function(app){
   app.get('/users', userHandler.getRoomies);
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
-  app.get('/documents', documentHandler.add);
+  //app.get('/documents', documentHandler.add);
   app.get('/documents/users', documentHandler.getAllDocsUser);
   app.get('/documents/dwelling', documentHandler.getAllDocs);
   return app;
