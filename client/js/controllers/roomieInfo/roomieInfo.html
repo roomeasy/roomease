@@ -1,0 +1,22 @@
+
+<div class="roomie-search">
+  <h1 class="home-title text-center">Hello Roomie</h1>
+  <h1 class="home-title text-center">Tell us about yourself</h1>
+</div>
+<div class="flex-center page-wrapper">
+  <div class="text-center">Where are you from?</div>
+  <input ng-model="newRoomie.location" type="text" ng-model="location">
+  <div class="text-center">How old are you?</div>
+  <input ng-model="newRoomie.age" type="text" ng-model="age">
+  <div class="text-center">Do you smoke?</div>
+  <input ng-model="newRoomie.smokes" type="radio" name="smoke" value="Yes">Yes<br>
+  <input ng-model="newRoomie.smokes" type="radio" name="smoke" value="No">No<br>
+  <input ng-model="newRoomie.smokes" type="radio" name="smoke" value="Weed">Smoke what?<br>
+  <div class="text-center">Do you vape?</div>
+  <input ng-model="newRoomie.vapes" type="radio" name="vape" value="Yes">Yes<br>
+  <input ng-model="newRoomie.vapes" type="radio" name="vape" value="No">No<br>
+  <div class="text-center">Pets?</div>
+  <input ng-model="newRoomie.pets" type="radio" name="pets" value="Yes">Yes<br>
+  <input ng-model="newRoomie.pets" type="radio" name="pets" value="No">No<br>
+  <a class="button bg-dark-purple ls-button" href="" ng-click="submitInfo(newRoomie)">All done</a>
+</div>
