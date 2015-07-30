@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('taskSetupCtrl', function($scope, $location, Request){
+.controller('taskSetupCtrl', function ($scope, $location, Request){
   $scope.tasks = [];
 
   $scope.task = {
