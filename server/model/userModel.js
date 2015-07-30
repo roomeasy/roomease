@@ -69,3 +69,14 @@ exports.findUserByFacebookId = function(id, cb){
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
 }
+
+exports.findAllUsers = function(cb) {
+
+  // find all users
+  console.log('Inside the users find query');
+  var queryString = "SELECT * FROM users;";
+  db.query(queryString, function(err, results) {
+    // console.log('findUser: ', results)
+    err ? cb(err, null) : cb(null, results.rows);
+  });
+}
