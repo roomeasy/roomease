@@ -26,7 +26,24 @@ module.exports = function(app){
   // This routes module is exporting a function that will decorate the app (express server instance)
   // with routes.
 
-  // Facebook Auth Routes
+  /**
+   * TWITTER AUTH ROUTES
+   */
+  app.get('/auth/twitter', passport.authenticate('twitter'));
+  app.get('auth/twitter/callback',
+      passport.authenticate('twitter', { failureRedirect: '/#/sigin' }),
+      function (req, res) {
+        //redirects new users to the proper place
+        if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
+          res.redirect('/#/createdwelling');
+        } else {
+          res.redirect('/#/dashboard');
+        }
+      });
+
+  /**
+   * FACEBOOK AUTH ROUTES
+   */
   app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup' }));
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/#/signin' }),
@@ -37,7 +54,24 @@ module.exports = function(app){
       } else {
         res.redirect('/#/dashboard');
       }
-  })
+  });
+
+  /**
+   * GOOGLE AUTH ROUTES
+   */
+  app.get('/auth/google', passport.authenticate('google', {scope: [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email']}));
+  app.get('auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/#/sigin' }),
+      function (req, res) {
+        //redirects new users to the proper place
+        if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
+          res.redirect('/#/createdwelling');
+        } else {
+          res.redirect('/#/dashboard');
+        }
+    });
 
   // BASIC ROUTING ----------------------------------
   //POST Requests

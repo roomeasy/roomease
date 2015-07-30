@@ -15,8 +15,8 @@ exports.getByDwellingId = function(dwellingId, cb){
 exports.addFacebookUser = function(user, cb){
 
   // addFacebookUser : insert a new user row. Called by Passport.js
-  var queryString = "INSERT INTO users (facebook_id, picture, gender, username) VALUES ("
-                     + "'" + user.facebook_id + "', "
+  var queryString = "INSERT INTO users (roomease_id, picture, gender, username) VALUES ("
+                     + "'" + user.roomease_id + "', "
                      + "'" + user.picture + "', "
                      + "'" + user.gender + "', "
                      // + "'" + user.facebook_token + "', "

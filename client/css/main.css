@@ -4,7 +4,9 @@
 .bg-dark-purple {background: #1f253d;}
 .bg-main-purple {background: #394264;}
 .bg-purple-hover {background: #50597b;}
-.bg-teal {background: #11A8AB;}
+.bg-teal {background: #11A8AB;} /*facebook*/
+.bg-blue {background: #394264;} /*google*/
+.bg-grey {background: #787681} /*twitter*/
 .bg-red {background: #e64c65;}
 
 	/* Text Colors */
