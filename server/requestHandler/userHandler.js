@@ -5,6 +5,19 @@ var responseHandler = require('./responseHandler.js');
 // This file is responsible for managing all user-related endpoints
 
 module.exports = {
+  createProfile : function(req, res) {
+    var userId = req.user.userId;
+    userModel.insertProfile(user, userId, function(err, results){
+      responseHandler(err, results, res);
+    });
+  },
+
+  getAllUsers : function(req, res){
+    userModel.findAllUsers(function(err, results){
+      responseHandler(err, results, res);
+    });
+  },
+
   getRoomies : function(req, res){
     // Called by the GET '/users' endpoint.
     // Retrieves all the roommates from a common dwelling ID.
@@ -21,7 +34,7 @@ module.exports = {
   addPoints : function(req, res) {
     var userId  = req.user.userId;  
     var points  = req.user.points++;
-    userModel.updatePoints(userID, points, function() {
+    userModel.updatePoints(userId, points, function() {
       if (err) { res.send(err)}
       else { res.send({joined : true}) };
     })
@@ -30,7 +43,7 @@ module.exports = {
   decreasePoints : function(req, res) {
     var userId  = req.user.userId;  
     var points  = req.user.points--;
-    userModel.updatePoints(userID, points, function(err) {
+    userModel.updatePoints(userId, points, function(err) {
       if (err) { res.send(err)}
       else { res.send({joined : true}) };
     })

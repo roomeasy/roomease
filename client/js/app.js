@@ -9,14 +9,15 @@ angular.module('roomEase', [
   $urlRouterProvider.otherwise('/signin')
 
   // create states for each of our views
-  var appViews = ['taskSetup', 'createDwelling', 'signin', 'roomieSearch','dwellingSearch', 'inviteRoomies'];
+  var appViews = ['taskSetup', 'createDwelling', 'signin', 'roomieSearch','dwellingSearch', 'inviteRoomies', 'roomieInfo'];
   appViews.forEach(function(stateName) {
     $stateProvider.state(stateName, {
       url: '/' + stateName.toLowerCase(),
       templateUrl: '/js/controllers/' + stateName + '/' + stateName + '.html',
       controller: stateName + 'Ctrl'
     })
-    //.otherwise('dashboard');
+
+//    .otherwise('dashboard');
   });
   
   // handle dashboard separately since it has nested views

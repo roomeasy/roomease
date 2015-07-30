@@ -114,6 +114,12 @@ angular.module('roomEase')
         .then(function(resp) {
           return resp.data;
         })
+      },
+      fetchAll : function(){
+        return $http({
+          method: 'GET',
+          url: '/allUsers'
+        })
       }
     },
 
