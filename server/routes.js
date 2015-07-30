@@ -39,7 +39,7 @@ module.exports = function(app){
     isLoggedIn(req, res, taskHandler.add);
   });
   app.post('/taskInstances', function(req, res) {
-    isLoggedIn(req, res, taskHandler.updateInstance)
+    isLoggedIn(req, res, taskHandler.updateInstance);
   });
   app.post('/delegateTasks',function(req, res) {
     isLoggedIn(req, res, taskHandler.delegateTasks);
@@ -55,7 +55,10 @@ module.exports = function(app){
     isLoggedIn(req, res, taskHandler.getUserInstances);
   });
   app.get('/users', function(req, res) {
-    isLoggedIn(req, res, userHandler.getRoomies)
+    isLoggedIn(req, res, userHandler.getRoomies);
+  });
+  app.get('/allUsers', function(req, res) {
+    isLoggedIn(req, res, userHandler.getUsers);
   });
   app.get('/dwellings', function(req, res) {
     isLoggedIn(req, res, dwellingHandler.getDwellings);

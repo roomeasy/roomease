@@ -36,7 +36,7 @@ angular.module('roomEase')
       $location.path('/createdwelling');
     });
   }
-  // $scope.leaveDwelling();
+
 
   $scope.runDelegator = function(){
     Request.task.delegate().then(function(results){
