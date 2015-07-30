@@ -2,7 +2,11 @@ var passport = require('passport');
 var userHandler = require('./requestHandler/userHandler.js');
 var taskHandler = require('./requestHandler/taskHandler.js');
 var dwellingHandler = require('./requestHandler/dwellingHandler.js');
+
 var documentHandler = require('./requestHandler/documentHandler.js');
+
+var fs = require('fs')
+
 
 module.exports = function(app){
 
@@ -34,6 +38,24 @@ module.exports = function(app){
   app.post('/documentsAdd', documentHandler.add);
   app.post('/documentsUsers', documentHandler.getAllDocsUser);
   app.post('/documentsDwelling', documentHandler.getAllDocs);
+
+  app.post('/documents/upload', function (req, res){
+    var data = '';
+    fs.writeFileSync('temp.png', '');
+    req.on('data', function (chunk){
+     console.log(typeof chunk)
+      data += chunk
+      fs.appendFile('temp.png', chunk, function(){})
+    })
+    req.on('end', function (){
+       fs.writeFile('data.png', data,  {'encoding': 'hex'}, function(){
+         console.log('donezo data')
+       })
+    console.log(data.length)
+    res.send('donezo')
+    })
+
+  })
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
