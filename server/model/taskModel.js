@@ -6,11 +6,11 @@ exports.add = function(task, dwellingId, cb){
   var queryString = "INSERT INTO tasks (name, dwelling_id, frequency, description, start_date) \
                      VALUES ($1, $2, $3, $4, $5) RETURNING id;";
   var queryValsArr = [
-                      "'" + task.name + "'",
-                            dwellingId,
-                            task.frequency,
-                      "'" + task.description + "'",
-                            task.start_date
+                      task.name,
+                      dwellingId,
+                      task.frequency,
+                      task.description,
+                      task.start_date
                      ];
   console.log('queryString in addTask(): ', queryString);
   db.query(queryString, queryValsArr, function(err, results){
