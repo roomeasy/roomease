@@ -37,7 +37,12 @@ CREATE TABLE users (
   facebook_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
   points INTEGER,
-  dwelling_id INTEGER DEFAULT 0
+  dwelling_id INTEGER DEFAULT 0,
+  age INTEGER DEFAULT 0,
+  location VARCHAR DEFAULT 'The Moon',
+  smoker BOOLEAN DEFAULT FALSE,
+  vaper BOOLEAN DEFAULT FALSE,
+  pet BOOLEAN DEFAULT FALSE
 );
 
 -- each task has 1 user
