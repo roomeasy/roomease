@@ -13,10 +13,12 @@ module.exports = {
     var dwelling = {
       name    : req.body.name,
       address : req.body.address,
+      latLong : req.body.latLong
     }
 
     dwellingModel.add(dwelling, function (err, results){
       console.log(req.user);
+
       userModel.updateDwellingId(req.user.id, results.id, function (err, results) {
         responseHandler(err, results, res);
       });

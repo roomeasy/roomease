@@ -10,15 +10,24 @@ exports.getByDwellingId = function(dwellingId, cb){
     console.log('Inside the users getByDwellingId Query');
     err ? cb(err, null) : cb(null, results.rows)
   });
+},
+
+exports.updatePoints = function(userId, points, cb) {
+  var queryString = "UPDATE users SET points =" + points +
+                    "WHERE id = " + userId + ";";
+  db.query(queryString, function(err, results) {
+    err ? cb(err, null) : cb(null, results);
+  })
 }
 
 exports.addFacebookUser = function(user, cb){
 
   // addFacebookUser : insert a new user row. Called by Passport.js
-  var queryString = "INSERT INTO users (facebook_id, picture, gender, username) VALUES ("
+  var queryString = "INSERT INTO users (facebook_id, picture, gender, points, username) VALUES ("
                      + "'" + user.facebook_id + "', "
                      + "'" + user.picture + "', "
                      + "'" + user.gender + "', "
+                     + "'" + user.points + "',"
                      // + "'" + user.facebook_token + "', "
                      + "'" + user.username + "') RETURNING id;";
 
@@ -30,7 +39,7 @@ exports.addFacebookUser = function(user, cb){
 }
 
 exports.updateDwellingId = function(userId, dwellingId, cb) {
-
+  console.log(dwellingId);
   // Sets the dwelling_id of a provided user (w/ a provided userId)
   var queryString = "UPDATE users SET dwelling_id = " + dwellingId +
                     " WHERE id = " + userId + ";";
