@@ -4,8 +4,8 @@ var db = require('../db/db.js').db;
 exports.findRoommates = function(houseId, cb){
 
   // Finds all roommates from a provided houseId
-  var queryString = "SELECT * FROM users WHERE dwelling_id = " + houseId;
-  db.query(queryString, function(err, results){
+  var queryString = "SELECT * FROM users WHERE dwelling_id = $1;";
+  db.query(queryString, [houseId], function(err, results){
     console.log('findRoomates: ', results);
     err ? cb(err, null) : cb(null, results.rows);
   });
