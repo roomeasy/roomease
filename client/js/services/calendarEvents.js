@@ -6,10 +6,29 @@ angular.module('roomEase')
             console.log('posting new event', data);
             return $http({
               method: 'POST',
-              url: '/events',
+              url: '/addEvent',
               data: data
             }).then(function(response){
-              // console.log('inside createEvent: ', response);
+              return response.data;
+            })
+          },
+          deleteEvent : function(data){
+            console.log('deleting event', data);
+            return $http({
+              method: 'POST',
+              url: '/deleteEvent',
+              data: data
+            }).then(function(response){
+              return response.data;
+            })
+          },
+          updateEvent : function(data){
+            console.log('updating event', data);
+            return $http({
+              method: 'POST',
+              url: '/updateEvent',
+              data: data
+            }).then(function(response){
               return response.data;
             })
           },
@@ -18,7 +37,6 @@ angular.module('roomEase')
               method: 'GET',
               url: '/events'
             }).then(function(response){
-              // console.log('inside getEvents : ', response);
               return response.data;
             })
           },

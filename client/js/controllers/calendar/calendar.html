@@ -1,15 +1,14 @@
 <div ng-include="'includes/navbar.html'"></div>
 <div class="container text-center" ng-controller="calendarCtrl">
   <div class="row">
-    <h1 class="top-padding home-title text-center">Welcome Roomie</h1>
+    <!-- <h1 class="top-padding home-title text-center">Welcome Roomie</h1> -->
+
     <!-- BEGIN View Menu -->
-    <h2 class="text-center">{{ calendarTitle }}</h2>
+    <h2 class="text-center">{{ calendarTitle }}
 
-          <div class="row">
+          <!-- <div class="row text-center"> -->
 
-            <div class="col-md-6 text-center">
               <div class="btn-group">
-
                 <button
                   class="btn btn-primary"
                   mwl-date-modifier
@@ -32,22 +31,19 @@
                   Next
                 </button>
               </div>
-            </div>
+
+
+    <!-- BEGIN Create New Event Button -->
+    <button type="button" class="btn btn-info" ng-click="createDefaultEvent()">Create New Event</button>
+    <!-- END Create New Event Button -->
 
             <br class="visible-xs visible-sm">
 
-            <div class="col-md-6 text-center">
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'year'">Year</label>
-                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'month'">Month</label>
-                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'week'">Week</label>
-                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'day'">Day</label>
-              </div>
-            </div>
-
-          </div>
+          <!-- </div> -->
+    </h2>
     <!-- END View Menu -->
-    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
+
+    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; margin-bottom:20px; padding:10px">
       <mwl-calendar
         events="events"
         view="calendarView"
@@ -64,6 +60,10 @@
         on-drill-down-click="false">
       </mwl-calendar>
     </div>
+
+
+
+    <!--
     <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
     <h3>Add Event <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button></h3>
     <table class="table table-bordered">
@@ -87,7 +87,6 @@
             <option value="inverse">Inverse</option>
             <option value="success">Success</option>
             <option value="special">Special</option>
-            <!-- Add more options for importance of event here -->
           </td>
           <td>
             <p class="input-group" style="max-width:250px">
@@ -114,6 +113,8 @@
     </div>
   </div>
 </div>
+
+-->
 
 <!-- Modal Template -->
 
@@ -151,7 +152,7 @@
       </div>
     </form>
   </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="$close()">OK</button>
+  <div class="modal-footer" ng-controller="calendarCtrl">
+    <button class="btn btn-primary btn-sm" ng-click="updateEvent(vm.event); $close()">OK</button>
   </div>
 </script>
