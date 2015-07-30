@@ -17,7 +17,7 @@ exports.add = function(documents, dwellingId, userId, cb){
     console.log("Inside the addDocument query");
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
-
+},
   exports.getDocsDwelling = function(dwellingId, cb){
   var queryString = "SELECT * FROM documents WHERE dwelling_id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
@@ -40,4 +40,3 @@ exports.deleteDoc = function(documentId, cb){
   });
 }
 
-}

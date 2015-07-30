@@ -23,6 +23,9 @@ module.exports = {
       paid : req.body.paid
     };
     console.log(documents);
+    documentModel.add(documents, userId, dwellingId, function(err, results){
+      responseHandler(err, results, res);
+    })
    }, // end of add:
    
   getAllDocs : function(req, res){
@@ -35,9 +38,7 @@ module.exports = {
     });
   },
     
-  getAllDocsUser : function(req, res){
-    // Called by the GET '/tasks' endpoint
-    // Gets all tasks based of current users dwelling_id
+    getAllDocsUser : function(req, res){
     var user_id = req.user_id;
     console.log('inside the documents get USER DOCS handler');
     documentModel.getDocsUsers(user_id, function(err, results){
