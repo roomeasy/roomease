@@ -39,16 +39,44 @@ module.exports = function(passport) {
       },
 
       function(req, token, tokenSecret, profile, done){
-        var newUser = {};
 
-        newUser.gender = null;
-        newUser.twitter_id = profile.id;
-        newUser.image = profile._json.image.url;
-        newUser.username = profile.displayName;
+        // asynchronous
+        process.nextTick(function() {
+          var roomease_id = profile.id;
 
-        done(null, newUser);
-      }
-  ));
+          // find the user in the database based on their roomease_id
+          User.findUserByRoomeaseId(roomease_id, function(err, user) {
+
+            // if there is an error, stop everything and return that
+            // i.e. an error connecting to the database
+            if (err) return done(err);
+
+            // if the user is found, then log them in
+            if (user) {
+              return done(null, user);
+            } else {
+
+              // if there is no user found with that roomease_id, create them
+              var newUser = {};
+
+              // take information returned from facebook and using that data,
+              // parse through it and make a newUser object.
+              newUser.gender         = null;
+              newUser.roomease_id    = profile.id;
+              newUser.picture        = profile._json.image.url;
+              newUser.username       = profile.displayName;
+
+              // save our user to the database
+              User.addUser(newUser, function(err, results) {
+                if (err) throw err;
+
+                // if successful, return the new user
+                return done(null, newUser);
+              });
+            }
+          });
+        });
+      }));
 
   // =========================================================================
   // GOOGLE ================================================================
@@ -60,16 +88,44 @@ module.exports = function(passport) {
     callbackURL: auth.googleAuth.callbackURL},
 
       function(req, accessToken, refreshToken, profile, done){
-        var newUser = {};
 
-        newUser.gender = profile.gender;
-        newUser.google_id = profile.id;
-        newUser.image = profile._json.image.url;
-        newUser.username = profile.displayName;
+        // asynchronous
+        process.nextTick(function() {
+          var roomease_id = profile.id;
 
-        done(null, newUser);
-    }
-  ));
+          // find the user in the database based on their facebook id
+          User.findUserByRoomeaseId(roomease_id, function(err, user) {
+
+            // if there is an error, stop everything and return that
+            // i.e. an error connecting to the database
+            if (err) return done(err);
+
+            // if the user is found, then log them in
+            if (user) {
+              return done(null, user);
+            } else {
+
+              // if there is no user found with that facebook id, create them
+              var newUser = {};
+
+              // take information returned from facebook and using that data,
+              // parse through it and make a newUser object.
+              newUser.gender         = profile.gender;
+              newUser.roomease_id    = profile.id;
+              newUser.picture        = profile._json.image.url;
+              newUser.username       = profile.displayName;
+
+              // save our user to the database
+              User.addUser(newUser, function(err, results) {
+                if (err) throw err;
+
+                // if successful, return the new user
+                return done(null, newUser);
+              });
+            }
+          });
+        });
+      }));
 
 
   // =========================================================================
@@ -89,10 +145,10 @@ module.exports = function(passport) {
 
     // asynchronous
     process.nextTick(function() {
-      var facebook_id = profile.id;
+      var roomease_id = profile.id;
 
       // find the user in the database based on their facebook id
-      User.findUserByFacebookId(facebook_id, function(err, user) {
+      User.findUserByRoomeaseId(roomease_id, function(err, user) {
 
         // if there is an error, stop everything and return that
         // i.e. an error connecting to the database
@@ -109,12 +165,12 @@ module.exports = function(passport) {
             // take information returned from facebook and using that data,
             // parse through it and make a newUser object.
             newUser.gender         = profile.gender;
-            newUser.facebook_id    = profile.id;
+            newUser.roomease_id    = profile.id;
             newUser.picture        = profile.photos[0].value;
             newUser.username       = profile.displayName;
 
             // save our user to the database
-            User.addFacebookUser(newUser, function(err, results) {
+            User.addUser(newUser, function(err, results) {
               if (err) throw err;
 
               // if successful, return the new user

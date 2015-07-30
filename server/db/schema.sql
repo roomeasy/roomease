@@ -30,7 +30,7 @@ CREATE TABLE users (
   username VARCHAR,
   picture VARCHAR DEFAULT null,
   gender VARCHAR DEFAULT null,
-  facebook_id BIGINT,
+  roomease_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
   dwelling_id INTEGER references dwellings(id) -- foreign key
 );
