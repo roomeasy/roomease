@@ -208,6 +208,10 @@ a:visited {color: white;}
   flex-wrap: wrap;
   justify-content: center;
 }
+.search-nav {
+  padding:20px;
+  color: #9099b7
+}
 .page-wrapper {padding: 0 100px;}
 .roomie-search {
   text-align: center;
