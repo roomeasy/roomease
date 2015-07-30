@@ -291,6 +291,8 @@ a:visited {color: white;}
 .nav-tabs.nav-justified > li > a {border: none;}
 
 .top-padding {padding-top: 50px;}
+.bottom-padding {padding-bottom: 50px;}
+
 .ls-padding {padding-top: 150px;}
 .user-image {
   border-radius: 50%;
@@ -342,3 +344,15 @@ small.ng-binding {color: black;}
   margin: 0 auto;
 }
 .delegate-group {text-align: center;}
+
+/*
+* ================================= Legacy =======================================
+*/
+.drop-box {
+  text-align: center;
+  top: 10px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border: dashed 3px #394264;
+  border-radius: 5px;
+}

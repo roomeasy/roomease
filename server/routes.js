@@ -35,25 +35,26 @@ module.exports = function(app){
   app.post('/taskInstances', taskHandler.updateInstance);
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
-  app.post('/documentsAdd', documentHandler.add);
-  app.post('/documentsUsers', documentHandler.getAllDocsUser);
-  app.post('/documentsDwelling', documentHandler.getAllDocs);
+  app.post('/documents/add', documentHandler.add);
+  app.post('/documents/users', documentHandler.getAllDocsUser);
+  app.post('/documents/dwelling', documentHandler.getAllDocs);
 
   app.post('/documents/upload', function (req, res){
     var data = '';
+
+    //clear existing file
     fs.writeFileSync('temp.png', '');
     req.on('data', function (chunk){
-     console.log(typeof chunk)
-      data += chunk
+      //data += chunk.toString('hex');
       fs.appendFile('temp.png', chunk, function(){})
     })
-    req.on('end', function (){
-       fs.writeFile('data.png', data,  {'encoding': 'hex'}, function(){
-         console.log('donezo data')
-       })
-    console.log(data.length)
-    res.send('donezo')
-    })
+    // req.on('end', function (){
+    //    fs.writeFile('data.png', data,  {'encoding': 'hex'}, function(){
+    //      console.log('donezo data')
+    //   })
+     // console.log(data.length)
+    //});
+      res.send('donezo')
 
   })
   // GET REQUESTS
@@ -64,8 +65,8 @@ module.exports = function(app){
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
   app.get('/documents', documentHandler.add);
-  app.get('/documentsUsers', documentHandler.getAllDocsUser);
-  app.get('/documentsDwelling', documentHandler.getAllDocs);
+  app.get('/documents/users', documentHandler.getAllDocsUser);
+  app.get('/documents/dwelling', documentHandler.getAllDocs);
   return app;
 }
 

@@ -3,6 +3,7 @@ angular.module('roomEase', [
   'ui.router',
   'ui.bootstrap',
   'ngAnimate',
+  'ngFileUpload',
   'mwl.calendar'
 ])
 
@@ -36,5 +37,20 @@ angular.module('roomEase', [
     // url: none, because this is a child/nested state
     templateUrl: '/js/controllers/dashboard/taskHistory.html',
     controller: 'tasksHistoryCtrl'
+  })
+  .state('documents', {
+    url: '/documents',
+    abstract: true,
+    templateUrl: '/js/controllers/documents/documents.html',
+    controller: 'DocumentsCtrl'
+  })
+  .state('documents.yourDocs', {
+    url: '',
+    templateUrl: '/js/controllers/documents/yourDocs.html',
+    controller: 'UserDocsCtrl'
+  })
+  .state('documents.docHistory', {
+    templateUrl: '/js/controllers/documents/docHistory.html',
+    controller: 'DocHistoryCtrl'
   })
 })
