@@ -7,16 +7,18 @@ module.exports = {
   add: function(req, res){
     // Called by the POST '/dwellings' endpoint
     // Adds a dwelling using the provided name + address information
-    console.log('inside dwelling add request handler');
+    console.log('inside dwelling add request handler: ', req.body);
 
     //data packaging
     var dwelling = {
       name    : req.body.name,
       address : req.body.address,
+      latLong : req.body.latLong
     }
 
     dwellingModel.add(dwelling, function (err, results){
       console.log(req.user);
+
       userModel.updateDwellingId(req.user.id, results.id, function (err, results) {
         responseHandler(err, results, res);
       });
@@ -70,4 +72,15 @@ module.exports = {
       responseHandler(err, results, res);
     });
   },
+
+  getDwellings : function(req, res){
+
+    dwellingModel.getAllDwellings(function(err, results){
+      responseHandler(err, results, res);
+    });
+  }
 }
+
+
+
+
