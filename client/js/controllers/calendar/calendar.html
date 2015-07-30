@@ -67,3 +67,44 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Template -->
+
+<script type="text/ng-template" id="modalContent.html">
+  <div class="modal-header">
+  <h3 class="modal-title dark-purple">Event Details</h3>
+  </div>
+
+  <div class="modal-body" ng-controller="calendarCtrl">
+    <form class="form-horizontal">
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">Title:</span>
+        <input type="text" class="form-control cleanInput" placeholder="Enter Title" aria-describedby="basic-addon1" ng-model="vm.event.title">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">Type:</span>
+        <select id="eventType" ng-model="vm.event.type" class="input-sm">
+          <option class="bg-purple-hover" value="important">Important</option>
+          <option class="dark-purple" value="warning">Warning</option>
+          <option class="dark-purple" value="info">Info</option>
+          <option class="dark-purple" value="inverse">Inverse</option>
+          <option class="dark-purple" value="success">Success</option>
+          <option class="dark-purple" value="special">Special</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">Start:</span>
+        <input type="text" id="eventStart" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="vm.event.startsAt" is-open="vm.event.startOpen" close-text="Close" placeholder="Enter Start Date"/>
+        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">End: </span>
+        <input type="text" id="eventEnd" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="vm.event.endsAt" is-open="vm.event.endOpen" close-text="Close" placeholder="Enter End Date"/>
+        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary btn-sm" ng-click="$close()">OK</button>
+  </div>
+</script>

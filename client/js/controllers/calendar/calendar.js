@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-    .controller('calendarCtrl', function ($scope, Request, $location, $modal, eventAPIRequests){
+    .controller('calendarCtrl', function ($scope, Request, $location, $modal, $log, eventAPIRequests){
         $scope.calendarView = 'month';
         $scope.currentDay = new Date();
 
@@ -9,6 +9,13 @@ angular.module('roomEase')
               console.log("response: ", res);
               $scope.events = [];
               for (var i = 0; i < res.length; i++) {
+                  // $scope.events[i].title = res[i].title;
+                  // $scope.events[i].type = res[i].type;
+                  // $scope.events[i].startsAt = res[i].start_at;
+                  // $scope.events[i].endsAt = res[i].end_at;
+                  // $scope.events[i].editable = true;
+                  // $scope.events[i].deletable = true;
+                  // $scope.events[i].incrementsBadgeTotal = true;
                   $scope.events.push(res[i]);
               };
             });
@@ -24,7 +31,29 @@ angular.module('roomEase')
             return setDate;
         };
 
-        $scope.events = $scope.getEvents();
+        // $scope.events = $scope.getEvents();
+
+        //Temp events for testing without db
+        $scope.events = [
+            {
+                title: "Clean house",
+                type: 'info',
+                startsAt: new Date(2015,6,15,12),
+                endsAt: new Date(2015,6,15,12),
+            },
+            {
+                title: "Throw out Gary's stuff",
+                type: 'warning',
+                startsAt: new Date(2015,6,22,12),
+                endsAt: new Date(2015,6,22,12),
+            },
+            {
+                title: "Install projector",
+                type: 'inverse',
+                startsAt: new Date(2015,6,28,12),
+                endsAt: new Date(2015,6,28,12),
+            }
+        ];
 
         $scope.createDefaultEvent = function () {
             var defaultEvent = {
@@ -54,37 +83,42 @@ angular.module('roomEase')
             return defaultEvent;
         };
 
-        $scope.toggle = function($event, field, event) {
-          $event.preventDefault();
-          $event.stopPropagation();
-          event[field] = !event[field];
-        };
+// Modal
 
-        function showModal(action, event) {
-          $modal.open({
-            templateUrl: './js/controllers/calendar/calendarModal.html',
-            controller: function() {
-              var vm = this;
-              vm.action = action;
-              vm.event = event;
-            },
-            controllerAs: 'vm'
-          });
-        }
+      function showModal(action, event) {
+      $modal.open({
+        templateUrl: 'modalContent.html',
+        controller: function() {
+          var vm = this;
+          vm.action = action;
+          vm.event = event;
+        },
+        controllerAs: 'vm'
+      });
+    }
 
-        $scope.eventClicked = function(event) {
-            showModal('Clicked', event);
-            console.log('Event clicked.');
-        };
+    $scope.eventClicked = function(event) {
+      showModal('Clicked', event);
+    };
 
-        $scope.eventEdited = function(event) {
-            showModal('Clicked', event);
-            console.log('Pencil edit button clicked.');
-        };
+    $scope.eventEdited = function(event) {
+      showModal('Edited', event);
+    };
 
-        $scope.eventDeleted = function(event) {
-            $scope.events.slice(event, 1);
-            console.log('eventDeleted called.');
-        }
+    $scope.eventDeleted = function(event) {
+      // showModal('Deleted', event);
+      $scope.events.slice(event,1);
+      console.log($scope.events);
+    };
 
-    });
+    $scope.eventTimesChanged = function(event) {
+      showModal('Dropped or resized', event);
+    };
+
+    $scope.toggle = function($event, field, event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      event[field] = !event[field];
+    };
+
+});
