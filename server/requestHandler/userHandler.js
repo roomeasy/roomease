@@ -18,12 +18,31 @@ module.exports = {
     });
   },
 
+  addPoints : function(req, res) {
+    var userId  = req.user.userId;  
+    var points  = req.user.points++;
+    userModel.updatePoints(userID, points, function() {
+      if (err) { res.send(err)}
+      else { res.send({joined : true}) };
+    })
+  },
+
+  decreasePoints : function(req, res) {
+    var userId  = req.user.userId;  
+    var points  = req.user.points--;
+    userModel.updatePoints(userID, points, function(err) {
+      if (err) { res.send(err)}
+      else { res.send({joined : true}) };
+    })
+  },
+
   joinDwelling : function(req, res){
     // Called by the POST 'joinDwelling' endpoint.
     // Makes a user join a dwelling
 
     var submittedDwellingId = req.body.dwellingId;
     var submittedPin = req.body.pin;
+
     //authenticate dwelling with PIN number
     dwellingModel.getPinByDwellingId(submittedDwellingId, function (err, pin){
       if (!pin) {
