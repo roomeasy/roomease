@@ -58,7 +58,8 @@ module.exports = function(app){
     isLoggedIn(req, res, userHandler.getRoomies);
   });
   app.get('/allUsers', function(req, res) {
-    isLoggedIn(req, res, userHandler.getUsers);
+    console.log('recieved get request to /allUsers')
+    isLoggedIn(req, res, userHandler.getAllUsers);
   });
   app.get('/dwellings', function(req, res) {
     isLoggedIn(req, res, dwellingHandler.getDwellings);

@@ -6,7 +6,7 @@ var responseHandler = require('./responseHandler.js');
 
 module.exports = {
   getAllUsers : function(req, res){
-    userModel.getAllUsers(function(err, results){
+    userModel.findAllUsers(function(err, results){
       responseHandler(err, results, res);
     })
   },
