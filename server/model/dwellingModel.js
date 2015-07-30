@@ -27,8 +27,8 @@ exports.add = function(dwelling, cb){
   var queryValsArr = ["'" + dwelling.address + "'",
                             generatePIN(),
                       "'" + dwelling.name + "'",
-                            dwelling.latLong[0],
-                            dwelling.latLong[1]
+                      "'" + dwelling.latLong['G'] + "'",
+                      "'" + dwelling.latLong['K'] + "'"
                      ];
   db.query(queryString, queryValsArr, function(err, results){
     err ? cb(err, null) : cb(null, results.rows[0]);

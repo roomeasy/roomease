@@ -39,6 +39,7 @@ angular.module('roomEase')
     }, function(results, status) {
       if(status === google.maps.GeocoderStatus.OK) {
         $scope.livingSpace.latLong = results[0].geometry.location;
+        console.log(results[0].geometry.location)
         $scope.addressWarning = false;
       } else {
         $scope.addressWarning = true;

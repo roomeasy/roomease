@@ -22,8 +22,8 @@ CREATE TABLE dwellings (
   address VARCHAR DEFAULT null,
   name VARCHAR unique,
   pin INTEGER,
-  lat DECIMAL,
-  long DECIMAL
+  lat VARCHAR,
+  long VARCHAR
 );
 
 CREATE TABLE users (

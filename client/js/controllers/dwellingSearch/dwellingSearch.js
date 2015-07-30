@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('dwellingSearchCtrl', function($scope){
+.controller('dwellingSearchCtrl', function ($scope, Request){
   var dwellings;
 
   Request.dwelling.fetch().then(function(results){
