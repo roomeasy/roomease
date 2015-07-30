@@ -42,8 +42,8 @@ CREATE TABLE users (
   dwelling_id INTEGER DEFAULT 0,
   age INTEGER DEFAULT 0,
   location VARCHAR DEFAULT 'The Moon',
-  smoker BOOLEAN DEFAULT FALSE,
-  vaper BOOLEAN DEFAULT FALSE,
+  smoker VARCHAR DEFAULT null,
+  vaper VARCHAR DEFAULT null,
   pet BOOLEAN DEFAULT FALSE
 );
 
