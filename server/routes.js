@@ -4,6 +4,23 @@ var taskHandler = require('./requestHandler/taskHandler.js');
 var dwellingHandler = require('./requestHandler/dwellingHandler.js');
 var documentHandler = require('./requestHandler/documentHandler.js');
 
+//gives reqeust file object (req.file)
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({storage: storage});
+
+
+var fs = require('fs')
+
+
+
 module.exports = function(app){
 
   // This routes module is exporting a function that will decorate the app (express server instance)
@@ -31,9 +48,11 @@ module.exports = function(app){
   app.post('/taskInstances', taskHandler.updateInstance);
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
-  app.post('/documentsAdd', documentHandler.add);
-  app.post('/documentsUsers', documentHandler.getAllDocsUser);
-  app.post('/documentsDwelling', documentHandler.getAllDocs);
+  //app.post('/documents/add', documentHandler.add);
+  app.post('/documents/users', documentHandler.getAllDocsUser);
+  app.post('/documents/dwelling', documentHandler.getAllDocs);
+  app.post('/documents/upload', upload.single('file'), documentHandler.upload)
+  
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
@@ -42,8 +61,8 @@ module.exports = function(app){
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
   app.get('/documents', documentHandler.add);
-  app.get('/documentsUsers', documentHandler.getAllDocsUser);
-  app.get('/documentsDwelling', documentHandler.getAllDocs);
+  app.get('/documents/users', documentHandler.getAllDocsUser);
+  app.get('/documents/dwelling', documentHandler.getAllDocs);
   return app;
 }
 

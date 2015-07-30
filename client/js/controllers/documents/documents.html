@@ -1,0 +1,22 @@
+<div class="container-fluid mobile-padding">
+  <div class="row">
+  	<div class="col-sm-2" ng-include="'includes/navbar.html'"></div>
+  	<div class="container">
+  	  <div class="row">
+  	    <h1 class="home-title text-center"> Documents</h1>
+  	  </div>
+  	  <div class="row">
+  		  <div class="col-sm-5 col-sm-offset-1 top-padding">
+  		    <tabset class="bg-main-purple rounded light-border" justified="true">
+  		      <tab ui-sref=".yourDocs" heading="Your Docs"></tab>
+  		      <tab ui-sref=".docHistory" heading="{{dwelling.name}}'s Docs"></tab>
+  		      <div ui-view=""></div>
+  		    </tabset>
+  		  </div>
+  		  <div ngf-drop ngf-select ng-model="files" ngf-multiple="true" ngf-stop-propagation="true" class="drop-box col-sm-4 col-sm-offset-1">
+  			  Click to find or DROP IMAGES OR PDF'S HERE {{files.length}}
+  		  </div>
+  	  </div>
+  	</div>
+  </div>
+</div>

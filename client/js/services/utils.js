@@ -128,3 +128,7 @@ angular.module('roomEase')
 
   return returnObj;
 })
+.factory('Document', function($http){
+  var api = {};
+  return api;
+})
