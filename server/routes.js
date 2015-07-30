@@ -2,9 +2,9 @@ var passport = require('passport');
 var userHandler = require('./requestHandler/userHandler.js');
 var taskHandler = require('./requestHandler/taskHandler.js');
 var dwellingHandler = require('./requestHandler/dwellingHandler.js');
-
 var documentHandler = require('./requestHandler/documentHandler.js');
 
+//gives reqeust file object (req.file)
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function(req, file, cb){
@@ -48,14 +48,11 @@ module.exports = function(app){
   app.post('/taskInstances', taskHandler.updateInstance);
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
-  app.post('/documents/add', documentHandler.add);
+  //app.post('/documents/add', documentHandler.add);
   app.post('/documents/users', documentHandler.getAllDocsUser);
   app.post('/documents/dwelling', documentHandler.getAllDocs);
-
-  app.post('/documents/upload', upload.single('file'), function (req, res){
-      console.log(req.file)
-      res.json(req.file)
-  })
+  app.post('/documents/upload', upload.single('file'), documentHandler.upload)
+  
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
