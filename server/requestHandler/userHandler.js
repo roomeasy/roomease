@@ -22,7 +22,6 @@ module.exports = {
     var userId  = req.user.userId;  
     var points  = req.user.points++;
     userModel.updatePoints(userID, points, function() {
-      // error handling?
       if (err) { res.send(err)}
       else { res.send({joined : true}) };
     })
@@ -30,9 +29,8 @@ module.exports = {
 
   decreasePoints : function(req, res) {
     var userId  = req.user.userId;  
-    var points  = req.user.points++;
+    var points  = req.user.points--;
     userModel.updatePoints(userID, points, function(err) {
-      // error handling?
       if (err) { res.send(err)}
       else { res.send({joined : true}) };
     })
