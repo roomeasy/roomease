@@ -46,7 +46,6 @@ module.exports = function(app){
   });
   app.post('/users', function(req, res) {
     isLoggedIn(req, res, userHandler.createProfile);
-    res.redirect('/dashboard');
   });
   // GET REQUESTS
   app.get('/tasks', function(req, res) {

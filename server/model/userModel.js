@@ -24,12 +24,20 @@ exports.addFacebookUser = function(user, cb){
   // addFacebookUser : insert a new user row. Called by Passport.js
   var queryString = "INSERT INTO users (facebook_id, picture, gender, points, username) VALUES ($1, $2, $3, $4, $5) RETURNING id;";
   var queryValsArr = [
+<<<<<<< HEAD
                       user.facebook_id,
                       user.picture,
                       user.gender,
                       user.points,
                       // user.facebook_token,
                       user.username
+=======
+                            user.facebook_id,
+                            user.picture,
+                            user.gender,
+                            user.points,
+                            user.username
+>>>>>>> Completed add profile to database
                      ];
   console.log('queryString: ', queryString);
   db.query(queryString, queryValsArr, function(err, results){
@@ -81,16 +89,22 @@ exports.findAllUsers = function(cb) {
 };
 
 exports.insertProfile = function(profile, userId, cb) {
-
+  console.log('profile is', profile);
+  console.log('userId is', userId);
   // Initialize newly created profile with info from profile creation page
   console.log('Inside users insert profile variables');
-  var queryString = "INSERT INTO users (age, location, smoker, vaper, pet) VALUES ($1, $2, $3, $4, $5) WHERE id = $6;";
+  var queryString = "UPDATE users SET age = $1, location = $2, smoker = $3, vaper = $4, pet = $5 WHERE id = $6;";
   var queryValsArr = [
-                      user.age,
-                      user.location,
-                      user.smoker,
-                      user.vaper,
-                      user.pet,
-                      userId
+                            profile.age,
+                            profile.location,
+                            profile.smoker,
+                            profile.vaper,
+                            profile.pet,
+                            userId
+
                      ];
+  console.log('Query string is', queryString);
+  db.query(queryString, queryValsArr, function(err, results) {
+    err ? cb(err, null) : cb(null, results.rows);
+  });
 };

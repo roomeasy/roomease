@@ -6,18 +6,20 @@ var responseHandler = require('./responseHandler.js');
 
 module.exports = {
   createProfile : function(req, res) {
-    var userId = req.user.userId;
+    var userId = req.user.id;
+    // console.log('Req.user is ', req.user);
+    console.log('Req.body is', req.body);
     // Make an object containing submitted data from client.
     var profile = {
 
       age      : req.body.age,
       location : req.body.location,
-      smoker   : req.body.smoker,
-      vaper    : req.body.vaper,
+      smoker   : req.body.smokes,
+      vaper    : req.body.vapes,
       pets     : req.body.pets
 
     };
-    console.log(profile);
+    // console.log(profile);
 
     userModel.insertProfile(profile, userId, function(err, results){
       responseHandler(err, results, res);
