@@ -210,7 +210,34 @@ a:visited {color: white;}
 }
 .search-nav {
   padding:20px;
-  color: #9099b7
+}
+.search-nav-btn {
+  font-size: 1.1em;
+  margin-left: 25px;
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  line-height: 41px;
+  background-color: #3B456B;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  text-decoration: none !important;
+}
+.search-nav-btn:hover {
+  background-color: #414C77;
+  border: 2px solid #414C77;
+}
+.search-nav-btn-dead {
+  font-size: 1.1em;
+  margin-left: 25px;
+  text-align: center;
+  width: 250px;
+  height: 46px;
+  line-height: 40px;
+  border: 3px solid #1D233B;
+  border-radius: 5px;
+  text-decoration: none !important;
+  background-color: #242B4B
 }
 .page-wrapper {padding: 0 100px;}
 .roomie-search {
