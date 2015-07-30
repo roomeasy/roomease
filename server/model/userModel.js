@@ -24,12 +24,12 @@ exports.addFacebookUser = function(user, cb){
   // addFacebookUser : insert a new user row. Called by Passport.js
   var queryString = "INSERT INTO users (facebook_id, picture, gender, points, username) VALUES ($1, $2, $3, $4, $5) RETURNING id;";
   var queryValsArr = [
-                            user.facebook_id,
-                      "'" + user.picture + "'",
-                      "'" + user.gender + "'",
-                            user.points,
-                      // "'" + user.facebook_token + "'",
-                      "'" + user.username + "'"
+                      user.facebook_id,
+                      user.picture,
+                      user.gender,
+                      user.points,
+                      // user.facebook_token,
+                      user.username
                      ];
   console.log('queryString: ', queryString);
   db.query(queryString, queryValsArr, function(err, results){
@@ -86,11 +86,11 @@ exports.insertProfile = function(profile, userId, cb) {
   console.log('Inside users insert profile variables');
   var queryString = "INSERT INTO users (age, location, smoker, vaper, pet) VALUES ($1, $2, $3, $4, $5) WHERE id = $6;";
   var queryValsArr = [
-                            user.age,
-                      "'" + user.location + "'",
-                            user.smoker,
-                            user.vaper,
-                            user.pet,
-                            userId
+                      user.age,
+                      user.location,
+                      user.smoker,
+                      user.vaper,
+                      user.pet,
+                      userId
                      ];
 };
