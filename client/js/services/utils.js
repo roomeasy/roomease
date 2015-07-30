@@ -23,7 +23,17 @@ angular.module('roomEase')
           return response.data;
         })
       },
-      fetch : function () {
+      leave : function(data){
+        return $http({
+          method: 'POST',
+          url: '/leaveDwelling',
+          data: data
+        }).then(function(response){
+          console.log('inside leave dwelling create factory call : ', response);
+          return response.data;
+        })
+      },
+      fetch : function() {
         return $http({
           method: 'GET',
           url: '/dwellings',
@@ -104,8 +114,26 @@ angular.module('roomEase')
         .then(function(resp) {
           return resp.data;
         })
+      },
+      fetchAll : function(){
+        return $http({
+          method: 'GET',
+          url: '/allUsers'
+        })
+      },
+      update : function(data){
+        return $http({
+          method: 'POST',
+          url: '/users',
+          data: data
+        })
+        .then(function(resp){
+          return resp.data;
+        })
       }
     },
+
+    
     roomie: {
       invite: function (data) {
         return $http({
@@ -119,7 +147,7 @@ angular.module('roomEase')
 
     },
 
-    freqToInt : { // ugly styling but sticing this here for now
+    freqToInt : { // ugly styling but sticking this here for now
       daily : 1,
       weekly : 2,
       monthly : 3

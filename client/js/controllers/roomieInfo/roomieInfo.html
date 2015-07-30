@@ -1,0 +1,58 @@
+
+<div class="roomie-search">
+  <h1 class="home-title text-center">Hello Roomie</h1>
+  <h1 class="home-title text-center">Tell us about yourself</h1>
+</div>
+<div>
+  <div class='flex-center'>
+    <label>Where are you from?</label>
+  </div><br>
+  <div class='flex-center'>
+    <input ng-model="newRoomie.location" type="text" ng-model="location">
+  </div><br>
+  <div class='flex-center'>
+    <label>How old are you?</label><br>
+  </div><br>
+  <div class='flex-center'>
+    <input ng-model="newRoomie.age" type="text" ng-model="age"><br>
+  </div><br>
+  <div class='flex-center'>
+    <label>Do you smoke?</label><br>
+  </div><br>
+  <div class='flex-center'>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.smokes" type="radio" name="smoke" value="Yes">Yes
+    </div>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.smokes" type="radio" name="smoke" value="No">No
+    </div>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.smokes" type="radio" name="smoke" value="Weed">Smoke what?<br>
+    </div>
+  </div><br>
+  <div class='flex-center'>
+    <label>Do you vape?</label><br>
+  </div><br>
+  <div class='flex-center'>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.vapes" type="radio" name="vape" value="Yes">Yes
+    </div>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.vapes" type="radio" name="vape" value="No">No<br>
+    </div>
+  </div><br>
+  <div class='flex-center'>
+    <label>Pets?</label><br>
+  </div><br>
+  <div class='flex-center'>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.pets" type="radio" name="pets" value="Yes">Yes
+    </div>
+    <div style="padding:10px">
+      <input ng-model="newRoomie.pets" type="radio" name="pets" value="No">No<br>
+    </div>
+  </div><br>
+  <div class='flex-center'>
+    <a class="button bg-dark-purple ls-button" href="" ng-click="submitInfo(newRoomie)">All done</a>
+  </div><br>
+</div>

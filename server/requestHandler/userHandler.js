@@ -5,6 +5,31 @@ var responseHandler = require('./responseHandler.js');
 // This file is responsible for managing all user-related endpoints
 
 module.exports = {
+  createProfile : function(req, res) {
+    var userId = req.user.userId;
+    // Make an object containing submitted data from client.
+    var profile = {
+
+      age      : req.body.age,
+      location : req.body.location,
+      smoker   : req.body.smoker,
+      vaper    : req.body.vaper,
+      pets     : req.body.pets
+
+    };
+    console.log(profile);
+
+    userModel.insertProfile(profile, userId, function(err, results){
+      responseHandler(err, results, res);
+    });
+  },
+
+  getAllUsers : function(req, res){
+    userModel.findAllUsers(function(err, results){
+      responseHandler(err, results, res);
+    });
+  },
+
   getRoomies : function(req, res){
     // Called by the GET '/users' endpoint.
     // Retrieves all the roommates from a common dwelling ID.
@@ -18,12 +43,31 @@ module.exports = {
     });
   },
 
+  addPoints : function(req, res) {
+    var userId  = req.user.userId;  
+    var points  = req.user.points++;
+    userModel.updatePoints(userId, points, function() {
+      if (err) { res.send(err)}
+      else { res.send({joined : true}) };
+    })
+  },
+
+  decreasePoints : function(req, res) {
+    var userId  = req.user.userId;  
+    var points  = req.user.points--;
+    userModel.updatePoints(userId, points, function(err) {
+      if (err) { res.send(err)}
+      else { res.send({joined : true}) };
+    })
+  },
+
   joinDwelling : function(req, res){
     // Called by the POST 'joinDwelling' endpoint.
     // Makes a user join a dwelling
 
     var submittedDwellingId = req.body.dwellingId;
     var submittedPin = req.body.pin;
+
     //authenticate dwelling with PIN number
     dwellingModel.getPinByDwellingId(submittedDwellingId, function (err, pin){
       if (!pin) {
@@ -41,4 +85,16 @@ module.exports = {
       }
     })
   },
+
+  // SERVER SIDE LEAVE DWELLING FUNCTION ADDED
+  leaveDwelling : function(req, res){
+    
+    // Grab new dwelling id with null value
+    var submittedDwellingId = req.body.dwellingId;
+
+    // Update the dwellingId for user field with null
+    userModel.updateDwellingId(req.user.id, submittedDwellingId, function() {
+        res.send({joined : false});
+    })
+  }
 }
