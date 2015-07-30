@@ -16,7 +16,11 @@ module.exports = function(app){
       //redirects new users to the proper place
       if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
         res.redirect('/#/createdwelling');
-      } else {
+      } 
+      else if(req.user.age){
+        res.redirect('/#/dashboard');
+      } 
+      else {
         res.redirect('/#/roomieinfo');
       }
   });

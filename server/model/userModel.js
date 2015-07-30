@@ -24,20 +24,11 @@ exports.addFacebookUser = function(user, cb){
   // addFacebookUser : insert a new user row. Called by Passport.js
   var queryString = "INSERT INTO users (facebook_id, picture, gender, points, username) VALUES ($1, $2, $3, $4, $5) RETURNING id;";
   var queryValsArr = [
-<<<<<<< HEAD
-                      user.facebook_id,
-                      user.picture,
-                      user.gender,
-                      user.points,
-                      // user.facebook_token,
-                      user.username
-=======
                             user.facebook_id,
                             user.picture,
                             user.gender,
                             user.points,
                             user.username
->>>>>>> Completed add profile to database
                      ];
   console.log('queryString: ', queryString);
   db.query(queryString, queryValsArr, function(err, results){
@@ -47,7 +38,7 @@ exports.addFacebookUser = function(user, cb){
 };
 
 exports.updateDwellingId = function(userId, dwellingId, cb) {
-  console.log(dwellingId);
+  // console.log(dwellingId);
   // Sets the dwelling_id of a provided user (w/ a provided userId)
   var queryString = "UPDATE users SET dwelling_id = $1 WHERE id = $2;";
   db.query(queryString, [dwellingId, userId], function(err, results) {
@@ -69,7 +60,7 @@ exports.findUserById = function(id, cb){
 exports.findUserByFacebookId = function(id, cb){
 
   // findUserByFacebookId : provides a facebookId and returns the row
-  console.log('Inside the users find query');
+  // console.log('Inside the users find query');
   var queryString = "SELECT * FROM users WHERE facebook_id = $1;";
   db.query(queryString, [id], function(err, results){
     // console.log('findUser: ', results)
@@ -80,7 +71,7 @@ exports.findUserByFacebookId = function(id, cb){
 exports.findAllUsers = function(cb) {
 
   // find all users
-  console.log('Inside the users find query');
+  // console.log('Inside the users find query');
   var queryString = "SELECT * FROM users;";
   db.query(queryString, function(err, results) {
     // console.log('findUser: ', results)
