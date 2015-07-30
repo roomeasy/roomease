@@ -15,7 +15,8 @@ angular.module('roomEase', [
       url: '/' + stateName.toLowerCase(),
       templateUrl: '/js/controllers/' + stateName + '/' + stateName + '.html',
       controller: stateName + 'Ctrl'
-    });
+    })
+    .otherwise('dashboard');
   });
   
   // handle dashboard separately since it has nested views
