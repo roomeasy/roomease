@@ -38,8 +38,8 @@ exports.add = function(dwelling, cb){
 exports.getPinByDwellingId = function(dwellingId, cb){
 
   // Selects the pin for the input dwellingId
-  var queryString = "SELECT pin FROM dwellings WHERE id = " + dwellingId + ";";
-  db.query(queryString, function(err, results){
+  var queryString = "SELECT pin FROM dwellings WHERE id = $1;";
+  db.query(queryString, [dwellingId], function(err, results){
     // console.log(results.rows);
     if(err) {
       console.log(err);
@@ -56,8 +56,8 @@ exports.getPinByDwellingId = function(dwellingId, cb){
 exports.getById = function(dwellingId, cb){
 
   // Gets the dwelling row information from the provided dwellingId
-  var queryString = "SELECT * FROM dwellings WHERE id = " + dwellingId + ";";
-  db.query(queryString, function(err, results){
+  var queryString = "SELECT * FROM dwellings WHERE id = $1;";
+  db.query(queryString, [dwellingId], function(err, results){
     console.log('Inside the dwellings getById Query');
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
@@ -69,8 +69,8 @@ exports.getAllDwellings = function(cb){
   db.query(queryString, function(err, results){
     console.log('Inside the dwellings getAllDwellings Query');
     err ? cb(err, null) : cb(null, results.rows);
-  })
-}
+  });
+};
 
 
 
