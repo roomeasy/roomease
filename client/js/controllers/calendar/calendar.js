@@ -6,8 +6,13 @@ angular.module('roomEase')
 
         $scope.getEvents = function() {
             eventAPIRequests.getEvents().then(function(res){
-              console.log(res);
-          });
+              console.log("response: ", res);
+              $scope.events = [];
+              for (var i = 0; i < res.length; i++) {
+                  $scope.events.push(res[i]);
+              };
+            });
+        };
         
         $scope.date = function () {
             var newDate = new Date();
@@ -17,20 +22,9 @@ angular.module('roomEase')
             var hour = newDate.getHours();
             var setDate = new Date(year, month, day, hour + 1);
             return setDate;
-        }
+        };
 
-        $scope.events = [{
-            title: 'Clean the place',
-                type: 'info',
-                startsAt: $scope.date(),
-                endsAt: $scope.date(),
-                editable: true,
-                deletable: true,
-                draggable: false,
-                resizable: false,
-                incrementsBadgeTotal: false,
-                cssClass: 'a-css-class-name'
-        }];
+        $scope.events = $scope.getEvents();
 
         $scope.createDefaultEvent = function () {
             var defaultEvent = {
@@ -53,11 +47,9 @@ angular.module('roomEase')
                 endAt: defaultEvent.endsAt
 
             }).then($scope.getEvents(function(err, result) {
-                console.log(result);
+                    console.log('result: ', result);
                 })
             );
-
-            console.log("logging after createEvent: ", Object.keys($scope.getEvents()));
 
             return defaultEvent;
         };
