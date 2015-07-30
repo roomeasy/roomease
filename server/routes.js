@@ -17,7 +17,7 @@ module.exports = function(app){
       if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
         res.redirect('/#/createdwelling');
       } else {
-        res.redirect('/#/dashboard');
+        res.redirect('/#/roomieinfo');
       }
   });
 
