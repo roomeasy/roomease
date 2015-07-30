@@ -67,6 +67,10 @@ module.exports = function(app){
   app.get('/dwellings', function(req, res) {
     isLoggedIn(req, res, dwellingHandler.getDwellings);
   });
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
   return app;
 }
 
