@@ -32,6 +32,13 @@ exports.add = function(documents, dwellingId, userId, cb){
     console.log("Inside the getDocs USER query");
     err ? cb(err, null) : cb(null, results.rows);
   });
+},
+exports.deleteDocsUsers = function(documentId, cb){
+  var queryString = "DELETE * FROM documents WHERE id = " + documentId + ";";
+  db.query(queryString, function(err, results){
+    console.log("Inside the delete docs query");
+    err ? cb(err, null) : cb(null, results.rows);
+  });
 }
 
 }

@@ -31,7 +31,9 @@ module.exports = function(app){
   app.post('/taskInstances', taskHandler.updateInstance);
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
-  app.post('/documents', documentHandler.add);
+  app.post('/documentsAdd', documentHandler.add);
+  app.post('/documentsUsers', documentHandler.getAllDocsUser);
+  app.post('/documentsDwelling', documentHandler.getAllDocs);
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
@@ -40,6 +42,8 @@ module.exports = function(app){
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
   app.get('/documents', documentHandler.add);
+  app.get('/documentsUsers', documentHandler.getAllDocsUser);
+  app.get('/documentsDwelling', documentHandler.getAllDocs);
   return app;
 }
 
