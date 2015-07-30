@@ -9,7 +9,7 @@ module.exports = function(app){
   // with routes.
 
   // Facebook Auth Routes
-  app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup' }));
+  app.get('/auth/facebook', passport.authenticate('facebook', { display: 'page' }));
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/#/signin' }),
     function (req, res) {
@@ -19,31 +19,33 @@ module.exports = function(app){
       } else {
         res.redirect('/#/dashboard');
       }
-  })
+  });
 
-  // BASIC ROUTING ----------------------------------
+ // BASIC ROUTING ----------------------------------
   //POST Requests
-  app.post('/dwellings', dwellingHandler.add);
-  app.post('/inviteRoomie', dwellingHandler.inviteRoomie);
-  app.post('/joinDwelling', userHandler.joinDwelling);
-  app.post('/tasks', taskHandler.add);
-  app.post('/taskInstances', taskHandler.updateInstance);
-  app.post('/delegateTasks', taskHandler.delegateTasks)
+  app.post('/dwellings', function(req,res){
+    isLoggedIn(req,res,dwellingHandler.add);
+  });
+  app.post('/inviteRoomie', isLoggedIn, dwellingHandler.inviteRoomie)
+  app.post('/joinDwelling', isLoggedIn, userHandler.joinDwelling)
+  app.post('/leaveDwelling', isLoggedIn, userHandler.leaveDwelling)
+  app.post('/tasks', isLoggedIn, taskHandler.add)
+  app.post('/taskInstances', isLoggedIn, taskHandler.updateInstance)
+  app.post('/delegateTasks',isLoggedIn, taskHandler.delegateTasks)
+   
   // GET REQUESTS
-  app.get('/tasks', taskHandler.getAll);
-  app.get('/taskInstances', taskHandler.getAllInstances);
-  app.get('/myInstances', taskHandler.getUserInstances);
-  app.get('/users', userHandler.getRoomies);
-  app.get('/dwellings', dwellingHandler.getUsersDwelling);
+  app.get('/tasks', isLoggedIn, taskHandler.getAll)
+  app.get('/taskInstances', isLoggedIn, taskHandler.getAllInstances)
+  app.get('/myInstances', isLoggedIn, taskHandler.getUserInstances)
+  app.get('/users', isLoggedIn, userHandler.getRoomies)
+  app.get('/dwellings', isLoggedIn, dwellingHandler.getUsersDwelling)
   return app;
 }
 
-
 // route middleware to make sure a user is logged in
-  // not currently being used
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
-    return next();
-
+    return next(req, res);
   res.redirect('/#/signin');
 }
+
