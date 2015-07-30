@@ -85,4 +85,14 @@ angular.module('roomEase')
             console.log('Event clicked.');
         };
 
+        $scope.eventEdited = function(event) {
+            showModal('Clicked', event);
+            console.log('Pencil edit button clicked.');
+        };
+
+        $scope.eventDeleted = function(event) {
+            $scope.events.slice(event, 1);
+            console.log('eventDeleted called.');
+        }
+
     });
