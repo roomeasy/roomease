@@ -81,14 +81,14 @@ exports.findAllUsers = function(cb) {
   });
 }
 
-exports.insertProfile = function(user, userId, cb) {
+exports.insertProfile = function(profile, userId, cb) {
 
-  // Initialize newly created user with info from profile creation page
+  // Initialize newly created profile with info from profile creation page
   console.log('Inside users insert profile variables');
   var queryString = "INSERT INTO users (age, location, smoker, vaper, pet) VALUES ("
-                     + "'" + user.age + "', "
-                     + "'" + user.location + "', "
-                     + "'" + user.smoker + "', "
-                     + "'" + user.vaper + "', "
-                     + "'" + user.pet + "') WHERE id = " + "'" + userId + "';";
+                     + "'" + profile.age + "', "
+                     + "'" + profile.location + "', "
+                     + "'" + profile.smoker + "', "
+                     + "'" + profile.vaper + "', "
+                     + "'" + profile.pet + "') WHERE id = " + "'" + userId + "';";
 }
