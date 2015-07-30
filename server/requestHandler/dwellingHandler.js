@@ -72,4 +72,15 @@ module.exports = {
       responseHandler(err, results, res);
     });
   },
+
+  getDwellings : function(req, res){
+
+    dwellingModel.getAllDwellings(function(err, results){
+      responseHandler(err, results, res);
+    });
+  }
 }
+
+
+
+

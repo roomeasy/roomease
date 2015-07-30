@@ -27,8 +27,8 @@ exports.add = function(dwelling, cb){
   var queryValsArr = ["'" + dwelling.address + "'",
                             generatePIN(),
                       "'" + dwelling.name + "'",
-                      "'" + dwelling.latLong['G'] + "'",
-                      "'" + dwelling.latLong['K'] + "'"
+                            dwelling.latLong['G'],
+                            dwelling.latLong['K']
                      ];
   db.query(queryString, queryValsArr, function(err, results){
     err ? cb(err, null) : cb(null, results.rows[0]);
@@ -62,3 +62,16 @@ exports.getById = function(dwellingId, cb){
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
 };
+
+
+exports.getAllDwellings = function(cb){
+  var queryString = "SELECT * FROM dwellings;";
+  db.query(queryString, function(err, results){
+    console.log('Inside the dwellings getAllDwellings Query');
+    err ? cb(err, null) : cb(null, results.rows);
+  })
+}
+
+
+
+

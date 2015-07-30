@@ -26,19 +26,40 @@ module.exports = function(app){
   app.post('/dwellings', function(req,res){
     isLoggedIn(req,res,dwellingHandler.add);
   });
-  app.post('/inviteRoomie', isLoggedIn, dwellingHandler.inviteRoomie)
-  app.post('/joinDwelling', isLoggedIn, userHandler.joinDwelling)
-  app.post('/leaveDwelling', isLoggedIn, userHandler.leaveDwelling)
-  app.post('/tasks', isLoggedIn, taskHandler.add)
-  app.post('/taskInstances', isLoggedIn, taskHandler.updateInstance)
-  app.post('/delegateTasks',isLoggedIn, taskHandler.delegateTasks)
-   
+  app.post('/inviteRoomie', function(req, res) {
+    isLoggedIn(req, res, dwellingHandler.inviteRoomie);
+  });
+  app.post('/joinDwelling', function(req, res) {
+    isLoggedIn(req, res, userHandler.joinDwelling);
+  });
+  app.post('/leaveDwelling', function(req, res) {
+    isLoggedIn(req, res, userHandler.leaveDwelling);
+  });
+  app.post('/tasks', function(req, res) {
+    isLoggedIn(req, res, taskHandler.add);
+  });
+  app.post('/taskInstances', function(req, res) {
+    isLoggedIn(req, res, taskHandler.updateInstance)
+  });
+  app.post('/delegateTasks',function(req, res) {
+    isLoggedIn(req, res, taskHandler.delegateTasks);
+  });
   // GET REQUESTS
-  app.get('/tasks', isLoggedIn, taskHandler.getAll)
-  app.get('/taskInstances', isLoggedIn, taskHandler.getAllInstances)
-  app.get('/myInstances', isLoggedIn, taskHandler.getUserInstances)
-  app.get('/users', isLoggedIn, userHandler.getRoomies)
-  app.get('/dwellings', isLoggedIn, dwellingHandler.getUsersDwelling)
+  app.get('/tasks', function(req, res) {
+    isLoggedIn(req, res, taskHandler.getAll);
+  });
+  app.get('/taskInstances', function(req, res) {
+    isLoggedIn(req, res, taskHandler.getAllInstances);
+  });
+  app.get('/myInstances', function(req, res) {
+    isLoggedIn(req, res, taskHandler.getUserInstances);
+  });
+  app.get('/users', function(req, res) {
+    isLoggedIn(req, res, userHandler.getRoomies)
+  });
+  app.get('/dwellings', function(req, res) {
+    isLoggedIn(req, res, dwellingHandler.getDwellings);
+  });
   return app;
 }
 
