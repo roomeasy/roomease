@@ -128,7 +128,28 @@ angular.module('roomEase')
 
   return returnObj;
 })
-.factory('Document', function($http){
-  var api = {};
+.factory('Document', function( $http, Upload){
+  var api = {
+    upload: function(file){
+      Upload.upload({
+          url: 'documents/upload',
+          fields: {
+            'username': 'Cooke',
+          },
+          file: file
+      })
+      .progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+      })
+      .success(function (data, status, headers, config) {
+          console.log(arguments)
+          var args = Array.prototype.slice.call(arguments);
+          console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
+      }).error(function (data, status, headers, config) {
+            console.log('error status: ' + status);
+      })
+    },
+  };
   return api;
 })
