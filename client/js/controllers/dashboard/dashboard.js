@@ -28,7 +28,7 @@ angular.module('roomEase')
   // this function is used to leave the current dwelling
   $scope.leaveDwelling = function(){
     var sendData = {
-      dwellingId : null
+      dwellingId : 0
     }
 
     Request.dwelling.leave(sendData).then(function(data){
