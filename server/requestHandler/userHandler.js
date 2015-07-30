@@ -27,7 +27,11 @@ module.exports = {
   },
 
   decreasePoints : function(req, res) {
-
+    var userId  = req.user.userId;  
+    var points  = req.user.points++;
+    userModel.updatePoints(userID, points, function() {
+      // error handling?
+    })
   },
 
   joinDwelling : function(req, res){
