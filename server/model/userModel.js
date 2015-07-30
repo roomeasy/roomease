@@ -80,3 +80,15 @@ exports.findAllUsers = function(cb) {
     err ? cb(err, null) : cb(null, results.rows);
   });
 }
+
+exports.insertProfile = function(user, userId, cb) {
+
+  // Initialize newly created user with info from profile creation page
+  console.log('Inside users insert profile variables');
+  var queryString = "INSERT INTO users (age, location, smoker, vaper, pet) VALUES ("
+                     + "'" + user.age + "', "
+                     + "'" + user.location + "', "
+                     + "'" + user.smoker + "', "
+                     + "'" + user.vaper + "', "
+                     + "'" + user.pet + "') WHERE id = " + "'" + userId + "';";
+}
