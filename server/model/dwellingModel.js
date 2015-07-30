@@ -24,11 +24,11 @@ exports.add = function(dwelling, cb){
   }
 
   var queryString = "INSERT INTO dwellings (address, pin, name, lat, long) VALUES ($1, $2, $3, $4, $5) RETURNING id";
-  var queryValsArr = ["'" + dwelling.address + "'",
-                            generatePIN(),
-                      "'" + dwelling.name + "'",
-                            dwelling.latLong['G'],
-                            dwelling.latLong['K']
+  var queryValsArr = [dwelling.address,
+                      generatePIN(),
+                      dwelling.name,
+                      dwelling.latLong['G'],
+                      dwelling.latLong['K']
                      ];
   db.query(queryString, queryValsArr, function(err, results){
     err ? cb(err, null) : cb(null, results.rows[0]);
@@ -71,7 +71,4 @@ exports.getAllDwellings = function(cb){
     err ? cb(err, null) : cb(null, results.rows);
   });
 };
-
-
-
 
