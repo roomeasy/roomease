@@ -23,14 +23,18 @@ module.exports = {
     var points  = req.user.points++;
     userModel.updatePoints(userID, points, function() {
       // error handling?
+      if (err) { res.send(err)}
+      else { res.send({joined : true}) };
     })
   },
 
   decreasePoints : function(req, res) {
     var userId  = req.user.userId;  
     var points  = req.user.points++;
-    userModel.updatePoints(userID, points, function() {
+    userModel.updatePoints(userID, points, function(err) {
       // error handling?
+      if (err) { res.send(err)}
+      else { res.send({joined : true}) };
     })
   },
 
@@ -40,6 +44,7 @@ module.exports = {
 
     var submittedDwellingId = req.body.dwellingId;
     var submittedPin = req.body.pin;
+
     //authenticate dwelling with PIN number
     dwellingModel.getPinByDwellingId(submittedDwellingId, function (err, pin){
       if (!pin) {
