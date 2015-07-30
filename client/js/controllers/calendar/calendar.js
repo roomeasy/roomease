@@ -2,7 +2,7 @@ angular.module('roomEase')
 
     .controller('calendarCtrl', function ($scope, Request, $location, $modal, $log, eventAPIRequests){
         $scope.calendarView = 'month';
-        $scope.currentDay = new Date();
+        $scope.calendarDay = new Date();
 
         $scope.getEvents = function() {
             eventAPIRequests.getEvents().then(function(res){
@@ -107,8 +107,7 @@ angular.module('roomEase')
 
     $scope.eventDeleted = function(event) {
       // showModal('Deleted', event);
-      $scope.events.slice(event,1);
-      console.log($scope.events);
+      $scope.events.splice($scope.events.indexOf(event), 1);
     };
 
     $scope.eventTimesChanged = function(event) {
