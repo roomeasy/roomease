@@ -128,6 +128,18 @@ angular.module('roomEase')
         })
       }
     },
+
+      // Brian WIP
+      update: function() {
+        return $http({
+          method: "POST",
+          url: '/users'
+        })
+        .then(function(resp) {
+          return resp.data;
+        })
+      }
+    },
     roomie: {
       invite: function (data) {
         return $http({
@@ -141,7 +153,7 @@ angular.module('roomEase')
 
     },
 
-    freqToInt : { // ugly styling but sticing this here for now
+    freqToInt : { // ugly styling but sticking this here for now
       daily : 1,
       weekly : 2,
       monthly : 3

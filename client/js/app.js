@@ -16,6 +16,7 @@ angular.module('roomEase', [
       templateUrl: '/js/controllers/' + stateName + '/' + stateName + '.html',
       controller: stateName + 'Ctrl'
     })
+
 //    .otherwise('dashboard');
   });
   
