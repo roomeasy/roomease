@@ -11,6 +11,7 @@ module.exports = {
  //    }
     console.log('documentHandler', req.body);
     var documents = {
+      //document_id = req.body.id,
      file_name : req.body.file_name,
      dwelling_id : req.body.dwellingId,
      user_id : req.body.userId,
@@ -40,5 +41,13 @@ module.exports = {
     documentModel.getDocsUsers(user_id, function(err, results){
     responseHandler(err, results, res);
     });
-  }
+  },
+    deleteDoc: function(req,res){
+      var document_id = req.id;
+      console.log('inside delete documents');
+      documentModel.deleteDoc(document_id, function(err, results){
+        responseHandler(err,results,res)
+      });
+
+    }//end of deleteDoc
 }//end of module.exports
