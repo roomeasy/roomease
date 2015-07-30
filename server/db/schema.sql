@@ -26,6 +26,9 @@ CREATE TABLE dwellings (
   long VARCHAR
 );
 
+-- Temporarily set dwelling_id default to 0 to prevent
+--  update errors on 'null' value.  Needs to be replaced
+--  with an INSERT command.
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR,
@@ -34,7 +37,7 @@ CREATE TABLE users (
   facebook_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
   points INTEGER,
-  dwelling_id INTEGER -- foreign key
+  dwelling_id INTEGER DEFAULT 0
 );
 
 -- each task has 1 user
