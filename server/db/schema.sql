@@ -58,14 +58,13 @@ CREATE TABLE task_instances (
 -- document upload table
 
 CREATE TABLE documents (
+  id SERIAL PRIMARY KEY,
   dwelling_id INTEGER references dwellings on DELETE CASCADE, -- foreign key
   user_id INTEGER references users on DELETE CASCADE, -- foreign key
   file_name VARCHAR DEFAULT NULL,
   filesize INT NOT NULL,
   type VARCHAR DEFAULT 'Bill', 
-  data BYTEA NOT NULL,
-  paid BOOLEAN DEFAULT FALSE,
-  PRIMARY KEY (dwelling_id, user_id)
+  data BYTEA NOT NULL
 );
 
 CREATE TABLE calendar_events (
