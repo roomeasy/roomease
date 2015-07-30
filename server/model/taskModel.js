@@ -89,14 +89,14 @@ var assignInstance = exports.assignInstance =  function(task_instance, user, cb)
 
 //shuffles users and taskInstances then assigns user_ids to task_instances
 exports.delegateInstances = function(users, taskInstances, cb){
-  var users = _.shuffle(users);
-  var taskInstances = _.shuffle(taskInstances.filter(function(instance){
+  var shufUsers = _.shuffle(users);
+  var shufTaskInstances = _.shuffle(taskInstances.filter(function(instance){
     return instance.user_id === null;
   }));
 
-  for (var i = 0; i < taskInstances.length; i++) {
-    var userIndex = i % users.length;
-    assignInstance(taskInstances[i], users[userIndex], function(err, results){
+  for (var i = 0; i < shufTaskInstances.length; i++) {
+    var userIndex = i % shufUsers.length;
+    assignInstance(shufTaskInstances[i], shufUsers[userIndex], function(err, results){
       if (err) { console.log("error : ", err); }
     });
   }
