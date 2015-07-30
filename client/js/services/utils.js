@@ -124,7 +124,11 @@ angular.module('roomEase')
       update : function(data){
         return $http({
           method: 'POST',
-          url: '/users'
+          url: '/users',
+          data: data
+        })
+        .then(function(resp){
+          return resp.data;
         })
       }
     },
