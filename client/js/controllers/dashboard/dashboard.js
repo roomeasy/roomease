@@ -19,7 +19,8 @@ angular.module('roomEase')
   $scope.fetchDwelling = function () {
     Request.dwelling.fetch().then(function(results) {
       console.log("dwelling fetch results ", results)
-      $scope.dwelling = results;
+      $scope.dwellings = results;
+      // ------------------------------------------------------------------------------------------
     })
   }
   $scope.fetchDwelling();
