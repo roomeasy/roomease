@@ -133,17 +133,7 @@ angular.module('roomEase')
       }
     },
 
-      // Brian WIP
-      update: function() {
-        return $http({
-          method: "POST",
-          url: '/users'
-        })
-        .then(function(resp) {
-          return resp.data;
-        })
-      }
-    },
+    
     roomie: {
       invite: function (data) {
         return $http({
