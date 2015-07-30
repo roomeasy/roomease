@@ -23,7 +23,9 @@ module.exports = function(app){
 
  // BASIC ROUTING ----------------------------------
   //POST Requests
-  app.post('/dwellings', isLoggedIn, dwellingHandler.add);
+  app.post('/dwellings', function(req,res){
+    isLoggedIn(req,res,dwellingHandler.add);
+  });
   app.post('/inviteRoomie', isLoggedIn, dwellingHandler.inviteRoomie)
   app.post('/joinDwelling', isLoggedIn, userHandler.joinDwelling)
   app.post('/leaveDwelling', isLoggedIn, userHandler.leaveDwelling)
@@ -46,3 +48,4 @@ function isLoggedIn(req, res, next) {
     return next(req, res);
   res.redirect('/#/signin');
 }
+
