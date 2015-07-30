@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('dashboardCtrl', function($scope, Request){
+.controller('dashboardCtrl', function ($scope, Request, $location){
   $scope.users = [];
   $scope.usersObj = {};
   $scope.dwellings = [];
@@ -23,6 +23,20 @@ angular.module('roomEase')
     })
   }
   $scope.fetchDwelling();
+
+
+  // this function is used to leave the current dwelling
+  $scope.leaveDwelling = function(){
+    var sendData = {
+      dwellingId : 0
+    }
+
+    Request.dwelling.leave(sendData).then(function(data){
+      console.log(sendData);
+      $location.path('/createdwelling');
+    });
+  }
+
 
   $scope.runDelegator = function(){
     Request.task.delegate().then(function(results){

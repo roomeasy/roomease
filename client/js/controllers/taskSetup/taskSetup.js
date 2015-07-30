@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('taskSetupCtrl', function($scope, $location, Request){
+.controller('taskSetupCtrl', function ($scope, $location, Request){
   $scope.tasks = [];
 
   $scope.task = {
@@ -14,18 +14,21 @@ angular.module('roomEase')
 
   $scope.addTask = function (newTask) {
     newTask['start_date'] = moment($scope.dt).format('MM-DD-YYYY');
-    $scope.tasks.push(newTask);
+    if (newTask.name.length > 1) {
+      $scope.tasks.push(newTask);
 
-    // reset the view
-    $scope.task = {
-      name: "",
-      description: "",
-      frequency: "daily",
-      start_date : null,
+      // reset the view
+      $scope.task = {
+        name: "",
+        description: "",
+        frequency: "daily",
+        start_date : null,
+      }
+      $scope.today();
+
+      $scope.warning = false; // reset the warning
+      
     }
-    $scope.today();
-
-    $scope.warning = false; // reset the warning
   }
 
   $scope.deleteTask = function(tasks, index){

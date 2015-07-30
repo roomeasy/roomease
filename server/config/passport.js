@@ -66,6 +66,9 @@ module.exports = function(passport) {
             newUser.picture        = profile.photos[0].value;
             newUser.username       = profile.displayName;
 
+            // New user initialized with 0 points;
+            newUser.points         = 0;
+
             // save our user to the database
             User.addFacebookUser(newUser, function(err, results) {
               if (err) throw err;
