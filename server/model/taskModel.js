@@ -8,9 +8,9 @@ exports.add = function(task, dwellingId, cb){
   var queryValsArr = [
                       "'" + task.name + "'",
                             dwellingId,
-                            task.frequency + "'",
+                            task.frequency,
                       "'" + task.description + "'",
-                      "'" + task.start_date + "'"
+                            task.start_date
                      ];
   console.log('queryString in addTask(): ', queryString);
   db.query(queryString, queryValsArr, function(err, results){
