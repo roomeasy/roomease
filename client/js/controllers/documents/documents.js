@@ -1,8 +1,7 @@
 angular.module('roomEase')
 
-.controller('DocumentsCtrl', function inject($scope, Request, Upload, $location){
+.controller('DocumentsCtrl', function inject($scope, Request, Upload, Document, $location){
   //$scope.dwells.name = 'yo';
-  $scope.username = 'Cooke';
   $scope.fetchDwells = function () {
     Request.dwelling.fetch().then(function(results) {
       console.log("cookes fetch results ", results)
@@ -13,6 +12,7 @@ angular.module('roomEase')
 
   //watch files array and execute when the object changes state
   $scope.$watch('files', function () {
+    $scope.username = 'Cooke'
     $scope.upload($scope.files);
   });
   $scope.upload = function (files) {
@@ -20,33 +20,22 @@ angular.module('roomEase')
       console.log('uploading file')
       for (var i = 0; i < files.length; i++) {
         var file = files[i];
-        // Upload.http({
-        //   url: 'documents/upload',
-        //   headers: {
-        //     'Content-Type': 'image',
-        //     // 'fileName': 
-        //   },
-        //   data: file
-        // }).
         Upload.upload({
           url: 'documents/upload',
-          fields: {'username': $scope.username},
+          fields: {
+            'username': $scope.username,
+          },
           file: file
-
-        })
-        .success(function (data, status, headers, config) {
-          // console.log(arguments.length)
-          // var args = Array.prototype.slice.call(arguments);
-          // args.forEach(function (elm){
-          //   console.log('=====================\n' + JSON.stringify(elm)+ '\n=========================\n\n\n\n\n\n')
-          // })
-          console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
         })
         .progress(function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
         })
-        .error(function (data, status, headers, config) {
+        .success(function (data, status, headers, config) {
+          console.log(arguments)
+          var args = Array.prototype.slice.call(arguments);
+          console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
+        }).error(function (data, status, headers, config) {
             console.log('error status: ' + status);
         })
       }

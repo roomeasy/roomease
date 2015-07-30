@@ -5,7 +5,20 @@ var dwellingHandler = require('./requestHandler/dwellingHandler.js');
 
 var documentHandler = require('./requestHandler/documentHandler.js');
 
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({storage: storage});
+
+
 var fs = require('fs')
+
 
 
 module.exports = function(app){
@@ -39,23 +52,9 @@ module.exports = function(app){
   app.post('/documents/users', documentHandler.getAllDocsUser);
   app.post('/documents/dwelling', documentHandler.getAllDocs);
 
-  app.post('/documents/upload', function (req, res){
-    var data = '';
-
-    //clear existing file
-    fs.writeFileSync('temp.png', '');
-    req.on('data', function (chunk){
-      //data += chunk.toString('hex');
-      fs.appendFile('temp.png', chunk, function(){})
-    })
-    // req.on('end', function (){
-    //    fs.writeFile('data.png', data,  {'encoding': 'hex'}, function(){
-    //      console.log('donezo data')
-    //   })
-     // console.log(data.length)
-    //});
-      res.send('donezo')
-
+  app.post('/documents/upload', upload.single('file'), function (req, res){
+      console.log(req.file)
+      res.json(req.file)
   })
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
