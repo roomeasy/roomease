@@ -5,6 +5,12 @@ var responseHandler = require('./responseHandler.js');
 // This file is responsible for managing all user-related endpoints
 
 module.exports = {
+  getAllUsers : function(req, res){
+    userModel.getAllUsers(function(err, results){
+      responseHandler(err, results, res);
+    })
+  },
+
   getRoomies : function(req, res){
     // Called by the GET '/users' endpoint.
     // Retrieves all the roommates from a common dwelling ID.
