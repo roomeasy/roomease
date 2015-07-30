@@ -18,6 +18,18 @@ module.exports = {
     });
   },
 
+  addPoints : function(req, res) {
+    var userId  = req.user.userId;  
+    var points  = req.user.points++;
+    userModel.updatePoints(userID, points, function() {
+      // error handling?
+    })
+  },
+
+  decreasePoints : function(req, res) {
+
+  },
+
   joinDwelling : function(req, res){
     // Called by the POST 'joinDwelling' endpoint.
     // Makes a user join a dwelling

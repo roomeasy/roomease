@@ -10,6 +10,14 @@ exports.getByDwellingId = function(dwellingId, cb){
     console.log('Inside the users getByDwellingId Query');
     err ? cb(err, null) : cb(null, results.rows)
   });
+},
+
+exports.updatePoints = function(userId, points, cb) {
+  var queryString = "UPDATE users SET points =" + points +
+                    "WHERE id = " + userId + ";";
+  db.query(queryString, function(err, results) {
+    err ? cb(err, null) : cb(null, results);
+  })
 }
 
 exports.addFacebookUser = function(user, cb){
