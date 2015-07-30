@@ -19,8 +19,9 @@ module.exports = function(passport) {
   // used to deserialize the user
   // this happens on every request so we know which user is logged in.
   passport.deserializeUser(function(id, done) {
+    console.log("in here", id)
     User.findUserById(id, function(err, user) {
-
+       console.log(err);
       // if user is found within sessions, they can proceed with request
       // if not, returns error
       user ? done(null, user) : done(err, null);
@@ -32,20 +33,20 @@ module.exports = function(passport) {
   // =========================================================================
 
   passport.use(new TwitterStrategy({
-        consumerKey: auth.twitterAuth.consumerKey,
-        consumerSecret: auth.twitterAuth.consumerSecret,
-        callbackURL: auth.twitterAuth.callbackURL,
-        passReqToCallback: auth.twitterAuth.passReqToCallback
+        consumerKey: '6GqsR4EcbvOdfisAgBqnIgsWB',
+        consumerSecret: 'e0jryipl7M4z9R9kSpetemgOvp8ijqd4EwVfConNddi6B0KE5a',
+        callbackURL: 'http://localhost:3000/auth/twitter/callback',
+        passReqToCallback: true
       },
 
       function(req, token, tokenSecret, profile, done){
-
+        console.log(req, token, tokenSecret, profile);
         // asynchronous
         process.nextTick(function() {
-          var roomease_id = profile.id;
+          var twitter_id = profile.id;
 
           // find the user in the database based on their roomease_id
-          User.findUserByRoomeaseId(roomease_id, function(err, user) {
+          User.findUserByTwitterId(twitter_id, function(err, user) {
 
             // if there is an error, stop everything and return that
             // i.e. an error connecting to the database
@@ -62,8 +63,10 @@ module.exports = function(passport) {
               // take information returned from facebook and using that data,
               // parse through it and make a newUser object.
               newUser.gender         = null;
-              newUser.roomease_id    = profile.id;
-              newUser.picture        = profile._json.image.url;
+              newUser.twitter_id     = profile.id;
+              newUser.google_id      = 0;
+              newUser.facebook_id    = 0;
+              newUser.picture        = profile.photos[0];
               newUser.username       = profile.displayName;
 
               // save our user to the database
@@ -71,7 +74,7 @@ module.exports = function(passport) {
                 if (err) throw err;
 
                 // if successful, return the new user
-                return done(null, newUser);
+                return done(null, results);
               });
             }
           });
@@ -83,18 +86,20 @@ module.exports = function(passport) {
   // =========================================================================
 
   passport.use(new GoogleStrategy({
-    clientID: auth.googleAuth.clientID,
-    clientSecret: auth.googleAuth.clientSecret,
-    callbackURL: auth.googleAuth.callbackURL},
+    clientID: '121082359533-1ct66h358dulf051k2l7qntunp96vicm.apps.googleusercontent.com',
+    clientSecret: 'OKi0-BREnEq3kMo6yiUVMBjY',
+    callbackURL: 'http://localhost:3000/auth/google/callback',
+    passReqToCallback: true
+      },
 
       function(req, accessToken, refreshToken, profile, done){
 
         // asynchronous
         process.nextTick(function() {
-          var roomease_id = profile.id;
+          var google_id = profile.id;
 
           // find the user in the database based on their facebook id
-          User.findUserByRoomeaseId(roomease_id, function(err, user) {
+          User.findUserByGoogleId(google_id, function(err, user) {
 
             // if there is an error, stop everything and return that
             // i.e. an error connecting to the database
@@ -111,16 +116,18 @@ module.exports = function(passport) {
               // take information returned from facebook and using that data,
               // parse through it and make a newUser object.
               newUser.gender         = profile.gender;
-              newUser.roomease_id    = profile.id;
+              newUser.twitter_id     = 0;
+              newUser.google_id      = profile.id;
+              newUser.facebook_id    = 0;
               newUser.picture        = profile._json.image.url;
               newUser.username       = profile.displayName;
 
               // save our user to the database
               User.addUser(newUser, function(err, results) {
-                if (err) throw err;
+                if (err) console.log(err);
 
                 // if successful, return the new user
-                return done(null, newUser);
+                return done(null, results);
               });
             }
           });
@@ -145,10 +152,10 @@ module.exports = function(passport) {
 
     // asynchronous
     process.nextTick(function() {
-      var roomease_id = profile.id;
+      var facebook_id = profile.id;
 
       // find the user in the database based on their facebook id
-      User.findUserByRoomeaseId(roomease_id, function(err, user) {
+      User.findUserByFacebookId(facebook_id, function(err, user) {
 
         // if there is an error, stop everything and return that
         // i.e. an error connecting to the database
@@ -165,7 +172,9 @@ module.exports = function(passport) {
             // take information returned from facebook and using that data,
             // parse through it and make a newUser object.
             newUser.gender         = profile.gender;
-            newUser.roomease_id    = profile.id;
+            newUser.twitter_id     = 0;
+            newUser.google_id      = 0;
+            newUser.facebook_id    = profile.id;
             newUser.picture        = profile.photos[0].value;
             newUser.username       = profile.displayName;
 
@@ -174,7 +183,7 @@ module.exports = function(passport) {
               if (err) throw err;
 
               // if successful, return the new user
-              return done(null, newUser);
+              return done(null, results);
             });
           }
         });

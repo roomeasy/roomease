@@ -30,8 +30,8 @@ module.exports = function(app){
    * TWITTER AUTH ROUTES
    */
   app.get('/auth/twitter', passport.authenticate('twitter'));
-  app.get('auth/twitter/callback',
-      passport.authenticate('twitter', { failureRedirect: '/#/sigin' }),
+  app.get('/auth/twitter/callback',
+      passport.authenticate('twitter', {failureRedirect: '/#/sigin' }),
       function (req, res) {
         //redirects new users to the proper place
         if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
@@ -62,16 +62,18 @@ module.exports = function(app){
   app.get('/auth/google', passport.authenticate('google', {scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email']}));
-  app.get('auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/#/sigin' }),
-      function (req, res) {
-        //redirects new users to the proper place
-        if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
-          res.redirect('/#/createdwelling');
-        } else {
-          res.redirect('/#/dashboard');
-        }
-    });
+
+  app.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/#/signin'}),
+    function (req, res) {
+      //redirects new users to the proper place
+      if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
+        res.redirect('/#/createdwelling');
+      } else {
+        res.redirect('/#/dashboard');
+      }
+    }
+  );
 
   // BASIC ROUTING ----------------------------------
   //POST Requests
@@ -106,6 +108,5 @@ module.exports = function(app){
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
-
   res.redirect('/#/signin');
 }

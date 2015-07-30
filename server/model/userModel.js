@@ -12,11 +12,13 @@ exports.getByDwellingId = function(dwellingId, cb){
   });
 }
 
-exports.addFacebookUser = function(user, cb){
-
+exports.addUser = function(user, cb){
+   console.log("inside addUser", user);
   // addFacebookUser : insert a new user row. Called by Passport.js
-  var queryString = "INSERT INTO users (roomease_id, picture, gender, username) VALUES ("
-                     + "'" + user.roomease_id + "', "
+  var queryString = "INSERT INTO users (twitter_id, google_id, facebook_id, picture, gender, username) VALUES ("
+                     + "'" + user.twitter_id + "', "
+                     + "'" + user.google_id + "', "
+                     + "'" + user.facebook_id + "', "
                      + "'" + user.picture + "', "
                      + "'" + user.gender + "', "
                      // + "'" + user.facebook_token + "', "
@@ -25,9 +27,10 @@ exports.addFacebookUser = function(user, cb){
   console.log('queryString: ', queryString)
   db.query(queryString, function(err, results){
     console.log("Inside the POST Query callback");
+    console.log(err, results);
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
-}
+};
 
 exports.updateDwellingId = function(userId, dwellingId, cb) {
 
@@ -37,7 +40,7 @@ exports.updateDwellingId = function(userId, dwellingId, cb) {
   db.query(queryString, function(err, results) {
     err ? cb(err, null) : cb(null, results);
   })
-}
+};
 
 exports.findUserById = function(id, cb){
 
@@ -45,10 +48,33 @@ exports.findUserById = function(id, cb){
   console.log('Inside the users find query');
   var queryString = "SELECT * FROM users WHERE id = " + "'" + id + "';";
   db.query(queryString, function(err, results){
+    console.log('findUser: ', err, results)
+    err ? cb(err, null) : cb(null, results.rows[0]);
+  });
+};
+
+exports.findUserByGoogleId = function(id, cb){
+
+  // findUserByFacebookId : provides a facebookId and returns the row
+  console.log('Inside the users find query');
+  var queryString = "SELECT * FROM users WHERE google_id = " + "'" + id + "';";
+  db.query(queryString, function(err, results){
     // console.log('findUser: ', results)
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
-}
+};
+
+exports.findUserByTwitterId = function(id, cb){
+
+  // findUserByFacebookId : provides a facebookId and returns the row
+  console.log('Inside the users find query');
+  var queryString = "SELECT * FROM users WHERE twitter_id = " + "'" + id + "';";
+  db.query(queryString, function(err, results){
+    // console.log('findUser: ', results)
+    err ? cb(err, null) : cb(null, results.rows[0]);
+  });
+};
+
 
 exports.findUserByFacebookId = function(id, cb){
 
@@ -59,4 +85,4 @@ exports.findUserByFacebookId = function(id, cb){
     // console.log('findUser: ', results)
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
-}
+};
