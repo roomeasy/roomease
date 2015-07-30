@@ -44,6 +44,10 @@ module.exports = function(app){
   app.post('/delegateTasks',function(req, res) {
     isLoggedIn(req, res, taskHandler.delegateTasks);
   });
+  app.post('/users', function(req, res) {
+    isLoggedIn(req, res, userHandler.createProfile);
+    res.redirect('/dashboard');
+  });
   // GET REQUESTS
   app.get('/tasks', function(req, res) {
     isLoggedIn(req, res, taskHandler.getAll);
