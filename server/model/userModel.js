@@ -24,10 +24,10 @@ exports.addFacebookUser = function(user, cb){
   // addFacebookUser : insert a new user row. Called by Passport.js
   var queryString = "INSERT INTO users (facebook_id, picture, gender, points, username) VALUES ($1, $2, $3, $4, $5) RETURNING id;";
   var queryValsArr = [
-                      "'" + user.facebook_id + "'",
+                            user.facebook_id,
                       "'" + user.picture + "'",
                       "'" + user.gender + "'",
-                      "'" + user.points + "'",
+                            user.points,
                       // "'" + user.facebook_token + "'",
                       "'" + user.username + "'"
                      ];
@@ -52,7 +52,7 @@ exports.findUserById = function(id, cb){
   // findUser : queries the database w/ the provided userId and returns the row
   console.log('Inside the users find query');
   var queryString = "SELECT * FROM users WHERE id = $1;";
-  db.query(queryString, ["'"+id+"'"], function(err, results){
+  db.query(queryString, [id], function(err, results){
     // console.log('findUser: ', results)
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
@@ -63,7 +63,7 @@ exports.findUserByFacebookId = function(id, cb){
   // findUserByFacebookId : provides a facebookId and returns the row
   console.log('Inside the users find query');
   var queryString = "SELECT * FROM users WHERE facebook_id = $1;";
-  db.query(queryString, ["'"+id+"'"], function(err, results){
+  db.query(queryString, [id], function(err, results){
     // console.log('findUser: ', results)
     err ? cb(err, null) : cb(null, results.rows[0]);
   });
@@ -86,11 +86,11 @@ exports.insertProfile = function(profile, userId, cb) {
   console.log('Inside users insert profile variables');
   var queryString = "INSERT INTO users (age, location, smoker, vaper, pet) VALUES ($1, $2, $3, $4, $5) WHERE id = $6;";
   var queryValsArr = [
-                      "'" + user.age + "'",
+                            user.age,
                       "'" + user.location + "'",
-                      "'" + user.smoker + "'",
-                      "'" + user.vaper + "'",
-                      "'" + user.pet + "'",
-                      "'" + userId + "'"
+                            user.smoker,
+                            user.vaper,
+                            user.pet,
+                            userId
                      ];
 };
