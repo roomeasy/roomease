@@ -120,6 +120,12 @@ angular.module('roomEase')
           method: 'GET',
           url: '/allUsers'
         })
+      },
+      update : function(data){
+        return $http({
+          method: 'POST',
+          url: '/users'
+        })
       }
     },
     roomie: {
