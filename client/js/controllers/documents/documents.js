@@ -20,31 +20,30 @@ angular.module('roomEase')
       console.log('uploading file')
       for (var i = 0; i < files.length; i++) {
         var file = files[i];
-        Upload.upload({
-          url: 'documents/upload',
-          fields: {
-            'username': $scope.username,
-          },
-          file: file
-        })
-        .progress(function (evt) {
-          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-          console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-        })
-        .success(function (data, status, headers, config) {
-          console.log(arguments)
-          var args = Array.prototype.slice.call(arguments);
-          console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
-        }).error(function (data, status, headers, config) {
-            console.log('error status: ' + status);
-        })
+        Document.upload(files[i]);
       }
-        }
-    };
-})
-.controller('UserDocsCtrl', function inject($scope, Request){
+    }
+  };
+  $scope.viewDoc = function(file){
+    console.log('file ', file)
+    Document.fetchImage(file.id)
+    .then(function(results){
+      console.log(results)
+      $scope.bytes = results;
 
+    })
+
+  };
+
+})
+.controller('UserDocsCtrl', function inject($scope, Document, Request){
+  //$scope.userDocs = [];
+  Document.fetchUserDocs()
+  .then(function (results){
+    console.log(results);
+    $scope.userDocs = results;
+  })
 })
 .controller('DocHistoryCtrl', function inject($scope){
-
+  $scope.dwellingDocs = []
 })

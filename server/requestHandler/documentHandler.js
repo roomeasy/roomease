@@ -2,79 +2,57 @@ var documentModel = require('../model/documentModel.js');
 var responseHandler = require('./responseHandler.js')
 //var userModel = require('../model/userModel.js')
 
-module.exports = {
-	// add: function (req, res){
-	// // if (req.user.dwelling_id === null) {
- // //      res.send(400);
- // //      return;
- // //    }else {
- // //      var dwelling_id = req.user.dwelling_id;
- // //    }
- //    console.log('documentHandler', req.body);
- //    var documents = {
- //      //document_id = req.body.id,
- //      file_name : req.body.file_name,
- //      dwelling_id : req.body.dwellingId,
- //      user_id : req.body.userId,
- //      filesize : req.body.filesize,
- //      type : req.body.type,
- //      description : req.body.description,
- //      data : req.body.data,
- //      paid : req.body.paid
- //    };
- //    console.log(documents);
- //    documentModel.add(documents, userId, dwellingId, function(err, results){
- //      responseHandler(err, results, res);
- //    })
- //   }, // end of add:
-   
-  getAllDocs : function(req, res){
-    // Called by the GET '/tasks' endpoint
-    // Gets all tasks based of current users dwelling_id
-    var dwelling_id = req.user.dwelling_id;
-    console.log('inside the documents getALL DOCS handler');
-    documentModel.getDocsDwelling(dwelling_id, function(err, results){
-      responseHandler(err, results, res);
-    });
-  },
-    
-  getAllDocsUser : function(req, res){
-    var user_id = req.user_id;
+module.exports = {    
+  findbyUser : function(req, res){
+    var user_id = req.user.id;
     console.log('inside the documents get USER DOCS handler');
-    documentModel.getDocsUsers(user_id, function(err, results){
+    documentModel.joinUser(req.user.id, function(err, results){
       responseHandler(err, results, res);
     });
   },
-  deleteDoc: function(req,res){
+  
+  findbyDwelling: function(req, res){
+    console.log('inside the documents getALL DOCS handler');
+    documentModel.joinDwelling(req.user.dwelling_id, function(err, results){
+      responseHandler(err, results, res);
+    });
+    
+  },
+
+  delet: function(req,res){
     var document_id = req.id;
     console.log('inside delete documents');
-    documentModel.deleteDoc(document_id, function(err, results){
+    documentModel.delet(document_id, function(err, results){
       responseHandler(err,results,res)
     });
 
   }, //end of deleteDoc
+  fileData: function(req, res){
+    console.log(JSON.stringify(req.params))
+    console.log('filedata')
+    documentModel.image(req.params.doc_id, function(err, results){
+      console.log('Results: ')
+      //console.log(results[0].data.toString('base64'))
+      responseHandler(err, results[0].data.toString('base64'), res)
+    });
+
+    // documentModel.image(req.params.doc_id, function(err results){
+
+    // })
+  },
 
   upload: function(req, res){
-    //TODO: store file in db by using documentModel
-    //info in req.file and req.user
-    //console.log(req.file.originalname)
-    //console.log(req.file)
-    //console.log(req.user)
     var documents = {
-      //document_id = req.body.id,
       file_name : req.file.originalname,
       dwelling_id : req.user.dwelling_id,
       user_id : req.user.id,
       filesize : 99,
       type : req.file.mimetype,
-      //description : req.file.description,
-      //data : req.file.data
     };
-    console.log(documents);
-    documentModel.add(documents, function(err, results){
+    //console.log(documents);
+    documentModel.create(documents, function(err, results){
       responseHandler(err, results, res);
     })
 
-    //res.json(req.file)
   }
 }//end of module.exports
