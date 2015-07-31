@@ -155,9 +155,9 @@ angular.module('roomEase')
         method: 'GET',
         url: 'documents/user',
       })
-      // .then(function (response){
-      //   return response.data;
-      // })
+      .then(function (response){
+        return response.data;
+      })
 
     },
 
@@ -168,6 +168,18 @@ angular.module('roomEase')
       })
       .then(function (response){
         console.log(response)
+        return response.data;
+      })
+    },
+
+    fetchImage: function(doc_id){
+      return $http({
+        method: 'GET',
+        url: 'documents/image/' + doc_id,
+      })
+      .then(function (response){
+        console.log('inside fetchmiags')
+        console.log(response.data)
         return response.data;
       })
     },

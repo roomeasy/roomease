@@ -99,15 +99,9 @@ module.exports = function(app){
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
   //app.post('/documents/add', documentHandler.add);
-  app.post('/documents/user', documentHandler.getAllDocsUser);
-  app.post('/documents/dwelling', documentHandler.getAllDocs);
-  app.post('/documents/upload', upload.single('file'), documentHandler.upload)
   app.post('/addEvent', taskHandler.addCalendarEvent);
   app.post('/updateEvent', taskHandler.updateCalendarEvent);
   app.post('/deleteEvent', taskHandler.deleteCalendarEvent);
-  app.post('/documentsAdd', documentHandler.add);
-  app.post('/documentsUsers', documentHandler.getAllDocsUser);
-  app.post('/documentsDwelling', documentHandler.getAllDocs);
 
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
@@ -117,8 +111,12 @@ module.exports = function(app){
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
   //app.get('/documents', documentHandler.add);
-  app.get('/documents/user', documentHandler.getAllDocsUser);
-  app.get('/documents/dwelling', documentHandler.getAllDocs);
+
+  app.get('/documents/user', documentHandler.findbyUser);
+  app.get('/documents/image/:doc_id', documentHandler.fileData);
+  app.get('/documents/dwelling', documentHandler.findbyDwelling);
+  app.post('/documents/upload', upload.single('file'), documentHandler.upload)
+  app.post('documents/delete', documentHandler.delet);
   return app;
 }
 

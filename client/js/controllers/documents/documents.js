@@ -24,13 +24,24 @@ angular.module('roomEase')
       }
     }
   };
+  $scope.viewDoc = function(file){
+    console.log('file ', file)
+    Document.fetchImage(file.id)
+    .then(function(results){
+      console.log(results)
+      $scope.bytes = results;
+
+    })
+
+  };
+
 })
 .controller('UserDocsCtrl', function inject($scope, Document, Request){
   //$scope.userDocs = [];
   Document.fetchUserDocs()
   .then(function (results){
-    console.log(results.data);
-    $scope.userDocs = results.data;
+    console.log(results);
+    $scope.userDocs = results;
   })
 })
 .controller('DocHistoryCtrl', function inject($scope){
