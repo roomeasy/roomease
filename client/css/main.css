@@ -402,3 +402,19 @@ small.ng-binding {color: black;}
   border: dashed 3px #394264;
   border-radius: 5px;
 }
+
+.cal-day-today {
+  background-color: #707994;
+}
+
+.cal-day-today span[data-cal-date] {
+  color: #fff;
+}
+
+.timeBox {
+  width: auto;
+}
+
+.event {
+  border: 0;
+}

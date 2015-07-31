@@ -4,6 +4,30 @@ angular.module('roomEase')
         $scope.calendarView = 'month';
         $scope.calendarDay = new Date();
 
+        $scope.fixDate = function (dateObj) {
+            var newDate = new Date(dateObj);
+            var offset = newDate.getTimezoneOffset();
+            var year = newDate.getFullYear();
+            var month = newDate.getMonth();
+            var day = newDate.getDate();
+            var hour = newDate.getHours();
+            var minutes = newDate.getMinutes();
+            var setDate = new Date(year, month, day, hour, minutes);
+            return setDate;
+        };
+
+        $scope.saveDate = function (dateObj) {
+            var newDate = new Date(dateObj);
+            var offset = newDate.getTimezoneOffset();
+            var year = newDate.getFullYear();
+            var month = newDate.getMonth();
+            var day = newDate.getDate();
+            var hour = newDate.getHours();
+            var minutes = newDate.getMinutes();
+            var setDate = new Date(year, month, day, hour, minutes - offset);
+            return setDate;
+        };
+
         $scope.getEvents = function() {
             eventAPIRequests.getEvents().then(function(res){
               console.log("response: ", res);
@@ -11,8 +35,11 @@ angular.module('roomEase')
               if(Array.isArray(res)){
                   for (var i = 0; i < res.length; i++) {
                       $scope.events.push(res[i]);
+                      $scope.events[i].start_at = $scope.fixDate($scope.events[i].start_at);
+                      $scope.events[i].end_at = $scope.fixDate($scope.events[i].end_at);
                       $scope.events[i].startsAt = $scope.events[i].start_at;
                       $scope.events[i].endsAt = $scope.events[i].end_at;
+                      $scope.events[i]['incrementsBadgeTotal'] = false;
                   };
               } else { 
                 return;
@@ -46,7 +73,7 @@ angular.module('roomEase')
                     console.log('result of delete: ', result);
                 })
             );
-        };
+
 
         eventAPIRequests.getEvents().then(function (res) {
             console.log(res);
@@ -61,38 +88,21 @@ angular.module('roomEase')
             var hour = newDate.getHours();
             var setDate = new Date(year, month, day, hour);
             return setDate;
+
+            eventAPIRequests.getEvents().then(function (res) {
+                // console.log(res);
+            });
         };
+
 
         $scope.events = $scope.getEvents();
 
-        //Temp events for testing without db
-        // $scope.events = [
-        //     {
-        //         title: "Clean house",
-        //         type: 'info',
-        //         startsAt: new Date(2015,6,15,12),
-        //         endsAt: new Date(2015,6,15,12),
-        //     },
-        //     {
-        //         title: "Throw out Gary's stuff",
-        //         type: 'warning',
-        //         startsAt: new Date(2015,6,22,12),
-        //         endsAt: new Date(2015,6,22,12),
-        //     },
-        //     {
-        //         title: "Install projector",
-        //         type: 'inverse',
-        //         startsAt: new Date(2015,6,28,12),
-        //         endsAt: new Date(2015,6,28,12),
-        //     }
-        // ];
-
         $scope.createDefaultEvent = function () {
             var defaultEvent = {
-                title: 'Click to Edit', // The title of the event
+                title: '(Click to Edit)', // The title of the event
                 type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-                startsAt: $scope.date(), // A javascript date object for when the event starts
-                endsAt: $scope.date(), // Optional - a javascript date object for when the event ends
+                startsAt: $scope.saveDate(new Date()), // A javascript date object for when the event starts
+                endsAt: $scope.saveDate(new Date()), // Optional - a javascript date object for when the event ends
                 editable: true, // If edit-event-html is set and this field is explicitly set to false then dont make it editable.
                 deletable: true, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
                 draggable: false, //Allow an event to be dragged and dropped

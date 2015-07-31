@@ -5,42 +5,42 @@
 
     <!-- BEGIN View Menu -->
     <h2 class="text-center">{{ calendarTitle }}
+    </h2>
 
           <!-- <div class="row text-center"> -->
 
               <div class="btn-group">
                 <button
-                  class="btn btn-primary"
+                  class="btn bg-teal"
                   mwl-date-modifier
                   date="calendarDay"
                   decrement="calendarView">
-                  Previous
+                  PREVIOUS
                 </button>
                 <button
-                  class="btn btn-default"
+                  class="btn bg-teal"
                   mwl-date-modifier
                   date="calendarDay"
                   set-to-today>
-                  Today
+                  TODAY
                 </button>
                 <button
-                  class="btn btn-primary"
+                  class="btn bg-teal"
                   mwl-date-modifier
                   date="calendarDay"
                   increment="calendarView">
-                  Next
+                  NEXT
                 </button>
               </div>
 
+          <!-- </div> -->
 
     <!-- BEGIN Create New Event Button -->
-    <button type="button" class="btn btn-info" ng-click="createDefaultEvent()">Create New Event</button>
+    <button type="button" class="btn bg-red" ng-click="createDefaultEvent()">NEW EVENT</button>
     <!-- END Create New Event Button -->
 
             <br class="visible-xs visible-sm">
 
-          <!-- </div> -->
-    </h2>
     <!-- END View Menu -->
 
     <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; margin-bottom:20px; padding:10px">
@@ -119,11 +119,11 @@
 <!-- Modal Template -->
 
 <script type="text/ng-template" id="modalContent.html">
-  <div class="modal-header">
-  <h3 class="modal-title dark-purple">Event Details</h3>
+  <div class="modal-header bg-teal">
+  <h3 class="modal-title">Event Details</h3>
   </div>
 
-  <div class="modal-body" ng-controller="calendarCtrl">
+  <div class="modal-body bg-main-purple" ng-controller="calendarCtrl">
     <form class="form-horizontal">
       <div class="input-group">
         <span class="input-group-addon input-sm" id="basic-addon1">Title:</span>
@@ -141,18 +141,27 @@
         </select>
       </div>
       <div class="input-group">
-        <span class="input-group-addon input-sm" id="basic-addon1">Start:</span>
+        <span class="input-group-addon input-sm" id="basic-addon1">Start Date:</span>
         <input type="text" id="eventStart" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="vm.event.startsAt" is-open="vm.event.startOpen" close-text="Close" placeholder="Enter Start Date"/>
-        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'startOpen', vm.event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </div>
       <div class="input-group">
-        <span class="input-group-addon input-sm" id="basic-addon1">End: </span>
+        <span class="input-group-addon input-sm" id="basic-addon1">Start Time:</span>
+        <input type="time" step="900" class="input-sm form-control cleanInput" style="width: 25%" ng-model="vm.event.startsAt"/>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">End Date:</span>
         <input type="text" id="eventEnd" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="vm.event.endsAt" is-open="vm.event.endOpen" close-text="Close" placeholder="Enter End Date"/>
-        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'endOpen', vm.event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">End Time:</span>
+        <input type="time" step="900" class="input-sm form-control cleanInput" style="width: 25%" ng-model="vm.event.endsAt"/>
       </div>
     </form>
   </div>
-  <div class="modal-footer" ng-controller="calendarCtrl">
-    <button class="btn btn-primary btn-sm" ng-click="updateEvent(vm.event); $close()">OK</button>
+  <div class="modal-footer bg-main-purple" ng-controller="calendarCtrl">
+    <button class="btn bg-teal" ng-click="updateEvent(vm.event); $close()">OK</button>
+    <button class="btn bg-red" ng-click="$close()">CANCEL</button>
   </div>
 </script>

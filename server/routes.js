@@ -101,6 +101,9 @@ module.exports = function(app){
   app.post('/addEvent', taskHandler.addCalendarEvent);
   app.post('/updateEvent', taskHandler.updateCalendarEvent);
   app.post('/deleteEvent', taskHandler.deleteCalendarEvent);
+  // app.post('/documentsAdd', documentHandler.add);
+  app.post('/documentsUsers', documentHandler.getAllDocsUser);
+  app.post('/documentsDwelling', documentHandler.getAllDocs);
 
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
