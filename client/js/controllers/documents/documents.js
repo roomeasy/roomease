@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('DocumentsCtrl', function inject($scope, Request, Upload, Document, $location){
+.controller('DocumentsCtrl', function inject($scope, Request, Upload, Document, $modal, $log){
   //$scope.dwells.name = 'yo';
   $scope.fetchDwells = function () {
     Request.dwelling.fetch().then(function(results) {
@@ -18,21 +18,33 @@ angular.module('roomEase')
   $scope.upload = function (files) {
     if (files && files.length) {
       console.log('uploading file')
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        Document.upload(files[i]);
-      }
+      files.forEach(Document.upload);
     }
   };
   $scope.viewDoc = function(file){
     console.log('file ', file)
     Document.fetchImage(file.id)
-    .then(function(results){
-      console.log(results)
-      $scope.bytes = results;
+    .then($scope.open)
+  };
 
-    })
+  $scope.open = function(image) {
 
+    var modalInstance = $modal.open({
+      animation: true,
+      templateUrl: 'modal.html',
+      controller: 'DocModalCtrl',
+      //size: size,
+      resolve: {
+        image: function () {
+          return image;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
   };
 
 })
@@ -46,4 +58,8 @@ angular.module('roomEase')
 })
 .controller('DocHistoryCtrl', function inject($scope){
   $scope.dwellingDocs = []
+})
+.controller('DocModalCtrl', function ($scope, $modalInstance, image){
+  $scope.image = image;
+
 })

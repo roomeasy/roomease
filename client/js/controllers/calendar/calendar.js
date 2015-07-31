@@ -5,7 +5,6 @@ angular.module('roomEase')
         $scope.calendarDay = new Date();
 
         $scope.getEvents = function() {
-<<<<<<< HEAD
             eventAPIRequests.getEvents().then(function(res){
               console.log("response: ", res);
               $scope.events = [];
@@ -49,10 +48,9 @@ angular.module('roomEase')
             );
         };
 
-            eventAPIRequests.getEvents().then(function (res) {
-                console.log(res);
-            });
-        }
+        eventAPIRequests.getEvents().then(function (res) {
+            console.log(res);
+        });
 
         
         $scope.date = function () {
