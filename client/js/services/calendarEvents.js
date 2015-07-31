@@ -2,16 +2,6 @@ angular.module('roomEase')
 
     .factory('eventAPIRequests', function($http){
       var returnObj = {
-          createEvent : function(data){
-            console.log('posting new event', data);
-            return $http({
-              method: 'POST',
-              url: '/addEvent',
-              data: data
-            }).then(function(response){
-              return response.data;
-            })
-          },
           deleteEvent : function(data){
             console.log('deleting event', data);
             return $http({

@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-    .factory('Auth', function($http) {
+    .factory('Auth', function($http, $rootScope) {
 
       var authAPI = {
         getAuthorization: function () {
@@ -8,13 +8,11 @@ angular.module('roomEase')
             method: 'GET',
             url: '/auth'
           }).then(function (response) {
-            if (response.permission === "false"){
-              return false;
-            } else {
-              return true;
-            }
+            console.log(response.data.permission);
+            return response.data.permission;
           });
         }
       };
       return authAPI;
-    });
+    }
+);

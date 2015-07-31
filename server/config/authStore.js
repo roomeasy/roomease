@@ -2,7 +2,7 @@ var passport = require('passport');
 
 exports.authorizeForAPI = function(req, res, next){
     if(!req.isAuthenticated()) {
-      res.send(403);
+      res.sendStatus(403);
     } else {
       next();
     }
