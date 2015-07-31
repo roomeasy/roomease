@@ -35,6 +35,11 @@ module.exports = {
     console.log(task);
     taskModel.add(task, dwelling_id, function(err, results){
       //Inside the callback function to the taskModel.add function
+
+      // Everything inside of this function provides a correct interval for tasks
+      // Adjustments were made to account for leap years, months with 28 days, and
+      //  handling a new year event where month starts.
+
       responseHandler(err, results, res);
       var taskId = results.id;
       
@@ -42,6 +47,7 @@ module.exports = {
 
       console.log(start_date);
       var dateArray = start_date.split('-');
+      console.log(dateArray);
       dateArray[0] = dateArray[0]*1;
       dateArray[1] = dateArray[1]*1;
       dateArray[2] = dateArray[2]*1;
@@ -56,24 +62,25 @@ module.exports = {
         //throw error
       }
 
-      if (dateArray[0]>12) {
-        // month too high
-        dateArray[2]++;
-        dateArray[0]=1;
-      }
+      // if (dateArray[0]>12) {
+      //   // month too high
+      //   dateArray[2]++;
+      //   dateArray[0]=1;
+      // }
 
       // day too high
+      // handles leap years
       if ((dateArray[0] === 9 || dateArray[0] === 4 || dateArray[0] === 6 || dateArray[0] === 11) && dateArray[1] > 30) {
-        dateArray[1] === dateArray[1] - 30;
+        dateArray[1] = dateArray[1] - 30;
         dateArray[0]++;
       } else if (dateArray[0] === 2 && dateArray[2]%4 === 0 && dateArray[1] > 29) {
-        dateArray[1] === dateArray[1] - 29;
+        dateArray[1] = dateArray[1] - 29;
         dateArray[0]++;
       } else if (dateArray[0] === 2 && dateArray[2]%4 !== 0 && dateArray[1] > 28) {
-        dateArray[1] === dateArray[1] - 28;
+        dateArray[1] = dateArray[1] - 28;
         dateArray[0]++;
       } else if (dateArray[1] > 31) {
-        dateArray[1] === dateArray[1] - 31;
+        dateArray[1] = dateArray[1] - 31;
         dateArray[0]++;
       }
 
@@ -83,7 +90,8 @@ module.exports = {
         dateArray[2]++;
       }      
 
-      var dateStr = '20' + dateArray[2] + '-';
+      // formats string to be sent to the database
+      var dateStr = dateArray[2] + '-';
       if (dateArray[0] < 10) {
         dateStr = dateStr + '0' + dateArray[0] + '-';
       } else {
