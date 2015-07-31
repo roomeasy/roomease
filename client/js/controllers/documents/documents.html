@@ -1,4 +1,17 @@
 <div class="container-fluid mobile-padding">
+  
+  <script type="text/ng-template" id="modal.html">
+    <div class="modal-header">
+      <h1 class="dark-purple">header</h1>
+    </div>
+    <div class="modal-body">
+      <img ng-src="data:image/jpeg;base64,{{image}}"/>
+
+    </div>
+    <div class="modal-footer">
+    </div>
+  </script>
+  
   <div class="row">
   	<div class="col-sm-2" ng-include="'includes/navbar.html'"></div>
   	<div class="container">
@@ -17,8 +30,7 @@
   			  Click to find or DROP IMAGES OR PDF'S HERE {{files.length}}
   		  </div>
   	  </div>
-      <h1>{{bytes.length}}</h1>
-      <img ng-src="data:image/jpeg;base64,{{bytes}}"
   	</div>
   </div>
 </div>
+
