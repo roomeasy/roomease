@@ -31,7 +31,7 @@ module.exports = function(app){
    */
   app.get('/auth/twitter', passport.authenticate('twitter'));
   app.get('/auth/twitter/callback',
-      passport.authenticate('twitter', {failureRedirect: '/#/sigin' }),
+      passport.authenticate('twitter', {failureRedirect: '/#/signin' }),
       function (req, res) {
         //redirects new users to the proper place
         if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
@@ -73,6 +73,20 @@ module.exports = function(app){
         res.redirect('/#/dashboard');
       }
     }
+  );
+
+  app.get('/auth/github', passport.authenticate('github'));
+
+  app.get('/auth/github/callback',
+      passport.authenticate('github', { failureRedirect: '/#/signin'}),
+      function (req, res) {
+        //redirects new users to the proper place
+        if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
+          res.redirect('/#/createdwelling');
+        } else {
+          res.redirect('/#/dashboard');
+        }
+      }
   );
 
   // BASIC ROUTING ----------------------------------

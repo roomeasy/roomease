@@ -53,6 +53,16 @@ exports.findUserById = function(id, cb){
   });
 };
 
+exports.findUserByGithubId = function(id, cb){
+
+  console.log('Inside the users find query');
+  var queryString = "SELECT * FROM users WHERE github_id = " + "'" + id + "';";
+  db.query(queryString, function(err, results){
+    // console.log('findUser: ', results)
+    err ? cb(err, null) : cb(null, results.rows[0]);
+  });
+};
+
 exports.findUserByGoogleId = function(id, cb){
 
   // findUserByFacebookId : provides a facebookId and returns the row

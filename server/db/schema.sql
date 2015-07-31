@@ -30,6 +30,7 @@ CREATE TABLE users (
   username VARCHAR,
   picture VARCHAR DEFAULT null,
   gender VARCHAR DEFAULT null,
+  github_id VARCHAR DEFAULT null,
   google_id VARCHAR DEFAULT null,
   twitter_id INT DEFAULT null,
   facebook_id BIGINT DEFAULT null,
