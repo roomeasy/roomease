@@ -1,5 +1,14 @@
 /*------ COLORS ------*/
 
+
+.i-pad {padding: 5px;
+  transition: all 0.3s ease 0s;}
+
+.i-teal:hover {color: #11A8AB;} /*facebook*/
+.i-blue:hover {color: #394264;} /*google*/
+.i-orange:hover {color: #ffa700} /*twitter*/
+.i-grey:hover {color: #3d3c3a}
+
 	/* Background Colors */
 .bg-dark-purple {background: #1f253d;}
 .bg-main-purple {background: #394264;}
@@ -32,8 +41,8 @@ body {
 input {color: #333;}
 
 input[type=text] {
-  width: 260px;
-  height: 50px;
+  /*width: 260px;*/
+  height: 30px;
   margin-left: 20px;
   margin-bottom: 20px;
   padding-left: 10px;
@@ -42,12 +51,53 @@ input[type=text] {
   border: solid 1px #1f253d;
   border-radius: 5px;
 }
+
 input[type=text]:focus {
  		outline: none;
  		border: 2px solid #11a8ab;
- 	}
+}
+
+input[type=text].cleanInput {
+  width: 50%;
+  height: 30px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  background: #50597b;
+  color: #fff;
+  border: solid 1px #1f253d;
+  border-radius: 5px;
+}
+
 label {font-weight: 300;}
+
 a:visited {color: white;}
+
+.form-control[readonly] {
+  background-color: #50597b;
+}
+
+#eventType {
+  background-color: #50597b;
+  border: solid 1px #1f253d;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -webkit-appearance: none;
+  margin: 0 10;
+  padding-top: 0;
+}
+
+.eventCalBtn {
+  height: 30px;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.input-group {
+  margin: 10px;
+}
 
 /*------ HELPERS ------*/
 
@@ -287,6 +337,8 @@ a:visited {color: white;}
 .nav-tabs.nav-justified > li > a {border: none;}
 
 .top-padding {padding-top: 50px;}
+.bottom-padding {padding-bottom: 50px;}
+
 .ls-padding {padding-top: 150px;}
 .user-image {
   border-radius: 50%;
@@ -338,3 +390,15 @@ small.ng-binding {color: black;}
   margin: 0 auto;
 }
 .delegate-group {text-align: center;}
+
+/*
+* ================================= Legacy =======================================
+*/
+.drop-box {
+  text-align: center;
+  top: 10px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border: dashed 3px #394264;
+  border-radius: 5px;
+}

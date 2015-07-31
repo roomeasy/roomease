@@ -26,6 +26,11 @@
     "bootstrap": "~3.3.5",
     "normalize.css": "~3.0.3",
     "moment": "~2.10.3",
-    "angular-animate": "~1.4.3"
+    "angular-animate": "~1.4.3",
+    "angular-bootstrap-calendar": "~0.14.5",
+    "ng-file-upload": "~6.0.2"
+  },
+  "resolutions": {
+    "ng-file-upload": "~6.0.2"
   }
 }

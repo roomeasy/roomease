@@ -1,0 +1,158 @@
+<div ng-include="'includes/navbar.html'"></div>
+<div class="container text-center" ng-controller="calendarCtrl">
+  <div class="row">
+    <!-- <h1 class="top-padding home-title text-center">Welcome Roomie</h1> -->
+
+    <!-- BEGIN View Menu -->
+    <h2 class="text-center">{{ calendarTitle }}
+
+          <!-- <div class="row text-center"> -->
+
+              <div class="btn-group">
+                <button
+                  class="btn btn-primary"
+                  mwl-date-modifier
+                  date="calendarDay"
+                  decrement="calendarView">
+                  Previous
+                </button>
+                <button
+                  class="btn btn-default"
+                  mwl-date-modifier
+                  date="calendarDay"
+                  set-to-today>
+                  Today
+                </button>
+                <button
+                  class="btn btn-primary"
+                  mwl-date-modifier
+                  date="calendarDay"
+                  increment="calendarView">
+                  Next
+                </button>
+              </div>
+
+
+    <!-- BEGIN Create New Event Button -->
+    <button type="button" class="btn btn-info" ng-click="createDefaultEvent()">Create New Event</button>
+    <!-- END Create New Event Button -->
+
+            <br class="visible-xs visible-sm">
+
+          <!-- </div> -->
+    </h2>
+    <!-- END View Menu -->
+
+    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; margin-bottom:20px; padding:10px">
+      <mwl-calendar
+        events="events"
+        view="calendarView"
+        view-title="calendarTitle"
+        current-day= "calendarDay"
+        view-title="calendarTitle"
+        on-event-click="eventClicked(calendarEvent)"
+        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+        on-edit-event-click="eventEdited(calendarEvent)"
+        on-delete-event-click="eventDeleted(calendarEvent)"
+        auto-open="true"
+        on-drill-down-click="false">
+      </mwl-calendar>
+    </div>
+
+
+
+    <!--
+    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
+    <h3>Add Event <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button></h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Starts At</th>
+          <th>Ends At</th>
+          <th>Remove</th>
+        </tr>  
+      </thead>
+      <tbody>
+        <tr ng-repeat="event in events track by $index">
+          <td><input type="text" class="form-control input-sm" ng-model="event.title"></td>
+          <td>
+            <select ng-model="event.type" class="form-control input-sm">
+            <option value="important">Important</option>
+            <option value="warning">Warning</option>
+            <option value="info">Info</option>
+            <option value="inverse">Inverse</option>
+            <option value="success">Success</option>
+            <option value="special">Special</option>
+          </td>
+          <td>
+            <p class="input-group" style="max-width:250px">
+            <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-sm" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+            </p>
+            <input type="time" step="900" class="form-control input-sm" ng-model="event.startsAt"/>
+          </td>
+          <td>
+            <p class="input-group" style="max-width:250px">
+            <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.endsAt" is-open="event.endOpen" close-text="Close"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-sm" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+            </p>
+            <input type="time" step="900" class="form-control input-sm" ng-model="event.endsAt"/>
+          </td>
+          <td><button class="btn btn-danger btn-sm" ng-click="events.splice($index, 1)">Remove</button></td>
+        <tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+-->
+
+<!-- Modal Template -->
+
+<script type="text/ng-template" id="modalContent.html">
+  <div class="modal-header">
+  <h3 class="modal-title dark-purple">Event Details</h3>
+  </div>
+
+  <div class="modal-body" ng-controller="calendarCtrl">
+    <form class="form-horizontal">
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">Title:</span>
+        <input type="text" class="form-control cleanInput" placeholder="Enter Title" aria-describedby="basic-addon1" ng-model="vm.event.title">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">Type:</span>
+        <select id="eventType" ng-model="vm.event.type" class="input-sm">
+          <option class="bg-purple-hover" value="important">Important</option>
+          <option class="dark-purple" value="warning">Warning</option>
+          <option class="dark-purple" value="info">Info</option>
+          <option class="dark-purple" value="inverse">Inverse</option>
+          <option class="dark-purple" value="success">Success</option>
+          <option class="dark-purple" value="special">Special</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">Start:</span>
+        <input type="text" id="eventStart" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="vm.event.startsAt" is-open="vm.event.startOpen" close-text="Close" placeholder="Enter Start Date"/>
+        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon input-sm" id="basic-addon1">End: </span>
+        <input type="text" id="eventEnd" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="vm.event.endsAt" is-open="vm.event.endOpen" close-text="Close" placeholder="Enter End Date"/>
+        <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer" ng-controller="calendarCtrl">
+    <button class="btn btn-primary btn-sm" ng-click="updateEvent(vm.event); $close()">OK</button>
+  </div>
+</script>
