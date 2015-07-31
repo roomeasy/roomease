@@ -5,6 +5,7 @@ var session = require('express-session');
 var passport = require('passport');
 var routes = require('./routes.js');
 
+
 // Our App Imports
 var passportConfig = require('./config/passport.js')(passport);
 
@@ -15,12 +16,14 @@ var app = express();
 app.use(session({
   secret: 'YES..yess...',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
+
 
 // Writes all the routes to the server instance in the routes.js file
 routes(app);

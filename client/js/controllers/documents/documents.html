@@ -1,0 +1,39 @@
+<div class="container-fluid mobile-padding">
+  
+  <script type="text/ng-template" id="modal.html">
+    <div class="modal-header">
+      <h1 class="dark-purple">{{file.name}}</h1>
+    </div>
+    <div class="modal-body">
+      <img class="image" ng-src="data:image/jpeg;base64,{{file.src}}"/>
+
+    </div>
+    <div class="modal-footer">
+    </div>
+  </script>
+  
+  <div class="row">
+  	<div class="col-sm-2" ng-include="'includes/navbar.html'"></div>
+  	<div class="container">
+  	  <div class="row">
+  	    <h1 class="home-title text-center"> Documents</h1>
+  	  </div>
+  	  <div class="row">
+  		  <div class="col-sm-4 col-sm-offset-4">
+  		    <tabset class="bg-main-purple rounded light-border padLow" justified="true">
+  		      <tab ui-sref=".yourDocs" heading="YOUR DOCS" class="bg-teal"></tab>
+  		      <tab ui-sref=".docHistory" heading="{{dwelling.name}}'S DOCS" class="bg-teal"></tab>
+  		      <div ui-view=""></div>
+          </tabset>
+        </div>
+  	  </div>
+      <div class="row">
+        <div ngf-drop ngf-select ng-model="files" ngf-multiple="true" ngf-stop-propagation="true" class="drop-box col-sm-4 col-sm-offset-4"><h4>
+          Click Here or Drag & Drop to Upload {{files.length}}</h4>
+          <span class="glyphicon glyphicon-upload light-purple" aria-hidden="true"></span>
+        </div>
+      </div>
+  	</div>
+  </div>
+</div>
+

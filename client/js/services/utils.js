@@ -2,6 +2,18 @@ angular.module('roomEase')
 
 .factory('Request', function($http){
   var returnObj = {
+    getAuthorization: function () {
+      return $http({
+        method: 'GET',
+        url: '/auth'
+      }).then(function (response) {
+        if (response.permission === "false"){
+          return false;
+        } else {
+          return true;
+        }
+      });
+    },
     dwelling : {
       create : function(data){
         return $http({
@@ -127,4 +139,72 @@ angular.module('roomEase')
   }
 
   return returnObj;
+})
+.factory('Document', function( $http, Upload){
+  var api = {
+    upload: function(file){
+      Upload.upload({
+          url: 'documents/upload',
+          fields: {
+            'username': 'Cooke',
+          },
+          file: file
+      })
+      .progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+      })
+      .success(function (data, status, headers, config) {
+          console.log(arguments)
+          console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
+      }).error(function (data, status, headers, config) {
+            console.log('error status: ' + status);
+      })
+    },
+
+    fetchUserDocs: function(){
+      return $http({
+        method: 'GET',
+        url: 'documents/user',
+      })
+      .then(function (response){
+        return response.data;
+      })
+
+    },
+
+    fetchDwellingDocs: function(){
+      return $http({
+        method: 'GET',
+        url: 'documents/dwelling',
+      })
+      .then(function (response){
+        return response.data;
+      })
+    },
+
+    fetchImage: function(doc_id){
+      return $http({
+        method: 'GET',
+        url: 'documents/image/' + doc_id,
+      })
+      .then(function (response){
+        console.log('inside fetchmiags')
+        return response.data;
+      })
+    },
+
+    deleteImage: function(doc_id){
+      return $http({
+        method: 'POST',
+        url: 'documents/delete/' + doc_id,
+      })
+      .then(function (response){
+        console.log('inside fetchmiags')
+        return response.data;
+      })
+    },
+
+  };
+  return api;
 })

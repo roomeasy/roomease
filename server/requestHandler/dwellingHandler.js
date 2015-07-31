@@ -7,7 +7,7 @@ module.exports = {
   add: function(req, res){
     // Called by the POST '/dwellings' endpoint
     // Adds a dwelling using the provided name + address information
-    console.log('inside dwelling add request handler');
+    console.log('inside dwelling add request handler', req.body);
 
     //data packaging
     var dwelling = {
