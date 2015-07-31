@@ -93,6 +93,7 @@ module.exports = function(app){
   // BASIC ROUTING ----------------------------------
   //POST Requests
 
+
   app.post('/dwellings', authStore.authorizeForAPI, dwellingHandler.add);
   app.post('/inviteRoomie', authStore.authorizeForAPI, dwellingHandler.inviteRoomie);
   app.post('/joinDwelling', authStore.authorizeForAPI, userHandler.joinDwelling);
@@ -103,7 +104,6 @@ module.exports = function(app){
   app.post('/addEvent', authStore.authorizeForAPI, taskHandler.addCalendarEvent);
   app.post('/updateEvent', authStore.authorizeForAPI, taskHandler.updateCalendarEvent);
   app.post('/deleteEvent', authStore.authorizeForAPI, taskHandler.deleteCalendarEvent);
-
 
   // GET REQUESTS
   app.get('/tasks', authStore.authorizeForAPI, taskHandler.getAll);

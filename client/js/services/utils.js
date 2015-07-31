@@ -193,6 +193,18 @@ angular.module('roomEase')
         return response.data;
       })
     },
+
+    deleteImage: function(doc_id){
+      return $http({
+        method: 'POST',
+        url: 'documents/delete/' + doc_id,
+      })
+      .then(function (response){
+        console.log('inside fetchmiags')
+        return response.data;
+      })
+    },
+
   };
   return api;
 })
