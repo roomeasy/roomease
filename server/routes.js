@@ -70,12 +70,15 @@ module.exports = function(app){
   app.get('/dwellings', function(req, res) {
     isLoggedIn(req, res, dwellingHandler.getDwellings);
   });
+  app.get('/userDwelling', function(req, res) {
+    isLoggedIn(req, res, dwellingHandler.getUsersDwelling);
+  });
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
   return app;
-}
+};
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
