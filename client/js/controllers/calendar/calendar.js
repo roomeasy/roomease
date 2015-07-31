@@ -87,10 +87,10 @@ angular.module('roomEase')
                 })
             );
 
-
-        eventAPIRequests.getEvents().then(function (res) {
-            console.log(res);
-        });
+            eventAPIRequests.getEvents().then(function (res) {
+                console.log(res);
+            });
+        };
 
         
         $scope.date = function () {
