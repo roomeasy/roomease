@@ -92,7 +92,6 @@ exports.insertProfile = function(profile, userId, cb) {
                             profile.vaper,
                             profile.pet,
                             userId
-
                      ];
   console.log('Query string is', queryString);
   db.query(queryString, queryValsArr, function(err, results) {

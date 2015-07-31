@@ -13,8 +13,8 @@ angular.module('roomEase')
       $scope.lookingUsers.push({
         name     : users[i].username,
         image    : users[i].picture,
-        location : 'placeholder',
-        age      : 0
+        location : users[i].location,
+        age      : users[i].age
       })
     }
     

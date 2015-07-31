@@ -51,7 +51,7 @@ module.exports = {
     userModel.updatePoints(userId, points, function() {
       if (err) { res.send(err)}
       else { res.send({joined : true}) };
-    })
+    });
   },
 
   decreasePoints : function(req, res) {
@@ -60,7 +60,7 @@ module.exports = {
     userModel.updatePoints(userId, points, function(err) {
       if (err) { res.send(err)}
       else { res.send({joined : true}) };
-    })
+    });
   },
 
   joinDwelling : function(req, res){
