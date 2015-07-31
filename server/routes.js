@@ -3,6 +3,7 @@ var userHandler = require('./requestHandler/userHandler.js');
 var taskHandler = require('./requestHandler/taskHandler.js');
 var dwellingHandler = require('./requestHandler/dwellingHandler.js');
 var documentHandler = require('./requestHandler/documentHandler.js');
+var authStore = require('./config/authStore');
 
 //gives reqeust file object (req.file)
 var multer = require('multer');
@@ -91,6 +92,7 @@ module.exports = function(app){
 
   // BASIC ROUTING ----------------------------------
   //POST Requests
+
   app.post('/dwellings', dwellingHandler.add);
   app.post('/inviteRoomie', dwellingHandler.inviteRoomie);
   app.post('/joinDwelling', userHandler.joinDwelling);
@@ -119,6 +121,33 @@ module.exports = function(app){
   app.get('/documents/dwelling', documentHandler.findbyDwelling);
   app.post('/documents/upload', upload.single('file'), documentHandler.upload)
   app.post('documents/delete/:doc_id', documentHandler.delet);
+
+  app.post('/dwellings', authStore.authorizeForAPI, dwellingHandler.add);
+  app.post('/inviteRoomie', authStore.authorizeForAPI, dwellingHandler.inviteRoomie);
+  app.post('/joinDwelling', authStore.authorizeForAPI, userHandler.joinDwelling);
+  app.post('/tasks', authStore.authorizeForAPI, taskHandler.add);
+  app.post('/taskInstances', authStore.authorizeForAPI, taskHandler.updateInstance);
+  app.post('/delegateTasks', authStore.authorizeForAPI, taskHandler.delegateTasks);
+  app.post('/events', authStore.authorizeForAPI, taskHandler.addCalendarEvent);
+  app.post('/addEvent', authStore.authorizeForAPI, taskHandler.addCalendarEvent);
+  app.post('/updateEvent', authStore.authorizeForAPI, taskHandler.updateCalendarEvent);
+  app.post('/deleteEvent', authStore.authorizeForAPI, taskHandler.deleteCalendarEvent);
+
+
+  // GET REQUESTS
+  app.get('/tasks', authStore.authorizeForAPI, taskHandler.getAll);
+  app.get('/taskInstances', authStore.authorizeForAPI, taskHandler.getAllInstances);
+  app.get('/myInstances', authStore.authorizeForAPI, taskHandler.getUserInstances);
+  app.get('/users', authStore.authorizeForAPI, userHandler.getRoomies);
+  app.get('/dwellings', authStore.authorizeForAPI, dwellingHandler.getUsersDwelling);
+  app.get('/events', authStore.authorizeForAPI, taskHandler.getCalendarEventsByDwelling);
+  app.get('/auth', authStore.checkUser);
+
+  app.get('/documents/user', authStore.authorizeForAPI, documentHandler.findbyUser);
+  app.get('/documents/image/:doc_id', authStore.authorizeForAPI, documentHandler.fileData);
+  app.get('/documents/dwelling', authStore.authorizeForAPI, documentHandler.findbyDwelling);
+  app.post('/documents/upload', authStore.authorizeForAPI, upload.single('file'), documentHandler.upload)
+  app.post('documents/delete', authStore.authorizeForAPI, documentHandler.delet);
   return app;
 }
 
@@ -126,7 +155,12 @@ module.exports = function(app){
 // route middleware to make sure a user is logged in
   // not currently being used
 function isLoggedIn(req, res, next) {
+
   if (req.isAuthenticated())
     return next();
   res.redirect('/#/signin');
 }
+  if (req.isAuthenticated()) {next();}
+  else {res.redirect('/#/signin');}
+}
+
