@@ -1,8 +1,11 @@
 /*------ COLORS ------*/
 
 
-.i-pad {padding: 5px;
-  transition: all 0.3s ease 0s;}
+.i-pad {
+  color: white;
+  padding: 5px;
+  transition: all 0.3s ease 0s;
+}
 
 .i-teal:hover {color: #11A8AB;} /*facebook*/
 .i-blue:hover {color: #394264;} /*google*/
@@ -401,4 +404,20 @@ small.ng-binding {color: black;}
   padding-bottom: 60px;
   border: dashed 3px #394264;
   border-radius: 5px;
+}
+
+.cal-day-today {
+  background-color: #707994;
+}
+
+.cal-day-today span[data-cal-date] {
+  color: #fff;
+}
+
+.timeBox {
+  width: auto;
+}
+
+.event {
+  border: 0;
 }

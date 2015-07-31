@@ -4,15 +4,42 @@ angular.module('roomEase')
         $scope.calendarView = 'month';
         $scope.calendarDay = new Date();
 
-        $scope.getEvents = function() {
+        $scope.fixDate = function (dateObj) {
+            var newDate = new Date(dateObj);
+            var offset = newDate.getTimezoneOffset();
+            var year = newDate.getFullYear();
+            var month = newDate.getMonth();
+            var day = newDate.getDate();
+            var hour = newDate.getHours();
+            var minutes = newDate.getMinutes();
+            var setDate = new Date(year, month, day, hour, minutes);
+            return setDate;
+        };
+
+        $scope.saveDate = function (dateObj) {
+            var newDate = new Date(dateObj);
+            var offset = newDate.getTimezoneOffset();
+            var year = newDate.getFullYear();
+            var month = newDate.getMonth();
+            var day = newDate.getDate();
+            var hour = newDate.getHours();
+            var minutes = newDate.getMinutes();
+            var setDate = new Date(year, month, day, hour, minutes - offset);
+            return setDate;
+        };
+
+        $scope.getEvents = function(event) {
             eventAPIRequests.getEvents().then(function(res){
               console.log("response: ", res);
               $scope.events = [];
               if(Array.isArray(res)){
                   for (var i = 0; i < res.length; i++) {
                       $scope.events.push(res[i]);
+                      $scope.events[i].start_at = $scope.fixDate($scope.events[i].start_at);
+                      $scope.events[i].end_at = $scope.fixDate($scope.events[i].end_at);
                       $scope.events[i].startsAt = $scope.events[i].start_at;
                       $scope.events[i].endsAt = $scope.events[i].end_at;
+                      $scope.events[i]['incrementsBadgeTotal'] = false;
                   };
               } else { 
                 return;
@@ -21,17 +48,30 @@ angular.module('roomEase')
         };
 
         $scope.updateEvent = function(event) {
-            eventAPIRequests.updateEvent({
+            if(event.id){
+                eventAPIRequests.updateEvent({
+                    title: event.title,
+                    eventType: event.type,
+                    startAt: event.startsAt,
+                    endAt: event.endsAt,
+                    id: event.id
+
+                }).then($scope.getEvents(function(err, result) {
+                        console.log('result of update: ', result);
+                    })
+                );
+            } else {
+                eventAPIRequests.createEvent({
                 title: event.title,
                 eventType: event.type,
                 startAt: event.startsAt,
-                endAt: event.endsAt,
-                id: event.id
+                endAt: event.endsAt
 
             }).then($scope.getEvents(function(err, result) {
-                    console.log('result of update: ', result);
+                    console.log('result of create: ', result);
                 })
             );
+            }
         };
 
         $scope.deleteEvent = function(event) {
@@ -46,11 +86,11 @@ angular.module('roomEase')
                     console.log('result of delete: ', result);
                 })
             );
-        };
 
-        eventAPIRequests.getEvents().then(function (res) {
-            console.log(res);
-        });
+            eventAPIRequests.getEvents().then(function (res) {
+                console.log(res);
+            });
+        };
 
         
         $scope.date = function () {
@@ -61,38 +101,20 @@ angular.module('roomEase')
             var hour = newDate.getHours();
             var setDate = new Date(year, month, day, hour);
             return setDate;
+
+            eventAPIRequests.getEvents().then(function (res) {
+                // console.log(res);
+            });
         };
 
+
         $scope.events = $scope.getEvents();
-
-        //Temp events for testing without db
-        // $scope.events = [
-        //     {
-        //         title: "Clean house",
-        //         type: 'info',
-        //         startsAt: new Date(2015,6,15,12),
-        //         endsAt: new Date(2015,6,15,12),
-        //     },
-        //     {
-        //         title: "Throw out Gary's stuff",
-        //         type: 'warning',
-        //         startsAt: new Date(2015,6,22,12),
-        //         endsAt: new Date(2015,6,22,12),
-        //     },
-        //     {
-        //         title: "Install projector",
-        //         type: 'inverse',
-        //         startsAt: new Date(2015,6,28,12),
-        //         endsAt: new Date(2015,6,28,12),
-        //     }
-        // ];
-
-        $scope.createDefaultEvent = function () {
+            
             var defaultEvent = {
-                title: 'Click to Edit', // The title of the event
+                title: '(Click to Edit)', // The title of the event
                 type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-                startsAt: $scope.date(), // A javascript date object for when the event starts
-                endsAt: $scope.date(), // Optional - a javascript date object for when the event ends
+                startsAt: $scope.saveDate(new Date()), // A javascript date object for when the event starts
+                endsAt: $scope.saveDate(new Date()), // Optional - a javascript date object for when the event ends
                 editable: true, // If edit-event-html is set and this field is explicitly set to false then dont make it editable.
                 deletable: true, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
                 draggable: false, //Allow an event to be dragged and dropped
@@ -100,6 +122,8 @@ angular.module('roomEase')
                 incrementsBadgeTotal: false, //If set to false then will not count towards the badge total amount on the month and year view
                 cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
             };
+
+        $scope.createDefaultEvent = function () {
 
             eventAPIRequests.createEvent({
                 title: defaultEvent.title,
@@ -145,6 +169,11 @@ angular.module('roomEase')
       $event.preventDefault();
       $event.stopPropagation();
       event[field] = !event[field];
+    };
+
+    $scope.openEventModal = function () {
+        $scope.events.push(defaultEvent);
+        $scope.eventClicked($scope.events[$scope.events.length-1]);
     };
 
 });
