@@ -19,17 +19,20 @@
   	    <h1 class="home-title text-center"> Documents</h1>
   	  </div>
   	  <div class="row">
-  		  <div class="col-sm-5 col-sm-offset-1 top-padding">
-  		    <tabset class="bg-main-purple rounded light-border" justified="true">
-  		      <tab ui-sref=".yourDocs" heading="Your Docs"></tab>
-  		      <tab ui-sref=".docHistory" heading="{{dwelling.name}}'s Docs"></tab>
+  		  <div class="col-sm-4 col-sm-offset-4">
+  		    <tabset class="bg-main-purple rounded light-border padLow" justified="true">
+  		      <tab ui-sref=".yourDocs" heading="YOUR DOCS" class="bg-teal"></tab>
+  		      <tab ui-sref=".docHistory" heading="{{dwelling.name}}'S DOCS" class="bg-teal"></tab>
   		      <div ui-view=""></div>
-  		    </tabset>
-  		  </div>
-  		  <div ngf-drop ngf-select ng-model="files" ngf-multiple="true" ngf-stop-propagation="true" class="drop-box col-sm-4 col-sm-offset-1">
-  			  Click to find or DROP IMAGES OR PDF'S HERE {{files.length}}
-  		  </div>
+          </tabset>
+        </div>
   	  </div>
+      <div class="row">
+        <div ngf-drop ngf-select ng-model="files" ngf-multiple="true" ngf-stop-propagation="true" class="drop-box col-sm-4 col-sm-offset-4"><h4>
+          Click Here or Drag & Drop to Upload {{files.length}}</h4>
+          <span class="glyphicon glyphicon-upload light-purple" aria-hidden="true"></span>
+        </div>
+      </div>
   	</div>
   </div>
 </div>
