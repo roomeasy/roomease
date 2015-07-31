@@ -32,7 +32,7 @@ CREATE TABLE users (
   gender VARCHAR DEFAULT null,
   github_id VARCHAR DEFAULT null,
   google_id VARCHAR DEFAULT null,
-  twitter_id INT DEFAULT null,
+  twitter_id VARCHAR DEFAULT null,
   facebook_id BIGINT DEFAULT null,
   looking BOOLEAN DEFAULT FALSE,
   dwelling_id INTEGER references dwellings(id) -- foreign key

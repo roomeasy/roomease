@@ -1,5 +1,4 @@
 
-=======
 var pg = require('pg');
 var auth = process.env.DATABASE_URL ? null : require('../config/auth.js')
 

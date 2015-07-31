@@ -2,6 +2,18 @@ angular.module('roomEase')
 
 .factory('Request', function($http){
   var returnObj = {
+    getAuthorization: function () {
+      return $http({
+        method: 'GET',
+        url: '/auth'
+      }).then(function (response) {
+        if (response.permission === "false"){
+          return false;
+        } else {
+          return true;
+        }
+      });
+    },
     dwelling : {
       create : function(data){
         return $http({

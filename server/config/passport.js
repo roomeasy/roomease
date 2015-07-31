@@ -20,7 +20,7 @@ module.exports = function(passport) {
   // used to deserialize the user
   // this happens on every request so we know which user is logged in.
   passport.deserializeUser(function(id, done) {
-    console.log("in here", id)
+
     User.findUserById(id, function(err, user) {
        console.log(err);
       // if user is found within sessions, they can proceed with request
@@ -95,7 +95,7 @@ module.exports = function(passport) {
       },
 
       function(req, token, tokenSecret, profile, done){
-        console.log(profile);
+
         // asynchronous
         process.nextTick(function() {
           var twitter_id = profile.id;
@@ -149,7 +149,6 @@ module.exports = function(passport) {
       },
 
       function(req, accessToken, refreshToken, profile, done){
-        console.log(profile);
         // asynchronous
         process.nextTick(function() {
           var google_id = profile.id;
@@ -248,14 +247,4 @@ module.exports = function(passport) {
       });
   }));
 };
-/*
-function enlargeImage(img){
-  if(img){
-    var newImg = "";
-    for (var i = 0; i < img.length-3; i++){
-      newImg = newImg + img[i];
-    }
-    return newImg + 300;
-  }
-}
-*/
+
