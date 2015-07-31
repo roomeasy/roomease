@@ -2,9 +2,9 @@
   <a ng-click="viewDoc(file)" class="fa fa-picture-o closed task-check"></a>
   <ul class="single-task-group">
   	<li>
-  	  <p class="task-name">{{file.file_name | limitTo : 15}}</p>
+  	  <p class="task-name">{{file.file_name | limitTo : 20}}</p>
   	  <!-- <p class="task-frequency">a</p> -->
-  	  <p class="fa fa-picture-o task-description clear"></p>
+  	  <a ng-click="delDoc(file)" class="fa fa-trash-o task-description clear"></a>
   	</li>
   </ul>
 </div>

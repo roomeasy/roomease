@@ -17,7 +17,7 @@ exports.create = function(data, cb){
 },
 
 exports.joinDwelling = function(dwellingId, cb){
-  var queryString = "SELECT file_name FROM documents WHERE dwelling_id = " + dwellingId + ";";
+  var queryString = "SELECT id, file_name FROM documents WHERE dwelling_id = " + dwellingId + ";";
   db.query(queryString, function(err, results){
     console.log("Inside the getDocs DWELLINGS query");
     err ? cb(err, null) : cb(null, results.rows);
@@ -40,7 +40,7 @@ exports.joinUser = function(userId, cb){
   });
 },
 exports.delet = function(documentId, cb){
-  var queryString = "DELETE * FROM documents WHERE id = " + documentId + ";";
+  var queryString = "DELETE FROM documents WHERE id = " + documentId + ";";
   db.query(queryString, function(err, results){
     console.log("Inside the delete docs query");
     err ? cb(err, null) : cb(null, results.rows);

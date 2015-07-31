@@ -53,15 +53,28 @@ angular.module('roomEase')
 
 })
 .controller('UserDocsCtrl', function inject($scope, Document, Request){
-  //$scope.userDocs = [];
   Document.fetchUserDocs()
   .then(function (results){
     console.log(results);
     $scope.userDocs = results;
   })
+
+  $scope.delDoc = function(file){
+    console.log('file ', file)
+    Document.deleteImage(file.id)
+    .then(function(resp){
+      return resp;
+    })
+  };
+
 })
-.controller('DocHistoryCtrl', function inject($scope){
-  $scope.dwellingDocs = []
+.controller('DocHistoryCtrl', function inject($scope, Document){
+  Document.fetchDwellingDocs()
+  .then(function (results){
+    console.log('DocHistoryCtrl');
+    console.log(results);
+    $scope.dwellingDocs = results;
+  })
 })
 .controller('DocModalCtrl', function ($scope, $modalInstance, file){
   $scope.file = file;
