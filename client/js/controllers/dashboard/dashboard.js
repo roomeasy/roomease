@@ -11,6 +11,8 @@ angular.module('roomEase')
       $scope.users = results;
       $scope.users.forEach(function (user) {
         $scope.usersObj[user.id] = user;
+        $scope.firstName = user.username.match(/[^\s]+/);
+        console.log($scope.firstName[0]);
       });
     });
   };
