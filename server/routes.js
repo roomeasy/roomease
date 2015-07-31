@@ -84,6 +84,6 @@ module.exports = function(app){
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next(req, res);
-  res.redirect('/#/signin');
+  res.status(404).send();
 }
 
