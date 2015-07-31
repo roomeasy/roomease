@@ -161,7 +161,7 @@ angular.module('roomEase')
       weekly : 2,
       monthly : 3
     }
-  }
+  };
 
   return returnObj;
-})
+});
