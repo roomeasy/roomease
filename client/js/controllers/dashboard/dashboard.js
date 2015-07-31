@@ -11,12 +11,14 @@ angular.module('roomEase')
       $scope.users = results;
       $scope.users.forEach(function (user) {
         $scope.usersObj[user.id] = user;
+        // uses regex to get the first name of the user for display
         $scope.firstName = user.username.match(/[^\s]+/);
         console.log($scope.firstName[0]);
       });
     });
   };
   $scope.fetchUsers();
+  console.log($scope.usersObj);
 
   $scope.fetchDwelling = function () {
     Request.dwelling.fetchUser().then(function(results) {
