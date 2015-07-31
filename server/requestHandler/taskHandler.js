@@ -37,22 +37,73 @@ module.exports = {
       //Inside the callback function to the taskModel.add function
       responseHandler(err, results, res);
       var taskId = results.id;
-      if(!task.start_date){
-        var start_date = "'07-27-15'";
-      }else{
-        start_date = "'" + task.start_date + "'";
-      }
+      
+      start_date = task.start_date;
 
       console.log(start_date);
-      for(var i = 1; i < 3; i++) {
-        // Create 2 instances of the task. 1 will be due further out, the other will be due on the date selected
-        var task_instance = {
-          due_date : "date " + start_date + " + " + i + " * interval " + intToInterval[task.frequency]
-        }
-        taskModel.addInstance(task_instance, taskId, function(err) {
-          console.log(err);
-        });
+      var dateArray = start_date.split('-');
+      dateArray[0] = dateArray[0]*1;
+      dateArray[1] = dateArray[1]*1;
+      dateArray[2] = dateArray[2]*1;
+      
+      if (task.frequency === 1){
+        dateArray[1] = dateArray[1] + 1;
+      } else if (task.frequency === 2){
+        dateArray[1] = dateArray[1] + 7;
+      } else if (task.frequency === 3){
+        dateArray[0] = dateArray[0] + 1;
+      } else {
+        //throw error
       }
+
+      if (dateArray[0]>12) {
+        // month too high
+        dateArray[2]++;
+        dateArray[0]=1;
+      }
+
+      // day too high
+      if ((dateArray[0] === 9 || dateArray[0] === 4 || dateArray[0] === 6 || dateArray[0] === 11) && dateArray[1] > 30) {
+        dateArray[1] === dateArray[1] - 30;
+        dateArray[0]++;
+      } else if (dateArray[0] === 2 && dateArray[2]%4 === 0 && dateArray[1] > 29) {
+        dateArray[1] === dateArray[1] - 29;
+        dateArray[0]++;
+      } else if (dateArray[0] === 2 && dateArray[2]%4 !== 0 && dateArray[1] > 28) {
+        dateArray[1] === dateArray[1] - 28;
+        dateArray[0]++;
+      } else if (dateArray[1] > 31) {
+        dateArray[1] === dateArray[1] - 31;
+        dateArray[0]++;
+      }
+
+      if (dateArray[0]>12) {
+        // month too high
+        dateArray[0] = 1;
+        dateArray[2]++;
+      }      
+
+      var dateStr = '20' + dateArray[2] + '-';
+      if (dateArray[0] < 10) {
+        dateStr = dateStr + '0' + dateArray[0] + '-';
+      } else {
+        dateStr = dateStr + dateArray[0] + '-';
+      }
+      if (dateArray[1] < 10) {
+        dateStr = dateStr + '0' + dateArray[1];
+      } else {
+        dateStr = dateStr + dateArray[1] + '';
+      }
+
+      var task_instance = {
+        due_date : dateStr
+      }
+      taskModel.addInstance(task_instance, taskId, function(err) {
+        console.log(err);
+      });
+    
+
+
     });
   },
 
