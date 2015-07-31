@@ -3,6 +3,7 @@ var userHandler = require('./requestHandler/userHandler.js');
 var taskHandler = require('./requestHandler/taskHandler.js');
 var dwellingHandler = require('./requestHandler/dwellingHandler.js');
 
+
 module.exports = function(app){
 
   // This routes module is exporting a function that will decorate the app (express server instance)
@@ -13,15 +14,14 @@ module.exports = function(app){
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/#/signin' }),
     function (req, res) {
+
       //redirects new users to the proper place
-      if (req.user.dwelling_id === null || req.user.dwelling_id === undefined){
-        res.redirect('/#/createdwelling');
-      } 
-      else if(req.user.age){
-        res.redirect('/#/dashboard');
-      } 
-      else {
+      if(!req.user.age){
         res.redirect('/#/roomieinfo');
+      } else if (req.user.dwelling_id === null || req.user.dwelling_id === undefined) {
+        res.redirect('/#/createdwelling');
+      } else {
+        res.redirect('/#/dashboard');
       }
   });
 
