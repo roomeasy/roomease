@@ -2,10 +2,10 @@
   
   <script type="text/ng-template" id="modal.html">
     <div class="modal-header">
-      <h1 class="dark-purple">header</h1>
+      <h1 class="dark-purple">{{file.name}}</h1>
     </div>
     <div class="modal-body">
-      <img ng-src="data:image/jpeg;base64,{{image}}"/>
+      <img class="image" ng-src="data:image/jpeg;base64,{{file.src}}"/>
 
     </div>
     <div class="modal-footer">

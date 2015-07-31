@@ -24,20 +24,24 @@ angular.module('roomEase')
   $scope.viewDoc = function(file){
     console.log('file ', file)
     Document.fetchImage(file.id)
-    .then($scope.open)
+    .then($scope.open.bind(this, file.file_name))
   };
 
-  $scope.open = function(image) {
+  $scope.open = function(name, src) {
 
     var modalInstance = $modal.open({
       animation: true,
       templateUrl: 'modal.html',
       controller: 'DocModalCtrl',
+      windowClass: 'large-Modal',
       //size: size,
       resolve: {
-        image: function () {
-          return image;
-        }
+        file: function () {
+          return {
+            name: name,
+            src: src
+          };
+        },
       }
     });
 
@@ -59,7 +63,7 @@ angular.module('roomEase')
 .controller('DocHistoryCtrl', function inject($scope){
   $scope.dwellingDocs = []
 })
-.controller('DocModalCtrl', function ($scope, $modalInstance, image){
-  $scope.image = image;
+.controller('DocModalCtrl', function ($scope, $modalInstance, file){
+  $scope.file = file;
 
 })
