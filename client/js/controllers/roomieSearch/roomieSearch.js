@@ -8,16 +8,17 @@ angular.module('roomEase')
     
     console.log("user fetchAll results:", results);
     
-    var users = results.data;
+    var users = results;
+    console.log(results);
     for (var i = 0; i < users.length; i++) {
       $scope.lookingUsers.push({
         name     : users[i].username,
         image    : users[i].picture,
         location : users[i].location,
         age      : users[i].age
-      })
+      });
     }
     
-  })
+  });
 
-})
+});
