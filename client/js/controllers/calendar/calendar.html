@@ -36,7 +36,7 @@
           <!-- </div> -->
 
     <!-- BEGIN Create New Event Button -->
-    <button type="button" class="btn bg-red" ng-click="createDefaultEvent()">NEW EVENT</button>
+    <button type="button" class="btn bg-red" ng-model="events" ng-click="openEventModal()">NEW EVENT</button>
     <!-- END Create New Event Button -->
 
             <br class="visible-xs visible-sm">
@@ -52,8 +52,8 @@
         view-title="calendarTitle"
         on-event-click="eventClicked(calendarEvent)"
         on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+        edit-event-html="'<i class=\'glyphicon glyphicon-pencil i-pad i-teal\'></i>'"
+        delete-event-html="'<i class=\'glyphicon glyphicon-remove i-pad i-teal\'></i>'"
         on-edit-event-click="eventEdited(calendarEvent)"
         on-delete-event-click="eventDeleted(calendarEvent)"
         auto-open="true"
@@ -61,64 +61,10 @@
       </mwl-calendar>
     </div>
 
-
-
-    <!--
-    <div class="col-sm-10 col-sm-offset-1" style="background-color: #9099b7; border-radius:5px; margin-top:20px; padding:10px">
-    <h3>Add Event <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button></h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Type</th>
-          <th>Starts At</th>
-          <th>Ends At</th>
-          <th>Remove</th>
-        </tr>  
-      </thead>
-      <tbody>
-        <tr ng-repeat="event in events track by $index">
-          <td><input type="text" class="form-control input-sm" ng-model="event.title"></td>
-          <td>
-            <select ng-model="event.type" class="form-control input-sm">
-            <option value="important">Important</option>
-            <option value="warning">Warning</option>
-            <option value="info">Info</option>
-            <option value="inverse">Inverse</option>
-            <option value="success">Success</option>
-            <option value="special">Special</option>
-          </td>
-          <td>
-            <p class="input-group" style="max-width:250px">
-            <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close"/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-sm" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-            </p>
-            <input type="time" step="900" class="form-control input-sm" ng-model="event.startsAt"/>
-          </td>
-          <td>
-            <p class="input-group" style="max-width:250px">
-            <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.endsAt" is-open="event.endOpen" close-text="Close"/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-sm" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-            </p>
-            <input type="time" step="900" class="form-control input-sm" ng-model="event.endsAt"/>
-          </td>
-          <td><button class="btn btn-danger btn-sm" ng-click="events.splice($index, 1)">Remove</button></td>
-        <tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</div>
-
--->
-
 <!-- Modal Template -->
 
 <script type="text/ng-template" id="modalContent.html">
+<div class="calEventModal">
   <div class="modal-header bg-teal">
   <h3 class="modal-title">Event Details</h3>
   </div>
@@ -162,6 +108,7 @@
   </div>
   <div class="modal-footer bg-main-purple" ng-controller="calendarCtrl">
     <button class="btn bg-teal" ng-click="updateEvent(vm.event); $close()">OK</button>
-    <button class="btn bg-red" ng-click="$close()">CANCEL</button>
+    <button class="btn bg-red" ng-click="eventCanceled(vm.event); $close()">CANCEL</button>
+  </div>
   </div>
 </script>

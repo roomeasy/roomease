@@ -1,8 +1,11 @@
 /*------ COLORS ------*/
 
 
-.i-pad {padding: 5px;
-  transition: all 0.3s ease 0s;}
+.i-pad {
+  color: white;
+  padding: 5px;
+  transition: all 0.3s ease 0s;
+}
 
 .i-teal:hover {color: #11A8AB;} /*facebook*/
 .i-blue:hover {color: #394264;} /*google*/
