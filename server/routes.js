@@ -8,7 +8,7 @@ var documentHandler = require('./requestHandler/documentHandler.js');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function(req, file, cb){
-    cb(null, './uploads/');
+    cb(null, './server/uploads/');
   },
   filename: function(req, file, cb){
     cb(null, file.originalname);
@@ -112,10 +112,10 @@ module.exports = function(app){
 
 
   app.get('/documents/user', documentHandler.findbyUser);
-  app.get('/documents/image/:doc_id', documentHandler.fileData);
+  app.get('/documents/image/:doc_id', documentHandler.serveImage);
   app.get('/documents/dwelling', documentHandler.findbyDwelling);
   app.post('/documents/upload', upload.single('file'), documentHandler.upload)
-  app.post('documents/delete', documentHandler.delet);
+  app.post('documents/delete/:doc_id', documentHandler.delet);
   return app;
 }
 
