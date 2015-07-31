@@ -421,3 +421,31 @@ small.ng-binding {color: black;}
 .event {
   border: 0;
 }
+
+/*.modal {
+    display: block;
+}
+.modal-body:before,
+.modal-body:after {
+    display: table;
+    content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+    display: table;
+    content: " ";
+}*/
+.large-Modal .modal-dialog{
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  top:0; bottom: 0; left: 0; right: 0;
+  margin: auto
+}
+.modal-body{
+  height: 100%;
+}
+.image{
+  width: 100%;
+  height: 100%;
+}
