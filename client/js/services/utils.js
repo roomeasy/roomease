@@ -33,10 +33,18 @@ angular.module('roomEase')
           return response.data;
         })
       },
-      fetch : function() {
+      fetchAll : function() {
         return $http({
           method: 'GET',
           url: '/dwellings',
+        }).then(function(response) {
+          return response.data;
+        })
+      },
+      fetchUser : function() {
+        return $http({
+          method: 'GET',
+          url: '/userDwelling',
         }).then(function(response) {
           return response.data;
         })

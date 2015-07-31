@@ -65,7 +65,7 @@ module.exports = {
   },
 
   getUsersDwelling : function(req, res){
-    // Called from GET '/dwellings'
+    // Called from GET '/userDwelling'
     // Retrieves the dwelling information from the currently logged-in user
     var dwellingId = req.user.dwelling_id;
     dwellingModel.getById(dwellingId, function(err, results){
@@ -74,7 +74,7 @@ module.exports = {
   },
 
   getDwellings : function(req, res){
-
+    // Called from GET '/dwellings'
     dwellingModel.getAllDwellings(function(err, results){
       responseHandler(err, results, res);
     });
