@@ -2,11 +2,13 @@
 -- Not actual data model
 
 -- Make sure Postgres.app is running
--- 'psql 'will enter the shell
+-- 'psql 'will enter the shell if mac
+-- 'psql -U <username> <database name> < schema.sql' if windows
 
 -- If you run 'psql <database-name> < schema.sql' it will run the schema file and drop/create tables.
 -- Only do this if you want to start fresh with the below schema.
 
+-- \l list all databases
 -- \c <database-name> connects to database
 -- \d <table-name> describes a certain table
 -- \q to quit the shell
@@ -20,9 +22,14 @@ CREATE TABLE dwellings (
   id SERIAL PRIMARY KEY,
   address VARCHAR DEFAULT null,
   name VARCHAR unique,
-  pin INTEGER
+  pin INTEGER,
+  lat VARCHAR,
+  long VARCHAR
 );
 
+-- Temporarily set dwelling_id default to 0 to prevent
+--  update errors on 'null' value.  Needs to be replaced
+--  with an INSERT command.
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR,
@@ -30,7 +37,13 @@ CREATE TABLE users (
   gender VARCHAR DEFAULT null,
   facebook_id BIGINT,
   looking BOOLEAN DEFAULT FALSE,
-  dwelling_id INTEGER references dwellings(id) -- foreign key
+  points INTEGER,
+  dwelling_id INTEGER DEFAULT 0,
+  age INTEGER DEFAULT 0,
+  location VARCHAR DEFAULT 'The Moon',
+  smoker VARCHAR DEFAULT null,
+  vaper VARCHAR DEFAULT null,
+  pet BOOLEAN DEFAULT FALSE
 );
 
 -- each task has 1 user

@@ -181,6 +181,24 @@ a:visited {color: white;}
 	width: 100%;
   background-size: cover;
 }
+.leave-container {
+  padding:20px;
+}
+.leave-living-space {
+  font-size: 1.1em;
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  line-height: 41px;
+  background-color: #3B456B;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  text-decoration: none !important;
+}
+.leave-living-space:hover {
+  background-color: #50597b;
+  border: 2px solid #414C77;
+}
 
 /*------ SIDE NAVBAR ------*/
 .sidebar-container {
@@ -207,6 +225,37 @@ a:visited {color: white;}
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.search-nav {
+  padding:20px;
+}
+.search-nav-btn {
+  font-size: 1.1em;
+  margin-left: 25px;
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  line-height: 41px;
+  background-color: #3B456B;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  text-decoration: none !important;
+}
+.search-nav-btn:hover {
+  background-color: #50597b;
+  border: 2px solid #414C77;
+}
+.search-nav-btn-dead {
+  font-size: 1.1em;
+  margin-left: 25px;
+  text-align: center;
+  width: 250px;
+  height: 46px;
+  line-height: 40px;
+  border: 3px solid #1D233B;
+  border-radius: 5px;
+  text-decoration: none !important;
+  background-color: #242B4B
 }
 .page-wrapper {padding: 0 100px;}
 .roomie-search {

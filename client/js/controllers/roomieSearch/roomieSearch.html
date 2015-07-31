@@ -1,26 +1,44 @@
 <div ng-include="'includes/navbar.html'"></div>
+<!-- <div style="float: right;">
+  <a href="/#/dwellingsearch"><i class="grow fa fa-users"></i>Search for a place</a>
+</div> -->
+<div class="flex-center search-nav">
+  <a href="/#/dwellingsearch" class="search-nav-btn">Search For a Place</a>
+  <a href="/#/roomiesearch" class="search-nav-btn-dead">Search For a Roomie</a>
+</div>
 <div class="roomie-search">
   <h1 class="home-title text-center">Roomie Search</h1>
-  <input type="text" ng-model="location">
+  <div class='flex-center'>
+    <div style="padding:3px">
+      Allow Smokers:
+      Yes <input style="width: 30px" ng-model="allowsmokers" type="radio" name="smoke" value="Yes">
+    </div>
+    <div style="padding:3px">
+      No <input style="width: 30px" ng-model="allowsmokers" type="radio" name="smoke" value="No"
+    </div>
+<!--     <div style="padding:3px">
+      <input style="width: 30px" ng-model="allowsmokers" type="radio" name="smoke" value="Weed"><br>
+    </div> -->
+  </div><br>
 </div>
 <div class="flex-center page-wrapper">
-<div ng-repeat="user in lookingUsers | filter:location" class="user-card grow bg-main-purple">
-  <img class="user-looking" src="{{user.image}}" height="170px" width="170px">
-  <p class="user-name">{{user.name}}</p>
-  <p class="user-info">{{user.location}}</p>
-  <ul class="looking-icons">
-    <li class="star">
-      <i class="fa fa-star"></i>
-      <span>24</span>
-    </li>
-    <li class="location">
-      <i class="fa fa-birthday-cake"></i>
-      <span>{{user.age}}</span>
-    </li>
-    <li class="fb">
-      <i class="fa fa-facebook-official"></i>
-      <span>Msg</span>
-    </li>
-  </ul>
-</div>
+  <div ng-repeat="user in lookingUsers | filter:location" class="user-card grow bg-main-purple">
+    <img class="user-looking" src="{{user.image}}" height="170px" width="170px">
+    <p class="user-name">{{user.name}}</p>
+    <p class="user-info">{{user.location}}</p>
+    <ul class="looking-icons">
+      <li class="star">
+        <i class="fa fa-star"></i>
+        <span>24</span>
+      </li>
+      <li class="location">
+        <i class="fa fa-birthday-cake"></i>
+        <span>{{user.age}}</span>
+      </li>
+      <li class="fb">
+        <i class="fa fa-facebook-official"></i>
+        <span>Msg</span>
+      </li>
+    </ul>
+  </div>
 </div>

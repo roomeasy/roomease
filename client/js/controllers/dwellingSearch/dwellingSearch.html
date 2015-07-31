@@ -1,0 +1,21 @@
+<div ng-include="'includes/navbar.html'"></div>
+<!-- <div style="float: right;">
+  <a href="/#/roomiesearch"><i class="grow fa fa-users"></i>Search for a roomie</a>
+</div> -->
+<div class="flex-center search-nav">
+  <a href="/#/dwellingsearch" class="search-nav-btn-dead">Search For a Place</a>
+  <a href="/#/roomiesearch" class="search-nav-btn">Search For a Roomie</a>
+</div>
+<div class="roomie-search">
+  <h1 class="home-title text-center">Room Search</h1>
+</div>
+<!-- Chuck Norris does not get syntax errors.  The language changes itself to accomodate Chuck Norris -->
+<div class="flex-center page-wrapper">
+  <!-- map goes here -->
+  <div ng-app='roomEase' ng-controller='dwellingSearchCtrl'>
+    <div id="map" style="
+        width: 420px;
+        height: 400px;
+    "></div>
+  </div>
+</div>
