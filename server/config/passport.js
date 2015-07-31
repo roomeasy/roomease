@@ -248,14 +248,8 @@ module.exports = function(passport) {
       });
   }));
 };
-/*
-function enlargeImage(img){
-  if(img){
-    var newImg = "";
-    for (var i = 0; i < img.length-3; i++){
-      newImg = newImg + img[i];
-    }
-    return newImg + 300;
-  }
+
+exports.isAuthenticated = function(req, res, next){
+  if(req.isAuthenticated()) return next();
+  res.redirect('/#/signin');
 }
-*/

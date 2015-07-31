@@ -102,6 +102,9 @@ module.exports = function(app){
   app.post('/updateEvent', taskHandler.updateCalendarEvent);
   app.post('/deleteEvent', taskHandler.deleteCalendarEvent);
 
+  app.post('/documentsUsers', documentHandler.getAllDocsUser);
+  app.post('/documentsDwelling', documentHandler.getAllDocs);
+
   // GET REQUESTS
   app.get('/tasks', taskHandler.getAll);
   app.get('/taskInstances', taskHandler.getAllInstances);
@@ -109,7 +112,7 @@ module.exports = function(app){
   app.get('/users', userHandler.getRoomies);
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
-
+  
 
   app.get('/documents/user', documentHandler.findbyUser);
   app.get('/documents/image/:doc_id', documentHandler.serveImage);
