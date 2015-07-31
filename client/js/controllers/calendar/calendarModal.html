@@ -1,46 +1,88 @@
-<div class="modal-header light-purple">
-  <h3 class="modal-title">Event Details</h3>
+<div class="modal-header">
+  <h3 class="modal-title dark-purple">Event Details</h3>
 </div>
+
 <div class="modal-body">
   <!-- <p>Action: <pre>{{ vm.action }}</pre></p>
   <p>Event: <pre>{{ vm.event | json }}</pre></p> -->
-  <button type="button" class="btn btn-info" ng-click="events.unshift(createDefaultEvent())">New Event</button>
 
-        <!-- <div ng-repeat="event in events track by $index"> -->
-        <label>Title</label>
-        <input type="text" class="form-control input-sm" ng-model="event.title"></td>
-            <select ng-model="event.type" class="form-control input-sm">
-            <option value="important">Important</option>
-            <option value="warning">Warning</option>
-            <option value="info">Info</option>
-            <option value="inverse">Inverse</option>
-            <option value="success">Success</option>
-            <option value="special">Special</option>
-            <!-- Add more options for importance of event here -->
-            <p class="input-group" style:"max-width:250px">
-            <label>Starts At:</label>
+  <form class="form-horizontal">
+    <div class="input-group">
+      <span class="input-group-addon input-sm" id="basic-addon1">Title:</span>
+      <input type="text" class="form-control cleanInput" placeholder="Enter Title" aria-describedby="basic-addon1" ng-model="event.title">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon input-sm" id="basic-addon1">Type:</span>
+      <select id="eventType" ng-model="event.type" class="input-sm">
+        <option class="bg-purple-hover" value="important">Important</option>
+        <option class="dark-purple" value="warning">Warning</option>
+        <option class="dark-purple" value="info">Info</option>
+        <option class="dark-purple" value="inverse">Inverse</option>
+        <option class="dark-purple" value="success">Success</option>
+        <option class="dark-purple" value="special">Special</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon input-sm" id="basic-addon1">Start:</span>
+      <input type="text" id="eventStart" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close" placeholder="Enter Start Date"/>
+      <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon input-sm" id="basic-addon1">End: </span>
+      <input type="text" id="eventEnd" class="form-control cleanInput" readonly datepicker-popup="medium" ng-model="event.endsAt" is-open="event.endOpen" close-text="Close" placeholder="Enter End Date"/>
+      <button type="button" class="btn btn-sm eventCalBtn" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    </div>
+  </form>
+
+</div>
+              
+<!-- </div> -->
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" ng-click="events.push(event)">Save</button>
+  <button class="btn btn-danger btn-sm" ng-click="$close()">Cancel</button>
+</div>
+
+
+
+<!-- <div>
+      <!-- <div ng-repeat="event in events track by $index">
+      <div class="input-group">
+        <div class="col-sm-10">
+          <label class="light-purple">Title</label>
+          <input type="text" class="form-control input-sm" ng-model="event.title">
+        </div>
+        <div class="col-sm-10">
+          <label class="light-purple">Type</label>
+              <select ng-model="event.type" class="form-control input-sm">
+                <option value="important">Important</option>
+                <option value="warning">Warning</option>
+                <option value="info">Info</option>
+                <option value="inverse">Inverse</option>
+                <option value="success">Success</option>
+                <option value="special">Special</option>
+              </select>
+        </div>
+      </div>
+      <div class="input-group">
+            <!-- Add more options for importance of event here
+            <label class="light-purple">Starts at:</label>
             <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.startsAt" is-open="event.startOpen" close-text="Close"/>
-            <span class="input-group-btn">
+            <span class="">
               <button type="button" class="btn btn-sm" ng-click="toggle($event, 'startOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
-            </p>
             <input type="time" step="900" class="form-control input-sm" ng-model="event.startsAt"/>
-          </td>
-          <td>
-            <p class="input-group" style:"max-width:250px">
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-10">
+            <label class="light-purple">Ends at:</label>
+            <div class="input-group">
             <input type="text" class="form-control input-sm" readonly datepicker-popup="medium" ng-model="event.endsAt" is-open="event.endOpen" close-text="Close"/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-sm" ng-click="toggle($event, 'endOpen', event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
-            </p>
+            </div>
             <input type="time" step="900" class="form-control input-sm" ng-model="event.endsAt"/>
-          </td>
-          <td><button class="btn btn-danger btn-sm" ng-click="events.splice($index, 1)">Remove</button></td>
-        <tr>
-      </tbody>
-    </table>
-    
-<!-- </div> -->
-<div class="modal-footer">
-  <button class="btn btn-primary" ng-click="$close()">OK</button>
-</div>
+        </div>
+    </div>
+    -->

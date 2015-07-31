@@ -1,13 +1,52 @@
 angular.module('roomEase')
 
-    .controller('calendarCtrl', function ($scope, Request, $location, $modal, eventAPIRequests){
+    .controller('calendarCtrl', function ($scope, Request, $location, $modal, $log, eventAPIRequests){
         $scope.calendarView = 'month';
-        $scope.currentDay = new Date();
+        $scope.calendarDay = new Date();
 
         $scope.getEvents = function() {
             eventAPIRequests.getEvents().then(function(res){
-              console.log(res);
-          });
+              console.log("response: ", res);
+              $scope.events = [];
+              if(Array.isArray(res)){
+                  for (var i = 0; i < res.length; i++) {
+                      $scope.events.push(res[i]);
+                      $scope.events[i].startsAt = $scope.events[i].start_at;
+                      $scope.events[i].endsAt = $scope.events[i].end_at;
+                  };
+              } else { 
+                return;
+              }
+            });
+        };
+
+        $scope.updateEvent = function(event) {
+            eventAPIRequests.updateEvent({
+                title: event.title,
+                eventType: event.type,
+                startAt: event.startsAt,
+                endAt: event.endsAt,
+                id: event.id
+
+            }).then($scope.getEvents(function(err, result) {
+                    console.log('result of update: ', result);
+                })
+            );
+        };
+
+        $scope.deleteEvent = function(event) {
+            eventAPIRequests.deleteEvent({
+                title: event.title,
+                eventType: event.type,
+                startAt: event.startsAt,
+                endAt: event.endsAt,
+                id: event.id
+
+            }).then($scope.getEvents(function(err, result) {
+                    console.log('result of delete: ', result);
+                })
+            );
+        };
         
         $scope.date = function () {
             var newDate = new Date();
@@ -15,26 +54,37 @@ angular.module('roomEase')
             var month = newDate.getMonth();
             var day = newDate.getDate();
             var hour = newDate.getHours();
-            var setDate = new Date(year, month, day, hour + 1);
+            var setDate = new Date(year, month, day, hour);
             return setDate;
-        }
+        };
 
-        $scope.events = [{
-            title: 'Clean the place',
-                type: 'info',
-                startsAt: $scope.date(),
-                endsAt: $scope.date(),
-                editable: true,
-                deletable: true,
-                draggable: false,
-                resizable: false,
-                incrementsBadgeTotal: false,
-                cssClass: 'a-css-class-name'
-        }];
+        $scope.events = $scope.getEvents();
+
+        //Temp events for testing without db
+        // $scope.events = [
+        //     {
+        //         title: "Clean house",
+        //         type: 'info',
+        //         startsAt: new Date(2015,6,15,12),
+        //         endsAt: new Date(2015,6,15,12),
+        //     },
+        //     {
+        //         title: "Throw out Gary's stuff",
+        //         type: 'warning',
+        //         startsAt: new Date(2015,6,22,12),
+        //         endsAt: new Date(2015,6,22,12),
+        //     },
+        //     {
+        //         title: "Install projector",
+        //         type: 'inverse',
+        //         startsAt: new Date(2015,6,28,12),
+        //         endsAt: new Date(2015,6,28,12),
+        //     }
+        // ];
 
         $scope.createDefaultEvent = function () {
             var defaultEvent = {
-                title: 'New event', // The title of the event
+                title: 'Click to Edit', // The title of the event
                 type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
                 startsAt: $scope.date(), // A javascript date object for when the event starts
                 endsAt: $scope.date(), // Optional - a javascript date object for when the event ends
@@ -53,36 +103,43 @@ angular.module('roomEase')
                 endAt: defaultEvent.endsAt
 
             }).then($scope.getEvents(function(err, result) {
-                console.log(result);
+                    console.log('result of create: ', result);
                 })
             );
-
-            console.log("logging after createEvent: ", Object.keys($scope.getEvents()));
 
             return defaultEvent;
         };
 
-        $scope.toggle = function($event, field, event) {
-          $event.preventDefault();
-          $event.stopPropagation();
-          event[field] = !event[field];
-        };
+// Modal
 
-        function showModal(action, event) {
-          $modal.open({
-            templateUrl: './js/controllers/calendar/calendarModal.html',
-            controller: function() {
-              var vm = this;
-              vm.action = action;
-              vm.event = event;
-            },
-            controllerAs: 'vm'
-          });
-        }
+    function showModal(action, event) {
+      $modal.open({
+        templateUrl: 'modalContent.html',
+        controller: function() {
+          var vm = this;
+          vm.action = action;
+          vm.event = event;
+        },
+        controllerAs: 'vm'
+      });
+    }
 
-        $scope.eventClicked = function(event) {
-            showModal('Clicked', event);
-            console.log('Event clicked.');
-        };
+    $scope.eventClicked = function(event) {
+      showModal('Clicked', event);
+    };
 
-    });
+    $scope.eventEdited = function(event) {
+      showModal('Clicked', event);
+    };
+
+    $scope.eventDeleted = function(event) {
+      $scope.deleteEvent(event);
+    };
+
+    $scope.toggle = function($event, field, event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      event[field] = !event[field];
+    };
+
+});

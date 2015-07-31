@@ -132,6 +132,40 @@ module.exports = {
     })
   },
 
+  deleteCalendarEvent : function(req, res){
+    var dwellingId = req.user.dwelling_id;
+    var userId = req.user.id;
+    console.log(req.user);
+    var event = {
+      title: req.body.title,
+      type: req.body.eventType,
+      start_at: req.body.startAt,
+      end_at: req.body.endAt,
+      id: req.body.id
+    };
+
+    calendarModel.deleteEvent(event, userId, dwellingId, function(err, results){
+      responseHandler(err, results, res);
+    })
+  },
+
+  updateCalendarEvent : function(req, res){
+    var dwellingId = req.user.dwelling_id;
+    var userId = req.user.id;
+    console.log(req.user);
+    var event = {
+      title: req.body.title,
+      type: req.body.eventType,
+      start_at: req.body.startAt,
+      end_at: req.body.endAt,
+      id: req.body.id
+    };
+
+    calendarModel.updateEvent(event, userId, dwellingId, function(err, results){
+      responseHandler(err, results, res);
+    })
+  },
+
   getCalendarEventsByDwelling : function(req, res){
     var dwellingId = req.user.dwelling_id;
 
