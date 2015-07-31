@@ -1,4 +1,5 @@
 <div ng-repeat="file in dwellingDocs">
+  <a ng-click="viewDoc(file)" class="fa fa-picture-o closed task-check"></a>
   <ul class="single-task-group">
     <li>
       <p class="task-name">{{file.file_name | limitTo : 18}}</p>
