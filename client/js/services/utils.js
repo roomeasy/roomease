@@ -161,13 +161,12 @@ angular.module('roomEase')
 
     },
 
-    fetchDwellingDocs: function(dwelling_id){
+    fetchDwellingDocs: function(){
       return $http({
         method: 'GET',
         url: 'documents/dwelling',
       })
       .then(function (response){
-        console.log(response)
         return response.data;
       })
     },
@@ -179,7 +178,6 @@ angular.module('roomEase')
       })
       .then(function (response){
         console.log('inside fetchmiags')
-        console.log(response.data)
         return response.data;
       })
     },
