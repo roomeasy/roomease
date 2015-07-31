@@ -3,6 +3,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../model/userModel.js');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var GithubStrategy = require('passport-github').Strategy;
 
 //if in heroku environment, user their variables, if not, use our own from auth.js file.
 var auth = process.env.DATABASE_URL ? null : require('./auth.js');
@@ -29,6 +30,60 @@ module.exports = function(passport) {
   });
 
   // =========================================================================
+  // GITHUB ================================================================
+  // =========================================================================
+
+  passport.use(new GithubStrategy({
+        clientID: '6dba5a7648894c6d3b20',
+        clientSecret: '453d1fa52b473387fbccfb64972c4b25314b0ef6',
+        callbackURL: 'http://localhost:3000/auth/github/callback',
+        passReqToCallback: true
+      },
+
+      function(req, accessToken, refreshToken, profile, done){
+        console.log(profile);
+        // asynchronous
+        process.nextTick(function() {
+          var github_id = profile.id;
+
+          // find the user in the database based on their github_id
+          User.findUserByGithubId(github_id, function(err, user) {
+
+            // if there is an error, stop everything and return that
+            // i.e. an error connecting to the database
+            if (err) return done(err);
+
+            // if the user is found, then log them in
+            if (user) {
+              return done(null, user);
+            } else {
+
+              // if there is no user found with that roomease_id, create them
+              var newUser = {};
+
+              // take information returned from facebook and using that data,
+              // parse through it and make a newUser object.
+              newUser.gender         = null;
+              newUser.github_id      = profile.id;
+              newUser.twitter_id     = 0;
+              newUser.google_id      = 0;
+              newUser.facebook_id    = 0;
+              newUser.picture        = profile._json.avatar_url;
+              newUser.username       = profile.displayName;
+
+              // save our user to the database
+              User.addUser(newUser, function(err, results) {
+                if (err) throw err;
+
+                // if successful, return the new user
+                return done(null, results);
+              });
+            }
+          });
+        });
+      }));
+
+  // =========================================================================
   // TWITTER ================================================================
   // =========================================================================
 
@@ -40,7 +95,7 @@ module.exports = function(passport) {
       },
 
       function(req, token, tokenSecret, profile, done){
-        console.log(req, token, tokenSecret, profile);
+        console.log(profile);
         // asynchronous
         process.nextTick(function() {
           var twitter_id = profile.id;
@@ -63,10 +118,11 @@ module.exports = function(passport) {
               // take information returned from facebook and using that data,
               // parse through it and make a newUser object.
               newUser.gender         = null;
+              newUser.github_id      = 0
               newUser.twitter_id     = profile.id;
               newUser.google_id      = 0;
               newUser.facebook_id    = 0;
-              newUser.picture        = profile.photos[0];
+              newUser.picture        = profile.photos[0].value;
               newUser.username       = profile.displayName;
 
               // save our user to the database
@@ -93,7 +149,7 @@ module.exports = function(passport) {
       },
 
       function(req, accessToken, refreshToken, profile, done){
-
+        console.log(profile);
         // asynchronous
         process.nextTick(function() {
           var google_id = profile.id;
@@ -116,6 +172,7 @@ module.exports = function(passport) {
               // take information returned from facebook and using that data,
               // parse through it and make a newUser object.
               newUser.gender         = profile.gender;
+              newUser.github_id      = 0;
               newUser.twitter_id     = 0;
               newUser.google_id      = profile.id;
               newUser.facebook_id    = 0;
@@ -172,10 +229,11 @@ module.exports = function(passport) {
             // take information returned from facebook and using that data,
             // parse through it and make a newUser object.
             newUser.gender         = profile.gender;
+            newUser.github_id      = 0;
             newUser.twitter_id     = 0;
             newUser.google_id      = 0;
             newUser.facebook_id    = profile.id;
-            newUser.picture        = profile.photos[0].value;
+            newUser.picture        = profile.photos[0].value + 0;
             newUser.username       = profile.displayName;
 
             // save our user to the database
@@ -190,4 +248,14 @@ module.exports = function(passport) {
       });
   }));
 };
-
+/*
+function enlargeImage(img){
+  if(img){
+    var newImg = "";
+    for (var i = 0; i < img.length-3; i++){
+      newImg = newImg + img[i];
+    }
+    return newImg + 300;
+  }
+}
+*/
