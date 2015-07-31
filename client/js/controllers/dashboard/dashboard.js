@@ -3,7 +3,7 @@ angular.module('roomEase')
 .controller('dashboardCtrl', function ($scope, Request, $location){
   $scope.users = [];
   $scope.usersObj = {};
-  $scope.dwellings = [];
+  $scope.dwelling = {};
 
   $scope.fetchUsers = function(){
     Request.user.fetch().then(function(results){
@@ -11,18 +11,17 @@ angular.module('roomEase')
       $scope.users = results;
       $scope.users.forEach(function (user) {
         $scope.usersObj[user.id] = user;
-      })
-    })
-  }
+      });
+    });
+  };
   $scope.fetchUsers();
 
   $scope.fetchDwelling = function () {
-    Request.dwelling.fetch().then(function(results) {
-      console.log("dwelling fetch results ", results)
-      $scope.dwellings = results;
-      // ------------------------------------------------------------------------------------------
-    })
-  }
+    Request.dwelling.fetchUser().then(function(results) {
+      console.log("dwelling fetch results ", results);
+      $scope.dwelling = results;
+    });
+  };
   $scope.fetchDwelling();
 
 
@@ -30,20 +29,20 @@ angular.module('roomEase')
   $scope.leaveDwelling = function(){
     var sendData = {
       dwellingId : 0
-    }
+    };
 
     Request.dwelling.leave(sendData).then(function(data){
       console.log(sendData);
       $location.path('/createdwelling');
     });
-  }
+  };
 
 
   $scope.runDelegator = function(){
     Request.task.delegate().then(function(results){
       console.log(results);
     });
-  }
+  };
 })
 .controller('yourTasksCtrl', function($scope, Request) {
   $scope.userTasks = [];
@@ -56,33 +55,33 @@ angular.module('roomEase')
     var seenSoFar = {};
     for (var i = 0; i < taskInstances.length; i++) {
       if (!seenSoFar[taskInstances[i].name] && taskInstances[i].completed !== true) {
-        dupFree.push(taskInstances[i])
+        dupFree.push(taskInstances[i]);
         seenSoFar[taskInstances[i].name] = true;
       }
     }
     return dupFree;
-  }
+  };
 
   // used to mark a task as completed
   // sends a POST req to the server to update the database
   $scope.completeTask = function (task) {
     task.completed = true;
-    Request.task_instances.update(task)
-  }
+    Request.task_instances.update(task);
+  };
 
   Request.task_instances.fetchMy().then(function(results){
 
     console.log('task_instance fetch results:', results);
     results.sort(function (a,b) {
-        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf()
-    })
+        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf();
+    });
     $scope.userTaskInstances = $scope.removeDups(results);
 
     $scope.userTaskInstances.forEach(function(taskInstance) {
       var displayDate = moment(taskInstance.due_date).fromNow();
       taskInstance.displayDate = displayDate;
-    })
-  })
+    });
+  });
 })
 .controller('tasksHistoryCtrl', function($scope, Request) {
   $scope.allTasks = [];
@@ -94,15 +93,15 @@ angular.module('roomEase')
         var displayDate = moment(taskInstance.due_date).fromNow();
         taskInstance.displayDate = displayDate;
         taskInstance.username = $scope.usersObj[taskInstance.user_id].username;
-      })
+      });
       // sort the tasks by due date
       $scope.allTasks.sort(function (a,b) {
-        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf()
-      })
-    })
-  }
+        return moment(a.due_date).valueOf() - moment(b.due_date).valueOf();
+      });
+    });
+  };
   $scope.fetchAllTasks();
 })
 .controller('usersDisplayCtrl', function($scope) {
 
-})
+});
