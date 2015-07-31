@@ -4,7 +4,7 @@ angular.module('roomEase')
   var dwellings;
   
 
-  Request.dwelling.fetch().then(function(results){
+  Request.dwelling.fetchAll().then(function(results){
     console.log("dwelling fetch results:", results);
     dwellings = results;
     for(var i = 0; i < dwellings.length; i++) {
