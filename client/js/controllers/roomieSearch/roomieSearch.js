@@ -1,6 +1,6 @@
 angular.module('roomEase')
 
-.controller('roomieSearchCtrl', function($scope){
+.controller('roomieSearchCtrl', function($scope, Auth){
   $scope.lookingUsers = [
     {
       name: "Hadley",

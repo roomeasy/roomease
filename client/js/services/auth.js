@@ -8,10 +8,13 @@ angular.module('roomEase')
             method: 'GET',
             url: '/auth'
           }).then(function (response) {
-            return response.data;
+            if (response.permission === "false"){
+              return false;
+            } else {
+              return true;
+            }
           });
         }
       };
       return authAPI;
-
     });
