@@ -118,6 +118,6 @@ module.exports = function(app){
   app.get('/documents/image/:doc_id', authStore.authorizeForAPI, documentHandler.serveImage);
   app.get('/documents/dwelling', authStore.authorizeForAPI, documentHandler.findbyDwelling);
   app.post('/documents/upload', authStore.authorizeForAPI, upload.single('file'), documentHandler.upload)
-  app.post('documents/delete/:doc_id', authStore.authorizeForAPI, documentHandler.delet);
+  app.post('/documents/delete/:doc_id', authStore.authorizeForAPI, documentHandler.delet);
   return app;
 }
