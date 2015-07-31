@@ -25,9 +25,14 @@ angular.module('roomEase')
     }
   };
 })
-.controller('UserDocsCtrl', function inject($scope, Request){
-
+.controller('UserDocsCtrl', function inject($scope, Document, Request){
+  //$scope.userDocs = [];
+  Document.fetchUserDocs()
+  .then(function (results){
+    console.log(results.data);
+    $scope.userDocs = results.data;
+  })
 })
 .controller('DocHistoryCtrl', function inject($scope){
-
+  $scope.dwellingDocs = []
 })

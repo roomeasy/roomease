@@ -54,6 +54,7 @@ exports.add = function(data, cb){
 },
   exports.getDocsUsers = function(userId, cb){
   var queryString = "SELECT file_name FROM documents WHERE user_id = " + userId + ";";
+ //var queryString = "SELECT file_name FROM documents;"
   db.query(queryString, function(err, results){
     console.log("Inside the getDocs USER query");
     err ? cb(err, null) : cb(null, results.rows);

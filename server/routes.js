@@ -99,7 +99,7 @@ module.exports = function(app){
   app.post('/delegateTasks', taskHandler.delegateTasks);
   app.post('/events', taskHandler.addCalendarEvent);
   //app.post('/documents/add', documentHandler.add);
-  app.post('/documents/users', documentHandler.getAllDocsUser);
+  app.post('/documents/user', documentHandler.getAllDocsUser);
   app.post('/documents/dwelling', documentHandler.getAllDocs);
   app.post('/documents/upload', upload.single('file'), documentHandler.upload)
   app.post('/addEvent', taskHandler.addCalendarEvent);
@@ -117,7 +117,7 @@ module.exports = function(app){
   app.get('/dwellings', dwellingHandler.getUsersDwelling);
   app.get('/events', taskHandler.getCalendarEventsByDwelling);
   //app.get('/documents', documentHandler.add);
-  app.get('/documents/users', documentHandler.getAllDocsUser);
+  app.get('/documents/user', documentHandler.getAllDocsUser);
   app.get('/documents/dwelling', documentHandler.getAllDocs);
   return app;
 }

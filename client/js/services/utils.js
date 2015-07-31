@@ -144,10 +144,31 @@ angular.module('roomEase')
       })
       .success(function (data, status, headers, config) {
           console.log(arguments)
-          var args = Array.prototype.slice.call(arguments);
           console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
       }).error(function (data, status, headers, config) {
             console.log('error status: ' + status);
+      })
+    },
+
+    fetchUserDocs: function(){
+      return $http({
+        method: 'GET',
+        url: 'documents/user',
+      })
+      // .then(function (response){
+      //   return response.data;
+      // })
+
+    },
+
+    fetchDwellingDocs: function(dwelling_id){
+      return $http({
+        method: 'GET',
+        url: 'documents/dwelling',
+      })
+      .then(function (response){
+        console.log(response)
+        return response.data;
       })
     },
   };

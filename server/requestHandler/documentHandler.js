@@ -39,9 +39,9 @@ module.exports = {
   },
     
   getAllDocsUser : function(req, res){
-    var user_id = req.user_id;
+    var user_id = req.user.id;
     console.log('inside the documents get USER DOCS handler');
-    documentModel.getDocsUsers(user_id, function(err, results){
+    documentModel.getDocsUsers(req.user.id, function(err, results){
       responseHandler(err, results, res);
     });
   },
