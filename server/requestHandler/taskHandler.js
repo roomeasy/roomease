@@ -59,9 +59,11 @@ module.exports = {
       } else if (task.frequency === 3){
         dateArray[0] = dateArray[0] + 1;
       } else {
-        //throw error
+        console.log("Error in assigning task.frequency");
       }
 
+      // possible duplicate, not sure about this John, Brian
+      //  -Daniel
       // if (dateArray[0]>12) {
       //   // month too high
       //   dateArray[2]++;
@@ -70,25 +72,42 @@ module.exports = {
 
       // day too high
       // handles leap years
-      if ((dateArray[0] === 9 || dateArray[0] === 4 || dateArray[0] === 6 || dateArray[0] === 11) && dateArray[1] > 30) {
+      if (( dateArray[0] === 9 || 
+            dateArray[0] === 4 || 
+            dateArray[0] === 6 || 
+            dateArray[0] === 11 ) && 
+            dateArray[1] > 30 ) {
+
         dateArray[1] = dateArray[1] - 30;
         dateArray[0]++;
-      } else if (dateArray[0] === 2 && dateArray[2]%4 === 0 && dateArray[1] > 29) {
+
+      } else if ( dateArray[0] === 2 && 
+                  dateArray[2] % 4 === 0 && 
+                  dateArray[1] > 29 ) {
+
         dateArray[1] = dateArray[1] - 29;
         dateArray[0]++;
-      } else if (dateArray[0] === 2 && dateArray[2]%4 !== 0 && dateArray[1] > 28) {
+
+      } else if ( dateArray[0] === 2 && 
+                  dateArray[2] % 4 !== 0 && 
+                  dateArray[1] > 28 ) {
+
         dateArray[1] = dateArray[1] - 28;
         dateArray[0]++;
+
       } else if (dateArray[1] > 31) {
+
         dateArray[1] = dateArray[1] - 31;
         dateArray[0]++;
+
       }
 
-      if (dateArray[0]>12) {
+      if (dateArray[0] > 12) {
         // month too high
         dateArray[0] = 1;
         dateArray[2]++;
-      }      
+      }
+
 
       // formats string to be sent to the database
       var dateStr = dateArray[2] + '-';
@@ -109,9 +128,6 @@ module.exports = {
       taskModel.addInstance(task_instance, taskId, function(err) {
         console.log(err);
       });
-    
-
-
     });
   },
 
