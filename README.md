@@ -1,3 +1,8 @@
+## Description ##
+  Roomease is an application which makes the logistics of shared living much simpler. Daily chores can be scheduled 
+  and assigned. Common documents, e.g. receipts and the lease, can be uploaded to the shared "dwelling" online. 
+  Furthermore, a common calendar allows for reserving household space and equipment as well as planning events.
+
 ## How to Get Started ##
   Start up a nodemon server by running ```nodemon server/server.js```
 
@@ -30,7 +35,9 @@
   }
   ```
 
-  You'll notice the values of these keys are empty, that is because this information needs to be specific for your instance of RoomEase. Go to developer.facebook.com and register a new application on the website. They will consequently provide you with a clientID and a clientSecret. These go into the facebookAuth object next to their respective keys.
+  In order set the authentication, you will need to register the app with developer API server: facebook, twitter, 
+  google, and github. They will consequently provide you with a clientID and a clientSecret, or something similarly 
+  named. These go into the facebookAuth object next to their respective keys.
 
   The pgData stands for postgres data. When you create a new app on heroku if you want to host it live, heroku will provide you with all of the necessary config variabes to put into this object. Leave ssl as true. If you follow this format, the process.env statements throughout the serverside code should automatically work. If they don't, i.e. you run into require errors, make sure all paths are pointing to the right places. **Also, don't forget to add the auth.js file to .gitignore!** You don't want people knowing your databaseURL/facebooksecret.
 
@@ -55,7 +62,8 @@ SEE EXAMPLE BELOW:
 In app.js add your new state name to the appViews array. If you need to create a nested view follow the way that dashboard state is handled in the app.js file.
 
 ### All HTTP Requests
-Come From services/utils.js in the Request factory
+Most come from services/utils.js in the Request factory; additionally, auth requests are handled in auth.js and 
+calendar events in calendarEvents.js
 
 ### CSS Styling
 - Bootstrap CSS was only used for the grid
@@ -70,5 +78,4 @@ We used ng-animate along with animate.css to add transitions throughout the site
 - fade in used when tasks are added or removed (ng-animate, animate.css)
 
 ### New Features
-- Client Side Authentication
 - Implement Roomie Rating System
